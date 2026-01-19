@@ -1,0 +1,17 @@
+main {
+    display: flex;
+    align-items: center;
+    font-family: "Segoe UI", sans-serif;
+}
+
+.songPFP {
+    height: 500px;
+    width: 350px;
+    margin-right: 200px;
+}
+
+.song-info {
+    margin-left: -120px;
+    position: relative;
+}
+
