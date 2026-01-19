@@ -13,12 +13,6 @@ function Nav() {
                 <a href="#">LISTS</a>
             </span>
         </div>
-        <section className="search">
-            <form action="#">
-                <input type="text" name="search-bar" />
-                <input type="submit" value="Search" className="action"/>
-            </form>
-        </section>
         <div className="user-management-links">
             <span>
                 <a href="#">SIGN IN</a>
@@ -27,6 +21,14 @@ function Nav() {
                 <a href="#">CREATE ACCOUNT</a>
             </span>
         </div>
+        <section className="search">
+            <form action="#">
+                <input type="text" aria-label="search-bar" />
+                <button type="submit" aria-label="search-button">
+                    <i className="fa fa-search"></i>
+                </button>
+            </form>
+        </section>
     </nav>);
 }
 
