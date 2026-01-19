@@ -1,6 +1,6 @@
 import songPFP2 from "../assets/songpictures/SongPFP2.png"
 import "./songList.css"
-import Links from "./common/songLinks"
+import Links2 from "./common/songLinks2"
 import type { Song } from "./common/songModel.ts"
 
 
@@ -31,7 +31,7 @@ function SongList2() {
             </div>
         </main>
         <div>
-        <Links/>
+        <Links2/>
         </div>
         </>
     )
