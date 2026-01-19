@@ -39,6 +39,26 @@ export default function Review() {
         },
     ];
 
-    
+    return (
+        <section className="reviews-section">
+            <h2>Song Reviews</h2>
 
+            <ul>
+                {reviews.map((review) => (
+                    <li key={review.id} className="review-item">
+                        <p>
+                            <strong>{review.user}</strong> reviewed <em>{review.song}</em> on {review.date}:
+                        </p>
+
+                        // https://emojipedia.org/star for the star emoji
+                        // https://www.w3schools.com/jsref/jsref_repeat.asp for repeat method
+                        <p>{"⭐".repeat(review.rating)}</p>
+                        <p>{review.comment}</p>
+                        // https://emojipedia.org/red-heart for the heart emoji
+                        <p>❤️ {review.likes} Likes</p>
+                    </li>
+                ))}
+            </ul>
+        </section>
+    );
 }
