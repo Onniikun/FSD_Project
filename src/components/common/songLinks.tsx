@@ -6,10 +6,10 @@ function Links () {
     <div className="Links">
         <ul>
             <li className="spotify">
-                <a href="https://open.spotify.com/album/1GjWfyDsXFAQTRq8FLZJN2?si=1RQtNRHiSa-WCTgr556O2g"target="_blank">Spotify</a>
+                <a href="https://open.spotify.com/track/2Fyjjpg03fn7n5cj0Qm380"target="_blank">Spotify</a>
             </li>
             <li className="apple">
-                <a href="https://music.apple.com/us/song/forever/1767151840"target="_blank">Apple Music</a>
+                <a href="https://music.apple.com/ca/song/karma/1438765304"target="_blank">Apple Music</a>
             </li>
         </ul>
     </div>
