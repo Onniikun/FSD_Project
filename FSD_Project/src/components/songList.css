@@ -10,4 +10,8 @@ main {
     margin-right: 200px;
 }
 
+.song-info {
+    margin-left: -40px;
+    position: relative;
+}
 

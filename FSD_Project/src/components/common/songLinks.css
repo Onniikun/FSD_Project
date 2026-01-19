@@ -1,4 +1,15 @@
 .Links {
     list-style: none;
-    margin-right: 400px;
+    margin-right: 450px;
+}
+ul {
+    list-style: none;
+}
+
+.spotify {
+    background-color: rgb(15, 92, 15);
+}
+
+.apple {
+    background-color: brown;
 }
