@@ -1,17 +1,18 @@
 # Team name: React Muna
 
-## Group members: 
+## Group members:
+
 Nathan Natoza, Edraque Maglaque, Phoenixx Ordonez
 
 ## Project Theme: Music Sharing App
 
-## User Stories: 
+## User Stories:
 
-1.  As an avid music listener, I want to share my songs links across different applications, so that I can share them easily with people who use different music platforms.
+1. As an avid music listener, I want to share my songs links across different applications, so that I can share them easily with people who use different music platforms.
 
 2. As a user, I want to see a navigation bar, so that I can find and switch between pages with ease.
 
-3. test
+3. As a self-proclaimed music critic, I want to be able to view and submit reviews for music, so that I can freely share my opinions and see feedback from other users before deciding what to listen to.
 
 ## Sprint Review | Completed Kanban Items
 
