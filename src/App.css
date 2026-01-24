@@ -14,6 +14,32 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+body {
+  margin: 0.3em;
+  padding: 0.3em;
+  line-height: 1.6;
+}
+
+main {
+  background-color: lightgray;
+  max-width: 75%;
+  margin: auto;
+}
+
+header, main section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+h1, h2, h3 {
+  color: lightgray;
+  margin-bottom: 0.5em;
+}
+h2 {
+  font-size: 1em;
+}
+
 a {
   font-weight: 500;
   color: #bf87ff;
@@ -21,19 +47,6 @@ a {
 }
 a:hover {
   color: #535bf2;
-}
-
-body {
-  margin: 0;
-  display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
-}
-
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
 }
 
 button {
@@ -53,6 +66,13 @@ button:hover {
 button:focus,
 button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
+}
+
+/* FOOTER */
+footer {
+  position: fixed;
+  bottom: 0;
+  right: 1em;
 }
 
 @media (prefers-color-scheme: light) {

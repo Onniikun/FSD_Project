@@ -1,6 +1,6 @@
 import './Nav.css';
 
-function Nav() {
+export function Nav() {
     return(<nav>
         <div className="page-links">
             <span>
@@ -31,5 +31,3 @@ function Nav() {
         </section>
     </nav>);
 }
-
-export default Nav;

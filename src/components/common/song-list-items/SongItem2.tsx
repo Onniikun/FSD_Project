@@ -1,5 +1,5 @@
 import songPFP2 from "../assets/songpictures/SongPFP2.png"
-import "./songList.css"
+import "./SongItem.css"
 import Links2 from "../song-links/SongLinks2.tsx"
 import type { Song } from "../../../types/songModel.ts"
 
