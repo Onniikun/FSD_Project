@@ -1,7 +1,7 @@
 import './App.css'
-import Nav from './components/nav/Nav'
-import SongList  from "./components/songList"
-import SongList2  from "./components/songList2"
+import Nav from './components/common/nav/Nav'
+import SongList  from "./components/common/song-list/SongList"
+import SongList2  from "./components/common/song-list/SongList2"
 
 function App() {
 
