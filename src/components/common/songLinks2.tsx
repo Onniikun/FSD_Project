@@ -1,4 +1,5 @@
 import "./songLinks.css"
+import NavLinks from "./navInterface/navinterface"
 
 function Links2 () {
     return(
@@ -13,6 +14,7 @@ function Links2 () {
             </li>
         </ul>
     </div>
+    <NavLinks/>
     </>
     )
 }
