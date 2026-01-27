@@ -1,23 +1,23 @@
-import songPFP2 from "../assets/songpictures/SongPFP2.png"
-import "./songList.css"
-import Links2 from "./common/songLinks2"
-import type { Song } from "./common/songModel.ts"
+import songPFP from "../../../assets/songpictures/SongPFP.jpg"
+import "./SongItem.css"
+import Links from "../song-links/SongLinks.tsx"
+import type { Song } from "../../../types/songModel.ts"
 
 
-function SongList2() {
+function SongList() {
     const songs: Song[] = [
     {
-        title: "Karma",
-        artist: "Summer Walker",
-        genre: "Dark R&B",
-        release_date: new Date("2018"),
-        runtime: "3:08"
+        title: "Forever &",
+        artist: "Ejean",
+        genre: "R&B",
+        release_date: new Date("July, 12, 2024"),
+        runtime: "2:27"
     }
 ]
     return(
         <>
         <main>
-            <img className="songPFP"src={songPFP2} alt="songpic" />
+            <img className="songPFP"src={songPFP} alt="songpic" />
             <div className="song-info">
                 <h2>{songs[0].title}</h2>
                 <p>{songs[0].artist}</p>
@@ -31,10 +31,10 @@ function SongList2() {
             </div>
         </main>
         <div>
-        <Links2/>
+        <Links/>
         </div>
         </>
     )
 }
 
-export default SongList2
+export default SongList

@@ -1,4 +1,4 @@
-import Review from "../components/reviews/Review";
+import Review from "../common/reviews/Review";
 
 export default function SongReviews() {
     return (

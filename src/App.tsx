@@ -1,18 +1,46 @@
+import { Routes, Route } from 'react-router-dom'
+
 import './App.css'
-import Nav from './components/nav/Nav'
-import SongList  from "./components/songList"
-import SongList2  from "./components/songList2"
+import { Layout } from './components/common/layout/Layout';
+import Landing from './components/pages/Landing';
+import SongReviews from './components/pages/SongReviews';
+import DiscoverSongs from './components/pages/DiscoverSongs';
+import SongLists from './components/pages/SongLists';
 
 function App() {
 
   return (
-    <>
-      <Nav />
-      <h2>Popular Song This Week</h2>
-      <SongList />
-      <SongList2/>
-    </>
-  )
+    <Routes>  
+      {/* The root path renders <Layout>. That component contains an <Outlet>
+      which will render the elements of their child routes. */}  
+      <Route path="/" element={<Layout />}>
+          {/* 
+            Renders the different pages in the Layout. 
+            index: indicates route at the root of this path (/)
+          */}
+          <Route index element={
+            <Landing />
+            } 
+          />
+
+          <Route 
+            path="/songs" 
+            element={<DiscoverSongs />} 
+          /> 
+
+          <Route 
+            path="/lists" 
+            element={<SongLists />} 
+          /> 
+
+          {/* all paths starting with /reviews */}
+          <Route 
+            path="/reviews" 
+            element={<SongReviews />} 
+          />
+      </Route>
+    </Routes>
+  );
 }
 
 export default App
