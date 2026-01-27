@@ -4,6 +4,7 @@ import './App.css'
 import { Layout } from './components/common/layout/Layout';
 import Landing from './components/pages/Landing';
 import SongReviews from './components/pages/SongReviews';
+//import DiscoverSongs from './components/pages/DiscoverSongs';
 //import SongLists from './components/pages/SongLists';
 
 function App() {
@@ -25,10 +26,16 @@ function App() {
           {/* all paths starting with /songs
           <Route 
             path="/songs" 
+            element={<DiscoverSongs />} 
+          /> */}
+
+          {/* all paths starting with /lists
+          <Route 
+            path="/lists" 
             element={<SongLists />} 
           /> */}
 
-          {/* all paths starting with /songs */}
+          {/* all paths starting with /reviews */}
           <Route 
             path="/reviews" 
             element={<SongReviews />} 

@@ -12,6 +12,9 @@ export function Nav() {
             <span>
                 <a href="#">LISTS</a>
             </span>
+            <span>
+                <a href="#">REVIEWS</a>
+            </span>
         </div>
         <div className="user-management-links">
             <span>
