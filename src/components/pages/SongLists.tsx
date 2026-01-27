@@ -1,13 +1,11 @@
-import SongList from "../common/song-items/SongItem"
-import SongList2 from "../common/song-items/SongItem2"
-
-function Song() {
-    return(
+function SongLists() {
+    return (
         <>
-        <SongList />
-        <SongList2/>
+        <p>
+            Hello World!
+        </p>
         </>
-    )
+    );
 }
 
-export default Song
+export default SongLists;

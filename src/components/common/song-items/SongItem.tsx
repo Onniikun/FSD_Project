@@ -4,7 +4,7 @@ import Links from "../song-links/SongLinks.tsx"
 import type { Song } from "../../../types/songModel.ts"
 
 
-function SongList() {
+function SongItem() {
     const songs: Song[] = [
     {
         title: "Forever &",
@@ -37,4 +37,4 @@ function SongList() {
     )
 }
 
-export default SongList
+export default SongItem

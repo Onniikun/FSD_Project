@@ -4,7 +4,7 @@ import Links2 from "../song-links/SongLinks2.tsx"
 import type { Song } from "../../../types/songModel.ts"
 
 
-function SongList2() {
+function SongItem2() {
     const songs: Song[] = [
     {
         title: "Karma",
@@ -37,4 +37,4 @@ function SongList2() {
     )
 }
 
-export default SongList2
+export default SongItem2

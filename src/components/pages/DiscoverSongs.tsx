@@ -1,11 +1,13 @@
+import SongItem from "../common/song-items/SongItem"
+import SongItem2 from "../common/song-items/SongItem2"
+
 function DiscoverSongs() {
-    return (
+    return(
         <>
-        <p>
-            Hello World!
-        </p>
+        <SongItem />
+        <SongItem2/>
         </>
-    );
+    )
 }
 
-export default DiscoverSongs;
+export default DiscoverSongs
