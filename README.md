@@ -33,3 +33,22 @@ Nathan Natoza, Edraque Maglaque, Phoenixx Ordonez
 - **I.2 Styling: Navigation Bar** - Phoenixx
 - **Styling: Music List + Page** - Nathan
 - **I.2 Styling; Review Page Component** - Edraque
+
+## Songs 
+
+### Karma by Summer Walker
+
+Genre: Dark R&B
+
+Release date: December 31, 2017
+
+Runtime: 3:08
+
+### Forever & by Ejean
+
+Genre: R&B
+
+Release date: July 12, 2024
+
+Runtime: 2:27
+

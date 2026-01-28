@@ -1,10 +1,10 @@
-import songPFP from "../assets/songpictures/SongPFP.jpg"
-import "./songList.css"
-import Links from "./common/songLinks"
-import type { Song } from "./common/songModel.ts"
+import songPFP from "../../../assets/songpictures/SongPFP.jpg"
+import "./SongItem.css"
+import Links from "../song-links/SongLinks.tsx"
+import type { Song } from "../../../types/songModel.ts"
 
 
-function SongList() {
+function SongItem() {
     const songs: Song[] = [
     {
         title: "Forever &",
@@ -37,4 +37,4 @@ function SongList() {
     )
 }
 
-export default SongList
+export default SongItem
