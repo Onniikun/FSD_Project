@@ -1,17 +1,22 @@
+import { NavLink } from "react-router";
 import './Nav.css';
 
-function Nav() {
-    return(<nav>
+export function Nav() {
+    return(
+    <nav>
         <div className="page-links">
-            <span>
-                <a href="#">HOME</a>
-            </span>            
-            <span>
-                <a href="#">SONGS</a>
-            </span>
-            <span>
-                <a href="#">LISTS</a>
-            </span>
+            <NavLink to="/" end>
+                HOME
+            </NavLink>
+            <NavLink to="/songs" end>
+                SONGS
+            </NavLink>
+            <NavLink to="/lists" end>
+                LISTS
+            </NavLink>
+            <NavLink to="/reviews" end>
+                REVIEWS
+            </NavLink>
         </div>
         <div className="user-management-links">
             <span>
@@ -31,5 +36,3 @@ function Nav() {
         </section>
     </nav>);
 }
-
-export default Nav;

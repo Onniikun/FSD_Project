@@ -51,3 +51,9 @@ nav span {
     margin-top: 10px;
   }
 }
+
+.page-links {
+  display: flex;
+  gap: 30px;
+  padding: 12px 24px;
+}

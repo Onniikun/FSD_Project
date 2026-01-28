@@ -1,6 +1,7 @@
 import "./songLinks.css"
 
-function Links () {
+
+function Links() {
     return(
     <>
     <div className="Links">

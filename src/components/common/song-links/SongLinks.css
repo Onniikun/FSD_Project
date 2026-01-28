@@ -6,6 +6,13 @@ ul {
     list-style: none;
 }
 
+.album {
+    list-style: none;
+    margin-right: 450px;
+    margin-bottom: 15px;
+    flex-direction: column
+}
+
 .spotify {
     /* background-color: #1ED761; */
     border-radius: 999px;
