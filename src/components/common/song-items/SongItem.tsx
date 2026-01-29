@@ -5,7 +5,8 @@ import type { Song } from "../../../types/songModel.ts"
 
 
 
-function SongItem() {
+
+export function SongItem() {
     // For now it the song list will remain here until we have a
     // larger database.
     const songs: Song[] = [
@@ -27,7 +28,7 @@ function SongItem() {
         title: "Karma",
         artist: "Summer Walker",
         genre: "Dark R&B",
-        release_date: new Date("2018"),
+        release_date: new Date("October, 19,2018"),
         runtime: "3:08",
         cover: songPFP2,
         links: {
@@ -42,18 +43,29 @@ function SongItem() {
         <section className="song-item">
             <ul>
                 {songs.map((song)=> (
-                    <li key={song.id}>
+                    <li key={song.id} className="song-card">
                         <img className="songPFP"src={song.cover} alt="songpic" />
-                        <div className="song-info">
-                            <h2>{song.title}</h2>
+                    <div className="song-info">
+
+                        <div>
+                            <h2 className="title">{song.title}</h2>
                             <p>{song.artist}</p>
                             <p>Genre: {song.genre}</p>
                             <p>Release date: {song.release_date.toLocaleDateString("en-US", {
                                 year: "numeric",
-                                month: "long",
+                                month: "short",
                                 day: "numeric",
                             })}</p>
-                            <p>Runtime: {songs[0].runtime}</p>
+                            <p>Runtime: {song.runtime}</p>
+                        </div>          
+                                      
+                        <div className="song-media">
+                            <ul className="song-links">
+                                {song.links?.spotify && <a href={song.links.spotify}>Spotify</a>}
+                                {song.links?.apple && <a href={song.links.apple}>Apple Music</a>}
+                                {song.links?.soundcloud && <a href={song.links.soundcloud}>SoundCloud</a>}
+                            </ul>
+                        </div>
                         </div>
                     </li>
                 ))}
