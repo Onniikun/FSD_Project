@@ -1,9 +1,10 @@
 import songPFP from "../../../assets/songpictures/SongPFP.jpg"
 import songPFP2 from "../../../assets/songpictures/SongPFP2.png"
 import "./SongItem.css"
-import type { Song } from "../../../types/songModel.ts"
+import type { Song } from "../../../../types/songModel.ts"
 import GenreFilter from "../song-fliter/genre-filter.tsx"
-import { useState } from "react"    
+import { useState } from "react"
+// import { Route } from 'react-router-dom'    
 
 export function SongItem() {
     //use state for a selected Genre.
@@ -21,7 +22,10 @@ export function SongItem() {
         cover: songPFP,
         links: {
             spotify: "https://open.spotify.com/album/1GjWfyDsXFAQTRq8FLZJN2?si=8WCiBr8MT1i0r-X6eKvqZw",
-            apple: "https://music.apple.com/us/song/forever/1767151840"
+            apple: "https://music.apple.com/us/song/forever/1767151840",
+            amazon: "https://music.amazon.com/tracks/B0DG7633K9?marketplaceId=ART4WZ8MWBX2Y&musicTerritory=CA&ref=dm_sh_NSaNT2zY4k7yoZs2WKwfVlwvp",
+            youtube: "https://music.youtube.com/watch?v=IOhUwlI6wtc&si=zGQL_NUUXXvgQOLc",
+
         }
     },
     {
@@ -29,13 +33,15 @@ export function SongItem() {
         title: "Karma",
         artist: "Summer Walker",
         genre: "Dark R&B",
-        release_date: new Date("October, 19,2018"),
+        release_date: new Date("October, 19, 2018"),
         runtime: "3:08",
         cover: songPFP2,
         links: {
             spotify: "https://open.spotify.com/track/2Fyjjpg03fn7n5cj0Qm380",
             apple: "https://music.apple.com/ca/song/karma/1438765304",
-            soundcloud: "https://soundcloud.com/summerwalker/karma?in=j1m3n4/sets/tv-ma"
+            soundcloud: "https://soundcloud.com/summerwalker/karma?in=j1m3n4/sets/tv-ma",
+            amazon: "https://music.amazon.ca/tracks/B0B7Z91J56?do=play&agent=googleAssistant&ref=dmm_seo_google_gkp_tracks&explicit=false",
+            youtube: "https://music.youtube.com/watch?v=Y-iIdLsiOJQ"
         }
     }
 ]
@@ -48,11 +54,17 @@ export function SongItem() {
         <GenreFilter selectedGenre={selectedGenre} setSelectedGenre={setSelectedGenre}/>
         <section className="song-item">
             <ul>
-                {filteredSongs.map((song)=> (
+                {filteredSongs.length === 0 ? (
+                    <p>Sorry, We haven't added that yet.</p>
+                ) : (
+                filteredSongs.map((song)=> (
                     <li key={song.id} className="song-card">
                         <img className="songPFP"src={song.cover} alt="songpic" />
+                        {/* <Route>
+                            path="/{song.title}"-"{song.artist}"
+                            element=
+                        </Route> */}
                     <div className="song-info">
-
                         <div>
                             <h2 className="title">{song.title}</h2>
                             <p>{song.artist}</p>
@@ -63,18 +75,19 @@ export function SongItem() {
                                 day: "numeric",
                             })}</p>
                             <p>Runtime: {song.runtime}</p>
-                        </div>          
-                                      
+                        </div>                       
                         <div className="song-media">
                             <ul className="song-links">
                                 {song.links?.spotify && <a href={song.links.spotify}>Spotify</a>}
                                 {song.links?.apple && <a href={song.links.apple}>Apple Music</a>}
                                 {song.links?.soundcloud && <a href={song.links.soundcloud}>SoundCloud</a>}
+                                {song.links?.amazon && <a href={song.links.amazon}>Amazon</a>}
+                                {song.links?.youtube && <a href={song.links.youtube}>Youtube Music</a>}
                             </ul>
                         </div>
                         </div>
                     </li>
-                ))}
+                )))}
             </ul>
         </section>
         </>

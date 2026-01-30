@@ -10,8 +10,11 @@ export interface Song {
 }
 
 export interface songLinks {
-    spotify?: string
-    apple?: string
-    soundcloud?: string
+    spotify?: string;
+    apple?: string;
+    soundcloud?: string;
+    amazon?: string;
+    youtube?: string;
+
 }
 

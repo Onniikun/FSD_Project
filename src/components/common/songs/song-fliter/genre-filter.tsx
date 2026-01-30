@@ -1,5 +1,6 @@
-import type { genre } from "../../../types/genreModel"
+import type { genre } from "../../../../types/genreModel.ts"
 import "./genre-filter.css"
+
 export function GenreFilter({
     selectedGenre,
     setSelectedGenre,

@@ -40,7 +40,7 @@ Nathan Natoza, Edraque Maglaque, Phoenixx Ordonez
 
 Genre: Dark R&B
 
-Release date: December 31, 2017
+Release date: October 19, 2018
 
 Runtime: 3:08
 
