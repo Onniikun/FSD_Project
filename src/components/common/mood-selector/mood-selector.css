@@ -1,0 +1,36 @@
+.mood-selector {
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+
+  background: #3D314A;
+  padding: 12px 16px;
+  border-radius: 16px;
+  border: 2px solid #272B29;
+
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  animation: fadeIn 0.3s ease;
+}
+
+.mood-button {
+  padding: 6px 12px;
+  border-radius: 8px;
+  border: 1px solid #7C7C7C;
+  background: #272B29;
+  cursor: pointer;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.mood-button.active {
+  background: #bf87ff;
+  color: #3D314A;
+  border-color: #7C7C7C;
+}
+
+.mood-button:hover {
+  background: #7C7C7C;
+}
