@@ -2,11 +2,12 @@ import songPFP from "../../../assets/songpictures/SongPFP.jpg"
 import songPFP2 from "../../../assets/songpictures/SongPFP2.png"
 import "./SongItem.css"
 import type { Song } from "../../../types/songModel.ts"
-
-
-
+import GenreFilter from "../song-fliter/genre-filter.tsx"
+import { useState } from "react"    
 
 export function SongItem() {
+    //use state for a selected Genre.
+    const [selectedGenre, setSelectedGenre] = useState<string>("All")
     // For now it the song list will remain here until we have a
     // larger database.
     const songs: Song[] = [
@@ -38,11 +39,16 @@ export function SongItem() {
         }
     }
 ]
+    // Displaying the filtered songs.
+    //https://www.youtube.com/watch?v=u1yr_HZivzk
+    const filteredSongs =
+        selectedGenre === "All" ? songs : songs.filter(song => song.genre === selectedGenre)
     return(
         <>
+        <GenreFilter selectedGenre={selectedGenre} setSelectedGenre={setSelectedGenre}/>
         <section className="song-item">
             <ul>
-                {songs.map((song)=> (
+                {filteredSongs.map((song)=> (
                     <li key={song.id} className="song-card">
                         <img className="songPFP"src={song.cover} alt="songpic" />
                     <div className="song-info">
