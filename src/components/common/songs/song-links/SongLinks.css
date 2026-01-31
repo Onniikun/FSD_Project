@@ -1,24 +1,11 @@
-/* .Links {
-    list-style: none;
-    margin-right: 450px;
-}
+
 ul {
     list-style: none;
 }
 
-.album {
+.song-media {
     list-style: none;
-    margin-right: 450px;
     margin-bottom: 15px;
-    flex-direction: column
+    margin-top: 10px;
+    text-align: center;
 }
-/*
-.spotify {
-    /* background-color: #1ED761; */
-    /*border-radius: 999px;
-}
-/* 
-.apple {
-    /* background-color: #FF4E6B; */
-    /*border-radius: 999px;
-} */ /*/

@@ -1,21 +1,24 @@
-// import "./songLinks.css"
+import "./songLinks.css"
+import type { songLinks } from "../../../../types/songModel.ts"
 
+type LinksProps = {
+    links?: songLinks
+}
 
-// function Links() {
-//     return(
-//     <>
-//     <div className="Links">
-//         <ul>
-//             <li className="spotify">
-//                 <a href="https://open.spotify.com/album/1GjWfyDsXFAQTRq8FLZJN2?si=8WCiBr8MT1i0r-X6eKvqZw"target="_blank">Spotify</a>
-//             </li>
-//             <li className="apple">
-//                 <a href="https://music.apple.com/us/song/forever/1767151840"target="_blank">Apple Music</a>
-//             </li>
-//         </ul>
-//     </div>
-//     </>
-//     )
-// }
+function Links({ links }: LinksProps) {
+    return(
+    <>
+    <div className="song-media">
+        <ul className="song-links">
+            {links?.spotify && <a href={links.spotify}>Spotify</a>}
+            {links?.apple && <a href={links.apple}>Apple Music</a>}
+            {links?.soundcloud && <a href={links.soundcloud}>SoundCloud</a>}
+            {links?.amazon && <a href={links.amazon}>Amazon</a>}
+            {links?.youtube && <a href={links.youtube}>Youtube Music</a>}
+        </ul>
+    </div>
+    </>
+    )
+}
 
-// export default Links
+export default Links

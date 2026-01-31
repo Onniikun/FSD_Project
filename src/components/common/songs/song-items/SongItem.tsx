@@ -1,12 +1,18 @@
-import songPFP from "../../../assets/songpictures/SongPFP.jpg"
-import songPFP2 from "../../../assets/songpictures/SongPFP2.png"
+import songPFP from "../../../../assets/songpictures/SongPFP.jpg"
+import songPFP2 from "../../../../assets/songpictures/SongPFP2.png"
 import "./SongItem.css"
 import type { Song } from "../../../../types/songModel.ts"
 import GenreFilter from "../song-fliter/genre-filter.tsx"
+import Links from "../song-links/SongLinks.tsx"
+import Upvote from "../song-upvote/Songupvote.tsx"
 import { useState } from "react"
 // import { Route } from 'react-router-dom'    
 
-export function SongItem() {
+/**
+ * Displays song information.
+ * @returns - A song item{s}
+ */
+function SongItem() {
     //use state for a selected Genre.
     const [selectedGenre, setSelectedGenre] = useState<string>("All")
     // For now it the song list will remain here until we have a
@@ -59,13 +65,15 @@ export function SongItem() {
                 ) : (
                 filteredSongs.map((song)=> (
                     <li key={song.id} className="song-card">
+                    <div>
                         <img className="songPFP"src={song.cover} alt="songpic" />
                         {/* <Route>
                             path="/{song.title}"-"{song.artist}"
                             element=
-                        </Route> */}
+                        </Route> */} 
+                        <Links links={song.links} />
+                    </div>
                     <div className="song-info">
-                        <div>
                             <h2 className="title">{song.title}</h2>
                             <p>{song.artist}</p>
                             <p>Genre: {song.genre}</p>
@@ -74,18 +82,9 @@ export function SongItem() {
                                 month: "short",
                                 day: "numeric",
                             })}</p>
-                            <p>Runtime: {song.runtime}</p>
-                        </div>                       
-                        <div className="song-media">
-                            <ul className="song-links">
-                                {song.links?.spotify && <a href={song.links.spotify}>Spotify</a>}
-                                {song.links?.apple && <a href={song.links.apple}>Apple Music</a>}
-                                {song.links?.soundcloud && <a href={song.links.soundcloud}>SoundCloud</a>}
-                                {song.links?.amazon && <a href={song.links.amazon}>Amazon</a>}
-                                {song.links?.youtube && <a href={song.links.youtube}>Youtube Music</a>}
-                            </ul>
+                            <p>Runtime: {song.runtime}</p>                     
                         </div>
-                        </div>
+                        <Upvote />
                     </li>
                 )))}
             </ul>
@@ -94,4 +93,4 @@ export function SongItem() {
     )
 }
 
-export default SongItem
+export default SongItem;

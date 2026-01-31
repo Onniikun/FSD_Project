@@ -1,4 +1,4 @@
-import SongItem from "../common/song-items/SongItem"
+import SongItem from "../common/songs/song-items/SongItem"
 
 function DiscoverSongs() {
     return(

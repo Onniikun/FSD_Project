@@ -1,11 +1,17 @@
 import type { genre } from "../../../../types/genreModel.ts"
 import "./genre-filter.css"
-
-export function GenreFilter({
+/**
+ * Filters songs by Genre.
+ * @param param0 - Selected Genre.
+ * @returns - Filtered song.
+ */
+function GenreFilter({
     selectedGenre,
     setSelectedGenre,
 }: genre) {
     const genre = ["All", "R&B", "Dark R&B", "K-Pop"]
+    // This filter can be reused for filtering other song parameters.
+    // EX: Artists, Release date, available links to.
     return(
         <>
         <section className="genre-filter">
