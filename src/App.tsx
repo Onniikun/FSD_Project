@@ -23,18 +23,18 @@ function App() {
 
           <Route 
             path="/songs" 
-            element={<DiscoverSongs />} 
+            element={<DiscoverSongs mood={mood}/>} 
           /> 
 
           <Route 
             path="/lists" 
-            element={<SongLists />} 
+            element={<SongLists mood={mood}/>} 
           /> 
 
           {/* all paths starting with /reviews */}
           <Route 
             path="/reviews" 
-            element={<SongReviews />} 
+            element={<SongReviews mood={mood}/>} 
           />
       </Route>
     </Routes>
