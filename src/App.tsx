@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import { Routes, Route } from 'react-router-dom'
 
 import './App.css'
@@ -8,18 +9,15 @@ import DiscoverSongs from './components/pages/DiscoverSongs';
 import SongLists from './components/pages/SongLists';
 
 function App() {
+  const [mood, setMood] = useState<string>("");
 
   return (
     <Routes>  
-      {/* The root path renders <Layout>. That component contains an <Outlet>
-      which will render the elements of their child routes. */}  
       <Route path="/" element={<Layout />}>
-          {/* 
-            Renders the different pages in the Layout. 
-            index: indicates route at the root of this path (/)
-          */}
-          <Route index element={
-            <Landing />
+
+          <Route 
+            index 
+            element={<Landing mood={mood} setMood={setMood} />
             } 
           />
 
