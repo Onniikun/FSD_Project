@@ -73,7 +73,6 @@ function SongItem() {
                             </div>
                         </Link>
                         <Links links={song.links} />
-                        <Upvote />
                     </div>
                     <div className="song-info">
                             <h2 className="title">{song.title}</h2>
@@ -84,7 +83,8 @@ function SongItem() {
                                 month: "short",
                                 day: "numeric",
                             })}</p>
-                            <p>Runtime: {song.runtime}</p>                     
+                            <p>Runtime: {song.runtime}</p>  
+                            <Upvote />                   
                         </div>
                     </li>
                 )))}
