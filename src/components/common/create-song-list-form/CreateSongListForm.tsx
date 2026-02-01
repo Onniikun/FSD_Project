@@ -12,6 +12,11 @@ export default function CreateSongListForm({ setLists }: CreateSongListFormProps
   const [visibility, setVisibility] = useState<VisibilityOption>("private");
   const [description, setDescription] = useState("");
   const [songs, setSongs] = useState<Song[]>([]);
+  const [errors, setErrors] = useState<{
+    name?: string;
+    songs?: string;
+  }>({});
+
 
   const addSong = () => {
     setSongs((previousSongs) => [
@@ -34,6 +39,22 @@ export default function CreateSongListForm({ setLists }: CreateSongListFormProps
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    const newErrors: {
+      name?: string;
+      songs?: string;
+    } = {};
+
+    if (name.trim() === "") {
+      newErrors.name = "List name is required.";
+    }
+
+    if (songs.length === 0) {
+      newErrors.songs = "Please add at least one song.";
+    }
+
+    setErrors(newErrors);
+
+    if (Object.keys(newErrors).length > 0) return;
 
     const newList: SongList = {
       id: crypto.randomUUID(),
@@ -63,8 +84,8 @@ export default function CreateSongListForm({ setLists }: CreateSongListFormProps
             type="text"
             value={name}
             onChange={(e) => setName(e.target.value)}
-            required
           />
+          {errors.name && <p className="error-text">{errors.name}</p>}
         </label>
 
         <label className="form-field">
@@ -92,6 +113,8 @@ export default function CreateSongListForm({ setLists }: CreateSongListFormProps
         <div className="songs-section">
           <h3>Songs</h3>
 
+          {errors.songs && <p className="error-text">{errors.songs}</p>}
+
           {songs.map((song) => (
             <div key={song.id} className="song-item">
               <div className="song-row">
@@ -104,7 +127,6 @@ export default function CreateSongListForm({ setLists }: CreateSongListFormProps
                     onChange={(e) =>
                       updateSong(song.id, "title", e.target.value)
                     }
-                    required
                   />
                 </label>
 
@@ -116,7 +138,6 @@ export default function CreateSongListForm({ setLists }: CreateSongListFormProps
                     onChange={(e) =>
                       updateSong(song.id, "artist", e.target.value)
                     }
-                    required
                   />
                 </label>
               

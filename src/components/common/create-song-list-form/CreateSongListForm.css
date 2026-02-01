@@ -51,6 +51,12 @@
   outline: none;
 }
 
+.error-text {
+  color: #fffefe;
+  font-size: 0.85rem;
+  margin-top: 0.25rem;
+}
+
 .songs-section {
   margin-top: 2rem;
   padding-top: 1rem;
