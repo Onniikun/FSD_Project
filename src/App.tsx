@@ -5,7 +5,7 @@ import { Layout } from './components/common/layout/Layout';
 import Landing from './components/pages/Landing';
 import SongReviews from './components/pages/SongReviews';
 import DiscoverSongs from './components/pages/DiscoverSongs';
-import SongLists from './components/pages/SongLists';
+import SongListsPage from './components/pages/SongListsPage';
 
 function App() {
 
@@ -30,7 +30,7 @@ function App() {
 
           <Route 
             path="/lists" 
-            element={<SongLists />} 
+            element={<SongListsPage />} 
           /> 
 
           {/* all paths starting with /reviews */}
