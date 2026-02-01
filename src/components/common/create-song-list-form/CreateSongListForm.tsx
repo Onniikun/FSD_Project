@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import './CreateSongListForm.css';
 
 import type { Song, SongList, VisibilityOption } from "../../../types/songListTypes";
 
@@ -93,37 +94,40 @@ export default function CreateSongListForm({ setLists }: CreateSongListFormProps
 
           {songs.map((song) => (
             <div key={song.id} className="song-item">
-              <label>
-                Title
-                <input
-                  type="text"
-                  value={song.title}
-                  onChange={(e) =>
-                    updateSong(song.id, "title", e.target.value)
-                  }
-                  required
-                />
-              </label>
+              <div className="song-row">
 
-              <label>
-                Artist
-                <input
-                  type="text"
-                  value={song.artist}
-                  onChange={(e) =>
-                    updateSong(song.id, "artist", e.target.value)
-                  }
-                  required
-                />
-              </label>
+                <label className="song-field">
+                  Title
+                  <input
+                    type="text"
+                    value={song.title}
+                    onChange={(e) =>
+                      updateSong(song.id, "title", e.target.value)
+                    }
+                    required
+                  />
+                </label>
 
-              <button
-                type="button"
-                className="remove-button"
-                onClick={() => removeSong(song.id)}
-              >
-                Remove
-              </button>
+                <label className="song-field">
+                  Artist
+                  <input
+                    type="text"
+                    value={song.artist}
+                    onChange={(e) =>
+                      updateSong(song.id, "artist", e.target.value)
+                    }
+                    required
+                  />
+                </label>
+              
+                <button
+                  type="button"
+                  className="remove-button"
+                  onClick={() => removeSong(song.id)}
+                >
+                  Remove
+                </button>
+              </div>
             </div>
           ))}
 
