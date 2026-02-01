@@ -4,12 +4,14 @@ export interface SongListCardProps {
   list: SongList;
   isExpanded: boolean;
   onTitleClick: (id: string) => void;
+  onDelete: (id: string) => void;
 }
 
 export function SongListCard({
   list,
   isExpanded,
-  onTitleClick
+  onTitleClick,
+  onDelete
 }: SongListCardProps) {
   return (
     <div className="songlist-card">
@@ -17,6 +19,13 @@ export function SongListCard({
         <h3 onClick={() => onTitleClick(list.id)}>
           {list.name}
         </h3>
+        <button
+          className="delete-list-button"
+          onClick={() => onDelete(list.id)}
+        >
+          Delete
+        </button>
+
       </div>
 
       {isExpanded && (

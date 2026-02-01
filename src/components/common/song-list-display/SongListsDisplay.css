@@ -58,6 +58,20 @@
   color: #e8d9ff;
 }
 
+.delete-list-button {
+  background: #da3833;
+  color: white;
+  border: none;
+  padding: 0.35rem 0.6rem;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.85rem;
+}
+
+.delete-list-button:hover {
+  background: #a53937;
+}
+
 @media (max-width: 600px) {
   .songlist-card {
     padding: 1rem;
