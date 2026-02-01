@@ -6,7 +6,7 @@ import GenreFilter from "../song-fliter/genre-filter.tsx"
 import Links from "../song-links/SongLinks.tsx"
 import Upvote from "../song-upvote/Songupvote.tsx"
 import { useState } from "react"
-// import { Route } from 'react-router-dom'    
+import { Link } from 'react-router-dom'    
 
 /**
  * Displays song information.
@@ -65,13 +65,15 @@ function SongItem() {
                 ) : (
                 filteredSongs.map((song)=> (
                     <li key={song.id} className="song-card">
-                    <div>
-                        <img className="songPFP"src={song.cover} alt="songpic" />
-                        {/* <Route>
-                            path="/{song.title}"-"{song.artist}"
-                            element=
-                        </Route> */} 
+                    <div> 
+                        {/* To add link to song item. */}
+                        <Link to={`/song:${song.title}/${song.artist}`}>
+                            <div className="songWrapper">
+                                <img className="songPFP"src={song.cover} alt="songpic" />
+                            </div>
+                        </Link>
                         <Links links={song.links} />
+                        <Upvote />
                     </div>
                     <div className="song-info">
                             <h2 className="title">{song.title}</h2>
@@ -84,7 +86,6 @@ function SongItem() {
                             })}</p>
                             <p>Runtime: {song.runtime}</p>                     
                         </div>
-                        <Upvote />
                     </li>
                 )))}
             </ul>
