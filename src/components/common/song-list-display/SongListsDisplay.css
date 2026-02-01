@@ -4,6 +4,7 @@
   flex-direction: column;
   gap: 1.5rem;
   color: white;
+  padding-bottom: 4rem;
 }
 
 .lists-display h2 {

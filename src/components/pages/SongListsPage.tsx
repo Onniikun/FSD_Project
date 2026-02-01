@@ -13,7 +13,7 @@ export default function SongListsPage() {
 
           <CreateSongListForm setLists={setLists} />
 
-          <SongListsDisplay lists={lists} />
+          <SongListsDisplay lists={lists} setLists={setLists} />
         </div>
     );
 }
