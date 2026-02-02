@@ -4,7 +4,7 @@ import "./song-item.css"
 import type { Song } from "../../../../types/songModel.ts"
 import GenreFilter from "../song-filter/GenreFilter.tsx"
 import Links from "../song-links/SongLinks.tsx"
-import Upvote from "../song-upvote/SongUpVote.tsx"
+import Upvote from "../song-upvote/Songupvote.tsx"
 import { useState } from "react"
 import { Link } from 'react-router-dom'
 
