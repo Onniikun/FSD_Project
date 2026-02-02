@@ -116,7 +116,7 @@ export default function CreateSongListForm({ setLists }: CreateSongListFormProps
           {errors.songs && <p className="error-text">{errors.songs}</p>}
 
           {songs.map((song) => (
-            <div key={song.id} className="song-item">
+            <div key={song.id} className="song-list-item">
               <div className="song-row">
 
                 <label className="song-field">
