@@ -5,7 +5,7 @@ import "./song-upvote.css"
  * 
  * @returns 
  */
-function Upvote() {
+function UpVote() {
     //Using a reddit style of button feature for liking/disliking songs.
     const [likes, setlikes] = useState(0)
 
@@ -36,4 +36,4 @@ function Upvote() {
     )
 }
 
-export default Upvote
+export default UpVote
