@@ -22,11 +22,13 @@
 .songs-section h3 {
   color: white;
   margin-bottom: 1rem;
+  font-size: x-large;
   font-weight: 600;
 }
 
 /* Label + input wrapper */
 .form-field {
+  font-size: large;
   display: flex;
   flex-direction: column;
   margin-bottom: 1.25rem;
@@ -53,7 +55,7 @@
 
 .error-text {
   color: #fffefe;
-  font-size: 0.85rem;
+  font-size: medium;
   margin-top: 0.25rem;
 }
 
@@ -83,6 +85,7 @@
 }
 
 .song-field {
+  font-size: large;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -114,11 +117,10 @@
   background: #a53937;
 }
 
-/* Add song button */
 .add-button {
   background: #bf87ff;
   color: #3D314A;
-  font-weight: bold;
+  font-size: large;
   border: none;
   padding: 0.55rem 0.9rem;
   border-radius: 6px;
@@ -130,12 +132,10 @@
   background: #b17dec;
 }
 
-/* Submit button */
 .submit-button {
   width: 100%;
   background: #3D314A;
   color: white;
-  font-weight: bold;
   border: none;
   padding: 0.75rem;
   border-radius: 8px;

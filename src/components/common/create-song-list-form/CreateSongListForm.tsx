@@ -45,11 +45,11 @@ export default function CreateSongListForm({ setLists }: CreateSongListFormProps
     } = {};
 
     if (name.trim() === "") {
-      newErrors.name = "List name is required.";
+      newErrors.name = "**List name is required.**";
     }
 
     if (songs.length === 0) {
-      newErrors.songs = "Please add at least one song.";
+      newErrors.songs = "**Please add at least one song.**";
     }
 
     setErrors(newErrors);
