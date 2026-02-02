@@ -1,9 +1,25 @@
+import { MoodSelector } from "../common/mood-selector/MoodSelector";
 import Review from "../common/reviews/Review";
 
-export default function SongReviews() {
+export default function SongReviews({ mood }: { mood: string }) {
     return (
-        <main>
-            <Review />
-        </main>
+        <>
+            <MoodSelector
+                mood={mood}
+                setMood={() => {}}
+                showButtons={false}
+                message={
+                mood
+                    ? `Write a review that matches your ${mood} mood`
+                    : "Choose a mood on the landing page to personalize your message."
+                }
+            />
+
+            <main>
+                <Review />
+            </main>
+
+        </>
+
     );
 };
