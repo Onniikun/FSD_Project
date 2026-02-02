@@ -2,11 +2,11 @@ import songPFP from "../../../../assets/songpictures/SongPFP.jpg"
 import songPFP2 from "../../../../assets/songpictures/SongPFP2.png"
 import "./SongItem.css"
 import type { Song } from "../../../../types/songModel.ts"
-import GenreFilter from "../song-fliter/genre-filter.tsx"
+import GenreFilter from "../song-fliter/genreFilter.tsx"
 import Links from "../song-links/SongLinks.tsx"
 import Upvote from "../song-upvote/Songupvote.tsx"
 import { useState } from "react"
-import { Link } from 'react-router-dom'    
+import { Link } from 'react-router-dom'
 
 /**
  * Displays song information.
