@@ -1,5 +1,5 @@
 import { useState } from "react"
-import "./Songupvote.css"
+import "./song-upvote.css"
 
 /**
  * 

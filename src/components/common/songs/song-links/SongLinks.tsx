@@ -1,4 +1,4 @@
-import "./songLinks.css"
+import "./song-links.css"
 import type { songLinks } from "../../../../types/songModel.ts"
 
 type LinksProps = {

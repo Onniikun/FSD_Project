@@ -1,6 +1,6 @@
 import songPFP from "../../../../assets/songpictures/SongPFP.jpg"
 import songPFP2 from "../../../../assets/songpictures/SongPFP2.png"
-import "./SongItem.css"
+import "./song-item.css"
 import type { Song } from "../../../../types/songModel.ts"
 import GenreFilter from "../song-fliter/genreFilter.tsx"
 import Links from "../song-links/SongLinks.tsx"

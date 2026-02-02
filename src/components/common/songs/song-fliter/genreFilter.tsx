@@ -1,5 +1,5 @@
 import type { genre } from "../../../../types/genreModel.ts"
-import "./genreFilter.css"
+import "./genre-filter.css"
 /**
  * Filters songs by Genre.
  * @param param0 - Selected Genre.
