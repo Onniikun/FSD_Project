@@ -27,9 +27,9 @@ Nathan Natoza, Edraque Maglaque, Phoenixx Ordonez
 - **Project README.md file** - Everyone; Phoenixx, Nathan, and Edraque
 - **App Stylesheet and Style Guide** - Everyone; Phoenixx, Nathan, and Edraque
 
-### Sprint 1
+### Sprint 2
 
-- **Mulit-Page Navigation** - Phoenixx
+- **Multi-Page Navigation** - Phoenixx
 - **Navigation Interface(s)** - Nathan
 - **Shared state across pages** - Phoenixx
 
