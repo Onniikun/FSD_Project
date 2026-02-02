@@ -5,14 +5,20 @@ import { SongListCard } from "../song-list-card/SongListCard";
 
 export interface SongListsDisplayProps {
   lists: SongList[];
+  setLists: React.Dispatch<React.SetStateAction<SongList[]>>;
 }
 
-export default function SongListsDisplay({ lists }: SongListsDisplayProps) {
+export default function SongListsDisplay({ lists, setLists }: SongListsDisplayProps) {
     const [expandedId, setExpandedId] = useState<string | null>(null);
 
     const handleTitleClick = (id: string) => {
-        setExpandedId((prev) => (prev === id ? null : id));
+        setExpandedId((previousId) => (previousId === id ? null : id));
     };
+
+    const handleDeleteList = (id: string) => {
+        setLists((previousLists) => previousLists.filter((list) => list.id !== id));
+    };
+
 
     return (
         <div className="lists-display">
@@ -26,6 +32,7 @@ export default function SongListsDisplay({ lists }: SongListsDisplayProps) {
               list={list}
               isExpanded={expandedId === list.id}
               onTitleClick={handleTitleClick}
+              onDelete={handleDeleteList}
             />
           ))}
         </div>

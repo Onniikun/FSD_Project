@@ -4,6 +4,7 @@
   flex-direction: column;
   gap: 1.5rem;
   color: white;
+  padding-bottom: 4rem;
 }
 
 .lists-display h2 {
@@ -56,6 +57,20 @@
 .song-list li {
   list-style: disc;
   color: #e8d9ff;
+}
+
+.delete-list-button {
+  background: #da3833;
+  color: white;
+  border: none;
+  padding: 0.35rem 0.6rem;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.85rem;
+}
+
+.delete-list-button:hover {
+  background: #a53937;
 }
 
 @media (max-width: 600px) {
