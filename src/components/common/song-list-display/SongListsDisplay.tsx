@@ -16,6 +16,10 @@ export default function SongListsDisplay({ lists, setLists }: SongListsDisplayPr
     };
 
     const handleDeleteList = (id: string) => {
+        // Simple browser delete confirmation for now
+        const confirmed = window.confirm("Are you sure you want to delete this list?");
+        if (!confirmed) return;
+
         setLists((previousLists) => previousLists.filter((list) => list.id !== id));
     };
 
