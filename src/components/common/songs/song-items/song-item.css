@@ -1,0 +1,44 @@
+/*A singlar song item*/
+.song-item {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 50px;
+    text-align: center;
+}
+/* song image */
+.songPFP {
+    height: 500px;
+    width: 350px;
+}
+
+.songWrapper:hover {
+    background-color: #bf87ff;
+    padding: 1.5px;
+}
+.title {
+    font-size: xx-large;
+}
+
+
+/*Position of Song Information*/
+.song-card {
+    display: flex;            
+    gap: 2rem;
+    margin-top: 3rem;
+    margin-right: 20px;
+} 
+
+
+.song-links {
+    display: flex;
+    flex-direction: column;
+    row-gap: 10px;
+    padding: 0;
+    margin: 0;
+}
+
+.song-links a {
+    display: block;
+    text-align: center;
+}

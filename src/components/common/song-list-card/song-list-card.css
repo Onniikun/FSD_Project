@@ -1,0 +1,23 @@
+.song-grid {
+  display: grid;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+
+.song-grid-header,
+.song-grid-row {
+  display: grid;
+  grid-template-columns: 2fr 1.5fr 1.5fr 1.5fr 1fr;
+  padding: 0.5rem 0;
+  align-items: center;
+}
+
+.song-grid-header {
+  font-weight: bold;
+  border-bottom: 2px solid #6a4c93;
+  color: #d7bfff;
+}
+
+.song-grid-row span {
+  padding: 0.25rem 0;
+}

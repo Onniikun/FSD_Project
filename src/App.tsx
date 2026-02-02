@@ -1,18 +1,44 @@
+import { useState } from 'react'
+import { Routes, Route } from 'react-router-dom'
+
 import './App.css'
-import Nav from './components/nav/Nav'
-import SongList  from "./components/songList"
-import SongList2  from "./components/songList2"
+import { Layout } from './components/common/layout/Layout';
+import Landing from './components/pages/Landing';
+import SongReviews from './components/pages/SongReviews';
+import DiscoverSongs from './components/pages/DiscoverSongs';
+import SongListsPage from './components/pages/SongListsPage';
 
 function App() {
+  const [mood, setMood] = useState<string>("");
 
   return (
-    <>
-      <Nav />
-      <SongList />
-      {/* <SongList /> */}
-      <SongList2/>
-    </>
-  )
+    <Routes>  
+      <Route path="/" element={<Layout />}>
+
+          <Route 
+            index 
+            element={<Landing mood={mood} setMood={setMood} />
+            } 
+          />
+
+          <Route 
+            path="/songs" 
+            element={<DiscoverSongs mood={mood}/>} 
+          /> 
+
+          <Route 
+            path="/lists" 
+            element={<SongListsPage mood={mood}/>} 
+          /> 
+
+          {/* all paths starting with /reviews */}
+          <Route 
+            path="/reviews" 
+            element={<SongReviews mood={mood}/>} 
+          />
+      </Route>
+    </Routes>
+  );
 }
 
 export default App

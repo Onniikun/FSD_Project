@@ -18,6 +18,8 @@ Nathan Natoza, Edraque Maglaque, Phoenixx Ordonez
 
 ### Team Contributions
 
+### Sprint 1
+
 - **Project Initialization** - Phoenixx
 - **Set up Project Git Repository** - Nathan
 - **Team Vercel Account/Management** - Nathan
@@ -25,11 +27,44 @@ Nathan Natoza, Edraque Maglaque, Phoenixx Ordonez
 - **Project README.md file** - Everyone; Phoenixx, Nathan, and Edraque
 - **App Stylesheet and Style Guide** - Everyone; Phoenixx, Nathan, and Edraque
 
+### Sprint 2
+
+- **Multi-Page Navigation** - Phoenixx
+- **Navigation Interface(s)** - Nathan
+- **Shared state across pages** - Phoenixx
+
 ### Individual Contributions
 
+### Sprint 1
 - **I.1 Navigation Bar Component** - Phoenixx
 - **I.1 Music List + Page** - Nathan
 - **I.1 Review Page Component** - Edraque
 - **I.2 Styling: Navigation Bar** - Phoenixx
-- **Styling: Music List + Page** - Nathan
+- **I.2 Styling: Music List + Page** - Nathan
 - **I.2 Styling; Review Page Component** - Edraque
+
+### Sprint 2
+- **I.1 Feature Page (LISTS page)** - Phoenixx
+- **I.2 Form Component(Genre filter)** - Nathan
+- **I.2 Form Component(Create a List)** - Phoenixx
+- **I.3 Element Addition/Removal (Like button/Upvote Downvote feature)** - Nathan
+- **I.3 Element Addition/Removal (Add/Remove Song from the List)** - Phoenixx
+
+## Songs 
+
+### Karma by Summer Walker
+
+Genre: Dark R&B
+
+Release date: October 19, 2018
+
+Runtime: 3:08
+
+### Forever & by Ejean
+
+Genre: R&B
+
+Release date: July 12, 2024
+
+Runtime: 2:27
+
