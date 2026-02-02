@@ -4,6 +4,9 @@ export interface Song {
   id: string;
   title: string;
   artist: string;
+  album?: string;
+  releasedDate?: string;
+  runtime?: string;
 }
 
 export interface SongList {
