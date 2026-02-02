@@ -82,6 +82,7 @@
   display: flex;
   align-items: center;
   gap: 1.5rem;
+  flex-wrap: wrap;
 }
 
 .song-field {
@@ -95,10 +96,13 @@
 .song-field input {
   background-color: #e2e2e2;
   color: black;
+  font-size: large;
   border: none;
   border-radius: 5px;
   flex: 1;
   min-width: 120px;
+  width: 185px;
+  height: 1.6rem;
 }
 
 
