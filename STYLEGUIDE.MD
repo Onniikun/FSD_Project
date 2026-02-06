@@ -5,7 +5,7 @@ Graphite #272B29
 Indigo Bloom #bf87ff
 Grey #7C7C7C
 
-# Colours
+# Fonts
 font-family: "monaspace", Monaspace;
 
 font-family: "Segoe UI", sans-serif;
