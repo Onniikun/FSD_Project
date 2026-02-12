@@ -1,5 +1,6 @@
-import type { genre } from "../../../../types/genreModel.ts"
+import type { genreFilter } from "../../../../types/filterModel"
 import "./genre-filter.css"
+
 /**
  * Filters songs by Genre.
  * @param param0 - Selected Genre.
@@ -8,14 +9,12 @@ import "./genre-filter.css"
 function GenreFilter({
     selectedGenre,
     setSelectedGenre,
-}: genre) {
-    const genre = ["All", "R&B", "Dark R&B", "K-Pop"]
-    // This filter can be reused for filtering other song parameters.
-    // EX: Artists, Release date, available links to.
+}: genreFilter){
+    const genres = ["All", "R&B", "Dark R&B", "K-Pop"];
     return(
         <>
         <section className="genre-filter">
-            {genre.map((genre) =>(
+            {genres.map((genre) =>(
                 //https://react.dev/learn/rendering-lists
                 <button key={genre} type="button"
                 className={
