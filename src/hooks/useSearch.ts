@@ -31,7 +31,7 @@ export function useSearch({
         }, debounceMilliseconds);
 
         return () => clearTimeout(debounceSearch);
-    }, [searchValue]);
+    }, [searchValue, debounceMilliseconds]);
 
     const clearSearch = () => {
         setSearchValue("");
