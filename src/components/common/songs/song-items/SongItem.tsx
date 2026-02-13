@@ -57,7 +57,8 @@ function SongItem() {
         selectedGenre === "All" ? songs : songs.filter(song => song.genre === selectedGenre)
     return(
         <>
-        <GenreFilter selectedGenre={selectedGenre} setSelectedGenre={setSelectedGenre}/>
+        <h2 className="message">Boomboxd's Favourite Genres</h2>
+        <GenreFilter onChange={setSelectedGenre}/>
         <section className="song-item">
             <ul>
                 {filteredSongs.length === 0 ? (

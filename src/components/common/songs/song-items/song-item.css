@@ -29,7 +29,7 @@
     margin-right: 20px;
 } 
 
-
+/*Links*/
 .song-links {
     display: flex;
     flex-direction: column;
@@ -40,5 +40,10 @@
 
 .song-links a {
     display: block;
+    text-align: center;
+}
+
+/**/
+.message {
     text-align: center;
 }

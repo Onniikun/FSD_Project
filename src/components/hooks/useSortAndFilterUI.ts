@@ -1,28 +1,26 @@
 import { useState } from "react"
-import type { GenreType, filter } from "../../types/filterModel"
-
 
 /**
  * 
+ * @param items 
  * @param initialGenre 
  * @returns 
  */
-export function useGenreFilter(
+export function useSortFilter<T>(
     //Start with Initial value
-    initialGenre: GenreType= "All"
-): filter {
-    // List of values(genres)
-    const genres: GenreType[] = ["All", "R&B", "Dark R&B", "K-Pop"]
-    const [selectedGenre, setSelectedGenre] = useState<GenreType>(initialGenre)
+    items: T[],
+    initialGenre: T
+) {
+    const [selectedItem, setSelectedItem] = useState<T>(initialGenre)
 
-    //Handles selected genre to be displayed
-    const handleGenreChange = (genre: GenreType) => {
-        setSelectedGenre(genre)
+    //Handles selected item to be displayed
+    const handleGenreChange = (items: T) => {
+        setSelectedItem(items)
     }
 
     return{
-        genres,
-        selectedGenre,
-        setSelectedGenre: handleGenreChange
+        items,
+        selectedItem,
+        setSelectedItem: handleGenreChange
     }
 }

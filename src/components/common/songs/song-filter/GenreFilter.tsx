@@ -1,16 +1,23 @@
-import type { genreFilter } from "../../../../types/filterModel"
+import { useSortFilter } from "../../../hooks/useSortAndFilterUI"
 import "./genre-filter.css"
 
+type GenreFilterProps = {
+    onChange?: (genre: string) => void
+};
 /**
  * Filters songs by Genre.
  * @param param0 - Selected Genre.
  * @returns - Filtered song.
  */
-function GenreFilter({
-    selectedGenre,
-    setSelectedGenre,
-}: genreFilter){
+function GenreFilter({ onChange }: GenreFilterProps) {
     const genres = ["All", "R&B", "Dark R&B", "K-Pop"];
+    const { selectedItem: selectedGenre, setSelectedItem: setSelectedGenre} = useSortFilter(genres, "All")
+
+    const handleGenreChange = (genre: string) => {
+        setSelectedGenre(genre)
+        onChange?.(genre)
+    }
+
     return(
         <>
         <section className="genre-filter">
@@ -19,7 +26,7 @@ function GenreFilter({
                 <button key={genre} type="button"
                 className={
                     selectedGenre === genre ? "genre-btn active" : "genre-btn"}
-                onClick={() => setSelectedGenre(genre)}>
+                onClick={() => handleGenreChange(genre)}>
                 {genre}
             </button>
             ))}
