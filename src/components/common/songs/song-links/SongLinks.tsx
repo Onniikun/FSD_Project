@@ -11,6 +11,7 @@ type LinksProps = {
  * @returns 
  */
 function Links({ links }: LinksProps) {
+    // A map list of song platforms.(To add more)
     const platform: { [label: string]: keyof songLinks } = {
         Spotify: "spotify",
         "Apple Music": "apple",
@@ -18,6 +19,7 @@ function Links({ links }: LinksProps) {
         Amazon: "amazon",
         Youtube: "youtube",
     }
+    //Using my hook
     const { items: platforms, selectedItem, setSelectedItem } = useSortFilter(Object.keys(platform),"Spotify")
 
     return(
@@ -25,6 +27,7 @@ function Links({ links }: LinksProps) {
     <div className="song-media">
         <ul className="song-links">
             {platforms.map((label) => {
+                // display url from platform list.
                 const key = platform[label]
                 const url = links?.[key]
                 if (!url)
