@@ -1,17 +1,17 @@
 import { useState } from "react"
 
 /**
- * 
- * @param items 
- * @param initialGenre 
+ * A sorting filter hook for UI handling of a selected value(reusable)
+ * @param initialSelected - The intial selected value (Ex. "ALl" in a genres)
  * @returns 
+ * selectedItem: The current selectedItem.
+ * setSelectedItem the displaying function to update the selection.
  */
 export function useSortFilter<T>(
     //Start with Initial value
-    items: T[],
-    initialGenre: T
+    initialSelected: T
 ) {
-    const [selectedItem, setSelectedItem] = useState<T>(initialGenre)
+    const [selectedItem, setSelectedItem] = useState<T>(initialSelected)
 
     //Handles selected item to be displayed
     const handleGenreChange = (items: T) => {
@@ -19,7 +19,6 @@ export function useSortFilter<T>(
     }
 
     return{
-        items,
         selectedItem,
         setSelectedItem: handleGenreChange
     }

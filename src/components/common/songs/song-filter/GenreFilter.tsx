@@ -13,7 +13,7 @@ function GenreFilter({ onChange }: GenreFilterProps) {
     const genres = ["All", "R&B", "Dark R&B", "K-Pop"];
 
     //Using my hook
-    const { selectedItem: selectedGenre, setSelectedItem: setSelectedGenre} = useSortFilter(genres, "All")
+    const { selectedItem: selectedGenre, setSelectedItem: setSelectedGenre} = useSortFilter("All")
 
     const handleGenreChange = (genre: string) => {
         setSelectedGenre(genre)

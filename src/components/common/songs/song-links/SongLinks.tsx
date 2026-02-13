@@ -6,9 +6,9 @@ type LinksProps = {
     links?: songLinks
 }
 /**
- * 
- * @param param0 
- * @returns 
+ * Displays URL links of the songs to play.
+ * @param param0 - Links(Song URL)
+ * @returns - A list of URLs that a song has.
  */
 function Links({ links }: LinksProps) {
     // A map list of song platforms.(To add more)
@@ -19,8 +19,9 @@ function Links({ links }: LinksProps) {
         Amazon: "amazon",
         Youtube: "youtube",
     }
+    const platforms = Object.keys(platform)
     //Using my hook
-    const { items: platforms, selectedItem, setSelectedItem } = useSortFilter(Object.keys(platform),"Spotify")
+    const { selectedItem, setSelectedItem } = useSortFilter("Spotify")
 
     return(
     <>
