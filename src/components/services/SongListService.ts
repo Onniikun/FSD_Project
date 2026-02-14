@@ -7,18 +7,18 @@ export interface CreateSongListInput  {
   description: string;
   songs: Song[];
 }
-export interface validateSongErrors {
+export interface ValidateSongErrors {
   name?: string;
   songs?: string;
 }
 /**
- * 
- * @param input 
- * @returns 
+ * Validate list name and creation.
+ * @param input - List name and Songs.
+ * @returns A valid list.
  */
-export function validateList(input: CreateSongListInput): validateSongErrors {
+export function validateList(input: CreateSongListInput): ValidateSongErrors {
 
-    const newErrors: validateSongErrors = {};
+    const newErrors: ValidateSongErrors = {};
 
     if (input.name.trim() === "") {
       newErrors.name = "**List name is required.**";
@@ -29,4 +29,30 @@ export function validateList(input: CreateSongListInput): validateSongErrors {
     }
 
     return newErrors;
+}
+/**
+ * 
+ * @param songs 
+ * @param newSong 
+ * @returns 
+ */
+export function addSong(songs: Song[], newSong: Song): Song[] {
+    const existList = songs.some(
+        (song) => song.title === newSong.title && 
+        song.artist === newSong.artist
+    );
+    //Check for already existing songList
+    if (existList) {
+        return songs;
+    }
+    return  [...songs, newSong];
+}
+/**
+ * 
+ * @param songId 
+ * @param songs 
+ * @returns 
+ */
+export function removeSong(songId: string, songs: Song[]): Song[] {
+    return songs.filter((song) => song.id !== songId)
 }
