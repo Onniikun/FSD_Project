@@ -31,9 +31,9 @@ export function validateList(input: CreateSongListInput): ValidateSongErrors {
     return newErrors;
 }
 /**
- * 
- * @param songs 
- * @param newSong 
+ * Add song to a list.
+ * @param songs - current song list.
+ * @param newSong - New song to add.
  * @returns 
  */
 export function addSong(songs: Song[], newSong: Song): Song[] {
@@ -45,12 +45,12 @@ export function addSong(songs: Song[], newSong: Song): Song[] {
     if (existList) {
         return songs;
     }
-    return  [...songs, newSong];
+    return [...songs, newSong];
 }
 /**
- * 
- * @param songId 
- * @param songs 
+ * Removing a song from a list.
+ * @param songId - The Song Id.
+ * @param songs - List of songs.
  * @returns 
  */
 export function removeSong(songId: string, songs: Song[]): Song[] {
