@@ -1,14 +1,15 @@
 import SongItem from "../common/songs/song-items/SongItem"
 import { MoodSelector } from "../common/mood-selector/MoodSelector"
+import { useMood } from "../../hooks/useMood";
 
 
-function DiscoverSongs({ mood }: { mood: string }) {
+function DiscoverSongs() {
+    const { mood } = useMood();
+
     return(
         <>
         <SongItem />
             <MoodSelector
-                mood={mood}
-                setMood={() => {}}
                 showButtons={false}
                 message={
                 mood

@@ -3,10 +3,12 @@ import CreateSongListForm from "../common/create-song-list-form/CreateSongListFo
 import SongListsDisplay from "../common/song-list-display/SongListsDisplay";
 import type { SongList } from "../../types/songListTypes";
 import { MoodSelector } from "../common/mood-selector/MoodSelector";
+import { useMood } from "../../hooks/useMood";
 
 
-export default function SongListsPage({ mood }: { mood: string }) {
+export default function SongListsPage() {
     const [lists, setLists] = useState<SongList[]>([]);
+    const { mood } = useMood();
 
     return (
         <>
@@ -18,8 +20,6 @@ export default function SongListsPage({ mood }: { mood: string }) {
                 <SongListsDisplay lists={lists} setLists={setLists} />
             </div>
             <MoodSelector
-                mood={mood}
-                setMood={() => {}}
                 showButtons={false}
                 message={
                     mood
