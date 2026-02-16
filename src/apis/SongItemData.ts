@@ -1,5 +1,8 @@
 import songPFP from "../assets/songpictures/SongPFP.jpg"
 import songPFP2 from "../assets/songpictures/SongPFP2.png"
+import songPFP3 from "../assets/songpictures/songPFP3.jpg"
+import songPFP4 from "../assets/songpictures/SongPFP4.jpg"
+import songPFP5 from "../assets/songpictures/SongPFP5.jpg"
 import type { Song } from "../types/songModel.ts"
 
 /* 
@@ -48,7 +51,7 @@ export const songs: Song [] = [
         genre: "Soft",
         release_date: new Date("March 1, 2025"),
         runtime: "3:08",
-        cover: songPFP,
+        cover: songPFP3,
         links: {
             spotify: "https://open.spotify.com/track/0EJSyxVGp7ZFbrj9WPaubp?si=0cdcdee4aef54004"
         }
@@ -60,7 +63,7 @@ export const songs: Song [] = [
         genre: "Soft",
         release_date: new Date("February 7, 2025"),
         runtime: "2:51",
-        cover: songPFP,
+        cover: songPFP4,
         links: {
             spotify: "https://open.spotify.com/track/3HYUSkSJ0iQfocqdJmJqKw?si=6198fb3a71fa4cb2"
         }
@@ -72,7 +75,7 @@ export const songs: Song [] = [
         genre: "Jazz",
         release_date: new Date("August 13, 2021"),
         runtime: "4:29",
-        cover: songPFP,
+        cover: songPFP5,
         links: {
             spotify: "https://open.spotify.com/album/2YkyuQGoMV2FlG7mFprnRf?si=d-VasB3sSeuUk8eCdbMVvQ"
         }
