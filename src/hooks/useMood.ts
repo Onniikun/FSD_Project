@@ -33,6 +33,6 @@ export function useMood() {
     return {
         mood,
         setMood,
-        allowedMoods: moodService.getMoods()
+        moods: moodService.getMoods()
     };
 };

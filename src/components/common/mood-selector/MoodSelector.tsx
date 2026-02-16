@@ -1,8 +1,8 @@
-import type { MoodSelectorProps } from "../../../types/mood";
+import { useMood } from "../../../hooks/useMood";
 import './mood-selector.css';
 
-export function MoodSelector({ mood, setMood, showButtons = false, message }: MoodSelectorProps) {
-  const moods = ["Chill", "Hyped", "Focused", "Sad", "Nostalgic", "Energetic"];
+export function MoodSelector({ showButtons = false, message }: { showButtons?: boolean, message?: string }) {
+  const { mood, setMood, moods } = useMood();
 
   const displayMessage =
     message ||
