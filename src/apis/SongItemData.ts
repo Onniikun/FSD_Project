@@ -1,0 +1,140 @@
+import songPFP from "../assets/songpictures/SongPFP.jpg"
+import songPFP2 from "../assets/songpictures/SongPFP2.png"
+import type { Song } from "../types/songModel.ts"
+
+/* 
+Mocking Data for each song item that can be placed into our application.
+
+All these songs are picked by Nathan Natoza⸜(｡˃ ᵕ ˂ )⸝
+*/
+
+export const songs: Song [] = [
+{
+        id: 1,
+        title: "Forever &",
+        artist: "Ejean",
+        genre: "R&B",
+        release_date: new Date("July 12, 2024"),
+        runtime: "2:27",
+        cover: songPFP,
+        links: {
+            spotify: "https://open.spotify.com/album/1GjWfyDsXFAQTRq8FLZJN2?si=8WCiBr8MT1i0r-X6eKvqZw",
+            apple: "https://music.apple.com/us/song/forever/1767151840",
+            amazon: "https://music.amazon.com/tracks/B0DG7633K9?marketplaceId=ART4WZ8MWBX2Y&musicTerritory=CA&ref=dm_sh_NSaNT2zY4k7yoZs2WKwfVlwvp",
+            youtube: "https://music.youtube.com/watch?v=IOhUwlI6wtc&si=zGQL_NUUXXvgQOLc",
+
+        }
+    },
+    {
+        id: 2,
+        title: "Karma",
+        artist: "Summer Walker",
+        genre: "Dark R&B",
+        release_date: new Date("October 19, 2018"),
+        runtime: "3:08",
+        cover: songPFP2,
+        links: {
+            spotify: "https://open.spotify.com/track/2Fyjjpg03fn7n5cj0Qm380",
+            apple: "https://music.apple.com/ca/song/karma/1438765304",
+            soundcloud: "https://soundcloud.com/summerwalker/karma?in=j1m3n4/sets/tv-ma",
+            amazon: "https://music.amazon.ca/tracks/B0B7Z91J56?do=play&agent=googleAssistant&ref=dmm_seo_google_gkp_tracks&explicit=false",
+            youtube: "https://music.youtube.com/watch?v=Y-iIdLsiOJQ"
+        }
+    },
+    {
+        id: 3,
+        title: "More than a friend?",
+        artist: "88rising FION",
+        genre: "Soft",
+        release_date: new Date("March 1, 2025"),
+        runtime: "3:08",
+        cover: songPFP,
+        links: {
+            spotify: "https://open.spotify.com/track/0EJSyxVGp7ZFbrj9WPaubp?si=0cdcdee4aef54004"
+        }
+    },
+    {
+        id: 4,
+        title: "TWENTIES",
+        artist: "GIVĒON",
+        genre: "Soft",
+        release_date: new Date("February 7, 2025"),
+        runtime: "2:51",
+        cover: songPFP,
+        links: {
+            spotify: "https://open.spotify.com/track/3HYUSkSJ0iQfocqdJmJqKw?si=6198fb3a71fa4cb2"
+        }
+    },
+    {
+        id: 5,
+        title: "Let You Break My Heart Again",
+        artist: "Laufey",
+        genre: "Jazz",
+        release_date: new Date("August 13, 2021"),
+        runtime: "4:29",
+        cover: songPFP,
+        links: {
+            spotify: "https://open.spotify.com/album/2YkyuQGoMV2FlG7mFprnRf?si=d-VasB3sSeuUk8eCdbMVvQ"
+        }
+    },
+    {
+        id: 6,
+        title: "Let Down",
+        artist: "RadioHead",
+        genre: "Alternative rock",
+        release_date: new Date("September 6, 1997"),
+        runtime: "4:59",
+        cover: songPFP,
+        links: {
+            spotify: "https://open.spotify.com/track/2fuYa3Lx06QQJAm0MjztKr?si=731e3349214241a9"
+        }
+    },
+    {
+        id: 7,
+        title: "Sugarcoat(NATTY Solo)",
+        artist: "KISS OF LIFE",
+        genre: "K-Pop",
+        release_date: new Date("July 5, 2023"),
+        runtime: "2:59",
+        cover: songPFP,
+        links: {
+            spotify: "https://open.spotify.com/track/0NoeYUnwpb9R26mpylHcR9?si=880900e3029945d6"
+        }
+    },
+    {
+        id: 8,
+        title: "Bando - sped up + reverb",
+        artist: "bbygirl",
+        genre: "R&B",
+        release_date: new Date("2019"),
+        runtime: "2:45",
+        cover: songPFP,
+        links: {
+            spotify: "https://open.spotify.com/track/0vj557R3WYe42bgzHdgNoE?si=93d48aa43dad4a71"
+        }
+    },
+    {
+        id: 9,
+        title: "How (Feat. Roddy Ricch)",
+        artist: "Ella Mai",
+        genre: "R&B",
+        release_date: new Date("May 6, 2022"),
+        runtime: "3:38",
+        cover: songPFP,
+        links: {
+            spotify: "https://open.spotify.com/track/6w93UfN5MeXXQTrVIf5V6x?si=58fa8ad3ddb24e37"
+        }
+    },
+    {
+        id: 10,
+        title: "ANTISOCIAL",
+        artist: "void",
+        genre: "Dark R&B",
+        release_date: new Date("January 30, 2026"),
+        runtime: "2:55",
+        cover: songPFP,
+        links: {
+            spotify: "https://open.spotify.com/track/0Gb6YeICNGCtRS1L0j72d6?si=3414017c7e3a47e6"
+        }
+    }
+];
