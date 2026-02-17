@@ -3,6 +3,11 @@ import songPFP2 from "../assets/songpictures/SongPFP2.png"
 import songPFP3 from "../assets/songpictures/songPFP3.jpg"
 import songPFP4 from "../assets/songpictures/SongPFP4.jpg"
 import songPFP5 from "../assets/songpictures/SongPFP5.jpg"
+import SongPFP6 from "../assets/songpictures/SongPFP6.jpg"
+import songPFP7 from "../assets/songpictures/SongPFP7.png"
+import songPFP8 from "../assets/songpictures/SongPFP8.jpg"
+import SongPFP9 from "../assets/songpictures/SongPFP9.jpg"
+import songPFP10 from "../assets/songpictures/SongPFP10.jpg"
 import type { Song } from "../types/songModel.ts"
 
 /* 
@@ -87,7 +92,7 @@ export const songs: Song [] = [
         genre: "Alternative rock",
         release_date: new Date("September 6, 1997"),
         runtime: "4:59",
-        cover: songPFP,
+        cover: SongPFP6,
         links: {
             spotify: "https://open.spotify.com/track/2fuYa3Lx06QQJAm0MjztKr?si=731e3349214241a9"
         }
@@ -99,7 +104,7 @@ export const songs: Song [] = [
         genre: "K-Pop",
         release_date: new Date("July 5, 2023"),
         runtime: "2:59",
-        cover: songPFP,
+        cover: songPFP7,
         links: {
             spotify: "https://open.spotify.com/track/0NoeYUnwpb9R26mpylHcR9?si=880900e3029945d6"
         }
@@ -111,7 +116,7 @@ export const songs: Song [] = [
         genre: "R&B",
         release_date: new Date("2019"),
         runtime: "2:45",
-        cover: songPFP,
+        cover: songPFP8,
         links: {
             spotify: "https://open.spotify.com/track/0vj557R3WYe42bgzHdgNoE?si=93d48aa43dad4a71"
         }
@@ -123,7 +128,7 @@ export const songs: Song [] = [
         genre: "R&B",
         release_date: new Date("May 6, 2022"),
         runtime: "3:38",
-        cover: songPFP,
+        cover: SongPFP9,
         links: {
             spotify: "https://open.spotify.com/track/6w93UfN5MeXXQTrVIf5V6x?si=58fa8ad3ddb24e37"
         }
@@ -135,7 +140,7 @@ export const songs: Song [] = [
         genre: "Dark R&B",
         release_date: new Date("January 30, 2026"),
         runtime: "2:55",
-        cover: songPFP,
+        cover: songPFP10,
         links: {
             spotify: "https://open.spotify.com/track/0Gb6YeICNGCtRS1L0j72d6?si=3414017c7e3a47e6"
         }
