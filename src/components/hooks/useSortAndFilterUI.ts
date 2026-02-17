@@ -14,12 +14,12 @@ export function useSortFilter<T>(
     const [selectedItem, setSelectedItem] = useState<T>(initialSelected)
 
     //Handles selected item to be displayed
-    const handleGenreChange = (items: T) => {
+    const handleItemChange = (items: T) => {
         setSelectedItem(items)
     }
 
     return{
         selectedItem,
-        setSelectedItem: handleGenreChange
+        setSelectedItem: handleItemChange
     }
 }
