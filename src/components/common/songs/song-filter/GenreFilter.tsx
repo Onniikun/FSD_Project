@@ -9,10 +9,17 @@ type GenreFilterProps = {
  * @param param0 - Selected Genre.
  * @returns - Filtered song.
  */
-function GenreFilter({ onChange }: GenreFilterProps) {
-    const genres = ["All", "R&B", "Dark R&B", "K-Pop"];
+export function GenreFilter({ onChange }: GenreFilterProps) {
+    const genres = ["All", "R&B", "Dark R&B", "K-Pop", "J-Pop", "Jazz"];
 
     //Using my hook
+    /**
+     * Unlike my SongItem this hook changes the display of my button based 
+     * on the genre. (While the other one displays it for the song based on the genre.)
+     * Similar to what you see on spotify.
+     * 
+     * This hook is my useSortAndFilter hook.
+     */
     const { selectedItem: selectedGenre, setSelectedItem: setSelectedGenre} = useSortFilter("All")
 
     const handleGenreChange = (genre: string) => {
@@ -36,4 +43,3 @@ function GenreFilter({ onChange }: GenreFilterProps) {
         </>
     )
 }
-export default GenreFilter

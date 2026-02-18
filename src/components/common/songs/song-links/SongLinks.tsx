@@ -21,7 +21,7 @@ function Links({ links }: LinksProps) {
     }
     const platforms = Object.keys(platform)
     //Using my hook
-    const { selectedItem, setSelectedItem } = useSortFilter("Spotify")
+     const { selectedItem, setSelectedItem } = useSortFilter("Spotify")
 
     return(
     <>
@@ -39,7 +39,7 @@ function Links({ links }: LinksProps) {
                         target="_blank"
                         rel="noopener noreferrer"
                         className={selectedItem === label ? "active" : ""}
-                        onClick={() => setSelectedItem(label)}
+                        onMouseDown={() => setSelectedItem(label)}
                         >
                         {label}
                         </a>

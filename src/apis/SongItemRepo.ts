@@ -43,11 +43,11 @@ export async function updateSongItem(updateSongItem: Song): Promise<Song> {
  * @param songId - Song Item ID.
  */
 export async function deleteSongItem(songId: number) {
-    const deleteSong = songs.filter(t => t.id === songId)
+    const deleteSong = songs.findIndex(t => t.id === songId)
 
-    if(!deleteSong) {
+    if(deleteSong === -1) {
         throw new Error(`Failed to delete Song Item ${songId}`)
     } else 
 
-    return deleteSong;
+    songs.splice(deleteSong, 1)
 }
