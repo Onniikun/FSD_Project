@@ -10,7 +10,7 @@ type LinksProps = {
  * @param param0 - Links(Song URL)
  * @returns - A list of URLs that a song has.
  */
-function Links({ links }: LinksProps) {
+export function Links({ links }: LinksProps) {
     // A map list of song platforms.(To add more)
     const platform: { [label: string]: keyof songLinks } = {
         Spotify: "spotify",
@@ -51,5 +51,3 @@ function Links({ links }: LinksProps) {
     </>
     )
 }
-
-export default Links
