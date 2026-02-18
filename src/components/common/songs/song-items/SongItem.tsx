@@ -7,6 +7,7 @@ import Links from "../song-links/SongLinks.tsx"
 import Upvote from "../song-upvote/SongUpvote.tsx"
 import { useState } from "react"
 import { Link } from 'react-router-dom'
+import { filterSongGenre } from "../../../services/SongItemService.ts"
 
 /**
  * Displays song information.
@@ -53,8 +54,7 @@ function SongItem() {
 ]
     // Displaying the filtered songs.
     //https://www.youtube.com/watch?v=u1yr_HZivzk
-    const filteredSongs =
-        selectedGenre === "All" ? songs : songs.filter(song => song.genre === selectedGenre)
+    const filteredSongs = filterSongGenre(songs, selectedGenre)
     return(
         <>
         <h2 className="message">Boomboxd's Favourite Genres</h2>
@@ -64,7 +64,7 @@ function SongItem() {
                 {filteredSongs.length === 0 ? (
                     <p>Sorry, We haven't added that yet.</p>
                 ) : (
-                filteredSongs.map((song)=> (
+                filteredSongs.map((song: Song)=> (
                     <li key={song.id} className="song-card">
                     <div> 
                         {/* To add link to song item. */}
