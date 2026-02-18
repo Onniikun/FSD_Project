@@ -8,6 +8,7 @@ import { Link } from 'react-router-dom'
 import type { Song } from "../../../../types/songModel.ts"
 import { fetchAllSongs } from "../../../../apis/SongItemRepo.ts"
 import { useSortFilter } from "../../../hooks/useSortAndFilterUI.ts"
+import { filterSongGenre } from "../../../services/SongItemService.ts"   
 
 /**
  * Displays song information.
@@ -34,9 +35,7 @@ export function SongItem() {
         const SongData = fetchAllSongs()
         setSongs(SongData)}, [])
     // Displaying the filtered songs.
-    //https://www.youtube.com/watch?v=u1yr_HZivzk
-    const filteredSongs =
-        selectedGenre === "All" ? songs : songs.filter(song => song.genre === selectedGenre)
+ const filteredSongs = filterSongGenre(songs, selectedGenre)
     return(
         <>
         <GenreFilter onChange={setSelectedGenre}/>
@@ -45,7 +44,7 @@ export function SongItem() {
                 {filteredSongs.length === 0 ? (
                     <p>Sorry, We haven't added that yet.</p>
                 ) : (
-                filteredSongs.map((song)=> (
+                filteredSongs.map((song: Song)=> (
                     <li key={song.id} className="song-card">
                     <div> 
                         <Link to={`/song:${song.title}/${song.artist}`}>
