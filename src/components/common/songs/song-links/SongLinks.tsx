@@ -22,7 +22,7 @@ const platform_map:  Record<string, keyof songLinks> = {
 function Links({ links }: LinksProps) {
     const { selectedItem, setSelectedItem } = useSortFilter("Spotify")
 
-    return(
+    return (
         <div className="song-media">
             <ul className="song-links">
                 {Object.entries(platform_map).map(([label, key]) => {

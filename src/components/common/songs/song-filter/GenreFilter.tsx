@@ -22,13 +22,14 @@ function GenreFilter({ onChange }: GenreFilterProps) {
         onChange?.(genre)
     }
 
-    return(
+    return (
         <section className="genre-filter">
             {genres.map((genre) =>(
                 //https://react.dev/learn/rendering-lists
-                <button key={genre} type="button"
-                className={
-                    selectedGenre === genre 
+                <button 
+                  key={genre} 
+                  type="button"
+                  className={ selectedGenre === genre 
                     ? "genre-btn active" 
                     : "genre-btn"
                 }
