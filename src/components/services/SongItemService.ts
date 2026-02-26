@@ -2,7 +2,7 @@ import type { Song } from "../../types/songModel.ts"
 
 /**
  * Service Definition to filter songs by genre.
- * @param songs - The array datalist of song to filter.
+ * @param songs - The array datalist of songs to filter.
  * @param genre - The selected genre.
  * @returns - A filtered array of songs based on the selected genre
  */
