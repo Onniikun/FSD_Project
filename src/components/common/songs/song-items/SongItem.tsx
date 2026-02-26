@@ -58,7 +58,7 @@ export function SongItem() {
                 displayedSongs.map((song: Song)=> (
                     <li key={song.id} className="song-card">
                     <div> 
-                        <Link to={`/songs/${song.artist}/${song.title}/${song.id}`}>
+                        <Link to={`/songs/${song.id}`}>
                             <div className="songWrapper">
                                 <img className="songPFP"src={song.cover} alt="songpic" />
                             </div>

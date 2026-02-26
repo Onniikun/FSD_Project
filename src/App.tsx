@@ -26,7 +26,7 @@ function App() {
             element={<DiscoverSongs mood={mood}/>} 
           /> 
           <Route 
-            path="/songs/:artist/:title/:id" 
+            path="/songs/:id" 
             element={<DiscoverSongs mood={mood}/>}
           />
 
