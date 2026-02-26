@@ -11,13 +11,18 @@ The logic behind the the useSortAndFilterUI was to store a selectedItem and upda
 
 Currently it is used in the songLinks.tsx and GenreFilter.tsx files within the songs folder.
 
-File path:
+File usage location:
 
 
 src\components\common\songs\song-filter\GenreFilter.tsx
 
 
 src\components\common\songs\song-links\SongLinks.tsx
+
+File path:
+
+
+src\components\hooks\useSortAndFilterUI.ts
 
 ## Services - SongListService, SongItemService
 
@@ -27,6 +32,11 @@ This SongItem Service is simply a service of filtering genres. Unlike the useSor
 The logic here is that I reused the components of the function from my SongItem component and remove it to be used as my service function definition. So now I remove most of the working components of that function out of the SongItem.tsx file so that it can be more inline with just presenting the logic and data; business -> presenting.
 
 Currently its being used in the SongItem.tsx file within the songs folder.
+
+File usage location:
+
+
+src\components\common\songs\song-items\SongItem.tsx
 
 File path:
 
@@ -92,6 +102,11 @@ The logic behind this function is to display a just a singular song item by itse
 
 Currently its not being used.
 
+File path:
+
+
+src\apis\SongItemData.ts
+
 ### SongItemRepo - function updateSongItem
 This SongItem repository created for songItem file only; to updateSongItem by first taking the song item ID for it to be modified. After retrieving the song item ID we then check if the song item exists. If it passes then it can be modified then return back into the song item list array/database.
 
@@ -100,6 +115,11 @@ The logic behind this function is to update any changes to the song item if any 
 
 Currently its not being used.
 
+File path:
+
+
+src\apis\SongItemData.ts
+
 ### SongItemRepo - function deleteSongItem
 This SongItem repository created for songItem file only; to deleteSongItem by first taking the song item ID for it to be deleted. After retrieving the song item ID we then check if the song item exists. If it passes then it can be modified then removed from the song item database
 
@@ -107,3 +127,8 @@ The logic behind this function is to delete any song item for any reason or to m
 
 
 Currently its not being used.
+
+File path:
+
+
+src\apis\SongItemData.ts
