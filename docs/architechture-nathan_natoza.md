@@ -46,7 +46,7 @@ src\components\services\SongItemService.ts
 ### SongListService - function validateList
 This SongListService function validates the creation of a list. It takes the user input name and length list and determine if it can be created. If not it returns error messages.
 
-The logic behind this is confirm that the user can easily see their list(like it's name or song) and it doesnt overload or break the list component by rapid creation of empty lists.
+The logic behind this is confirm that the user can easily see their list(like it's name or song) and it doesnt overload or break the list component by rapid creation of empty or unnamed lists.
 
 Currently in CreateSongListForm.tsx
 
@@ -67,8 +67,7 @@ File path:
 src\components\common\create-song-list-form\CreateSongListForm.tsx
 
 ### SongListService - function removeSong
-This SongListService function deletes song list by using it id. It then returns the updated array list of song lists afterwards.The logic behind it is to take the selected song list and take the id and takes it out of the array.
-
+This SongListService function deletes song list by using it id. It then returns the updated array list of song lists afterwards. The logic behind it is to take the selected song list and take the id and takes it out of the array.
 
 
 Currently in CreateSongListForm.tsx
@@ -121,7 +120,7 @@ File path:
 src\apis\SongItemData.ts
 
 ### SongItemRepo - function deleteSongItem
-This SongItem repository created for songItem file only; to deleteSongItem by first taking the song item ID for it to be deleted. After retrieving the song item ID we then check if the song item exists. If it passes then it can be modified then removed from the song item database
+This SongItem repository created for songItem file only; to deleteSongItem by first taking the song item ID for it to be deleted. After retrieving the song item ID we then check if the song item exists. If it passes then it can be modified then removed from the song item database.
 
 The logic behind this function is to delete any song item for any reason or to make changes that require its deletion.
 

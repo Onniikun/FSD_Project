@@ -65,7 +65,7 @@ export function SongItem() {
                         </Link>
                         <Links links={song.links} />
                     </div>
-                    <div className="song-info">
+                        <div className="song-info">
                             <h2 className="title">{song.title}</h2>
                             <p>{song.artist.join(", ")}</p>
                             <p>Genre: {song.genre.join(", ")}</p>
