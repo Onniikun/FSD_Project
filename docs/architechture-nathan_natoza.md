@@ -88,7 +88,7 @@ src\components\common\songs\song-items\SongItem.tsx
 ### SongItemRepo - function fetchSongById
 This SongItem repository created for songItem file only; to fetch song item by only using its id number(or string later on) to display in another page. It returns a single song object from the database array. If the input song item ID doesnt exists then it will throw an error
 
-The logic behind this function is to display a just a singlar song item by itself without any other song items filling the background. This is useful for users who want more information about a particular song item.
+The logic behind this function is to display a just a singular song item by itself without any other song items filling the background. This is useful for users who want more information about a particular song item.
 
 Currently its not being used.
 
