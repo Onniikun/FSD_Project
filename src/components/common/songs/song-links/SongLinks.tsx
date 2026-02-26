@@ -6,7 +6,7 @@ type LinksProps = {
     links?: songLinks
 }
 /**
- * Displays URL links of the songs to play.
+ * Displays the available platform URL links of the songs to play.
  * @param param0 - Links(Song URL)
  * @returns - A list of URLs that a song has.
  */
@@ -20,11 +20,17 @@ export function Links({ links }: LinksProps) {
         Youtube: "youtube",
     }
     const platforms = Object.keys(platform)
-    //Using my hook
+    /**
+     * This hook only renders the button selection of the platform for UI.
+     * It does not have any functionally of selected rendering but rather a UI state change.
+     * 
+     * Note: Clicking the button will redirect the user to that link.
+     * 
+     * This hook is my useSortAndFilter hook.
+     */
      const { selectedItem, setSelectedItem } = useSortFilter("Spotify")
 
     return(
-    <>
     <div className="song-media">
         <ul className="song-links">
             {platforms.map((label) => {
@@ -48,6 +54,5 @@ export function Links({ links }: LinksProps) {
             })}
         </ul>
     </div>
-    </>
     )
 }

@@ -17,12 +17,15 @@ import { filterSongGenre } from "../../../services/SongItemService.ts"
 export function SongItem() {
     //use state for a selected Genre.(Used my hook to display the filtered genre)
     /**
-     * Unlike my GenreFilter this hook displays the actual Song Item based 
+     * Unlike my GenreFilter this hook displays the actual Song Item{s} based 
      * on the genre. (While the other one displays it for the button.)
      * 
      * This hook is my useSortAndFilter hook.
      */
-    const {selectedItem: selectedGenre, setSelectedItem: setSelectedGenre} = useSortFilter<string>("All")
+    const {
+        selectedItem: selectedGenre, 
+        setSelectedItem: setSelectedGenre
+    } = useSortFilter<string>("All")
     /**
      * This component uses the SongItemRepo file. Where we useEffect to render 
      * the data from calling the API to display it; this is for when we have a back-end components.
@@ -56,8 +59,8 @@ export function SongItem() {
                     </div>
                     <div className="song-info">
                             <h2 className="title">{song.title}</h2>
-                            <p>{song.artist}</p>
-                            <p>Genre: {song.genre}</p>
+                            <p>{song.artist.join(", ")}</p>
+                            <p>Genre: {song.genre.join(", ")}</p>
                             <p>Release date: {song.release_date.toLocaleDateString("en-US", {
                                 year: "numeric",
                                 month: "short",

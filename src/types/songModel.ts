@@ -1,9 +1,9 @@
 export interface Song {
     id: number;
     title: string;
-    artist: string;
+    artist: string[];
     release_date: Date;
-    genre: string;
+    genre: string[];
     runtime: string;
     cover: string;
     links?: songLinks;

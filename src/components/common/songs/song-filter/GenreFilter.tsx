@@ -12,7 +12,6 @@ type GenreFilterProps = {
 export function GenreFilter({ onChange }: GenreFilterProps) {
     const genres = ["All", "R&B", "Dark R&B", "K-Pop", "J-Pop", "Jazz"];
 
-    //Using my hook
     /**
      * Unlike my SongItem this hook changes the display of my button based 
      * on the genre. (While the other one displays it for the song based on the genre.)
@@ -28,7 +27,6 @@ export function GenreFilter({ onChange }: GenreFilterProps) {
     }
 
     return(
-        <>
         <section className="genre-filter">
             {genres.map((genre) =>(
                 //https://react.dev/learn/rendering-lists
@@ -40,6 +38,5 @@ export function GenreFilter({ onChange }: GenreFilterProps) {
             </button>
             ))}
         </section>
-        </>
     )
 }

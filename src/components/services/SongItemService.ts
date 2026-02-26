@@ -10,5 +10,6 @@ export function filterSongGenre(songs: Song[], genre: string): Song[] {
     if(genre === "All") {
         return songs
     }
-    return songs.filter(song => song.genre === genre)
+    return songs.filter(song => 
+        song.genre.some(g => g.toLowerCase()=== genre.toLowerCase()))
 }
