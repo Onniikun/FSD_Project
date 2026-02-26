@@ -3,7 +3,7 @@ import { GenreFilter } from "../song-filter/GenreFilter.tsx"
 import { Links } from "../song-links/SongLinks.tsx"
 import Upvote from "../song-upvote/SongUpvote.tsx"
 import { useState, useEffect } from "react"
-import { Link } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 
 import type { Song } from "../../../../types/songModel.ts"
 import { fetchAllSongs } from "../../../../apis/SongItemRepo.ts"
@@ -15,6 +15,7 @@ import { filterSongGenre } from "../../../services/SongItemService.ts"
  * @returns - A song item{s}
  */
 export function SongItem() {
+    const { id } = useParams()
     //use state for a selected Genre.(Used my hook to display the filtered genre)
     /**
      * Unlike my GenreFilter this hook displays the actual Song Item{s} based 
@@ -37,20 +38,27 @@ export function SongItem() {
     useEffect(() => {
         const SongData = fetchAllSongs()
         setSongs(SongData)}, [])
-    // Displaying the filtered songs.
- const filteredSongs = filterSongGenre(songs, selectedGenre)
+    /**
+     * by clicking the song cover it directs the user to only that song item.
+     * 
+     * It has the dual purpose of displaying the only the song by that id
+     * or filtered by song genre(Later by platform links, etc.)
+     */
+    const displayedSongs = id 
+        ? songs.filter(song => song.id === Number(id))
+        : filterSongGenre(songs, selectedGenre)
     return(
         <>
-        <GenreFilter onChange={setSelectedGenre}/>
+        {!id && <GenreFilter onChange={setSelectedGenre}/>}
         <section className="song-item">
             <ul>
-                {filteredSongs.length === 0 ? (
+                {displayedSongs.length === 0 ? (
                     <p>Sorry, We haven't added that yet.</p>
                 ) : (
-                filteredSongs.map((song: Song)=> (
+                displayedSongs.map((song: Song)=> (
                     <li key={song.id} className="song-card">
                     <div> 
-                        <Link to={`/song:${song.title}/${song.artist}`}>
+                        <Link to={`/songs/${song.id}`}>
                             <div className="songWrapper">
                                 <img className="songPFP"src={song.cover} alt="songpic" />
                             </div>
