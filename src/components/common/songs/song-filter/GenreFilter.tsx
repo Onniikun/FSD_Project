@@ -35,7 +35,7 @@ function GenreFilter({ onChange }: GenreFilterProps) {
                 }
                 onClick={() => handleGenreChange(genre)}>
                 {genre}
-            </button>
+                </button>
             ))}
         </section>
     )
