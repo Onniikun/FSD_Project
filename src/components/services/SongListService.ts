@@ -13,9 +13,9 @@ export interface ValidateSongErrors {
 }
 /**
  * Validates the creation of list input.
- * Verify that a list contains at least one song and a name.
+ * Verify that the list contains at non-empty name and at least a song item.
  * @param input - A song list input for validation.
- * @returns A list object 
+ * @returns A list object containing validation errors.
  */
 export function validateList(input: CreateSongListInput): ValidateSongErrors {
 
@@ -49,9 +49,9 @@ export function addSong(songs: Song[], newSong: Song): Song[] {
     return [...songs, newSong];
 }
 /**
- * Removing a song from a list.
- * @param songId - The Song Id.
- * @param songs - List of songs.
+ * Removes a song from a list by its ID number.
+ * @param songId - The Song Id to remove.
+ * @param songs - List of current songs.
  * @returns - An array containing the update list.
  */
 export function removeSong(songId: string, songs: Song[]): Song[] {
