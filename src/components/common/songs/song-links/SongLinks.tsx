@@ -5,6 +5,15 @@ import { useSortFilter } from "../../../hooks/useSortAndFilterUI"
 type LinksProps = {
     links?: songLinks
 }
+
+ // A map list of song platforms.(To add more)
+const platform_map:  Record<string, keyof songLinks> = {
+    Spotify: "spotify",
+    "Apple Music": "apple",
+    "SoundCloud": "soundcloud",
+    Amazon: "amazon",
+    Youtube: "youtube",
+}
 /**
  * Displays the available platform URL links of the songs to play.
  * @param param0 - Links(Song URL)

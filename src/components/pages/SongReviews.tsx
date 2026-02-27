@@ -1,16 +1,17 @@
+import { useMood } from "../../hooks/useMood";
 import { MoodSelector } from "../common/mood-selector/MoodSelector";
 import Review from "../common/reviews/Review";
 
-export default function SongReviews({ mood }: { mood: string }) {
+export default function SongReviews() {
+    const { mood } = useMood();
+
     return (
         <>
             <MoodSelector
-                mood={mood}
-                setMood={() => {}}
                 showButtons={false}
                 message={
                 mood
-                    ? `Write a review that matches your ${mood} mood`
+                    ? `Write a review that matches your ${mood} mood!`
                     : "Choose a mood on the landing page to personalize your message."
                 }
             />

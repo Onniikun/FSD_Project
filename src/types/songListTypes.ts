@@ -1,13 +1,6 @@
-export type VisibilityOption = "private" | "public";
+import type { Song } from "./songModel";
 
-export interface Song {
-  id: string;
-  title: string;
-  artist: string;
-  album?: string;
-  releasedDate?: string;
-  runtime?: string;
-}
+export type VisibilityOption = "private" | "public";
 
 export interface SongList {
   id: string;

@@ -12,9 +12,10 @@ export interface ValidateSongErrors {
   songs?: string;
 }
 /**
- * Validate list name and creation.
- * @param input - List name and Songs.
- * @returns A valid list.
+ * Validates the list creation input.
+ * Checks that the list has a name and at least one song.
+ * @param input - A song list input for validation.
+ * @returns A list object containing validation errors.
  */
 export function validateList(input: CreateSongListInput): ValidateSongErrors {
 
@@ -31,10 +32,10 @@ export function validateList(input: CreateSongListInput): ValidateSongErrors {
     return newErrors;
 }
 /**
- * Add song to a list.
- * @param songs - current song list.
+ * Add song to a list and checking if it already exists.
+ * @param songs - The Current song list.
  * @param newSong - New song to add.
- * @returns 
+ * @returns - An array containing the update list.
  */
 export function addSong(songs: Song[], newSong: Song): Song[] {
     const existList = songs.some(
@@ -48,10 +49,10 @@ export function addSong(songs: Song[], newSong: Song): Song[] {
     return [...songs, newSong];
 }
 /**
- * Removing a song from a list.
- * @param songId - The Song Id.
- * @param songs - List of songs.
- * @returns 
+ * Removes a song from a list by its ID number.
+ * @param songId - The ID of the song to remove.
+ * @param songs - Current list of songs.
+ * @returns - An array containing the update list.
  */
 export function removeSong(songId: string, songs: Song[]): Song[] {
     return songs.filter((song) => song.id !== songId)

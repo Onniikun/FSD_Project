@@ -6,7 +6,7 @@ type GenreFilterProps = {
 };
 /**
  * Filters songs by Genre.
- * @param param0 - Selected Genre.
+ * @param onChange - Callback when the genre display is changed.
  * @returns - Filtered song.
  */
 export function GenreFilter({ onChange }: GenreFilterProps) {
@@ -30,12 +30,16 @@ export function GenreFilter({ onChange }: GenreFilterProps) {
         <section className="genre-filter">
             {genres.map((genre) =>(
                 //https://react.dev/learn/rendering-lists
-                <button key={genre} type="button"
-                className={
-                    selectedGenre === genre ? "genre-btn active" : "genre-btn"}
+                <button 
+                  key={genre} 
+                  type="button"
+                  className={ selectedGenre === genre 
+                    ? "genre-btn active" 
+                    : "genre-btn"
+                }
                 onClick={() => handleGenreChange(genre)}>
                 {genre}
-            </button>
+                </button>
             ))}
         </section>
     )

@@ -2,7 +2,7 @@ import { useState } from "react"
 
 /**
  * A sorting filter hook for UI handling of a selected value(reusable)
- * @param initialSelected - The intial selected value (Ex. "ALl" in a genres)
+ * @param initialSelected - The intial selected value (Ex. "All" in a genres)
  * @returns 
  * selectedItem: The current selectedItem.
  * setSelectedItem the displaying function to update the selection.
