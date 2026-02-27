@@ -1,4 +1,4 @@
-import type { Song } from "../../types/songModel.ts"
+import type { Song } from "../types/songModel.ts"
 
 /**
  * Service Definition to filter songs by genre.

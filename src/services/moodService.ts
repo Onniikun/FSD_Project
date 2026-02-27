@@ -1,4 +1,4 @@
-import { moodRepository } from "../repositories/moodRepository";
+import { moodRepository } from "../apis/moodRepository";
 
 const moods = ["Chill", "Hyped", "Focused", "Sad", "Nostalgic", "Energetic"];
 

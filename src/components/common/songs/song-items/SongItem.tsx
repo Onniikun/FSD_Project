@@ -7,7 +7,7 @@ import { Link, useParams } from 'react-router-dom'
 
 import type { Song } from "../../../../types/songModel.ts"
 import { fetchAllSongs } from "../../../../apis/SongItemRepo.ts"
-import { useSortFilter } from "../../../hooks/useSortAndFilterUI.ts"
+import { useSortFilter } from "../../../../hooks/useSortAndFilterUI.ts"
 import { filterSongGenre } from "../../../services/SongItemService.ts"   
 
 /**

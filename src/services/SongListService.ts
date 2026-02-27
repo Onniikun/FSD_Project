@@ -1,7 +1,8 @@
-import type { Song, VisibilityOption } from "../../types/songListTypes"
+import type { VisibilityOption } from "../types/songListTypes"
+import type { Song } from "../types/songModel.ts"
 
 export interface CreateSongListInput  {
-    id: string;
+  id: string;
   name: string;
   visibility: VisibilityOption;
   description: string;
@@ -54,6 +55,6 @@ export function addSong(songs: Song[], newSong: Song): Song[] {
  * @param songs - Current list of songs.
  * @returns - An array containing the update list.
  */
-export function removeSong(songId: string, songs: Song[]): Song[] {
+export function removeSong(songId: number, songs: Song[]): Song[] {
     return songs.filter((song) => song.id !== songId)
 }

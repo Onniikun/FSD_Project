@@ -1,4 +1,4 @@
-import { useSortFilter } from "../../../hooks/useSortAndFilterUI"
+import { useSortFilter } from "../../../../hooks/useSortAndFilterUI"
 import "./genre-filter.css"
 
 type GenreFilterProps = {

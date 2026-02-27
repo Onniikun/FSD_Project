@@ -1,6 +1,6 @@
 import "./song-links.css"
 import type { songLinks } from "../../../../types/songModel.ts"
-import { useSortFilter } from "../../../hooks/useSortAndFilterUI"
+import { useSortFilter } from "../../../../hooks/useSortAndFilterUI.ts"
 
 type LinksProps = {
     links?: songLinks
