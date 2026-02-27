@@ -72,3 +72,51 @@ This clean separation keeps the architecture modular:
 By using `useSearch`, the CreateSongListForm stays focused on rendering the UI and handling user actions, while the hook manages all search‑related state and timing. This keeps the form clean, predictable, and consistent with search behavior across the rest of the application.
 
 ---
+
+## Services - songSearchService
+## 1. What does `songSearchService` do?
+
+`songSearchService` is responsible for all **business‑level search logic** related to songs. It receives a raw search string and returns a filtered, ranked list of matching songs. Its responsibilities include:
+
+- **Normalizing search queries**  
+  Converts the user’s input into a consistent format (lowercase, trimmed) so matching is predictable.
+
+- **Applying fuzzy matching**  
+  Matches songs based on partial substring matches across multiple fields such as title, artist, and genre.
+
+- **Ranking results**  
+  Prioritizes songs whose titles begin with the search term, ensuring more relevant results appear first.
+
+- **Providing autocomplete suggestions**  
+  Returns a small set of top matches that begin with the search term, used for dropdown suggestions.
+
+This service defines *how search works* across the application.
+
+---
+
+## 2. How the logic was chosen and how it separates concerns
+
+The logic in `songSearchService` is intentionally placed in the **service layer** to maintain a clean separation between UI behavior, business rules, and data access.
+
+### Why this logic belongs in a service
+
+- **Search rules are business logic**, not UI logic.  
+  The service determines how songs are matched, ranked, and suggested. This keeps the UI simple and declarative.
+  By keeping search logic in the service, multiple components can reuse the same behavior without duplication.
+
+### Why the specific logic choices were made
+
+- **Normalization** ensures consistent matching regardless of user capitalization or spacing.  
+- **Fuzzy substring matching** supports partial-input searches, returning relevant results even when the user types only part of a song title.
+- **Ranking by prefix match** improves relevance by placing the most likely intended results at the top.  
+- **Autocomplete suggestions** support UI components that show dropdown hints as the user types.
+
+This design keeps the architecture modular:
+
+- **UI** → handles input and rendering  
+- **useSearch hook** → manages UI state and debouncing  
+- **songSearchService** → performs all search logic  
+- **SongItemRepo** → provides raw song data  
+
+---
+
