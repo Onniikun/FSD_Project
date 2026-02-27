@@ -10,6 +10,7 @@
 .songPFP {
     height: 500px;
     width: 350px;
+    display: block;
 }
 
 .songWrapper:hover {
@@ -18,8 +19,15 @@
 }
 .title {
     font-size: xx-large;
+    max-width: 320px;      
+    word-wrap: break-word;
+    overflow-wrap: break-word;
 }
-
+/*Song information*/
+.song-info {
+  min-width: 320px;
+  max-width: 320px;
+}
 
 /*Position of Song Information*/
 .song-card {
@@ -40,10 +48,5 @@
 
 .song-links a {
     display: block;
-    text-align: center;
-}
-
-/**/
-.message {
     text-align: center;
 }

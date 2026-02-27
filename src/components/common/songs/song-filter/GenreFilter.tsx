@@ -9,20 +9,24 @@ type GenreFilterProps = {
  * @param onChange - Callback when the genre display is changed.
  * @returns - Filtered song.
  */
-function GenreFilter({ onChange }: GenreFilterProps) {
-    const genres = ["All", "R&B", "Dark R&B", "K-Pop"];
+export function GenreFilter({ onChange }: GenreFilterProps) {
+    const genres = ["All", "R&B", "Dark R&B", "K-Pop", "J-Pop", "Jazz"];
 
-    const { 
-        selectedItem: selectedGenre, 
-        setSelectedItem: setSelectedGenre
-    } = useSortFilter("All")
+    /**
+     * Unlike my SongItem this hook changes the display of my button based 
+     * on the genre. (While the other one displays it for the song based on the genre.)
+     * Similar to what you see on spotify.
+     * 
+     * This hook is my useSortAndFilter hook.
+     */
+    const { selectedItem: selectedGenre, setSelectedItem: setSelectedGenre} = useSortFilter("All")
 
     const handleGenreChange = (genre: string) => {
         setSelectedGenre(genre)
         onChange?.(genre)
     }
 
-    return (
+    return(
         <section className="genre-filter">
             {genres.map((genre) =>(
                 //https://react.dev/learn/rendering-lists
@@ -40,4 +44,3 @@ function GenreFilter({ onChange }: GenreFilterProps) {
         </section>
     )
 }
-export default GenreFilter

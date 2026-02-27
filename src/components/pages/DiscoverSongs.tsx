@@ -1,4 +1,4 @@
-import SongItem from "../common/songs/song-items/SongItem"
+import { SongItem } from "../common/songs/song-items/SongItem"
 import { MoodSelector } from "../common/mood-selector/MoodSelector"
 import { useMood } from "../../hooks/useMood";
 
