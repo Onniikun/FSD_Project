@@ -3,7 +3,7 @@ import songPFP2 from "../../../../assets/songpictures/SongPFP2.png"
 import "./song-item.css"
 import type { Song } from "../../../../types/songModel.ts"
 import GenreFilter from "../song-filter/GenreFilter.tsx"
-import Links from "../song-links/SongLinks.tsx"
+import { Links } from "../song-links/SongLinks.tsx"
 import Upvote from "../song-upvote/SongUpvote.tsx"
 import { useState } from "react"
 import { Link } from 'react-router-dom'
