@@ -1,10 +1,16 @@
 import React, { useState, useEffect } from "react";
 import "./create-song-list-form.css";
 
-import { useSearch } from "../../../hooks/useSearch";
-import { SearchService } from "../../../services/songSearchService";
 import type { Song } from "../../../types/songModel";
 import type { SongList, VisibilityOption } from "../../../types/songListTypes";
+import { useSearch } from "../../../hooks/useSearch";
+import { SearchService } from "../../../services/songSearchService";
+import {
+  validateList,
+  addSong as addSongToList,
+  removeSong as removeSongFromList,
+} from "../../../services/SongListService";
+
 
 interface CreateSongListFormProps {
   setLists: React.Dispatch<React.SetStateAction<SongList[]>>;
@@ -44,35 +50,20 @@ export default function CreateSongListForm({ setLists }: CreateSongListFormProps
 
   // Add song from search results to the list
  const addSongFromSearch = (song: Song) => {
-    setSongs((previousSongs) => [
-      ...previousSongs, song]);
+    setSongs((previousSongs) => 
+      addSongToList(previousSongs, song));
     clearSearch();
     setSearchResults([]);
   };
 
   const removeSong = (id: number) => {
-    setSongs((previousSongs) => previousSongs.filter((song) => song.id !== id));
+    setSongs((previousSongs) => removeSongFromList(id, previousSongs));
   };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    const newErrors: {
-      name?: string;
-      songs?: string;
-    } = {};
 
-    if (name.trim() === "") {
-      newErrors.name = "**List name is required.**";
-    }
-
-    if (songs.length === 0) {
-      newErrors.songs = "**Please add at least one song.**";
-    }
-
-    setErrors(newErrors);
-    if (Object.keys(newErrors).length > 0) return;
-
-    const newList: SongList = {
+    const input = {
       id: crypto.randomUUID(),
       name,
       visibility,
@@ -80,7 +71,12 @@ export default function CreateSongListForm({ setLists }: CreateSongListFormProps
       songs,
     };
 
-    setLists((previousList) => [...previousList, newList]);
+    const validationErrors = validateList(input);
+    setErrors(validationErrors);
+
+    if (Object.keys(validationErrors).length > 0) return;
+
+    setLists((previousList) => [...previousList, input]);
 
     // Reset form fields after submission
     setName("");
