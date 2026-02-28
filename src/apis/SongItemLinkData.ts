@@ -1,5 +1,5 @@
 /**
- * 
+ * List of song item link platforms
  */
 export const LinkList = [
     {value: 'spotify', label: 'spotify'},
