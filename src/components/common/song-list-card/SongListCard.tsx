@@ -1,21 +1,17 @@
 import "./song-list-card.css";
 import type { SongList } from "../../../types/songListTypes";
 
-export interface SongListCardProps {
-  list: SongList;
-}
-
 export function SongListCard({
   list,
-}: SongListCardProps) {
+  onSelect
+}: {
+  list: SongList;
+  onSelect: () => void;
+}) {
   return (
-    <div className="songlist-card">
+    <div className="songlist-card" onClick={onSelect}>
       <div className="card-collapsed">
-        <img 
-          src={list.cover} 
-          className="list-cover" 
-          alt={list.name}
-        />
+        <img src={list.cover} className="list-cover" alt={list.name} />
         <h3 className="list-title">{list.name}</h3>
       </div>
     </div>

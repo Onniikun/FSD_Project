@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import "./create-song-list-form.css";
 
 import type { Song } from "../../../types/songModel";
-import type { SongList, VisibilityOption } from "../../../types/songListTypes";
+import type { VisibilityOption } from "../../../types/songListTypes";
 import defaultCover from "../../../assets/default-cover.png";
 import { useSearch } from "../../../hooks/useSearch";
 import { SearchService } from "../../../services/songSearchService";
@@ -12,12 +12,17 @@ import {
   removeSong as removeSongFromList,
 } from "../../../services/SongListService";
 
-
 interface CreateSongListFormProps {
-  setLists: React.Dispatch<React.SetStateAction<SongList[]>>;
+  onCreateList: (data: {
+    name: string;
+    visibility: VisibilityOption;
+    description: string;
+    songIds: number[];
+    cover?: string;
+  }) => void;
 }
 
-export default function CreateSongListForm({ setLists }: CreateSongListFormProps) {
+export default function CreateSongListForm({ onCreateList  }: CreateSongListFormProps) {
   const [name, setName] = useState("");
   const [visibility, setVisibility] = useState<VisibilityOption>("private");
   const [description, setDescription] = useState("");
@@ -52,7 +57,7 @@ export default function CreateSongListForm({ setLists }: CreateSongListFormProps
 
   // Add song from search results to the list
  const addSongFromSearch = (song: Song) => {
-    setSongs((previousSongs) => 
+    setSongs(previousSongs => 
       addSongToList(previousSongs, song));
     clearSearch();
     setSearchResults([]);
@@ -79,7 +84,13 @@ export default function CreateSongListForm({ setLists }: CreateSongListFormProps
 
     if (Object.keys(validationErrors).length > 0) return;
 
-    setLists((previousList) => [...previousList, input]);
+    onCreateList({
+      name,
+      visibility,
+      description,
+      songIds: songs.map(song => song.id),
+      cover,
+    });
 
     // Reset form fields after submission
     setName("");

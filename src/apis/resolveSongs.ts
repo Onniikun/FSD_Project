@@ -1,4 +1,4 @@
-import { songs } from "./mockSongData";
+import { songs } from "./SongItemData";
 import type { Song } from "../types/songModel";
 
 /**
