@@ -9,36 +9,33 @@ import DiscoverSongs from './components/pages/DiscoverSongs';
 import SongListsPage from './components/pages/SongListsPage';
 
 function App() {
-  const [mood, setMood] = useState<string>("");
-
   return (
     <Routes>  
       <Route path="/" element={<Layout />}>
 
           <Route 
             index 
-            element={<Landing mood={mood} setMood={setMood} />
-            } 
-          />
+            element={<Landing />}
+          /> 
 
           <Route 
             path="/songs" 
-            element={<DiscoverSongs mood={mood}/>} 
+            element={<DiscoverSongs />} 
           /> 
           <Route 
             path="/songs/:id" 
-            element={<DiscoverSongs mood={mood}/>}
+            element={<DiscoverSongs />}
           />
 
           <Route 
             path="/lists" 
-            element={<SongListsPage mood={mood}/>} 
+            element={<SongListsPage />} 
           /> 
 
           {/* all paths starting with /reviews */}
           <Route 
             path="/reviews" 
-            element={<SongReviews mood={mood}/>} 
+            element={<SongReviews />} 
           />
       </Route>
     </Routes>
