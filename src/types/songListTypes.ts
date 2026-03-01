@@ -8,4 +8,5 @@ export interface SongList {
   visibility: VisibilityOption;
   description: string;
   songs: Song[];
+  cover?: string;
 }

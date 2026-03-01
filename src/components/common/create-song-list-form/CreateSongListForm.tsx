@@ -3,6 +3,7 @@ import "./create-song-list-form.css";
 
 import type { Song } from "../../../types/songModel";
 import type { SongList, VisibilityOption } from "../../../types/songListTypes";
+import defaultCover from "../../../assets/default-cover.png";
 import { useSearch } from "../../../hooks/useSearch";
 import { SearchService } from "../../../services/songSearchService";
 import {
@@ -21,6 +22,7 @@ export default function CreateSongListForm({ setLists }: CreateSongListFormProps
   const [visibility, setVisibility] = useState<VisibilityOption>("private");
   const [description, setDescription] = useState("");
   const [songs, setSongs] = useState<Song[]>([]);
+  const [cover, setCover] = useState<string | undefined>(undefined);
   const [errors, setErrors] = useState<{
     name?: string; 
     songs?: string;
@@ -69,6 +71,7 @@ export default function CreateSongListForm({ setLists }: CreateSongListFormProps
       visibility,
       description,
       songs,
+      cover,
     };
 
     const validationErrors = validateList(input);
@@ -83,12 +86,38 @@ export default function CreateSongListForm({ setLists }: CreateSongListFormProps
     setVisibility("private");
     setDescription("");
     setSongs([]);
+    setCover(undefined);
   };
 
   return (
     <div className="songlist-container">
       <form className="songlist-form" onSubmit={handleSubmit}>
         <h2>Create a New Song List</h2>
+
+        <div className="cover-upload-section">
+            <img
+              src={cover ?? defaultCover}
+              alt="Cover preview"
+              className="cover-preview"
+            />
+
+          <label className="upload-button">
+            Change Cover
+            <input
+              type="file"
+              accept="image/*"
+              onChange={(e) => {
+                const file = e.target.files?.[0];
+                if (!file) return;
+
+                const reader = new FileReader();
+                reader.onload = () => setCover(reader.result as string);
+                reader.readAsDataURL(file);
+              }}
+              style={{ display: "none" }}
+            />
+          </label>
+        </div>
 
         <label className="form-field">
           List Name

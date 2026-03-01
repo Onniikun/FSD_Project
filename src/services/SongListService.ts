@@ -7,6 +7,7 @@ export interface CreateSongListInput  {
   visibility: VisibilityOption;
   description: string;
   songs: Song[];
+  cover?: string;
 }
 export interface ValidateSongErrors {
   name?: string;
