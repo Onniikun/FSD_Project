@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import "./song-list-modal.css";
 import type { Song } from "../../../types/songModel";
 import type { SongList } from "../../../types/songListTypes";
@@ -31,6 +32,8 @@ export function SongListModal({
   const [searchValue, setSearchValue] = useState("");
   const [searchResults, setSearchResults] = useState<Song[]>([]);
   const [isFocused, setIsFocused] = useState(false);
+
+  const navigate = useNavigate();
 
   // Search effect
   useEffect(() => {
@@ -82,7 +85,11 @@ export function SongListModal({
             <h3>Songs</h3>
             <ul>
               {list.songs.map(song => (
-                <li key={song.id}>
+                <li 
+                  key={song.id}
+                  className="song-link"
+                  onClick={() => navigate(`/songs/${song.id}`)}
+                >
                   {song.title} — {song.artist.join(", ")}
                 </li>
               ))}
@@ -183,12 +190,19 @@ export function SongListModal({
               <h3>Songs</h3>
               <ul className="edit-songs-list">
                 {songs.map(song => (
-                  <li key={song.id} className="edit-song-row">
+                  <li 
+                    key={song.id} 
+                    className="edit-song-row song-link"
+                    onClick={() => navigate(`/songs/${song.id}`)}
+                  >
                     <span>{song.title} — {song.artist.join(", ")}</span>
                     <button
                       type="button"
                       className="remove-song-btn"
-                      onClick={() => removeSong(song.id)}
+                        onClick={(e) => {
+                        e.stopPropagation();
+                        removeSong(song.id);
+                      }}
                     >
                       X
                     </button>

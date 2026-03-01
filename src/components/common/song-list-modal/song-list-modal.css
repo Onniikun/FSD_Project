@@ -109,6 +109,15 @@ input, textarea, select {
   color: white;
 }
 
+.song-link {
+  cursor: pointer;
+  padding: 0.25rem 0;
+}
+
+.song-link:hover {
+  color: #9f7fff;
+}
+
 .cover-edit-section {
   position: relative;
   width: 150px;
