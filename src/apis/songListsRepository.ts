@@ -1,8 +1,7 @@
 import { songListData } from "./mockSongListData";
 import { resolveSongs } from "./resolveSongs";
-import type { SongList } from "../types/songListTypes";
+import type { CreateSongListData, SongList } from "../types/songListTypes";
 import type { SongListRecord } from "../types/songListRecord";
-import defaultCover from "../assets/default-cover.png";
 
 /**
  * Converts a SongListRecord (which stores only song IDs)
@@ -55,20 +54,10 @@ export function getSongListById(listId: string): SongList {
  * @param newSongList - The data required to create a new song list
  * @returns The newly created and hydrated SongList
  */
-export async function createSongList(data: {
-    name: string;
-    visibility: "public" | "private";
-    description: string;
-    songIds: number[];
-    cover?: string;
-}) {
+export async function createSongList(data: CreateSongListData): Promise<SongList> {
     const record: SongListRecord = {
         id: crypto.randomUUID(),
-        name: data.name,
-        visibility: data.visibility,
-        description: data.description,
-        songIds: data.songIds,
-        cover: data.cover ?? defaultCover
+        ...data
     };
 
     songListData.push(record);
@@ -85,7 +74,7 @@ export async function createSongList(data: {
  * @returns The updated and hydrated SongList
  * @throws Error if no song list with the given ID exists
  */
-export async function updateSongList(updated: SongListRecord) {
+export async function updateSongList(updated: SongListRecord): Promise<SongList> {
     const index = songListData.findIndex(list => list.id === updated.id);
     if (index === -1) throw new Error(`Failed to update song list with id ${updated.id}`);
 
@@ -94,7 +83,7 @@ export async function updateSongList(updated: SongListRecord) {
         ...updated
     };
 
-    return hydrate(updated);
+    return hydrate(songListData[index]);
 }
 
 /**
@@ -108,7 +97,7 @@ export async function updateSongList(updated: SongListRecord) {
  * @returns The deleted SongList, hydrated
  * @throws Error if no song list with the given ID exists
  */
-export async function deleteSongList(listId: string) {
+export async function deleteSongList(listId: string): Promise<SongList> {
     const index = songListData.findIndex(list => list.id === listId);
     if (index === -1) throw new Error(`Failed to delete song list with id ${listId}`);
 

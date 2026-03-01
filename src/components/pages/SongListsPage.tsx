@@ -4,7 +4,7 @@ import SongListsDisplay from "../common/song-list-display/SongListsDisplay";
 import { MoodSelector } from "../common/mood-selector/MoodSelector";
 import { useMood } from "../../hooks/useMood";
 
-import type { SongList } from "../../types/songListTypes";
+import type { CreateSongListData, SongList } from "../../types/songListTypes";
 import {
   fetchSongLists,
   createSongList,
@@ -13,7 +13,6 @@ import {
 } from "../../apis/songListsRepository";
 
 import { SongListModal } from "../common/song-list-modal/SongListModal";
-import type { SongListRecord } from "../../types/songListRecord";
 
 export default function SongListsPage() {
     const [lists, setLists] = useState<SongList[]>([]);
@@ -25,7 +24,7 @@ export default function SongListsPage() {
         setLists(loaded);
     }, []);
 
-    const handleCreateList = async (data: SongListRecord) => {
+    const handleCreateList = async (data: CreateSongListData) => {
         const newList = await createSongList(data);
         setLists(prev => [...prev, newList]);
     };

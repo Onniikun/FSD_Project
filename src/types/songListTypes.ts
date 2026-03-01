@@ -10,3 +10,11 @@ export interface SongList {
   songs: Song[];
   cover?: string;
 }
+
+export interface CreateSongListData {
+  name: string;
+  visibility: VisibilityOption;
+  description: string;
+  songIds: number[];
+  cover?: string;
+}

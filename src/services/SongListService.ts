@@ -2,7 +2,6 @@ import type { VisibilityOption } from "../types/songListTypes"
 import type { Song } from "../types/songModel.ts"
 
 export interface CreateSongListInput  {
-  id: string;
   name: string;
   visibility: VisibilityOption;
   description: string;

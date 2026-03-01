@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import "./create-song-list-form.css";
 
 import type { Song } from "../../../types/songModel";
-import type { VisibilityOption } from "../../../types/songListTypes";
+import type { CreateSongListData, VisibilityOption } from "../../../types/songListTypes";
 import defaultCover from "../../../assets/default-cover.png";
 import { useSearch } from "../../../hooks/useSearch";
 import { SearchService } from "../../../services/songSearchService";
@@ -11,10 +11,9 @@ import {
   addSong as addSongToList,
   removeSong as removeSongFromList,
 } from "../../../services/SongListService";
-import type { SongListRecord } from "../../../types/songListRecord";
 
 interface CreateSongListFormProps {
-  onCreateList: (data: SongListRecord) => void;
+  onCreateList: (data: CreateSongListData) => void;
 }
 
 export default function CreateSongListForm({ onCreateList  }: CreateSongListFormProps) {
@@ -56,17 +55,28 @@ export default function CreateSongListForm({ onCreateList  }: CreateSongListForm
       addSongToList(previousSongs, song));
     clearSearch();
     setSearchResults([]);
+
+    // Clear the error message
+    setErrors(prevErrors => ({ ...prevErrors, songs: undefined }));
   };
 
   const removeSong = (id: number) => {
-    setSongs((previousSongs) => removeSongFromList(id, previousSongs));
+    setSongs((previousSongs) => {
+      const updatedSongs = removeSongFromList(id, previousSongs);
+
+      // Make error message reappear if user removes all songs
+      if (updatedSongs.length === 0) {
+        setErrors(prevErrors => ({ ...prevErrors, songs: "**Please add at least one song.**" }));
+      }
+
+      return updatedSongs;
+    });
   };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
 
     const input = {
-      id: crypto.randomUUID(),
       name,
       visibility,
       description,
