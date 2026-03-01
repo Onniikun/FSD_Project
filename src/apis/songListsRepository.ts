@@ -68,7 +68,7 @@ export async function createSongList(data: {
         visibility: data.visibility,
         description: data.description,
         songIds: data.songIds,
-        cover: data.cover ?? defaultCover // fallback here
+        cover: data.cover ?? defaultCover
     };
 
     songListData.push(record);
@@ -89,7 +89,11 @@ export async function updateSongList(updated: SongListRecord) {
     const index = songListData.findIndex(list => list.id === updated.id);
     if (index === -1) throw new Error(`Failed to update song list with id ${updated.id}`);
 
-    songListData[index] = updated;
+    songListData[index] = {
+        ...songListData[index],
+        ...updated
+    };
+
     return hydrate(updated);
 }
 

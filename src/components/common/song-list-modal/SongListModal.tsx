@@ -20,13 +20,15 @@ export function SongListModal({
   const [name, setName] = useState(list.name);
   const [description, setDescription] = useState(list.description);
   const [visibility, setVisibility] = useState(list.visibility);
+  const [cover, setCover] = useState<string | undefined>(list.cover);
 
   const handleSave = () => {
     onEdit({
       ...list,
       name,
       description,
-      visibility
+      visibility,
+      cover
     });
     setIsEditing(false);
   };
@@ -44,8 +46,8 @@ export function SongListModal({
               alt={`${list.name} cover image`}
             />
 
-            <h2>{list.name}</h2>
-            <p>{list.description}</p>
+            <h2 className="modal-title-view">{list.name}</h2>
+            <p className="modal-description">{list.description}</p>
             <p><strong>Visibility:</strong> {list.visibility}</p>
 
             <h3>Songs</h3>
@@ -67,6 +69,30 @@ export function SongListModal({
         {isEditing && (
           <>
             <h2>Edit List</h2>
+
+            <div className="cover-edit-section">
+              <img
+                src={cover ?? defaultCover}
+                alt="Cover preview"
+                className="modal-cover editable-cover"
+                onClick={() => document.getElementById("edit-cover-input")?.click()}
+              />
+
+              <input
+                id="edit-cover-input"
+                type="file"
+                accept="image/*"
+                className="hidden-file-input"
+                onChange={(e) => {
+                  const file = e.target.files?.[0];
+                  if (!file) return;
+
+                  const reader = new FileReader();
+                  reader.onload = () => setCover(reader.result as string);
+                  reader.readAsDataURL(file);
+                }}
+              />
+            </div>
 
             <label>
               Name

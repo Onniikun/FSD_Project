@@ -22,7 +22,7 @@
 .modal-cover {
   width: 100%;
   border-radius: 8px;
-  margin-bottom: 1rem;
+  margin-bottom: 0.2rem;
 }
 
 .close-btn {
@@ -49,6 +49,42 @@
   cursor: pointer;
 }
 
+.modal label {
+  display: block;
+  margin-bottom: 0.75rem;
+}
+
+.modal-title-view {
+  font-size: 1.8rem;
+  font-weight: 700;
+  text-align: left;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.modal-description {
+  margin-top: 0;
+}
+
+.modal h3 {
+  text-align: left;
+  margin-top: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+.modal ul {
+  list-style: none;     /* removes bullets */
+  padding-left: 0;      /* removes default indent */
+  margin: 0;            /* keeps it tight under the heading */
+  text-align: left;     /* ensures left alignment */
+}
+
+.modal ul li {
+  padding-left: 0;      /* ensures no extra indent */
+  margin-left: 0;
+  text-align: left;
+}
+
 input, textarea, select {
   width: 100%;
   margin-top: 0.25rem;
@@ -58,4 +94,40 @@ input, textarea, select {
   border: 1px solid #555;
   background: #1f1a25;
   color: white;
+}
+
+.cover-edit-section {
+  position: relative;
+  width: 150px;
+  height: 150px;
+  margin: 0 auto 1rem;
+  display: block;   
+}
+
+.cover-edit-section::after {
+  content: "✏️";
+  position: absolute;
+  bottom: 8px;
+  right: 8px;
+  background: rgba(0,0,0,0.6);
+  padding: 4px 6px;
+  border-radius: 4px;
+  font-size: 0.9rem;
+  pointer-events: none;
+}
+
+.hidden-file-input {
+  display: none;
+}
+
+.editable-cover {
+  width: 150px;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.editable-cover:hover {
+  opacity: 0.85;
 }
