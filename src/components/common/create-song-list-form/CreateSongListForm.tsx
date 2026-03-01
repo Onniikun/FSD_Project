@@ -11,15 +11,10 @@ import {
   addSong as addSongToList,
   removeSong as removeSongFromList,
 } from "../../../services/SongListService";
+import type { SongListRecord } from "../../../types/songListRecord";
 
 interface CreateSongListFormProps {
-  onCreateList: (data: {
-    name: string;
-    visibility: VisibilityOption;
-    description: string;
-    songIds: number[];
-    cover?: string;
-  }) => void;
+  onCreateList: (data: SongListRecord) => void;
 }
 
 export default function CreateSongListForm({ onCreateList  }: CreateSongListFormProps) {

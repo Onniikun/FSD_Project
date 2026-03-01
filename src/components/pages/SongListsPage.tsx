@@ -13,6 +13,7 @@ import {
 } from "../../apis/songListsRepository";
 
 import { SongListModal } from "../common/song-list-modal/SongListModal";
+import type { SongListRecord } from "../../types/songListRecord";
 
 export default function SongListsPage() {
     const [lists, setLists] = useState<SongList[]>([]);
@@ -24,7 +25,7 @@ export default function SongListsPage() {
         setLists(loaded);
     }, []);
 
-    const handleCreateList = async (data) => {
+    const handleCreateList = async (data: SongListRecord) => {
         const newList = await createSongList(data);
         setLists(prev => [...prev, newList]);
     };
