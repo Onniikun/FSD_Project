@@ -95,28 +95,30 @@ export default function CreateSongListForm({ setLists }: CreateSongListFormProps
         <h2>Create a New Song List</h2>
 
         <div className="cover-upload-section">
-            <img
-              src={cover ?? defaultCover}
-              alt="Cover preview"
-              className="cover-preview"
-            />
+          <img
+            src={cover ?? defaultCover}
+            alt="Cover preview"
+            className="cover-preview"
+          />
 
-          <label className="upload-button">
-            Change Cover
-            <input
-              type="file"
-              accept="image/*"
-              onChange={(e) => {
-                const file = e.target.files?.[0];
-                if (!file) return;
+          <div className="cover-overlay">
+            <span className="edit-icon">✏️</span>
+            <span className="overlay-text">Change Cover</span>
+          </div>
 
-                const reader = new FileReader();
-                reader.onload = () => setCover(reader.result as string);
-                reader.readAsDataURL(file);
-              }}
-              style={{ display: "none" }}
-            />
-          </label>
+          <input
+            type="file"
+            accept="image/*"
+            className="cover-input"
+            onChange={(e) => {
+              const file = e.target.files?.[0];
+              if (!file) return;
+
+              const reader = new FileReader();
+              reader.onload = () => setCover(reader.result as string);
+              reader.readAsDataURL(file);
+            }}
+          />
         </div>
 
         <label className="form-field">
@@ -172,7 +174,8 @@ export default function CreateSongListForm({ setLists }: CreateSongListFormProps
                   className="search-result-item"
                   onClick={() => addSongFromSearch(song)}
                 >
-                  <strong>{song.title}</strong> — {song.artist.join(", ")}
+                  <span className="song-title">{song.title}</span>
+                  <span className="song-artists">{song.artist.join(", ")}</span>
                 </li>
               ))}
             </ul>
@@ -185,19 +188,18 @@ export default function CreateSongListForm({ setLists }: CreateSongListFormProps
           {errors.songs && <p className="error-text">{errors.songs}</p>}
 
           {songs.map((song) => (
-            <div key={song.id} className="song-list-item">
-              <div className="song-row">
+            <div key={song.id} className="song-row">
+              <div className="song-info">
                 <p><strong>{song.title}</strong></p>
                 <p>{song.artist.join(", ")}</p>
-
+              </div>
                 <button
                   type="button"
                   className="remove-button"
                   onClick={() => removeSong(song.id)}
                 >
-                  Remove
+                  X
                 </button>
-              </div>
             </div>
           ))}
         </div>
