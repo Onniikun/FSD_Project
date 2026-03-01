@@ -1,6 +1,7 @@
 import { useState } from "react";
 import "./song-list-modal.css";
 import type { SongList } from "../../../types/songListTypes";
+import defaultCover from "../../../assets/default-cover.png";
 
 export function SongListModal({
   list,
@@ -37,7 +38,11 @@ export function SongListModal({
 
         {!isEditing && (
           <>
-            <img src={list.cover} className="modal-cover" />
+            <img 
+              src={list.cover ?? defaultCover} 
+              className="modal-cover" 
+              alt={`${list.name} cover image`}
+            />
 
             <h2>{list.name}</h2>
             <p>{list.description}</p>

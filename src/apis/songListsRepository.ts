@@ -2,6 +2,7 @@ import { songListData } from "./mockSongListData";
 import { resolveSongs } from "./resolveSongs";
 import type { SongList } from "../types/songListTypes";
 import type { SongListRecord } from "../types/songListRecord";
+import defaultCover from "../assets/default-cover.png";
 
 /**
  * Converts a SongListRecord (which stores only song IDs)
@@ -54,17 +55,20 @@ export function getSongListById(listId: string): SongList {
  * @param newSongList - The data required to create a new song list
  * @returns The newly created and hydrated SongList
  */
-export async function createSongList(newSongList: {
+export async function createSongList(data: {
     name: string;
     visibility: "public" | "private";
     description: string;
     songIds: number[];
+    cover?: string;
 }) {
-    const id = `list-${crypto.randomUUID()}`;
-
     const record: SongListRecord = {
-        id,
-        ...newSongList
+        id: crypto.randomUUID(),
+        name: data.name,
+        visibility: data.visibility,
+        description: data.description,
+        songIds: data.songIds,
+        cover: data.cover ?? defaultCover // fallback here
     };
 
     songListData.push(record);
