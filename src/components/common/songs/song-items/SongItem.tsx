@@ -8,14 +8,18 @@ import { Link, useParams } from 'react-router-dom'
 import type { Song } from "../../../../types/songModel.ts"
 import { fetchAllSongs } from "../../../../apis/SongItemRepo.ts"
 import { useSortFilter } from "../../../../hooks/useSortAndFilterUI.ts"
-import { filterSongGenre } from "../../../../services/SongItemService.ts"   
+import { filterSongGenre } from "../../../../services/SongItemService.ts"
+
+import * as DiscoveryService from "../../../../services/discoveryService";
+import { useMood } from "../../../../hooks/useMood";
 
 /**
  * Displays song information.
  * @returns - A song item{s}
  */
-export function SongItem() {
+export function SongItem({ query = "" }: { query?: string }) {
     const { id } = useParams()
+    const { mood } = useMood();
     //use state for a selected Genre.(Used my hook to display the filtered genre)
     /**
      * Unlike my GenreFilter this hook displays the actual Song Item{s} based 
@@ -44,9 +48,14 @@ export function SongItem() {
      * It has the dual purpose of displaying the only the song by that id
      * or filtered by song genre(Later by platform links, etc.)
      */
-    const displayedSongs = id 
+    const displayedSongs = id
         ? songs.filter(song => song.id === Number(id))
-        : filterSongGenre(songs, selectedGenre)
+        : DiscoveryService.applyDiscovery(songs, {
+            query,
+            mood,
+            genre: selectedGenre,
+            sort: "title-asc",
+        });
     return(
         <>
         {!id && <GenreFilter onChange={setSelectedGenre}/>}
