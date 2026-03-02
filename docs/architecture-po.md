@@ -120,3 +120,4 @@ This design keeps the architecture modular:
 
 ---
 
+**The rest to be answered in sprint 4 due to time**
