@@ -5,7 +5,7 @@ import type { Song } from "../../../types/songModel";
 import type { SongList } from "../../../types/songListTypes";
 import defaultCover from "../../../assets/default-cover.png";
 import { SearchService } from "../../../services/songSearchService";
-import { addSong as addSongToList, removeSong as removeSongFromList } from "../../../services/SongListService";
+import { validateList, addSong as addSongToList, removeSong as removeSongFromList } from "../../../services/SongListService";
 
 /**
  * A modal component for viewing and editing a song list, allowing users to see details, edit information, search/add songs, and delete the list.
@@ -34,6 +34,10 @@ export function SongListModal({
   const [visibility, setVisibility] = useState(list.visibility);
   const [cover, setCover] = useState<string | undefined>(list.cover);
   const [songs, setSongs] = useState(list.songs);
+  const [errors, setErrors] = useState<{
+    name?: string;
+    songs?: string;
+  }>({});
 
   // Search state
   const [searchValue, setSearchValue] = useState("");
@@ -55,22 +59,47 @@ export function SongListModal({
     setSongs(prev => addSongToList(prev, song));
     setSearchValue("");
     setSearchResults([]);
+
+    if (errors.songs) setErrors(prev => ({ ...prev, songs: undefined }));
   };
 
   const removeSong = (id: number) => {
-    setSongs(prev => removeSongFromList(id, prev));
+    setSongs(prev => {
+      const updated  = removeSongFromList(id, prev);
+      if (updated.length === 0) {
+        setErrors(prev => ({ ...prev, songs: "**Please add at least one song.**" }));
+      }
+      return updated ;
+    });
   };
 
   const handleSave = () => {
+    const input = {
+      name,
+      description,
+      visibility,
+      songs,
+      cover
+    };
+
+    const validationErrors = validateList(input);
+    setErrors(validationErrors);
+
+    if (Object.keys(validationErrors).length > 0) return;
+
     onEdit({
       ...list,
       name,
       description,
       visibility,
-      cover
+      cover,
+      songs
     });
+
     setIsEditing(false);
   };
+
+
 
   return (
     <div className="modal-overlay">
@@ -149,8 +178,12 @@ export function SongListModal({
                 Name
                 <input
                   value={name}
-                  onChange={e => setName(e.target.value)}
+                  onChange={e => {
+                    setName(e.target.value);
+                    if (errors.name) setErrors(prev => ({ ...prev, name: undefined }));
+                  }}
                 />
+                {errors.name && <p className="error-text">{errors.name}</p>}
               </label>
 
               <label>
@@ -202,6 +235,9 @@ export function SongListModal({
               </div>
 
               <h3>Songs</h3>
+
+              {errors.songs && <p className="error-text">{errors.songs}</p>}
+
               <ul className="edit-songs-list">
                 {songs.map(song => (
                   <li 
