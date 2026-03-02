@@ -1,76 +1,20 @@
 .lists-display {
   margin-top: 2rem;
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
   gap: 1.5rem;
   color: white;
   padding-bottom: 4rem;
 }
 
 .lists-display h2 {
+  grid-column: 1 / -1; 
   margin-bottom: 1rem;
+  text-align: center;
+  width: 100%;
   font-size: 1.6rem;
   font-weight: 700;
   color: #bf87ff;
-}
-
-.songlist-card {
-  background: #3D314A;
-  border: 3px groove #2d2436;
-  padding: 1.25rem;
-  border-radius: 10px;
-  transition: transform 0.15s ease, box-shadow 0.15s ease;
-  cursor: pointer;
-}
-
-.songlist-card:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 4px 12px rgba(0,0,0,0.25);
-}
-
-.card-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.card-header h3 {
-  margin: 0;
-  font-size: 1.2rem;
-  font-weight: 700;
-  color: #bf87ff;
-  cursor: pointer;
-}
-
-.card-header h3:hover {
-  text-decoration: underline;
-}
-
-.song-list {
-  margin-top: 1rem;
-  padding-left: 1.25rem;
-  display: flex;
-  flex-direction: column;
-  gap: 0.4rem;
-}
-
-.song-list li {
-  list-style: disc;
-  color: #e8d9ff;
-}
-
-.delete-list-button {
-  background: #da3833;
-  color: white;
-  border: none;
-  padding: 0.35rem 0.6rem;
-  border-radius: 6px;
-  cursor: pointer;
-  font-size: 0.85rem;
-}
-
-.delete-list-button:hover {
-  background: #a53937;
 }
 
 @media (max-width: 600px) {
