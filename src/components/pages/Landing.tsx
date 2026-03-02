@@ -1,7 +1,9 @@
-import type { MoodSelectorProps } from "../../types/mood";
+import { useMood } from "../../hooks/useMood";
 import { MoodSelector } from "../common/mood-selector/MoodSelector";
 
-function Landing({ mood, setMood }: MoodSelectorProps) {
+function Landing() {
+    const { mood } = useMood();
+
     return (
         <>
             <header>
@@ -13,8 +15,6 @@ function Landing({ mood, setMood }: MoodSelectorProps) {
             </header>
             
             <MoodSelector
-                mood={mood}
-                setMood={setMood}
                 showButtons={true}
             />
 

@@ -1,83 +1,83 @@
-import songPFP from "../../../../assets/songpictures/SongPFP.jpg"
-import songPFP2 from "../../../../assets/songpictures/SongPFP2.png"
 import "./song-item.css"
-import type { Song } from "../../../../types/songModel.ts"
-import GenreFilter from "../song-filter/GenreFilter.tsx"
-import Links from "../song-links/SongLinks.tsx"
+import { GenreFilter } from "../song-filter/GenreFilter.tsx"
+import { Links } from "../song-links/SongLinks.tsx"
 import Upvote from "../song-upvote/SongUpvote.tsx"
-import { useState } from "react"
-import { Link } from 'react-router-dom'
+import { useState, useEffect } from "react"
+import { Link, useParams } from 'react-router-dom'
+
+import type { Song } from "../../../../types/songModel.ts"
+import { fetchAllSongs } from "../../../../apis/SongItemRepo.ts"
+import { useSortFilter } from "../../../../hooks/useSortAndFilterUI.ts"
+import { filterSongGenre } from "../../../../services/SongItemService.ts"
+
+import * as DiscoveryService from "../../../../services/discoveryService";
+import { useMood } from "../../../../hooks/useMood";
 
 /**
  * Displays song information.
  * @returns - A song item{s}
  */
-function SongItem() {
-    //use state for a selected Genre.
-    const [selectedGenre, setSelectedGenre] = useState<string>("All")
-    // For now it the song list will remain here until we have a
-    // larger database.
-    const songs: Song[] = [
-    {
-        id: 1,
-        title: "Forever &",
-        artist: "Ejean",
-        genre: "R&B",
-        release_date: new Date("July, 12, 2024"),
-        runtime: "2:27",
-        cover: songPFP,
-        links: {
-            spotify: "https://open.spotify.com/album/1GjWfyDsXFAQTRq8FLZJN2?si=8WCiBr8MT1i0r-X6eKvqZw",
-            apple: "https://music.apple.com/us/song/forever/1767151840",
-            amazon: "https://music.amazon.com/tracks/B0DG7633K9?marketplaceId=ART4WZ8MWBX2Y&musicTerritory=CA&ref=dm_sh_NSaNT2zY4k7yoZs2WKwfVlwvp",
-            youtube: "https://music.youtube.com/watch?v=IOhUwlI6wtc&si=zGQL_NUUXXvgQOLc",
-
-        }
-    },
-    {
-        id: 2,
-        title: "Karma",
-        artist: "Summer Walker",
-        genre: "Dark R&B",
-        release_date: new Date("October, 19, 2018"),
-        runtime: "3:08",
-        cover: songPFP2,
-        links: {
-            spotify: "https://open.spotify.com/track/2Fyjjpg03fn7n5cj0Qm380",
-            apple: "https://music.apple.com/ca/song/karma/1438765304",
-            soundcloud: "https://soundcloud.com/summerwalker/karma?in=j1m3n4/sets/tv-ma",
-            amazon: "https://music.amazon.ca/tracks/B0B7Z91J56?do=play&agent=googleAssistant&ref=dmm_seo_google_gkp_tracks&explicit=false",
-            youtube: "https://music.youtube.com/watch?v=Y-iIdLsiOJQ"
-        }
-    }
-]
-    // Displaying the filtered songs.
-    //https://www.youtube.com/watch?v=u1yr_HZivzk
-    const filteredSongs =
-        selectedGenre === "All" ? songs : songs.filter(song => song.genre === selectedGenre)
+export function SongItem({ query = "" }: { query?: string }) {
+    const { id } = useParams()
+    const { mood } = useMood();
+    //use state for a selected Genre.(Used my hook to display the filtered genre)
+    /**
+     * Unlike my GenreFilter this hook displays the actual Song Item{s} based 
+     * on the genre. (While the other one displays it for the button.)
+     * 
+     * This hook is my useSortAndFilter hook.
+     */
+    const {
+        selectedItem: selectedGenre, 
+        setSelectedItem: setSelectedGenre
+    } = useSortFilter<string>("All")
+    /**
+     * This component uses the SongItemRepo file. Where we useEffect to render 
+     * the data from calling the API to display it; this is for when we have a back-end components.
+     * 
+     * This method is from my repository method.
+     */
+    const [songs, setSongs] = useState<Song[]>([])
+    //https://react.dev/reference/react/useEffect
+    useEffect(() => {
+        const SongData = fetchAllSongs()
+        setSongs(SongData)}, [])
+    /**
+     * by clicking the song cover it directs the user to only that song item.
+     * 
+     * It has the dual purpose of displaying the only the song by that id
+     * or filtered by song genre(Later by platform links, etc.)
+     */
+    const displayedSongs = id
+        ? songs.filter(song => song.id === Number(id))
+        : DiscoveryService.applyDiscovery(songs, {
+            query,
+            mood,
+            genre: selectedGenre,
+            sort: "title-asc",
+        });
     return(
         <>
-        <GenreFilter selectedGenre={selectedGenre} setSelectedGenre={setSelectedGenre}/>
+        {!id && <GenreFilter onChange={setSelectedGenre}/>}
         <section className="song-item">
             <ul>
-                {filteredSongs.length === 0 ? (
+                {displayedSongs.length === 0 ? (
                     <p>Sorry, We haven't added that yet.</p>
                 ) : (
-                filteredSongs.map((song)=> (
+                displayedSongs.map((song: Song)=> (
                     <li key={song.id} className="song-card">
                     <div> 
-                        {/* To add link to song item. */}
-                        <Link to={`/song:${song.title}/${song.artist}`}>
+                        <Link to={`/songs/${song.id}`}>
                             <div className="songWrapper">
                                 <img className="songPFP"src={song.cover} alt="songpic" />
                             </div>
                         </Link>
                         <Links links={song.links} />
                     </div>
-                    <div className="song-info">
+                        <div className="song-info">
                             <h2 className="title">{song.title}</h2>
-                            <p>{song.artist}</p>
-                            <p>Genre: {song.genre}</p>
+                            <p>{song.artist.join(", ")}</p>
+                            <p>Genre: {song.genre.join(", ")}</p>
                             <p>Release date: {song.release_date.toLocaleDateString("en-US", {
                                 year: "numeric",
                                 month: "short",
@@ -93,5 +93,3 @@ function SongItem() {
         </>
     )
 }
-
-export default SongItem;
