@@ -33,6 +33,15 @@ Nathan Natoza, Edraque Maglaque, Phoenixx Ordonez
 - **Navigation Interface(s)** - Nathan
 - **Shared state across pages** - Phoenixx
 
+### Sprint 3
+
+- **useSortAndFilterUI Hook** - Nathan
+- **SongListService** - Nathan
+- **SongItemService** - Nathan
+- **useSearch** - Phoenixx
+- **songSearchService** - Phoenixx
+- **Discovery Service** - Edraque
+
 ### Individual Contributions
 
 ### Sprint 1
@@ -50,7 +59,18 @@ Nathan Natoza, Edraque Maglaque, Phoenixx Ordonez
 - **I.3 Element Addition/Removal (Like button/Upvote Downvote feature)** - Nathan
 - **I.3 Element Addition/Removal (Add/Remove Song from the List)** - Phoenixx
 
-## Songs 
+### Sprint 3
+
+- **I.1 Repository Definition(s) and Integration (Song list)** - Phoenixx
+- **I.1 Repository Definition(s) and Integration (Song item repository)** - Nathan
+- **I.2 Test Data (Song item)** - Nathan
+- **I.2 Test Data (Song list test data)** - Phoenixx
+- **I.3 New / Refactored Components (Song Item function/components)** - Nathan
+- **I.3 New / Refactored Components (Create Song List Form Components)** - Phoenixx
+- **I.4 Architectural Layout Document** - Nathan and Phoenixx
+- **Edraque's individual components still WIP**
+
+## Songs
 
 ### Karma by Summer Walker
 
