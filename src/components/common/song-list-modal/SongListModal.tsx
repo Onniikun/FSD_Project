@@ -104,7 +104,13 @@ export function SongListModal({
 
             <div className="modal-actions">
               <button onClick={() => setIsEditing(true)}>Edit</button>
-              <button onClick={() => onDelete(list.id)}>Delete</button>
+              <button onClick={() => {
+                  const ok = window.confirm("Are you sure you want to delete this list?");
+                  if (ok) onDelete(list.id);
+                }}
+              >
+                Delete  
+              </button>
             </div>
           </>
         )}
