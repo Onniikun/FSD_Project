@@ -16,6 +16,11 @@ interface CreateSongListFormProps {
   onCreateList: (data: CreateSongListData) => void;
 }
 
+/**
+ * A form component for creating a new song list, allowing users to input details and search/add songs.
+ * @param onCreateList - Callback function to handle the creation of a new song list with the provided data.
+ * @returns The rendered CreateSongListForm component.
+ */
 export default function CreateSongListForm({ onCreateList  }: CreateSongListFormProps) {
   const [name, setName] = useState("");
   const [visibility, setVisibility] = useState<VisibilityOption>("private");

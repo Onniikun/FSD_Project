@@ -7,7 +7,14 @@ import defaultCover from "../../../assets/default-cover.png";
 import { SearchService } from "../../../services/songSearchService";
 import { addSong as addSongToList, removeSong as removeSongFromList } from "../../../services/SongListService";
 
-
+/**
+ * A modal component for viewing and editing a song list, allowing users to see details, edit information, search/add songs, and delete the list.
+ * @param list - The song list being displayed or edited.
+ * @param onClose - Closes the modal.
+ * @param onDelete - Deletes the list by ID.
+ * @param onEdit - Saves updates to the list.
+ * @returns The rendered SongListModal component.
+ */
 export function SongListModal({
   list,
   onClose,
