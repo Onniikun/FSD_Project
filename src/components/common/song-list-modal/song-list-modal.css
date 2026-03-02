@@ -227,3 +227,7 @@ input, textarea, select {
 .remove-song-btn {
   white-space: nowrap;
 }
+
+.modal-form textarea {
+  resize: none;
+}

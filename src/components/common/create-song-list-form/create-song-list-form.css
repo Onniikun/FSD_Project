@@ -217,6 +217,10 @@
   background: #2c243a;
 }
 
+.songlist-form textarea {
+  resize: none;
+}
+
 @media (max-width: 600px) {
   .remove-button {
     align-self: flex-end;

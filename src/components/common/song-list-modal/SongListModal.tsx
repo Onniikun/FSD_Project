@@ -191,6 +191,7 @@ export function SongListModal({
                 <textarea
                   value={description}
                   onChange={e => setDescription(e.target.value)}
+                  rows={7}
                 />
               </label>
 

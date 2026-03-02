@@ -170,7 +170,7 @@ export default function CreateSongListForm({ onCreateList  }: CreateSongListForm
           <textarea
             value={description}
             onChange={(e) => setDescription(e.target.value)}
-            rows={3}
+            rows={7}
           />
         </label>
 
