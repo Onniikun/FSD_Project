@@ -1,6 +1,12 @@
 import React, { useState, useEffect } from "react";
 import "./create-song-list-form.css";
 
+import { useFormField } from "../../../hooks/useFormField";
+// file will be impl. after, messed up and been working on 1 branch for too long
+import * as DiscoveryService from "../../../services/discoveryService";
+import * as SongListService from "../../../services/SongListService";
+import { fetchAllSongs } from "../../../apis/SongItemRepo";
+import type { Song, SongList, VisibilityOption } from "../../../types/songListTypes";
 import type { Song } from "../../../types/songModel";
 import type { CreateSongListData, VisibilityOption } from "../../../types/songListTypes";
 import defaultCover from "../../../assets/default-cover.png";
@@ -16,15 +22,17 @@ interface CreateSongListFormProps {
   onCreateList: (data: CreateSongListData) => void;
 }
 
+
 /**
  * A form component for creating a new song list, allowing users to input details and search/add songs.
  * @param onCreateList - Callback function to handle the creation of a new song list with the provided data.
  * @returns The rendered CreateSongListForm component.
  */
-export default function CreateSongListForm({ onCreateList  }: CreateSongListFormProps) {
+export default function CreateSongListForm({ onCreateList, setLists  }: CreateSongListFormProps) {
+  const nameField = useFormField("", DiscoveryService.validateListName);
   const [name, setName] = useState("");
   const [visibility, setVisibility] = useState<VisibilityOption>("private");
-  const [description, setDescription] = useState("");
+  const descField = useFormField("");
   const [songs, setSongs] = useState<Song[]>([]);
   const [cover, setCover] = useState<string | undefined>(undefined);
   const [errors, setErrors] = useState<{
@@ -65,6 +73,24 @@ export default function CreateSongListForm({ onCreateList  }: CreateSongListForm
     setErrors(prevErrors => ({ ...prevErrors, songs: undefined }));
   };
 
+  const handleSubmit = (e: React.FormEvent) => {
+    const nameOk = nameField.validateNow();
+
+    const listErrors = SongListService.validateList({
+      id: "temp",
+      name: nameField.value,
+      visibility,
+      description: descField.value,
+      songs,
+    });
+
+    setErrors({ songs: listErrors.songs });
+
+    if (!nameOk || listErrors.songs) return;
+
+    const newList: SongList = {
+      id: crypto.randomUUID(),
+      name: nameField.value,
   const removeSong = (id: number) => {
     setSongs((previousSongs) => {
       const updatedSongs = removeSongFromList(id, previousSongs);
@@ -84,11 +110,14 @@ export default function CreateSongListForm({ onCreateList  }: CreateSongListForm
     const input = {
       name,
       visibility,
-      description,
+      description: descField.value,
       songs,
       cover,
     };
 
+    setLists((previousLists) => [...previousLists, newList]);
+    nameField.reset();
+    descField.reset();
     const validationErrors = validateList(input);
     setErrors(validationErrors);
 
@@ -105,7 +134,6 @@ export default function CreateSongListForm({ onCreateList  }: CreateSongListForm
     // Reset form fields after submission
     setName("");
     setVisibility("private");
-    setDescription("");
     setSongs([]);
     setCover(undefined);
   };
@@ -146,10 +174,12 @@ export default function CreateSongListForm({ onCreateList  }: CreateSongListForm
           List Name
           <input
             type="text"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
+            value={nameField.value}
+            onChange={(e) => nameField.onChange(e.target.value)}
+            onBlur={nameField.onBlur}
           />
-          {errors.name && <p className="error-text">{errors.name}</p>}
+          {nameField.touched && nameField.errors[0] && (
+            <p className="error-text">{nameField.errors[0]}</p>)}
         </label>
 
         <label className="form-field">
@@ -168,6 +198,10 @@ export default function CreateSongListForm({ onCreateList  }: CreateSongListForm
         <label className="form-field">
           Description
           <textarea
+            value={descField.value}
+            onChange={(e) => descField.onChange(e.target.value)}
+            onBlur={descField.onBlur}
+            rows={3}
             value={description}
             onChange={(e) => setDescription(e.target.value)}
             rows={7}
