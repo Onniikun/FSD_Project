@@ -120,12 +120,13 @@ export function SongListModal({
             <h2>Edit List</h2>
 
             <div className="cover-edit-section">
-              <img
-                src={cover ?? defaultCover}
-                alt="Cover preview"
-                className="modal-cover editable-cover"
-                onClick={() => document.getElementById("edit-cover-input")?.click()}
-              />
+              <label htmlFor="edit-cover-input" className="editable-cover-label">
+                <img
+                  src={cover ?? defaultCover}
+                  alt="Cover preview"
+                  className="modal-cover editable-cover"
+                />
+              </label>
 
               <input
                 id="edit-cover-input"

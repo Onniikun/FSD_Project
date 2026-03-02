@@ -122,24 +122,24 @@ export default function CreateSongListForm({ onCreateList  }: CreateSongListForm
             className="cover-preview"
           />
 
-          <div className="cover-overlay">
-            <span className="edit-icon">✏️</span>
-            <span className="overlay-text">Change Cover</span>
-          </div>
+          <label htmlFor="cover-upload" className="cover-overlay">
+              <span className="edit-icon">✏️</span>
+              <span className="overlay-text">Change Cover</span>
 
-          <input
-            type="file"
-            accept="image/*"
-            className="cover-input"
-            onChange={(e) => {
-              const file = e.target.files?.[0];
-              if (!file) return;
+            <input
+              type="file"
+              accept="image/*"
+              className="cover-input"
+              onChange={(e) => {
+                const file = e.target.files?.[0];
+                if (!file) return;
 
-              const reader = new FileReader();
-              reader.onload = () => setCover(reader.result as string);
-              reader.readAsDataURL(file);
-            }}
-          />
+                const reader = new FileReader();
+                reader.onload = () => setCover(reader.result as string);
+                reader.readAsDataURL(file);
+              }}
+            />
+          </label>
         </div>
 
         <label className="form-field">
