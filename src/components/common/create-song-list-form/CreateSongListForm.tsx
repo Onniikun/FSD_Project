@@ -1,6 +1,11 @@
 import React, { useState } from "react";
 import "./create-song-list-form.css";
 
+import { useFormField } from "../../../hooks/useFormField";
+// file will be impl. after, messed up and been working on 1 branch for too long
+import * as DiscoveryService from "../../../services/discoveryService";
+import * as SongListService from "../../../services/SongListService";
+import { fetchAllSongs } from "../../../apis/SongItemRepo";
 import type { Song, SongList, VisibilityOption } from "../../../types/songListTypes";
 
 interface CreateSongListFormProps {
@@ -8,9 +13,9 @@ interface CreateSongListFormProps {
 }
 
 export default function CreateSongListForm({ setLists }: CreateSongListFormProps) {
-  const [name, setName] = useState("");
+  const nameField = useFormField("", DiscoveryService.validateListName);
   const [visibility, setVisibility] = useState<VisibilityOption>("private");
-  const [description, setDescription] = useState("");
+  const descField = useFormField("");
   const [songs, setSongs] = useState<Song[]>([]);
   const [errors, setErrors] = useState<{
     name?: string;
@@ -38,38 +43,32 @@ export default function CreateSongListForm({ setLists }: CreateSongListFormProps
   };
 
   const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    const newErrors: {
-      name?: string;
-      songs?: string;
-    } = {};
+    const nameOk = nameField.validateNow();
 
-    if (name.trim() === "") {
-      newErrors.name = "**List name is required.**";
-    }
+    const listErrors = SongListService.validateList({
+      id: "temp",
+      name: nameField.value,
+      visibility,
+      description: descField.value,
+      songs,
+    });
 
-    if (songs.length === 0) {
-      newErrors.songs = "**Please add at least one song.**";
-    }
+    setErrors({ songs: listErrors.songs });
 
-    setErrors(newErrors);
-
-    if (Object.keys(newErrors).length > 0) return;
+    if (!nameOk || listErrors.songs) return;
 
     const newList: SongList = {
       id: crypto.randomUUID(),
-      name,
+      name: nameField.value,
       visibility,
-      description,
+      description: descField.value,
       songs,
     };
 
-    setLists((previousList) => [...previousList, newList]);
-
-    // Reset form fields after submission
-    setName("");
+    setLists((previousLists) => [...previousLists, newList]);
+    nameField.reset();
+    descField.reset();
     setVisibility("private");
-    setDescription("");
     setSongs([]);
   };
 
@@ -82,10 +81,12 @@ export default function CreateSongListForm({ setLists }: CreateSongListFormProps
           List Name
           <input
             type="text"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
+            value={nameField.value}
+            onChange={(e) => nameField.onChange(e.target.value)}
+            onBlur={nameField.onBlur}
           />
-          {errors.name && <p className="error-text">{errors.name}</p>}
+          {nameField.touched && nameField.errors[0] && (
+            <p className="error-text">{nameField.errors[0]}</p>)}
         </label>
 
         <label className="form-field">
@@ -104,8 +105,9 @@ export default function CreateSongListForm({ setLists }: CreateSongListFormProps
         <label className="form-field">
           Description
           <textarea
-            value={description}
-            onChange={(e) => setDescription(e.target.value)}
+            value={descField.value}
+            onChange={(e) => descField.onChange(e.target.value)}
+            onBlur={descField.onBlur}
             rows={3}
           />
         </label>
