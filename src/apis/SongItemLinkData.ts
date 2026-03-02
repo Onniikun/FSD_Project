@@ -2,9 +2,9 @@
  * List of song item link platforms
  */
 export const LinkList = [
-    {value: 'spotify', label: 'spotify'},
-    {value: 'apple', label: 'apple'},
-    {value: 'soundcloud', label: 'soundcloud'},
-    {value: 'amazon', label: 'amazon'},
-    {value: 'youtube', label: 'youtube'},
+    {value: 'spotify', label: 'Spotify'},
+    {value: 'apple', label: 'Apple Music'},
+    {value: 'soundcloud', label: 'Soundcloud'},
+    {value: 'amazon', label: 'Amazon'},
+    {value: 'youtube', label: 'Youtube Music'},
 ]
