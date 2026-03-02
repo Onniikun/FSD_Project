@@ -38,13 +38,10 @@
 .form-field input,
 .form-field select,
 .form-field textarea {
-  margin-top: 0.4rem;
-  padding: 0.6rem 0.75rem;
-  border: none;
-  border-radius: 8px;
-  font-size: 0.95rem;
-  transition: border-color 0.2s ease;
+  width: 100%;
+  box-sizing: border-box;
 }
+
 
 .form-field input:focus,
 .form-field select:focus,

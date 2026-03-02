@@ -62,10 +62,25 @@
   margin: 0 auto;
 }
 
-.modal label {
-  display: block;
-  margin-bottom: 0.75rem;
+.modal-form label {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin-bottom: 1rem;
 }
+
+.modal-form input,
+.modal-form select,
+.modal-form textarea {
+  width: 100%;
+  box-sizing: border-box;
+  margin-top: 0.4rem;
+  padding: 0.6rem 0.75rem;
+  border-radius: 8px;
+  border: none;
+  font-size: 0.95rem;
+}
+
 
 .modal-title-view {
   font-size: 1.8rem;
@@ -86,14 +101,14 @@
 }
 
 .modal ul {
-  list-style: none;     /* removes bullets */
-  padding-left: 0;      /* removes default indent */
-  margin: 0;            /* keeps it tight under the heading */
-  text-align: left;     /* ensures left alignment */
+  list-style: none;
+  padding-left: 0; 
+  margin: 0;
+  text-align: left;
 }
 
 .modal ul li {
-  padding-left: 0;      /* ensures no extra indent */
+  padding-left: 0;
   margin-left: 0;
   text-align: left;
 }
@@ -199,8 +214,8 @@ input, textarea, select {
   justify-content: space-between;
   align-items: center;
   gap: 0.5rem;
-  padding: 0.35rem 0;   /* vertical breathing room */
-  border-bottom: 1px solid #3a3144; /* optional divider */
+  padding: 0.35rem 0;
+  border-bottom: 1px solid #3a3144;
 }
 
 .edit-song-row span {
