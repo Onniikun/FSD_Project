@@ -1,0 +1,233 @@
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 2000;
+}
+
+.modal {
+  background: #2d2436;
+  padding: 2rem;
+  border-radius: 12px;
+  width: 800px;
+  max-height: 80vh;
+  overflow-y: auto;
+  color: white;
+  position: relative;
+}
+
+.modal-view {
+  width: 90%;
+  max-width: 420px;
+
+}
+
+.modal-cover {
+  width: 150px;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 8px;
+  margin-bottom: 0.2rem;
+}
+
+.close-btn {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: none;
+  border: none;
+  font-size: 1.8rem;
+  color: white;
+  cursor: pointer;
+}
+
+.modal-actions {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 1rem;
+}
+
+.modal-actions button {
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+}
+
+.modal-form {
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.modal-form label {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin-bottom: 1rem;
+}
+
+.modal-form input,
+.modal-form select,
+.modal-form textarea {
+  width: 100%;
+  box-sizing: border-box;
+  margin-top: 0.4rem;
+  padding: 0.6rem 0.75rem;
+  border-radius: 8px;
+  border: none;
+  font-size: 0.95rem;
+}
+
+
+.modal-title-view {
+  font-size: 1.8rem;
+  font-weight: 700;
+  text-align: left;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.modal-description {
+  margin-top: 0;
+}
+
+.modal h3 {
+  text-align: left;
+  margin-top: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+.modal ul {
+  list-style: none;
+  padding-left: 0; 
+  margin: 0;
+  text-align: left;
+}
+
+.modal ul li {
+  padding-left: 0;
+  margin-left: 0;
+  text-align: left;
+}
+
+input, textarea, select {
+  width: 100%;
+  margin-top: 0.25rem;
+  margin-bottom: 1rem;
+  padding: 0.5rem;
+  border-radius: 6px;
+  border: 1px solid #555;
+  background: #1f1a25;
+  color: white;
+}
+
+.song-link {
+  cursor: pointer;
+  padding: 0.25rem 0;
+}
+
+.song-link:hover {
+  color: #9f7fff;
+}
+
+.cover-edit-section {
+  position: relative;
+  width: 150px;
+  height: 150px;
+  margin: 0 auto 1rem;
+  display: block;   
+}
+
+.cover-edit-section::after {
+  content: "✏️";
+  position: absolute;
+  bottom: 8px;
+  right: 8px;
+  background: rgba(0,0,0,0.6);
+  padding: 4px 6px;
+  border-radius: 4px;
+  font-size: 0.9rem;
+  pointer-events: none;
+}
+
+.hidden-file-input {
+  display: none;
+}
+
+.editable-cover {
+  width: 150px;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.editable-cover:hover {
+  opacity: 0.85;
+}
+
+.song-search-container {
+  position: relative;
+  width: 100%;
+}
+
+.song-search-container label {
+  margin-bottom: 0;
+}
+
+.song-search-container input {
+  margin-bottom: 0;
+}
+
+.search-results-dropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  background: #1f1a25;
+  border: 1px solid #444;
+  border-radius: 6px;
+  max-height: 150px;
+  overflow-y: auto;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  z-index: 10;
+}
+
+.search-result-item {
+  padding: 0.5rem;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+}
+
+.search-result-item:hover {
+  background: #3a3144;
+}
+
+.edit-song-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.35rem 0;
+  border-bottom: 1px solid #3a3144;
+}
+
+.edit-song-row span {
+  flex: 1;
+  text-align: left;
+  word-break: break-word;
+}
+
+.remove-song-btn {
+  white-space: nowrap;
+}
+
+.modal-form textarea {
+  resize: none;
+}

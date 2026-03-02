@@ -12,4 +12,5 @@ export interface SongListRecord {
     visibility: "public" | "private";
     description: string;
     songIds: number[];
+    cover?: string;
 }
