@@ -40,6 +40,13 @@
 .form-field textarea {
   width: 100%;
   box-sizing: border-box;
+  margin-top: 0.25rem;
+  margin-bottom: 1rem;
+  padding: 0.5rem;
+  border-radius: 6px;
+  border: 1px solid #555;
+  background: #1f1a25;
+  color: white;
 }
 
 
