@@ -116,7 +116,7 @@
   border-top: 1px groove #3D314A;
 }
 
-.song-info p {
+.song-details p {
   margin: 0;
   line-height: 1.2;
 }
@@ -179,7 +179,7 @@
   gap: 8px;
 }
 
-.song-info {
+.song-details {
   display: flex;
   flex-direction: column;
 }
