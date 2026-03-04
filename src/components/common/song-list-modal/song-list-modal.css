@@ -113,7 +113,7 @@
   text-align: left;
 }
 
-input, textarea, select {
+.modal-overlay input, textarea, select {
   width: 100%;
   margin-top: 0.25rem;
   margin-bottom: 1rem;
@@ -182,7 +182,7 @@ input, textarea, select {
   margin-bottom: 0;
 }
 
-.search-results-dropdown {
+.modal-overlay .search-results-dropdown {
   position: absolute;
   top: 100%;
   left: 0;
@@ -198,14 +198,14 @@ input, textarea, select {
   z-index: 10;
 }
 
-.search-result-item {
+.modal-overlay .search-result-item {
   padding: 0.5rem;
   cursor: pointer;
   display: flex;
   justify-content: space-between;
 }
 
-.search-result-item:hover {
+.modal-overlay .search-result-item:hover {
   background: #3a3144;
 }
 

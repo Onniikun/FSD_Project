@@ -1,13 +1,13 @@
 .card-collapsed {
   display: flex;
-  flex-direction: column;   /* stack cover above title */
-  align-items: center;      /* center both */
-  gap: 0.5rem;              /* small spacing */
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;  
 }
 
 .list-cover {
-  width: 140px;        /* bigger cover */
-  height: 140px;
+  width: 200px;
+  height: 200px;
   border-radius: 8px;
   object-fit: cover;
 }

@@ -210,7 +210,7 @@ export default function CreateSongListForm({ onCreateList  }: CreateSongListForm
 
           {songs.map((song) => (
             <div key={song.id} className="song-row">
-              <div className="song-info">
+              <div className="song-details">
                 <p><strong>{song.title}</strong></p>
                 <p>{song.artist.join(", ")}</p>
               </div>
