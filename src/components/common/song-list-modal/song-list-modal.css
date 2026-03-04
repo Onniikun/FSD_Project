@@ -113,7 +113,7 @@
   text-align: left;
 }
 
-input, textarea, select {
+.modal-overlay input, textarea, select {
   width: 100%;
   margin-top: 0.25rem;
   margin-bottom: 1rem;
