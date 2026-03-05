@@ -11,15 +11,9 @@ import { Upvote } from "../song-upvote/SongUpvote.tsx"
 
 import { fetchAllSongs } from "../../../../apis/SongItemRepo.ts"
 import { useSortFilter } from "../../../../hooks/useSortAndFilterUI.ts"
-<<<<<<< Song-Link-Filter
 import { filterSongGenre, filterSongLinks } from "../../../../services/SongItemService.ts"
-
-=======
-import { filterSongGenre } from "../../../../services/SongItemService.ts"
-
 import * as DiscoveryService from "../../../../services/discoveryService";
 import { useMood } from "../../../../hooks/useMood";
->>>>>>> develop
 
 /**
  * Displays song information.
@@ -62,19 +56,18 @@ export function SongItem({ query = "" }: { query?: string }) {
      * It has the dual purpose of displaying the only the song by that id
      * or filtered by song genre and or platform links.
      */
-    const displayedSongs = id
-<<<<<<< Song-Link-Filter
-        ? linkFiltered.filter((song) => song.id === Number(id))
-        : linkFiltered
-=======
-        ? songs.filter(song => song.id === Number(id))
-        : DiscoveryService.applyDiscovery(songs, {
+    let displayedSongs: Song[];
+
+    if (id) {
+        displayedSongs = linkFiltered.filter(song => song.id === Number(id));
+    } else {
+        displayedSongs = DiscoveryService.applyDiscovery(linkFiltered, {
             query,
             mood,
             genre: selectedGenre,
             sort: "title-asc",
         });
->>>>>>> develop
+    }
     return(
         <>
         {!id && (

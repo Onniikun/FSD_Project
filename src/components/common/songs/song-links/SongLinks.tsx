@@ -5,13 +5,7 @@ import { useSortFilter } from "../../../../hooks/useSortAndFilterUI.ts"
 type LinksProps = {
     links?: songLinks
 }
- 
-/**
- * Displays the available platform URL links of the songs to play.
- * @param param0 - Links(Song URL)
- * @returns - A list of URLs that a song has.
- */
-export function Links({ links }: LinksProps) {
+
     // A map list of song platforms.(To add more)
     const platform: { [label: string]: keyof songLinks } = {
         Spotify: "spotify",
