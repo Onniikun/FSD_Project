@@ -1,17 +1,25 @@
 import "./song-item.css"
-import { GenreFilter } from "../song-filter/GenreFilter.tsx"
-import { Links } from "../song-links/SongLinks.tsx"
-import Upvote from "../song-upvote/SongUpvote.tsx"
+import type { Song } from "../../../../types/songModel.ts"
+
 import { useState, useEffect } from "react"
 import { Link, useParams } from 'react-router-dom'
 
-import type { Song } from "../../../../types/songModel.ts"
+import { GenreFilter } from "../song-filter/GenreFilter.tsx"
+import { Links } from "../song-links/SongLinks.tsx"
+import { LinksFilter } from "../song-filter/LinkFilter.tsx" 
+import { Upvote } from "../song-upvote/SongUpvote.tsx"
+
 import { fetchAllSongs } from "../../../../apis/SongItemRepo.ts"
 import { useSortFilter } from "../../../../hooks/useSortAndFilterUI.ts"
+<<<<<<< Song-Link-Filter
+import { filterSongGenre, filterSongLinks } from "../../../../services/SongItemService.ts"
+
+=======
 import { filterSongGenre } from "../../../../services/SongItemService.ts"
 
 import * as DiscoveryService from "../../../../services/discoveryService";
 import { useMood } from "../../../../hooks/useMood";
+>>>>>>> develop
 
 /**
  * Displays song information.
@@ -38,17 +46,27 @@ export function SongItem({ query = "" }: { query?: string }) {
      * This method is from my repository method.
      */
     const [songs, setSongs] = useState<Song[]>([])
+    const [selectedLinks, setSelectedLinks] = useState<string[]>([])
     //https://react.dev/reference/react/useEffect
     useEffect(() => {
         const SongData = fetchAllSongs()
-        setSongs(SongData)}, [])
+        setSongs(SongData)
+        }, [])
+    
+    //Filters out genres and available platforms.
+    const genreFiltered = filterSongGenre(songs, selectedGenre)
+    const linkFiltered = filterSongLinks(genreFiltered, selectedLinks)
     /**
      * by clicking the song cover it directs the user to only that song item.
      * 
      * It has the dual purpose of displaying the only the song by that id
-     * or filtered by song genre(Later by platform links, etc.)
+     * or filtered by song genre and or platform links.
      */
     const displayedSongs = id
+<<<<<<< Song-Link-Filter
+        ? linkFiltered.filter((song) => song.id === Number(id))
+        : linkFiltered
+=======
         ? songs.filter(song => song.id === Number(id))
         : DiscoveryService.applyDiscovery(songs, {
             query,
@@ -56,24 +74,32 @@ export function SongItem({ query = "" }: { query?: string }) {
             genre: selectedGenre,
             sort: "title-asc",
         });
+>>>>>>> develop
     return(
         <>
-        {!id && <GenreFilter onChange={setSelectedGenre}/>}
+        {!id && (
+            <> 
+                <GenreFilter onChange={setSelectedGenre} />
+                <LinksFilter onChange={setSelectedLinks} />
+            </>)}
+        {console.log("Name of songs", displayedSongs)}
         <section className="song-item">
             <ul>
                 {displayedSongs.length === 0 ? (
                     <p>Sorry, We haven't added that yet.</p>
                 ) : (
-                displayedSongs.map((song: Song)=> (
-                    <li key={song.id} className="song-card">
-                    <div> 
+                    displayedSongs.map((song: Song)=> (
+                        <li key={song.id} className="song-card">
+                        <div> 
                         <Link to={`/songs/${song.id}`}>
                             <div className="songWrapper">
-                                <img className="songPFP"src={song.cover} alt="songpic" />
+                                <img className="songPFP"
+                                    src={song.cover} 
+                                    alt="songpic" />
                             </div>
                         </Link>
                         <Links links={song.links} />
-                    </div>
+                        </div>
                         <div className="song-info">
                             <h2 className="title">{song.title}</h2>
                             <p>{song.artist.join(", ")}</p>

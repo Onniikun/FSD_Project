@@ -58,7 +58,11 @@ export const songs: Song [] = [
         runtime: "3:08",
         cover: songPFP3,
         links: {
-            spotify: "https://open.spotify.com/track/0EJSyxVGp7ZFbrj9WPaubp?si=0cdcdee4aef54004"
+            spotify: "https://open.spotify.com/track/0EJSyxVGp7ZFbrj9WPaubp?si=0cdcdee4aef54004",
+            apple: "https://music.apple.com/ug/song/more-than-a-friend/1796029043",
+            soundcloud: "https://soundcloud.com/88rising/more-than-a-friend",
+            amazon: "https://music.amazon.com/albums/B0DWZ5VQ31?tag=linkfiregen&ie=UTF8&linkCode=as2&ascsubtag=25da215ed1e80bd66911114baaee8bd9&ref=dmm_acq_soc_ca_u_lfire_lp_x_25da215ed1e80bd66911114baaee8bd9",
+            youtube: "https://music.youtube.com/playlist?list=OLAK5uy_k15CAVH6MUo4v7LerV0qRlg6WG3E_6M9U"
         }
     },
     {
@@ -70,7 +74,10 @@ export const songs: Song [] = [
         runtime: "2:51",
         cover: songPFP4,
         links: {
-            spotify: "https://open.spotify.com/track/3HYUSkSJ0iQfocqdJmJqKw?si=6198fb3a71fa4cb2"
+            spotify: "https://open.spotify.com/track/3HYUSkSJ0iQfocqdJmJqKw?si=6198fb3a71fa4cb2",
+            apple: "https://music.apple.com/ca/album/twenties/1792985190?i=1792985191",
+            amazon: "https://music.amazon.ca/tracks/B0F96LZT1J?do=play&agent=googleAssistant&ref=dmm_seo_google_gkp_tracks&explicit=false",
+            youtube: "https://music.youtube.com/watch?v=K3MfzJU6bB0"
         }
     },
     {
@@ -82,7 +89,9 @@ export const songs: Song [] = [
         runtime: "4:29",
         cover: songPFP5,
         links: {
-            spotify: "https://open.spotify.com/album/2YkyuQGoMV2FlG7mFprnRf?si=d-VasB3sSeuUk8eCdbMVvQ"
+            spotify: "https://open.spotify.com/album/2YkyuQGoMV2FlG7mFprnRf?si=d-VasB3sSeuUk8eCdbMVvQ",
+            youtube: "https://music.youtube.com/watch?v=C0ruAy8TpPo",
+
         }
     },
     {
@@ -94,7 +103,10 @@ export const songs: Song [] = [
         runtime: "4:59",
         cover: SongPFP6,
         links: {
-            spotify: "https://open.spotify.com/track/2fuYa3Lx06QQJAm0MjztKr?si=731e3349214241a9"
+            spotify: "https://open.spotify.com/track/2fuYa3Lx06QQJAm0MjztKr?si=731e3349214241a9",
+            apple: "https://music.apple.com/ca/album/let-down/1097861387?i=1097861834",
+            amazon: "https://music.amazon.ca/tracks/B0719S5696?do=play&agent=googleAssistant&ref=dmm_seo_google_gkp_tracks&explicit=false",
+            youtube: "https://music.youtube.com/watch?v=ZVgHPSyEIqk&feature=gws_kp_track"
         }
     },
     {
@@ -106,7 +118,10 @@ export const songs: Song [] = [
         runtime: "2:59",
         cover: songPFP7,
         links: {
-            spotify: "https://open.spotify.com/track/0NoeYUnwpb9R26mpylHcR9?si=880900e3029945d6"
+            spotify: "https://open.spotify.com/track/0NoeYUnwpb9R26mpylHcR9?si=880900e3029945d6",
+            apple: "https://music.apple.com/ca/album/sugarcoat-natty-solo/1694699906?i=1694699909",
+            amazon: "https://music.amazon.ca/tracks/B0CB65N6H5?do=play&agent=googleAssistant&ref=dmm_seo_google_gkp_tracks&explicit=false",
+            youtube: "https://music.youtube.com/watch?v=Tc0cvOLYsus"
         }
     },
     {
@@ -118,7 +133,9 @@ export const songs: Song [] = [
         runtime: "2:45",
         cover: songPFP8,
         links: {
-            spotify: "https://open.spotify.com/track/0vj557R3WYe42bgzHdgNoE?si=93d48aa43dad4a71"
+            spotify: "https://open.spotify.com/track/0vj557R3WYe42bgzHdgNoE?si=93d48aa43dad4a71",
+            amazon: "https://music.amazon.ca/tracks/B0CN8D9NL7?do=play&agent=googleAssistant&ref=dmm_seo_google_gkp_tracks&explicit=true",
+            youtube: "https://music.youtube.com/watch?v=3Hm7C7RCwMw"
         }
     },
     {
@@ -130,7 +147,10 @@ export const songs: Song [] = [
         runtime: "3:38",
         cover: SongPFP9,
         links: {
-            spotify: "https://open.spotify.com/track/6w93UfN5MeXXQTrVIf5V6x?si=58fa8ad3ddb24e37"
+            spotify: "https://open.spotify.com/track/6w93UfN5MeXXQTrVIf5V6x?si=58fa8ad3ddb24e37",
+            apple: "https://music.apple.com/ca/song/how-feat-roddy-ricch/1668484001",
+            soundcloud: "https://soundcloud.com/itsellamai/how-feat-roddy-ricch?in=user-371765756/sets/how-ella-mai-ft-roddy-ricch",
+            youtube: "https://www.youtube.com/watch?v=qn7TpTIQSzY"
         }
     },
     {
@@ -142,7 +162,9 @@ export const songs: Song [] = [
         runtime: "2:55",
         cover: songPFP10,
         links: {
-            spotify: "https://open.spotify.com/track/0Gb6YeICNGCtRS1L0j72d6?si=3414017c7e3a47e6"
+            spotify: "https://open.spotify.com/track/0Gb6YeICNGCtRS1L0j72d6?si=3414017c7e3a47e6",
+            apple: "https://music.apple.com/ca/song/antisocial/1868839117",
+            youtube: "https://music.youtube.com/watch?v=qLz1ExMxF8Q&feature=gws_kp_track"
         }
     }
 ];

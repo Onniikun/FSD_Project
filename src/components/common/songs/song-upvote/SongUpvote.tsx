@@ -2,12 +2,12 @@ import { useState } from "react"
 import "./song-upvote.css"
 
 /**
- * 
- * @returns 
+ * A number counter to display the amount of likes a song has.
+ * @returns - The number of likes or dislikes.
  */
-function Upvote() {
+export function Upvote() {
     //Using a reddit style of button feature for liking/disliking songs.
-    const [likes, setlikes] = useState(0)
+    const [likes, setlikes] = useState(10)
 
     const like = () => {
         setlikes(likes === 1 ? 0: 1)
@@ -35,5 +35,3 @@ function Upvote() {
         </>
     )
 }
-
-export default Upvote
