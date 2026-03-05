@@ -1,8 +1,8 @@
-import { useMood } from "../../hooks/useMood";
+// import { useMood } from "../../hooks/useMood";
 import { MoodSelector } from "../common/mood-selector/MoodSelector";
 
 function Landing() {
-    const { mood } = useMood();
+    // const { mood } = useMood();
 
     return (
         <>
