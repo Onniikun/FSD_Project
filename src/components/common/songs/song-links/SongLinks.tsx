@@ -5,7 +5,6 @@ import { useSortFilter } from "../../../../hooks/useSortAndFilterUI.ts"
 type LinksProps = {
     links?: songLinks
 }
-
  
 /**
  * Displays the available platform URL links of the songs to play.
@@ -21,6 +20,12 @@ export function Links({ links }: LinksProps) {
         Amazon: "amazon",
         Youtube: "youtube",
     }
+/**
+ * Displays the available platform URL links of the songs to play.
+ * @param param0 - Links(Song URL)
+ * @returns - A list of URLs that a song has.
+ */
+export function Links({ links }: LinksProps) {
     const platforms = Object.keys(platform)
     /**
      * This hook only renders the button selection of the platform for UI.
@@ -39,8 +44,7 @@ export function Links({ links }: LinksProps) {
                 // display url from platform list.
                 const key = platform[label]
                 const url = links?.[key]
-                if (!url)
-                    return null
+                if (!url) return null
                 return (
                     <li key ={label}>
                         <a href={url}

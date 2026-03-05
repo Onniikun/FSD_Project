@@ -1,4 +1,4 @@
-import { SongRepository } from "../repositories/SongRepository";
+import { fetchAllSongs } from "../apis/SongItemRepo"; 
 import type { Song } from "../types/songModel";
 
 /**
@@ -10,17 +10,21 @@ import type { Song } from "../types/songModel";
  */
 export const SearchService = {
     searchSongs(searchValue: string): Song[] {
-        const allSongs = SongRepository.getAllSongs();
+        const allSongs = fetchAllSongs();
 
         if(!searchValue.trim()) return allSongs;
 
         const normalized = searchValue.toLowerCase();
 
         const results = allSongs.filter((song) => {
+            const title = song.title.toLowerCase();
+            const artist = song.artist.join(" ").toLowerCase();
+            const genre = song.genre.join(" ").toLowerCase();
+
             return (
-                song.title.toLowerCase().includes(normalized) ||
-                song.artist.toLowerCase().includes(normalized) ||
-                song.genre.toLowerCase().includes(normalized)
+                title.includes(normalized) ||
+                artist.includes(normalized) ||
+                genre.includes(normalized)
             );
         });
 
@@ -39,7 +43,7 @@ export const SearchService = {
 
         const normalized = searchValue.toLowerCase();
 
-        return SongRepository.getAllSongs()
+        return fetchAllSongs()
             .filter((song) =>
                 song.title.toLowerCase().startsWith(normalized)
             )
