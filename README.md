@@ -17,8 +17,18 @@ Nathan Natoza, Edraque Maglaque, Phoenixx Ordonez
 
 # Project Documentation
 
-Currently this full-stack project is separate into two different project files 'Front-End' and 'Back-End'
+Currently this full-stack project is separate into two different project files called 'frontend' and 'backend'
 
+## Front-end 
+Commands to test frontend components in terminal: 
+
+'cd ./Apps/frontend' :make sure you are in the right folder to preview/make changes to the front-end
+
+'npm install' :make sure to install all dependencies to run the front-end successfully.
+
+'npm run dev' :to run and test application
+
+## Back-end
 
 ## Sprint Review | Completed Kanban Items
 
