@@ -10,9 +10,9 @@
     "typescript": "^5.8.2"
   },
   "scripts": {
-    "dev": "concurrently \"npm:start:frontend\" \"npm:start:backend",
-    "start:frontend": "npm run dev --workspace=@frontend",
-    "start:backend": "npm start --workspace=@backend"
+    "dev": "concurrently \"npm:start:frontend\" \"npm:start:backend\"",
+    "start:frontend": "npm run dev --workspace=@boomboxd/frontend",
+    "start:backend": "npm start --workspace=@boomboxd/backend"
   },
   "repository": {
     "type": "git",
