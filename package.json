@@ -1,0 +1,24 @@
+{
+  "name": "fsd_project",
+  "version": "1.0.0",
+  "description": "Nathan Natoza, Edraque Maglaque, Phoenixx Ordonez",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Onniikun/FSD_Project.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Onniikun/FSD_Project/issues"
+  },
+  "homepage": "https://github.com/Onniikun/FSD_Project#readme"
+}
