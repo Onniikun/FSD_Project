@@ -14,6 +14,22 @@ Nathan Natoza, Edraque Maglaque, Phoenixx Ordonez
 
 3. As a self-proclaimed music critic, I want to be able to view and submit reviews for music, so that I can freely share my opinions and see feedback from other users before deciding what to listen to.
 
+
+# Project Documentation
+
+Currently this full-stack project is separate into two different project files called 'frontend' and 'backend'
+
+## Front-end 
+Commands to test frontend components in terminal: 
+
+```cd ./Apps/frontend``` :make sure you are in the right folder to preview/make changes to the front-end
+
+```npm install``` :make sure to install all dependencies to run the front-end successfully.
+
+```npm run dev``` :to run and test application
+
+## Back-end
+
 ## Sprint Review | Completed Kanban Items
 
 ### Team Contributions
@@ -50,21 +66,5 @@ Nathan Natoza, Edraque Maglaque, Phoenixx Ordonez
 - **I.3 Element Addition/Removal (Like button/Upvote Downvote feature)** - Nathan
 - **I.3 Element Addition/Removal (Add/Remove Song from the List)** - Phoenixx
 
-## Songs 
 
-### Karma by Summer Walker
-
-Genre: Dark R&B
-
-Release date: October 19, 2018
-
-Runtime: 3:08
-
-### Forever & by Ejean
-
-Genre: R&B
-
-Release date: July 12, 2024
-
-Runtime: 2:27
 
