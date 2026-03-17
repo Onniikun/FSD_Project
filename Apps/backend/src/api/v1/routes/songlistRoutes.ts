@@ -1,6 +1,6 @@
 import express, { Router } from "express";
 import { validateRequest } from "../middleware/validate";
-import { songlistSchema } from "../validations/songlistValidation";
+import { songlistSchema, songlistUpdateSchema } from "../validations/songlistValidation";
 import * as songlistController from "../controllers/songlistController";
 
 const router: Router = express.Router();
@@ -23,7 +23,7 @@ router.post(
 
 router.put(
     "/songlists/:id", 
-    validateRequest(songlistSchema),
+    validateRequest(songlistUpdateSchema),
     songlistController.updateSonglist
 );
 

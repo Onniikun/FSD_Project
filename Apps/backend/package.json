@@ -17,12 +17,14 @@
     "@prisma/client": "^7.5.0",
     "cors": "^2.8.6",
     "express": "^5.2.1",
+    "joi": "^18.0.2",
     "pg": "^8.20.0",
     "sqlite3": "^5.1.7"
   },
   "devDependencies": {
     "@types/cors": "^2.8.19",
     "@types/express": "^5.0.6",
+    "@types/joi": "^17.2.2",
     "@types/node": "^25.5.0",
     "@types/pg": "^8.18.0",
     "dotenv": "^17.3.1",
