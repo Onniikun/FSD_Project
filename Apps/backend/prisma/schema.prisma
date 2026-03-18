@@ -12,3 +12,61 @@ generator client {
 datasource db {
   provider = "postgresql"
 }
+
+// Song Item model
+model SongItem {
+  SongItem_ID     Int @id @default(autoincrement())
+  links           Links[]
+  Title           String
+  artist          Song_artist[]
+  Release_date    DateTime?
+  genre           Song_genre[]
+  Runtime         String?
+  Cover           String?
+}
+
+// Song Item Platform that has a one to many relationship.
+model Links {
+  Links_ID        Int @id @default(autoincrement())
+  SongItem_ID     Int 
+  Platform        String
+  URL             String
+
+  SongItem SongItem @relation(fields: [SongItem_ID], references: [SongItem_ID])
+}
+
+model Song_artist {
+  SongItem_ID     Int 
+  Artist_ID       Int
+
+  songItem SongItem @relation(fields: [SongItem_ID], references: [SongItem_ID])
+  artist   Artist   @relation(fields: [Artist_ID], references: [Artist_ID])
+
+  @@id([SongItem_ID, Artist_ID])
+}
+
+model Artist {
+  Artist_ID       Int @id @default(autoincrement())
+  Artist_name     String
+
+  songs Song_artist[]
+}
+
+model Genre {
+  Genre_ID        Int @id @default(autoincrement())
+  Genre_name      String
+
+  songs Song_genre[]
+}
+
+model Song_genre {
+  SongItem_ID     Int 
+  Genre_ID        Int
+
+  songItem SongItem @relation(fields: [SongItem_ID], references: [SongItem_ID])
+  genre    Genre    @relation(fields: [Genre_ID], references: [Genre_ID])
+  
+  @@id([SongItem_ID, Genre_ID]) 
+}
+
+
