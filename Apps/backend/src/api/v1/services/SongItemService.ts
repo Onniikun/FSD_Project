@@ -3,25 +3,25 @@ import { Song } from "../../../../../frontend/src/types/songModel";
 import { songs } from "../../../../prisma/seedData"
 
 /**
- * 
- * @returns 
+ * Retrieves all Song Item from Boombox database.
+ * @returns -  All Song Items.
  */
 export const getAllSongItems = async() => {
     return structuredClone(songs)
 }
 /**
- * 
- * @param id 
- * @returns 
+ * Retrieves a Song Item based on its ID number.
+ * @param id - Song Item ID number.
+ * @returns - A specific Song Item.
  */
 export const getSongItemId = async(id: number) => {
     return songs.find((songs) => songs.id === id) || null;
 }
 /**
- * 
- * @param id 
- * @param updatedSongItem 
- * @returns 
+ * Updates a single Song Item based on its ID number.
+ * @param id - Song Item ID number.
+ * @param updatedSongItem - New Song Item data.
+ * @returns - An updated Song Item.
  */
 export const updateSongItem = async(id: number, updatedSongItem: Partial<Song>) => {
     const index: number = songs.findIndex((songs: Song) => songs.id === id)
@@ -35,9 +35,9 @@ export const updateSongItem = async(id: number, updatedSongItem: Partial<Song>) 
     return songs[index]
 }
 /**
- * 
- * @param id 
- * @returns 
+ * Deletes a Song Item based on its ID number.
+ * @param id - Song Item ID number.
+ * @returns - Deleted Song Item.
  */
 export const deleteSongItem = async(id: number) => {
     const index = songs.findIndex((songs: Song) => songs.id === id)
