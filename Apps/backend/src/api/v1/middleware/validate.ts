@@ -1,30 +1,38 @@
 import { Request, Response, NextFunction } from "express";
 import { ObjectSchema } from "joi";
-import { MiddlewareFunction } from "../types/express";
+import { HTTP_STATUS } from "../constants/httpConstant"
+import { MiddlewareFunction, RequestData } from "../types/express";
 
 /**
- * Runs Joi validation against the provided data.
+ * A validation schema designed to validate a data schema.
+ * @param schema - A data's Joi schema.
+ * @param data - The data passing through the function for validation.
  */
-export const validate = <T>(schema: ObjectSchema<T>, data: T): void => {
-    const { error } = schema.validate(data, { abortEarly: false });
+export const validate = <T>(schema: ObjectSchema<T>, data:T): void => {
+    const { error } = schema.validate(data, {abortEarly: false});
 
-    if (error) {
+    if(error) {
         throw new Error(
-            `Validation error: ${error.details.map(d => d.message).join(", ")}`
+            `Validation error: ${
+                error.details.map(n => n.message).join(", ")
+            }`
         );
     }
 };
 
 /**
- * Middleware that validates req.body using the provided Joi schema.
+ * A validcation request schema for request data to be validated.
+ * @param schema - A data's schema
+ * @returns - Express middleware validation.
  */
 export const validateRequest = (schema: ObjectSchema): MiddlewareFunction => {
-    return (req: Request, res: Response, next: NextFunction) => {
+    return(req: Request, res: Response, next: NextFunction) => {
         try {
+            // invoke next middleware if no error is caught
             validate(schema, req.body);
             next();
-        } catch (error) {
-            res.status(400).json({ error: (error as Error).message });
-        }
+        } catch(error) {
+            res.status(HTTP_STATUS.BAD_REQUEST).json({error: (error as Error).message});
+        } 
     };
 };

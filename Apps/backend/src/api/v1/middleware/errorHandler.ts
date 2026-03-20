@@ -1,5 +1,5 @@
 import { Request, Response, NextFunction } from "express";
-import { errorResponse } from "../models/responseModel";
+import { errorResponse } from "../response/models";
 
 interface ExtendedError extends Error {
     code?: string;
@@ -17,7 +17,7 @@ interface ExtendedError extends Error {
  * @param res - The Express response used to send the error payload
  * @param _next - The next middleware function (unused, required by Express)
  */
-const errorHandler = (
+export const errorHandler = (
     err: ExtendedError,
     _req: Request,
     res: Response,
@@ -29,8 +29,6 @@ const errorHandler = (
     console.error(`Error: ${err.message} (Code: ${code})`);
 
     res.status(statusCode).json(
-        errorResponse(`An unexpected error occured: ${code}`)
+        errorResponse(`An unexpected error occurred: ${code}`)
     );
 };
-
-export default errorHandler;
