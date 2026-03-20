@@ -128,6 +128,48 @@ exports.Prisma.SonglistScalarFieldEnum = {
   cover: 'cover'
 };
 
+exports.Prisma.SongCollectionScalarFieldEnum = {
+  id: 'id',
+  songId: 'songId',
+  songlistId: 'songlistId',
+  createdAt: 'createdAt'
+};
+
+exports.Prisma.SongItemScalarFieldEnum = {
+  id: 'id',
+  title: 'title',
+  releaseDate: 'releaseDate',
+  runtime: 'runtime',
+  cover: 'cover'
+};
+
+exports.Prisma.LinkScalarFieldEnum = {
+  id: 'id',
+  songItemId: 'songItemId',
+  platform: 'platform',
+  url: 'url'
+};
+
+exports.Prisma.SongArtistScalarFieldEnum = {
+  songItemId: 'songItemId',
+  artistId: 'artistId'
+};
+
+exports.Prisma.ArtistScalarFieldEnum = {
+  id: 'id',
+  name: 'name'
+};
+
+exports.Prisma.GenreScalarFieldEnum = {
+  id: 'id',
+  name: 'name'
+};
+
+exports.Prisma.SongGenreScalarFieldEnum = {
+  songItemId: 'songItemId',
+  genreId: 'genreId'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -145,7 +187,14 @@ exports.Prisma.NullsOrder = {
 
 
 exports.Prisma.ModelName = {
-  Songlist: 'Songlist'
+  Songlist: 'Songlist',
+  SongCollection: 'SongCollection',
+  SongItem: 'SongItem',
+  Link: 'Link',
+  SongArtist: 'SongArtist',
+  Artist: 'Artist',
+  Genre: 'Genre',
+  SongGenre: 'SongGenre'
 };
 
 /**
