@@ -7,12 +7,12 @@ export type MiddlewareFunction = (
 ) => void;
 
 /**
- * 
+ * A request body with object key string.
  */
 export type RequestBody = Record<string, unknown>;
 
 /**
- * 
+ * A request data HTTP body thats uses the request body.
  */
 export type RequestData<T extends RequestBody = RequestBody> = {
     body: T,
