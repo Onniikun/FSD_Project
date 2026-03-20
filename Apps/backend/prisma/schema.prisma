@@ -35,7 +35,7 @@ model Links {
   SongItem SongItem @relation(fields: [SongItem_ID], references: [SongItem_ID])
 }
 
-model Song_artist {
+model Song_Artist {
   SongItem_ID     Int 
   Artist_ID       Int
 
@@ -59,7 +59,7 @@ model Genre {
   songs Song_genre[]
 }
 
-model Song_genre {
+model Song_Genre {
   SongItem_ID     Int 
   Genre_ID        Int
 
