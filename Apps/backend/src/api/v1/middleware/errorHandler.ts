@@ -5,14 +5,17 @@ interface ExtendedError extends Error {
     code?: string;
     statusCode?: number;
 }
+
 /**
- * A global error middleware handler. 
- * Returns a logged JSON error message with custom error messages.
- * 
- * @param err - The error object message.
- * @param _req - (Unused) The express Request.
- * @param res - The express Response.
- * @param _next - (Unused) The express middleware chaining function.
+ * Global Express error‑handling middleware.
+ *
+ * Logs the error and returns a standardized JSON response using the
+ * provided statusCode or a 500 fallback.
+ *
+ * @param err - The error thrown or passed to next()
+ * @param _req - The incoming Express request (unused)
+ * @param res - The Express response used to send the error payload
+ * @param _next - The next middleware function (unused, required by Express)
  */
 export const errorHandler = (
     err: ExtendedError,

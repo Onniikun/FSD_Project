@@ -1,5 +1,8 @@
 import { Request, Response, NextFunction } from "express";
 
+/**
+ * Standard Express middleware function type using (req, res, next).
+ */
 export type MiddlewareFunction = (
     req: Request,
     res: Response,
@@ -7,12 +10,12 @@ export type MiddlewareFunction = (
 ) => void;
 
 /**
- * A request body with object key string.
+ * Generic request body type where keys are strings and values are unknown.
  */
 export type RequestBody = Record<string, unknown>;
 
 /**
- * A request data HTTP body thats uses the request body.
+ * Typed structure for incoming request data, including body, params, and query.
  */
 export type RequestData<T extends RequestBody = RequestBody> = {
     body: T,

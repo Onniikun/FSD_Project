@@ -24,6 +24,7 @@
   "devDependencies": {
     "@types/cors": "^2.8.19",
     "@types/express": "^5.0.6",
+    "@types/joi": "^17.2.2",
     "@types/node": "^25.5.0",
     "@types/pg": "^8.18.0",
     "dotenv": "^17.3.1",

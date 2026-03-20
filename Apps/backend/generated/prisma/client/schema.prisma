@@ -1,0 +1,39 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+  output   = "../generated/prisma/client"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model Songlist {
+  id          String  @id @default(uuid())
+  name        String
+  visibility  String
+  description String?
+  cover       String?
+  // Relations
+  // songs SongCollection[]
+}
+
+// model SongCollection {
+//   id         Int       @id @default(autoincrement())
+//   songId     Int
+//   songlistId String
+
+//   createdAt  DateTime  @default(now())
+
+//   // Relations
+//   song       Song       @relation(fields: [songId], references: [id])
+//   songlist   Songlist   @relation(fields: [songlistId], references: [id])
+
+//   // prevents duplicate entries
+//   @@unique([songId, songlistId]) 
+// }
