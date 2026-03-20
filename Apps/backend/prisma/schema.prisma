@@ -20,23 +20,23 @@ model Songlist {
   description String?
   cover       String?
   // Relations
-  // songs SongCollection[]
+  songs SongCollection[]
 }
 
-// model SongCollection {
-//   id         Int       @id @default(autoincrement())
-//   songId     Int
-//   songlistId String
+model SongCollection {
+  id         Int       @id @default(autoincrement())
+  songId     Int
+  songlistId String
   
-//   createdAt  DateTime  @default(now())
+  createdAt  DateTime  @default(now())
 
-//   // Relations
-//   song       Song       @relation(fields: [songId], references: [id])
-//   songlist   Songlist   @relation(fields: [songlistId], references: [id])
+  // Relations
+  song       SongItem       @relation(fields: [songId], references: [id])
+  songlist   Songlist   @relation(fields: [songlistId], references: [id])
   
-//   // prevents duplicate entries
-//   @@unique([songId, songlistId]) 
-// }
+  // prevents duplicate entries
+  @@unique([songId, songlistId]) 
+}
 
 // Song Item model
 model SongItem {
@@ -49,6 +49,7 @@ model SongItem {
   links        Link[]
   artists      SongArtist[]
   genres       SongGenre[]
+  songs        SongCollection[]
 }
  
 // Song Item Platform (one-to-many)

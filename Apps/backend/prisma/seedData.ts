@@ -1,5 +1,5 @@
-import { Songlist } from "@prisma/client";
-import { SongItem } from "../../backend/src/generated/prisma/client";
+import { SongItem, Songlist } from "@prisma/client";
+
  
 const songPFP = "songPFP.png";
 
@@ -64,6 +64,7 @@ export const songlistSeedData: Omit<Songlist, "id" | "songs">[] = [
     description: "Warm acoustic tracks for slow nights and quiet moments.",
     cover: null
   }
+]
 
  
 export const songs: SongItem[] = [
