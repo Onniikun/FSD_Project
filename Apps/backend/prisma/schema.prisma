@@ -5,10 +5,38 @@
 // Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
 
 generator client {
-  provider = "prisma-client"
-  output   = "../src/generated/prisma"
+  provider = "prisma-client-js"
+  output   = "../generated/prisma/client"
 }
 
 datasource db {
   provider = "postgresql"
 }
+
+model SongList {
+  id          String   @id @default(uuid())
+  name        String
+  visibility  String
+  description String?
+  cover       String?
+  // Relations
+  // songs SongCollection[]
+}
+
+// model SongCollection {
+//   id         Int       @id @default(autoincrement())
+//   songId     Int
+//   songListId String
+  
+//   createdAt  DateTime  @default(now())
+
+//   // Relations
+//   song       Song       @relation(fields: [songId], references: [id])
+//   songList   SongList   @relation(fields: [songListId], references: [id])
+  
+//   // prevents duplicate entries
+//   @@unique([songId, songListId]) 
+// }
+
+
+
