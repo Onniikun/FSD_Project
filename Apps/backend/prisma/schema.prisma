@@ -49,7 +49,7 @@ model SongItem {
   links        Link[]
   artists      SongArtist[]
   genres       SongGenre[]
-  songs SongCollection[]
+  songs        SongCollection[]
 }
  
 // Song Item Platform (one-to-many)
