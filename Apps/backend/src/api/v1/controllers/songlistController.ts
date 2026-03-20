@@ -34,11 +34,13 @@ export const getSonglistById = async (
     next: NextFunction
 ): Promise<void> => {
     try {
+        const id = req.params.id as string;
+
         const songlist: Songlist | null =
-            await songlistService.getSonglistById(Number.parseInt(req.params.id));
+            await songlistService.getSonglistById(id);
 
         if (songlist) {
-            res.json(successResponse(songlist, "Songlist retrieved successfully"));
+            res.json(successResponse(songlist, `Songlist ${id} retrieved successfully`));
         } else {
             throw new Error("Songlist not found");
         }
@@ -78,12 +80,14 @@ export const updateSonglist = async (
     next: NextFunction
 ): Promise<void> => {
     try {
+        const id = req.params.id as string;
+
         const updatedSonglist = await songlistService.updateSonglist(
-            Number.parseInt(req.params.id),
+            id,
             req.body
         );
         res.status(200).json(
-            successResponse(updatedSonglist, "Songlist updated successfully")
+            successResponse(updatedSonglist, `Songlist ${id} updated successfully`)
         );
     } catch (error) {
         next(error);
@@ -101,9 +105,11 @@ export const deleteSonglist = async (
     next: NextFunction
 ): Promise<void> => {
     try {
-        await songlistService.deleteSonglist(Number.parseInt(req.params.id));
+        const id = req.params.id as string;
+
+        await songlistService.deleteSonglist(id);
         res.status(200).json(
-            successResponse(null, "Songlist deleted successfully")
+            successResponse(null, `Songlist ${id} deleted successfully`)
         );
     } catch (error) {
         next(error);

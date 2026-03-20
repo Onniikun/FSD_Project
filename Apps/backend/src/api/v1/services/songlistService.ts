@@ -17,12 +17,12 @@ export const fetchAllSonglists = async (): Promise<Songlist[]> => {
  * @throws Error if songlist with given ID is not found
  */
 export const getSonglistById = async (
-    id: number
+    id: string
 ): Promise<Songlist | null> => {
     try {
         const songlist = await prisma.songlist.findUnique({
             where: {
-                id: id
+                id
             }
         });
 
@@ -46,10 +46,10 @@ export const createSonglist = async (
         name: string
         description?: string
         cover?: string
-        visibility?: "public" | "private"
+        visibility?: string
     }
-): Promise<SongList> => {
-  const newSonglist = await prisma.songList.create({
+): Promise<Songlist> => {
+  const newSonglist = await prisma.songlist.create({
     data: {
       name: songlistData.name,
       description: songlistData.description ?? null,
@@ -69,17 +69,17 @@ export const createSonglist = async (
  * @returns The updated songlist
  */
 export const updateSonglist = async (
-    id: number,
+    id: string,
     songlist: { 
         name: string; 
         description?: string; 
         cover?: string; 
-        visibility?: "public" | "private" 
+        visibility?: string 
     }
 ): Promise<Songlist> => {
     const updatedSonglist = await prisma.songlist.update({
         where: {
-            id: id
+            id
         },
         data: {
             ...songlist
@@ -94,11 +94,11 @@ export const updateSonglist = async (
  * @param id - The ID of the songlist to delete
  */
 export const deleteSonglist = async (
-    id: number
+    id: string
 ): Promise<void> => {
     await prisma.songlist.delete({
         where: {
-            id: id
+            id
         }
     });
 };
