@@ -15,10 +15,10 @@ const prisma = new PrismaClient({ adapter });
 // see https://www.prisma.io/docs/orm/prisma-migrate/workflows/seeding
 async function main() {
   // clear table
-  await prisma.songList.deleteMany();
+  await prisma.songlist.deleteMany();
 
   // insert songlists to db
-  const createdSongLists = await prisma.songList.createManyAndReturn({
+  const createdSongLists = await prisma.songlist.createManyAndReturn({
     data: songlistSeedData,
     skipDuplicates: true
   });

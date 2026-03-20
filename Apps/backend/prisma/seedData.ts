@@ -1,6 +1,6 @@
-import { SongList } from "@prisma/client";
+import { Songlist } from "@prisma/client";
 
-export const songlistSeedData: Omit<SongList, "id" | "songs">[] = [
+export const songlistSeedData: Omit<Songlist, "id" | "songs">[] = [
   {
     name: "Chill Vibes",
     visibility: "public",

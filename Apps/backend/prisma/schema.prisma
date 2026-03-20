@@ -13,7 +13,7 @@ datasource db {
   provider = "postgresql"
 }
 
-model SongList {
+model Songlist {
   id          String   @id @default(uuid())
   name        String
   visibility  String
@@ -26,16 +26,16 @@ model SongList {
 // model SongCollection {
 //   id         Int       @id @default(autoincrement())
 //   songId     Int
-//   songListId String
+//   songlistId String
   
 //   createdAt  DateTime  @default(now())
 
 //   // Relations
 //   song       Song       @relation(fields: [songId], references: [id])
-//   songList   SongList   @relation(fields: [songListId], references: [id])
+//   songlist   Songlist   @relation(fields: [songlistId], references: [id])
   
 //   // prevents duplicate entries
-//   @@unique([songId, songListId]) 
+//   @@unique([songId, songlistId]) 
 // }
 
 

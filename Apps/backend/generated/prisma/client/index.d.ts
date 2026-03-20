@@ -14,10 +14,10 @@ export type PrismaPromise<T> = $Public.PrismaPromise<T>
 
 
 /**
- * Model SongList
+ * Model Songlist
  * 
  */
-export type SongList = $Result.DefaultSelection<Prisma.$SongListPayload>
+export type Songlist = $Result.DefaultSelection<Prisma.$SonglistPayload>
 
 /**
  * ##  Prisma Client ʲˢ
@@ -28,8 +28,8 @@ export type SongList = $Result.DefaultSelection<Prisma.$SongListPayload>
  * const prisma = new PrismaClient({
  *   adapter: new PrismaPg({ connectionString: process.env.DATABASE_URL })
  * })
- * // Fetch zero or more SongLists
- * const songLists = await prisma.songList.findMany()
+ * // Fetch zero or more Songlists
+ * const songlists = await prisma.songlist.findMany()
  * ```
  *
  *
@@ -51,8 +51,8 @@ export class PrismaClient<
    * const prisma = new PrismaClient({
    *   adapter: new PrismaPg({ connectionString: process.env.DATABASE_URL })
    * })
-   * // Fetch zero or more SongLists
-   * const songLists = await prisma.songList.findMany()
+   * // Fetch zero or more Songlists
+   * const songlists = await prisma.songlist.findMany()
    * ```
    *
    *
@@ -141,14 +141,14 @@ export class PrismaClient<
   }>>
 
       /**
-   * `prisma.songList`: Exposes CRUD operations for the **SongList** model.
+   * `prisma.songlist`: Exposes CRUD operations for the **Songlist** model.
     * Example usage:
     * ```ts
-    * // Fetch zero or more SongLists
-    * const songLists = await prisma.songList.findMany()
+    * // Fetch zero or more Songlists
+    * const songlists = await prisma.songlist.findMany()
     * ```
     */
-  get songList(): Prisma.SongListDelegate<ExtArgs, ClientOptions>;
+  get songlist(): Prisma.SonglistDelegate<ExtArgs, ClientOptions>;
 }
 
 export namespace Prisma {
@@ -583,7 +583,7 @@ export namespace Prisma {
 
 
   export const ModelName: {
-    SongList: 'SongList'
+    Songlist: 'Songlist'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -599,81 +599,81 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "songList"
+      modelProps: "songlist"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
-      SongList: {
-        payload: Prisma.$SongListPayload<ExtArgs>
-        fields: Prisma.SongListFieldRefs
+      Songlist: {
+        payload: Prisma.$SonglistPayload<ExtArgs>
+        fields: Prisma.SonglistFieldRefs
         operations: {
           findUnique: {
-            args: Prisma.SongListFindUniqueArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$SongListPayload> | null
+            args: Prisma.SonglistFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SonglistPayload> | null
           }
           findUniqueOrThrow: {
-            args: Prisma.SongListFindUniqueOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$SongListPayload>
+            args: Prisma.SonglistFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SonglistPayload>
           }
           findFirst: {
-            args: Prisma.SongListFindFirstArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$SongListPayload> | null
+            args: Prisma.SonglistFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SonglistPayload> | null
           }
           findFirstOrThrow: {
-            args: Prisma.SongListFindFirstOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$SongListPayload>
+            args: Prisma.SonglistFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SonglistPayload>
           }
           findMany: {
-            args: Prisma.SongListFindManyArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$SongListPayload>[]
+            args: Prisma.SonglistFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SonglistPayload>[]
           }
           create: {
-            args: Prisma.SongListCreateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$SongListPayload>
+            args: Prisma.SonglistCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SonglistPayload>
           }
           createMany: {
-            args: Prisma.SongListCreateManyArgs<ExtArgs>
+            args: Prisma.SonglistCreateManyArgs<ExtArgs>
             result: BatchPayload
           }
           createManyAndReturn: {
-            args: Prisma.SongListCreateManyAndReturnArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$SongListPayload>[]
+            args: Prisma.SonglistCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SonglistPayload>[]
           }
           delete: {
-            args: Prisma.SongListDeleteArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$SongListPayload>
+            args: Prisma.SonglistDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SonglistPayload>
           }
           update: {
-            args: Prisma.SongListUpdateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$SongListPayload>
+            args: Prisma.SonglistUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SonglistPayload>
           }
           deleteMany: {
-            args: Prisma.SongListDeleteManyArgs<ExtArgs>
+            args: Prisma.SonglistDeleteManyArgs<ExtArgs>
             result: BatchPayload
           }
           updateMany: {
-            args: Prisma.SongListUpdateManyArgs<ExtArgs>
+            args: Prisma.SonglistUpdateManyArgs<ExtArgs>
             result: BatchPayload
           }
           updateManyAndReturn: {
-            args: Prisma.SongListUpdateManyAndReturnArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$SongListPayload>[]
+            args: Prisma.SonglistUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SonglistPayload>[]
           }
           upsert: {
-            args: Prisma.SongListUpsertArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$SongListPayload>
+            args: Prisma.SonglistUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SonglistPayload>
           }
           aggregate: {
-            args: Prisma.SongListAggregateArgs<ExtArgs>
-            result: $Utils.Optional<AggregateSongList>
+            args: Prisma.SonglistAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateSonglist>
           }
           groupBy: {
-            args: Prisma.SongListGroupByArgs<ExtArgs>
-            result: $Utils.Optional<SongListGroupByOutputType>[]
+            args: Prisma.SonglistGroupByArgs<ExtArgs>
+            result: $Utils.Optional<SonglistGroupByOutputType>[]
           }
           count: {
-            args: Prisma.SongListCountArgs<ExtArgs>
-            result: $Utils.Optional<SongListCountAggregateOutputType> | number
+            args: Prisma.SonglistCountArgs<ExtArgs>
+            result: $Utils.Optional<SonglistCountAggregateOutputType> | number
           }
         }
       }
@@ -785,7 +785,7 @@ export namespace Prisma {
     comments?: runtime.SqlCommenterPlugin[]
   }
   export type GlobalOmitConfig = {
-    songList?: SongListOmit
+    songlist?: SonglistOmit
   }
 
   /* Types for Logging */
@@ -867,16 +867,16 @@ export namespace Prisma {
    */
 
   /**
-   * Model SongList
+   * Model Songlist
    */
 
-  export type AggregateSongList = {
-    _count: SongListCountAggregateOutputType | null
-    _min: SongListMinAggregateOutputType | null
-    _max: SongListMaxAggregateOutputType | null
+  export type AggregateSonglist = {
+    _count: SonglistCountAggregateOutputType | null
+    _min: SonglistMinAggregateOutputType | null
+    _max: SonglistMaxAggregateOutputType | null
   }
 
-  export type SongListMinAggregateOutputType = {
+  export type SonglistMinAggregateOutputType = {
     id: string | null
     name: string | null
     visibility: string | null
@@ -884,7 +884,7 @@ export namespace Prisma {
     cover: string | null
   }
 
-  export type SongListMaxAggregateOutputType = {
+  export type SonglistMaxAggregateOutputType = {
     id: string | null
     name: string | null
     visibility: string | null
@@ -892,7 +892,7 @@ export namespace Prisma {
     cover: string | null
   }
 
-  export type SongListCountAggregateOutputType = {
+  export type SonglistCountAggregateOutputType = {
     id: number
     name: number
     visibility: number
@@ -902,7 +902,7 @@ export namespace Prisma {
   }
 
 
-  export type SongListMinAggregateInputType = {
+  export type SonglistMinAggregateInputType = {
     id?: true
     name?: true
     visibility?: true
@@ -910,7 +910,7 @@ export namespace Prisma {
     cover?: true
   }
 
-  export type SongListMaxAggregateInputType = {
+  export type SonglistMaxAggregateInputType = {
     id?: true
     name?: true
     visibility?: true
@@ -918,7 +918,7 @@ export namespace Prisma {
     cover?: true
   }
 
-  export type SongListCountAggregateInputType = {
+  export type SonglistCountAggregateInputType = {
     id?: true
     name?: true
     visibility?: true
@@ -927,128 +927,128 @@ export namespace Prisma {
     _all?: true
   }
 
-  export type SongListAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type SonglistAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Filter which SongList to aggregate.
+     * Filter which Songlist to aggregate.
      */
-    where?: SongListWhereInput
+    where?: SonglistWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
-     * Determine the order of SongLists to fetch.
+     * Determine the order of Songlists to fetch.
      */
-    orderBy?: SongListOrderByWithRelationInput | SongListOrderByWithRelationInput[]
+    orderBy?: SonglistOrderByWithRelationInput | SonglistOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
      * Sets the start position
      */
-    cursor?: SongListWhereUniqueInput
+    cursor?: SonglistWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Take `±n` SongLists from the position of the cursor.
+     * Take `±n` Songlists from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Skip the first `n` SongLists.
+     * Skip the first `n` Songlists.
      */
     skip?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
-     * Count returned SongLists
+     * Count returned Songlists
     **/
-    _count?: true | SongListCountAggregateInputType
+    _count?: true | SonglistCountAggregateInputType
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
      * Select which fields to find the minimum value
     **/
-    _min?: SongListMinAggregateInputType
+    _min?: SonglistMinAggregateInputType
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
      * Select which fields to find the maximum value
     **/
-    _max?: SongListMaxAggregateInputType
+    _max?: SonglistMaxAggregateInputType
   }
 
-  export type GetSongListAggregateType<T extends SongListAggregateArgs> = {
-        [P in keyof T & keyof AggregateSongList]: P extends '_count' | 'count'
+  export type GetSonglistAggregateType<T extends SonglistAggregateArgs> = {
+        [P in keyof T & keyof AggregateSonglist]: P extends '_count' | 'count'
       ? T[P] extends true
         ? number
-        : GetScalarType<T[P], AggregateSongList[P]>
-      : GetScalarType<T[P], AggregateSongList[P]>
+        : GetScalarType<T[P], AggregateSonglist[P]>
+      : GetScalarType<T[P], AggregateSonglist[P]>
   }
 
 
 
 
-  export type SongListGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: SongListWhereInput
-    orderBy?: SongListOrderByWithAggregationInput | SongListOrderByWithAggregationInput[]
-    by: SongListScalarFieldEnum[] | SongListScalarFieldEnum
-    having?: SongListScalarWhereWithAggregatesInput
+  export type SonglistGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: SonglistWhereInput
+    orderBy?: SonglistOrderByWithAggregationInput | SonglistOrderByWithAggregationInput[]
+    by: SonglistScalarFieldEnum[] | SonglistScalarFieldEnum
+    having?: SonglistScalarWhereWithAggregatesInput
     take?: number
     skip?: number
-    _count?: SongListCountAggregateInputType | true
-    _min?: SongListMinAggregateInputType
-    _max?: SongListMaxAggregateInputType
+    _count?: SonglistCountAggregateInputType | true
+    _min?: SonglistMinAggregateInputType
+    _max?: SonglistMaxAggregateInputType
   }
 
-  export type SongListGroupByOutputType = {
+  export type SonglistGroupByOutputType = {
     id: string
     name: string
     visibility: string
     description: string | null
     cover: string | null
-    _count: SongListCountAggregateOutputType | null
-    _min: SongListMinAggregateOutputType | null
-    _max: SongListMaxAggregateOutputType | null
+    _count: SonglistCountAggregateOutputType | null
+    _min: SonglistMinAggregateOutputType | null
+    _max: SonglistMaxAggregateOutputType | null
   }
 
-  type GetSongListGroupByPayload<T extends SongListGroupByArgs> = Prisma.PrismaPromise<
+  type GetSonglistGroupByPayload<T extends SonglistGroupByArgs> = Prisma.PrismaPromise<
     Array<
-      PickEnumerable<SongListGroupByOutputType, T['by']> &
+      PickEnumerable<SonglistGroupByOutputType, T['by']> &
         {
-          [P in ((keyof T) & (keyof SongListGroupByOutputType))]: P extends '_count'
+          [P in ((keyof T) & (keyof SonglistGroupByOutputType))]: P extends '_count'
             ? T[P] extends boolean
               ? number
-              : GetScalarType<T[P], SongListGroupByOutputType[P]>
-            : GetScalarType<T[P], SongListGroupByOutputType[P]>
+              : GetScalarType<T[P], SonglistGroupByOutputType[P]>
+            : GetScalarType<T[P], SonglistGroupByOutputType[P]>
         }
       >
     >
 
 
-  export type SongListSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+  export type SonglistSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     name?: boolean
     visibility?: boolean
     description?: boolean
     cover?: boolean
-  }, ExtArgs["result"]["songList"]>
+  }, ExtArgs["result"]["songlist"]>
 
-  export type SongListSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+  export type SonglistSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     name?: boolean
     visibility?: boolean
     description?: boolean
     cover?: boolean
-  }, ExtArgs["result"]["songList"]>
+  }, ExtArgs["result"]["songlist"]>
 
-  export type SongListSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+  export type SonglistSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     name?: boolean
     visibility?: boolean
     description?: boolean
     cover?: boolean
-  }, ExtArgs["result"]["songList"]>
+  }, ExtArgs["result"]["songlist"]>
 
-  export type SongListSelectScalar = {
+  export type SonglistSelectScalar = {
     id?: boolean
     name?: boolean
     visibility?: boolean
@@ -1056,10 +1056,10 @@ export namespace Prisma {
     cover?: boolean
   }
 
-  export type SongListOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "visibility" | "description" | "cover", ExtArgs["result"]["songList"]>
+  export type SonglistOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "visibility" | "description" | "cover", ExtArgs["result"]["songlist"]>
 
-  export type $SongListPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    name: "SongList"
+  export type $SonglistPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "Songlist"
     objects: {}
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -1067,136 +1067,136 @@ export namespace Prisma {
       visibility: string
       description: string | null
       cover: string | null
-    }, ExtArgs["result"]["songList"]>
+    }, ExtArgs["result"]["songlist"]>
     composites: {}
   }
 
-  type SongListGetPayload<S extends boolean | null | undefined | SongListDefaultArgs> = $Result.GetResult<Prisma.$SongListPayload, S>
+  type SonglistGetPayload<S extends boolean | null | undefined | SonglistDefaultArgs> = $Result.GetResult<Prisma.$SonglistPayload, S>
 
-  type SongListCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
-    Omit<SongListFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
-      select?: SongListCountAggregateInputType | true
+  type SonglistCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<SonglistFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: SonglistCountAggregateInputType | true
     }
 
-  export interface SongListDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
-    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['SongList'], meta: { name: 'SongList' } }
+  export interface SonglistDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Songlist'], meta: { name: 'Songlist' } }
     /**
-     * Find zero or one SongList that matches the filter.
-     * @param {SongListFindUniqueArgs} args - Arguments to find a SongList
+     * Find zero or one Songlist that matches the filter.
+     * @param {SonglistFindUniqueArgs} args - Arguments to find a Songlist
      * @example
-     * // Get one SongList
-     * const songList = await prisma.songList.findUnique({
+     * // Get one Songlist
+     * const songlist = await prisma.songlist.findUnique({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      */
-    findUnique<T extends SongListFindUniqueArgs>(args: SelectSubset<T, SongListFindUniqueArgs<ExtArgs>>): Prisma__SongListClient<$Result.GetResult<Prisma.$SongListPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    findUnique<T extends SonglistFindUniqueArgs>(args: SelectSubset<T, SonglistFindUniqueArgs<ExtArgs>>): Prisma__SonglistClient<$Result.GetResult<Prisma.$SonglistPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Find one SongList that matches the filter or throw an error with `error.code='P2025'`
+     * Find one Songlist that matches the filter or throw an error with `error.code='P2025'`
      * if no matches were found.
-     * @param {SongListFindUniqueOrThrowArgs} args - Arguments to find a SongList
+     * @param {SonglistFindUniqueOrThrowArgs} args - Arguments to find a Songlist
      * @example
-     * // Get one SongList
-     * const songList = await prisma.songList.findUniqueOrThrow({
+     * // Get one Songlist
+     * const songlist = await prisma.songlist.findUniqueOrThrow({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      */
-    findUniqueOrThrow<T extends SongListFindUniqueOrThrowArgs>(args: SelectSubset<T, SongListFindUniqueOrThrowArgs<ExtArgs>>): Prisma__SongListClient<$Result.GetResult<Prisma.$SongListPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    findUniqueOrThrow<T extends SonglistFindUniqueOrThrowArgs>(args: SelectSubset<T, SonglistFindUniqueOrThrowArgs<ExtArgs>>): Prisma__SonglistClient<$Result.GetResult<Prisma.$SonglistPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Find the first SongList that matches the filter.
+     * Find the first Songlist that matches the filter.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {SongListFindFirstArgs} args - Arguments to find a SongList
+     * @param {SonglistFindFirstArgs} args - Arguments to find a Songlist
      * @example
-     * // Get one SongList
-     * const songList = await prisma.songList.findFirst({
+     * // Get one Songlist
+     * const songlist = await prisma.songlist.findFirst({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      */
-    findFirst<T extends SongListFindFirstArgs>(args?: SelectSubset<T, SongListFindFirstArgs<ExtArgs>>): Prisma__SongListClient<$Result.GetResult<Prisma.$SongListPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    findFirst<T extends SonglistFindFirstArgs>(args?: SelectSubset<T, SonglistFindFirstArgs<ExtArgs>>): Prisma__SonglistClient<$Result.GetResult<Prisma.$SonglistPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Find the first SongList that matches the filter or
+     * Find the first Songlist that matches the filter or
      * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {SongListFindFirstOrThrowArgs} args - Arguments to find a SongList
+     * @param {SonglistFindFirstOrThrowArgs} args - Arguments to find a Songlist
      * @example
-     * // Get one SongList
-     * const songList = await prisma.songList.findFirstOrThrow({
+     * // Get one Songlist
+     * const songlist = await prisma.songlist.findFirstOrThrow({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      */
-    findFirstOrThrow<T extends SongListFindFirstOrThrowArgs>(args?: SelectSubset<T, SongListFindFirstOrThrowArgs<ExtArgs>>): Prisma__SongListClient<$Result.GetResult<Prisma.$SongListPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    findFirstOrThrow<T extends SonglistFindFirstOrThrowArgs>(args?: SelectSubset<T, SonglistFindFirstOrThrowArgs<ExtArgs>>): Prisma__SonglistClient<$Result.GetResult<Prisma.$SonglistPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Find zero or more SongLists that matches the filter.
+     * Find zero or more Songlists that matches the filter.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {SongListFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @param {SonglistFindManyArgs} args - Arguments to filter and select certain fields only.
      * @example
-     * // Get all SongLists
-     * const songLists = await prisma.songList.findMany()
+     * // Get all Songlists
+     * const songlists = await prisma.songlist.findMany()
      * 
-     * // Get first 10 SongLists
-     * const songLists = await prisma.songList.findMany({ take: 10 })
+     * // Get first 10 Songlists
+     * const songlists = await prisma.songlist.findMany({ take: 10 })
      * 
      * // Only select the `id`
-     * const songListWithIdOnly = await prisma.songList.findMany({ select: { id: true } })
+     * const songlistWithIdOnly = await prisma.songlist.findMany({ select: { id: true } })
      * 
      */
-    findMany<T extends SongListFindManyArgs>(args?: SelectSubset<T, SongListFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SongListPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+    findMany<T extends SonglistFindManyArgs>(args?: SelectSubset<T, SonglistFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SonglistPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
 
     /**
-     * Create a SongList.
-     * @param {SongListCreateArgs} args - Arguments to create a SongList.
+     * Create a Songlist.
+     * @param {SonglistCreateArgs} args - Arguments to create a Songlist.
      * @example
-     * // Create one SongList
-     * const SongList = await prisma.songList.create({
+     * // Create one Songlist
+     * const Songlist = await prisma.songlist.create({
      *   data: {
-     *     // ... data to create a SongList
+     *     // ... data to create a Songlist
      *   }
      * })
      * 
      */
-    create<T extends SongListCreateArgs>(args: SelectSubset<T, SongListCreateArgs<ExtArgs>>): Prisma__SongListClient<$Result.GetResult<Prisma.$SongListPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    create<T extends SonglistCreateArgs>(args: SelectSubset<T, SonglistCreateArgs<ExtArgs>>): Prisma__SonglistClient<$Result.GetResult<Prisma.$SonglistPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Create many SongLists.
-     * @param {SongListCreateManyArgs} args - Arguments to create many SongLists.
+     * Create many Songlists.
+     * @param {SonglistCreateManyArgs} args - Arguments to create many Songlists.
      * @example
-     * // Create many SongLists
-     * const songList = await prisma.songList.createMany({
+     * // Create many Songlists
+     * const songlist = await prisma.songlist.createMany({
      *   data: [
      *     // ... provide data here
      *   ]
      * })
      *     
      */
-    createMany<T extends SongListCreateManyArgs>(args?: SelectSubset<T, SongListCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+    createMany<T extends SonglistCreateManyArgs>(args?: SelectSubset<T, SonglistCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
 
     /**
-     * Create many SongLists and returns the data saved in the database.
-     * @param {SongListCreateManyAndReturnArgs} args - Arguments to create many SongLists.
+     * Create many Songlists and returns the data saved in the database.
+     * @param {SonglistCreateManyAndReturnArgs} args - Arguments to create many Songlists.
      * @example
-     * // Create many SongLists
-     * const songList = await prisma.songList.createManyAndReturn({
+     * // Create many Songlists
+     * const songlist = await prisma.songlist.createManyAndReturn({
      *   data: [
      *     // ... provide data here
      *   ]
      * })
      * 
-     * // Create many SongLists and only return the `id`
-     * const songListWithIdOnly = await prisma.songList.createManyAndReturn({
+     * // Create many Songlists and only return the `id`
+     * const songlistWithIdOnly = await prisma.songlist.createManyAndReturn({
      *   select: { id: true },
      *   data: [
      *     // ... provide data here
@@ -1206,28 +1206,28 @@ export namespace Prisma {
      * Read more here: https://pris.ly/d/null-undefined
      * 
      */
-    createManyAndReturn<T extends SongListCreateManyAndReturnArgs>(args?: SelectSubset<T, SongListCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SongListPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+    createManyAndReturn<T extends SonglistCreateManyAndReturnArgs>(args?: SelectSubset<T, SonglistCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SonglistPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
 
     /**
-     * Delete a SongList.
-     * @param {SongListDeleteArgs} args - Arguments to delete one SongList.
+     * Delete a Songlist.
+     * @param {SonglistDeleteArgs} args - Arguments to delete one Songlist.
      * @example
-     * // Delete one SongList
-     * const SongList = await prisma.songList.delete({
+     * // Delete one Songlist
+     * const Songlist = await prisma.songlist.delete({
      *   where: {
-     *     // ... filter to delete one SongList
+     *     // ... filter to delete one Songlist
      *   }
      * })
      * 
      */
-    delete<T extends SongListDeleteArgs>(args: SelectSubset<T, SongListDeleteArgs<ExtArgs>>): Prisma__SongListClient<$Result.GetResult<Prisma.$SongListPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    delete<T extends SonglistDeleteArgs>(args: SelectSubset<T, SonglistDeleteArgs<ExtArgs>>): Prisma__SonglistClient<$Result.GetResult<Prisma.$SonglistPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Update one SongList.
-     * @param {SongListUpdateArgs} args - Arguments to update one SongList.
+     * Update one Songlist.
+     * @param {SonglistUpdateArgs} args - Arguments to update one Songlist.
      * @example
-     * // Update one SongList
-     * const songList = await prisma.songList.update({
+     * // Update one Songlist
+     * const songlist = await prisma.songlist.update({
      *   where: {
      *     // ... provide filter here
      *   },
@@ -1237,30 +1237,30 @@ export namespace Prisma {
      * })
      * 
      */
-    update<T extends SongListUpdateArgs>(args: SelectSubset<T, SongListUpdateArgs<ExtArgs>>): Prisma__SongListClient<$Result.GetResult<Prisma.$SongListPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    update<T extends SonglistUpdateArgs>(args: SelectSubset<T, SonglistUpdateArgs<ExtArgs>>): Prisma__SonglistClient<$Result.GetResult<Prisma.$SonglistPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Delete zero or more SongLists.
-     * @param {SongListDeleteManyArgs} args - Arguments to filter SongLists to delete.
+     * Delete zero or more Songlists.
+     * @param {SonglistDeleteManyArgs} args - Arguments to filter Songlists to delete.
      * @example
-     * // Delete a few SongLists
-     * const { count } = await prisma.songList.deleteMany({
+     * // Delete a few Songlists
+     * const { count } = await prisma.songlist.deleteMany({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      * 
      */
-    deleteMany<T extends SongListDeleteManyArgs>(args?: SelectSubset<T, SongListDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+    deleteMany<T extends SonglistDeleteManyArgs>(args?: SelectSubset<T, SonglistDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
 
     /**
-     * Update zero or more SongLists.
+     * Update zero or more Songlists.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {SongListUpdateManyArgs} args - Arguments to update one or more rows.
+     * @param {SonglistUpdateManyArgs} args - Arguments to update one or more rows.
      * @example
-     * // Update many SongLists
-     * const songList = await prisma.songList.updateMany({
+     * // Update many Songlists
+     * const songlist = await prisma.songlist.updateMany({
      *   where: {
      *     // ... provide filter here
      *   },
@@ -1270,14 +1270,14 @@ export namespace Prisma {
      * })
      * 
      */
-    updateMany<T extends SongListUpdateManyArgs>(args: SelectSubset<T, SongListUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+    updateMany<T extends SonglistUpdateManyArgs>(args: SelectSubset<T, SonglistUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
 
     /**
-     * Update zero or more SongLists and returns the data updated in the database.
-     * @param {SongListUpdateManyAndReturnArgs} args - Arguments to update many SongLists.
+     * Update zero or more Songlists and returns the data updated in the database.
+     * @param {SonglistUpdateManyAndReturnArgs} args - Arguments to update many Songlists.
      * @example
-     * // Update many SongLists
-     * const songList = await prisma.songList.updateManyAndReturn({
+     * // Update many Songlists
+     * const songlist = await prisma.songlist.updateManyAndReturn({
      *   where: {
      *     // ... provide filter here
      *   },
@@ -1286,8 +1286,8 @@ export namespace Prisma {
      *   ]
      * })
      * 
-     * // Update zero or more SongLists and only return the `id`
-     * const songListWithIdOnly = await prisma.songList.updateManyAndReturn({
+     * // Update zero or more Songlists and only return the `id`
+     * const songlistWithIdOnly = await prisma.songlist.updateManyAndReturn({
      *   select: { id: true },
      *   where: {
      *     // ... provide filter here
@@ -1300,56 +1300,56 @@ export namespace Prisma {
      * Read more here: https://pris.ly/d/null-undefined
      * 
      */
-    updateManyAndReturn<T extends SongListUpdateManyAndReturnArgs>(args: SelectSubset<T, SongListUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SongListPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+    updateManyAndReturn<T extends SonglistUpdateManyAndReturnArgs>(args: SelectSubset<T, SonglistUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SonglistPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
 
     /**
-     * Create or update one SongList.
-     * @param {SongListUpsertArgs} args - Arguments to update or create a SongList.
+     * Create or update one Songlist.
+     * @param {SonglistUpsertArgs} args - Arguments to update or create a Songlist.
      * @example
-     * // Update or create a SongList
-     * const songList = await prisma.songList.upsert({
+     * // Update or create a Songlist
+     * const songlist = await prisma.songlist.upsert({
      *   create: {
-     *     // ... data to create a SongList
+     *     // ... data to create a Songlist
      *   },
      *   update: {
      *     // ... in case it already exists, update
      *   },
      *   where: {
-     *     // ... the filter for the SongList we want to update
+     *     // ... the filter for the Songlist we want to update
      *   }
      * })
      */
-    upsert<T extends SongListUpsertArgs>(args: SelectSubset<T, SongListUpsertArgs<ExtArgs>>): Prisma__SongListClient<$Result.GetResult<Prisma.$SongListPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    upsert<T extends SonglistUpsertArgs>(args: SelectSubset<T, SonglistUpsertArgs<ExtArgs>>): Prisma__SonglistClient<$Result.GetResult<Prisma.$SonglistPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
 
     /**
-     * Count the number of SongLists.
+     * Count the number of Songlists.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {SongListCountArgs} args - Arguments to filter SongLists to count.
+     * @param {SonglistCountArgs} args - Arguments to filter Songlists to count.
      * @example
-     * // Count the number of SongLists
-     * const count = await prisma.songList.count({
+     * // Count the number of Songlists
+     * const count = await prisma.songlist.count({
      *   where: {
-     *     // ... the filter for the SongLists we want to count
+     *     // ... the filter for the Songlists we want to count
      *   }
      * })
     **/
-    count<T extends SongListCountArgs>(
-      args?: Subset<T, SongListCountArgs>,
+    count<T extends SonglistCountArgs>(
+      args?: Subset<T, SonglistCountArgs>,
     ): Prisma.PrismaPromise<
       T extends $Utils.Record<'select', any>
         ? T['select'] extends true
           ? number
-          : GetScalarType<T['select'], SongListCountAggregateOutputType>
+          : GetScalarType<T['select'], SonglistCountAggregateOutputType>
         : number
     >
 
     /**
-     * Allows you to perform aggregations operations on a SongList.
+     * Allows you to perform aggregations operations on a Songlist.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {SongListAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @param {SonglistAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
      * @example
      * // Ordered by age ascending
      * // Where email contains prisma.io
@@ -1369,13 +1369,13 @@ export namespace Prisma {
      *   take: 10,
      * })
     **/
-    aggregate<T extends SongListAggregateArgs>(args: Subset<T, SongListAggregateArgs>): Prisma.PrismaPromise<GetSongListAggregateType<T>>
+    aggregate<T extends SonglistAggregateArgs>(args: Subset<T, SonglistAggregateArgs>): Prisma.PrismaPromise<GetSonglistAggregateType<T>>
 
     /**
-     * Group by SongList.
+     * Group by Songlist.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {SongListGroupByArgs} args - Group by arguments.
+     * @param {SonglistGroupByArgs} args - Group by arguments.
      * @example
      * // Group by city, order by createdAt, get count
      * const result = await prisma.user.groupBy({
@@ -1390,14 +1390,14 @@ export namespace Prisma {
      * 
     **/
     groupBy<
-      T extends SongListGroupByArgs,
+      T extends SonglistGroupByArgs,
       HasSelectOrTake extends Or<
         Extends<'skip', Keys<T>>,
         Extends<'take', Keys<T>>
       >,
       OrderByArg extends True extends HasSelectOrTake
-        ? { orderBy: SongListGroupByArgs['orderBy'] }
-        : { orderBy?: SongListGroupByArgs['orderBy'] },
+        ? { orderBy: SonglistGroupByArgs['orderBy'] }
+        : { orderBy?: SonglistGroupByArgs['orderBy'] },
       OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
       ByFields extends MaybeTupleToUnion<T['by']>,
       ByValid extends Has<ByFields, OrderFields>,
@@ -1446,20 +1446,20 @@ export namespace Prisma {
             ? never
             : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
         }[OrderFields]
-    >(args: SubsetIntersection<T, SongListGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetSongListGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+    >(args: SubsetIntersection<T, SonglistGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetSonglistGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
   /**
-   * Fields of the SongList model
+   * Fields of the Songlist model
    */
-  readonly fields: SongListFieldRefs;
+  readonly fields: SonglistFieldRefs;
   }
 
   /**
-   * The delegate class that acts as a "Promise-like" for SongList.
+   * The delegate class that acts as a "Promise-like" for Songlist.
    * Why is this prefixed with `Prisma__`?
    * Because we want to prevent naming conflicts as mentioned in
    * https://github.com/prisma/prisma-client-js/issues/707
    */
-  export interface Prisma__SongListClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+  export interface Prisma__SonglistClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -1487,382 +1487,382 @@ export namespace Prisma {
 
 
   /**
-   * Fields of the SongList model
+   * Fields of the Songlist model
    */
-  interface SongListFieldRefs {
-    readonly id: FieldRef<"SongList", 'String'>
-    readonly name: FieldRef<"SongList", 'String'>
-    readonly visibility: FieldRef<"SongList", 'String'>
-    readonly description: FieldRef<"SongList", 'String'>
-    readonly cover: FieldRef<"SongList", 'String'>
+  interface SonglistFieldRefs {
+    readonly id: FieldRef<"Songlist", 'String'>
+    readonly name: FieldRef<"Songlist", 'String'>
+    readonly visibility: FieldRef<"Songlist", 'String'>
+    readonly description: FieldRef<"Songlist", 'String'>
+    readonly cover: FieldRef<"Songlist", 'String'>
   }
     
 
   // Custom InputTypes
   /**
-   * SongList findUnique
+   * Songlist findUnique
    */
-  export type SongListFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type SonglistFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the SongList
+     * Select specific fields to fetch from the Songlist
      */
-    select?: SongListSelect<ExtArgs> | null
+    select?: SonglistSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the SongList
+     * Omit specific fields from the Songlist
      */
-    omit?: SongListOmit<ExtArgs> | null
+    omit?: SonglistOmit<ExtArgs> | null
     /**
-     * Filter, which SongList to fetch.
+     * Filter, which Songlist to fetch.
      */
-    where: SongListWhereUniqueInput
+    where: SonglistWhereUniqueInput
   }
 
   /**
-   * SongList findUniqueOrThrow
+   * Songlist findUniqueOrThrow
    */
-  export type SongListFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type SonglistFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the SongList
+     * Select specific fields to fetch from the Songlist
      */
-    select?: SongListSelect<ExtArgs> | null
+    select?: SonglistSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the SongList
+     * Omit specific fields from the Songlist
      */
-    omit?: SongListOmit<ExtArgs> | null
+    omit?: SonglistOmit<ExtArgs> | null
     /**
-     * Filter, which SongList to fetch.
+     * Filter, which Songlist to fetch.
      */
-    where: SongListWhereUniqueInput
+    where: SonglistWhereUniqueInput
   }
 
   /**
-   * SongList findFirst
+   * Songlist findFirst
    */
-  export type SongListFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type SonglistFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the SongList
+     * Select specific fields to fetch from the Songlist
      */
-    select?: SongListSelect<ExtArgs> | null
+    select?: SonglistSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the SongList
+     * Omit specific fields from the Songlist
      */
-    omit?: SongListOmit<ExtArgs> | null
+    omit?: SonglistOmit<ExtArgs> | null
     /**
-     * Filter, which SongList to fetch.
+     * Filter, which Songlist to fetch.
      */
-    where?: SongListWhereInput
+    where?: SonglistWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
-     * Determine the order of SongLists to fetch.
+     * Determine the order of Songlists to fetch.
      */
-    orderBy?: SongListOrderByWithRelationInput | SongListOrderByWithRelationInput[]
+    orderBy?: SonglistOrderByWithRelationInput | SonglistOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
-     * Sets the position for searching for SongLists.
+     * Sets the position for searching for Songlists.
      */
-    cursor?: SongListWhereUniqueInput
+    cursor?: SonglistWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Take `±n` SongLists from the position of the cursor.
+     * Take `±n` Songlists from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Skip the first `n` SongLists.
+     * Skip the first `n` Songlists.
      */
     skip?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
      * 
-     * Filter by unique combinations of SongLists.
+     * Filter by unique combinations of Songlists.
      */
-    distinct?: SongListScalarFieldEnum | SongListScalarFieldEnum[]
+    distinct?: SonglistScalarFieldEnum | SonglistScalarFieldEnum[]
   }
 
   /**
-   * SongList findFirstOrThrow
+   * Songlist findFirstOrThrow
    */
-  export type SongListFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type SonglistFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the SongList
+     * Select specific fields to fetch from the Songlist
      */
-    select?: SongListSelect<ExtArgs> | null
+    select?: SonglistSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the SongList
+     * Omit specific fields from the Songlist
      */
-    omit?: SongListOmit<ExtArgs> | null
+    omit?: SonglistOmit<ExtArgs> | null
     /**
-     * Filter, which SongList to fetch.
+     * Filter, which Songlist to fetch.
      */
-    where?: SongListWhereInput
+    where?: SonglistWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
-     * Determine the order of SongLists to fetch.
+     * Determine the order of Songlists to fetch.
      */
-    orderBy?: SongListOrderByWithRelationInput | SongListOrderByWithRelationInput[]
+    orderBy?: SonglistOrderByWithRelationInput | SonglistOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
-     * Sets the position for searching for SongLists.
+     * Sets the position for searching for Songlists.
      */
-    cursor?: SongListWhereUniqueInput
+    cursor?: SonglistWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Take `±n` SongLists from the position of the cursor.
+     * Take `±n` Songlists from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Skip the first `n` SongLists.
+     * Skip the first `n` Songlists.
      */
     skip?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
      * 
-     * Filter by unique combinations of SongLists.
+     * Filter by unique combinations of Songlists.
      */
-    distinct?: SongListScalarFieldEnum | SongListScalarFieldEnum[]
+    distinct?: SonglistScalarFieldEnum | SonglistScalarFieldEnum[]
   }
 
   /**
-   * SongList findMany
+   * Songlist findMany
    */
-  export type SongListFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type SonglistFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the SongList
+     * Select specific fields to fetch from the Songlist
      */
-    select?: SongListSelect<ExtArgs> | null
+    select?: SonglistSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the SongList
+     * Omit specific fields from the Songlist
      */
-    omit?: SongListOmit<ExtArgs> | null
+    omit?: SonglistOmit<ExtArgs> | null
     /**
-     * Filter, which SongLists to fetch.
+     * Filter, which Songlists to fetch.
      */
-    where?: SongListWhereInput
+    where?: SonglistWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
-     * Determine the order of SongLists to fetch.
+     * Determine the order of Songlists to fetch.
      */
-    orderBy?: SongListOrderByWithRelationInput | SongListOrderByWithRelationInput[]
+    orderBy?: SonglistOrderByWithRelationInput | SonglistOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
-     * Sets the position for listing SongLists.
+     * Sets the position for listing Songlists.
      */
-    cursor?: SongListWhereUniqueInput
+    cursor?: SonglistWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Take `±n` SongLists from the position of the cursor.
+     * Take `±n` Songlists from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Skip the first `n` SongLists.
+     * Skip the first `n` Songlists.
      */
     skip?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
      * 
-     * Filter by unique combinations of SongLists.
+     * Filter by unique combinations of Songlists.
      */
-    distinct?: SongListScalarFieldEnum | SongListScalarFieldEnum[]
+    distinct?: SonglistScalarFieldEnum | SonglistScalarFieldEnum[]
   }
 
   /**
-   * SongList create
+   * Songlist create
    */
-  export type SongListCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type SonglistCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the SongList
+     * Select specific fields to fetch from the Songlist
      */
-    select?: SongListSelect<ExtArgs> | null
+    select?: SonglistSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the SongList
+     * Omit specific fields from the Songlist
      */
-    omit?: SongListOmit<ExtArgs> | null
+    omit?: SonglistOmit<ExtArgs> | null
     /**
-     * The data needed to create a SongList.
+     * The data needed to create a Songlist.
      */
-    data: XOR<SongListCreateInput, SongListUncheckedCreateInput>
+    data: XOR<SonglistCreateInput, SonglistUncheckedCreateInput>
   }
 
   /**
-   * SongList createMany
+   * Songlist createMany
    */
-  export type SongListCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type SonglistCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * The data used to create many SongLists.
+     * The data used to create many Songlists.
      */
-    data: SongListCreateManyInput | SongListCreateManyInput[]
+    data: SonglistCreateManyInput | SonglistCreateManyInput[]
     skipDuplicates?: boolean
   }
 
   /**
-   * SongList createManyAndReturn
+   * Songlist createManyAndReturn
    */
-  export type SongListCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type SonglistCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the SongList
+     * Select specific fields to fetch from the Songlist
      */
-    select?: SongListSelectCreateManyAndReturn<ExtArgs> | null
+    select?: SonglistSelectCreateManyAndReturn<ExtArgs> | null
     /**
-     * Omit specific fields from the SongList
+     * Omit specific fields from the Songlist
      */
-    omit?: SongListOmit<ExtArgs> | null
+    omit?: SonglistOmit<ExtArgs> | null
     /**
-     * The data used to create many SongLists.
+     * The data used to create many Songlists.
      */
-    data: SongListCreateManyInput | SongListCreateManyInput[]
+    data: SonglistCreateManyInput | SonglistCreateManyInput[]
     skipDuplicates?: boolean
   }
 
   /**
-   * SongList update
+   * Songlist update
    */
-  export type SongListUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type SonglistUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the SongList
+     * Select specific fields to fetch from the Songlist
      */
-    select?: SongListSelect<ExtArgs> | null
+    select?: SonglistSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the SongList
+     * Omit specific fields from the Songlist
      */
-    omit?: SongListOmit<ExtArgs> | null
+    omit?: SonglistOmit<ExtArgs> | null
     /**
-     * The data needed to update a SongList.
+     * The data needed to update a Songlist.
      */
-    data: XOR<SongListUpdateInput, SongListUncheckedUpdateInput>
+    data: XOR<SonglistUpdateInput, SonglistUncheckedUpdateInput>
     /**
-     * Choose, which SongList to update.
+     * Choose, which Songlist to update.
      */
-    where: SongListWhereUniqueInput
+    where: SonglistWhereUniqueInput
   }
 
   /**
-   * SongList updateMany
+   * Songlist updateMany
    */
-  export type SongListUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type SonglistUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * The data used to update SongLists.
+     * The data used to update Songlists.
      */
-    data: XOR<SongListUpdateManyMutationInput, SongListUncheckedUpdateManyInput>
+    data: XOR<SonglistUpdateManyMutationInput, SonglistUncheckedUpdateManyInput>
     /**
-     * Filter which SongLists to update
+     * Filter which Songlists to update
      */
-    where?: SongListWhereInput
+    where?: SonglistWhereInput
     /**
-     * Limit how many SongLists to update.
+     * Limit how many Songlists to update.
      */
     limit?: number
   }
 
   /**
-   * SongList updateManyAndReturn
+   * Songlist updateManyAndReturn
    */
-  export type SongListUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type SonglistUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the SongList
+     * Select specific fields to fetch from the Songlist
      */
-    select?: SongListSelectUpdateManyAndReturn<ExtArgs> | null
+    select?: SonglistSelectUpdateManyAndReturn<ExtArgs> | null
     /**
-     * Omit specific fields from the SongList
+     * Omit specific fields from the Songlist
      */
-    omit?: SongListOmit<ExtArgs> | null
+    omit?: SonglistOmit<ExtArgs> | null
     /**
-     * The data used to update SongLists.
+     * The data used to update Songlists.
      */
-    data: XOR<SongListUpdateManyMutationInput, SongListUncheckedUpdateManyInput>
+    data: XOR<SonglistUpdateManyMutationInput, SonglistUncheckedUpdateManyInput>
     /**
-     * Filter which SongLists to update
+     * Filter which Songlists to update
      */
-    where?: SongListWhereInput
+    where?: SonglistWhereInput
     /**
-     * Limit how many SongLists to update.
+     * Limit how many Songlists to update.
      */
     limit?: number
   }
 
   /**
-   * SongList upsert
+   * Songlist upsert
    */
-  export type SongListUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type SonglistUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the SongList
+     * Select specific fields to fetch from the Songlist
      */
-    select?: SongListSelect<ExtArgs> | null
+    select?: SonglistSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the SongList
+     * Omit specific fields from the Songlist
      */
-    omit?: SongListOmit<ExtArgs> | null
+    omit?: SonglistOmit<ExtArgs> | null
     /**
-     * The filter to search for the SongList to update in case it exists.
+     * The filter to search for the Songlist to update in case it exists.
      */
-    where: SongListWhereUniqueInput
+    where: SonglistWhereUniqueInput
     /**
-     * In case the SongList found by the `where` argument doesn't exist, create a new SongList with this data.
+     * In case the Songlist found by the `where` argument doesn't exist, create a new Songlist with this data.
      */
-    create: XOR<SongListCreateInput, SongListUncheckedCreateInput>
+    create: XOR<SonglistCreateInput, SonglistUncheckedCreateInput>
     /**
-     * In case the SongList was found with the provided `where` argument, update it with this data.
+     * In case the Songlist was found with the provided `where` argument, update it with this data.
      */
-    update: XOR<SongListUpdateInput, SongListUncheckedUpdateInput>
+    update: XOR<SonglistUpdateInput, SonglistUncheckedUpdateInput>
   }
 
   /**
-   * SongList delete
+   * Songlist delete
    */
-  export type SongListDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type SonglistDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the SongList
+     * Select specific fields to fetch from the Songlist
      */
-    select?: SongListSelect<ExtArgs> | null
+    select?: SonglistSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the SongList
+     * Omit specific fields from the Songlist
      */
-    omit?: SongListOmit<ExtArgs> | null
+    omit?: SonglistOmit<ExtArgs> | null
     /**
-     * Filter which SongList to delete.
+     * Filter which Songlist to delete.
      */
-    where: SongListWhereUniqueInput
+    where: SonglistWhereUniqueInput
   }
 
   /**
-   * SongList deleteMany
+   * Songlist deleteMany
    */
-  export type SongListDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type SonglistDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Filter which SongLists to delete
+     * Filter which Songlists to delete
      */
-    where?: SongListWhereInput
+    where?: SonglistWhereInput
     /**
-     * Limit how many SongLists to delete.
+     * Limit how many Songlists to delete.
      */
     limit?: number
   }
 
   /**
-   * SongList without action
+   * Songlist without action
    */
-  export type SongListDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type SonglistDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the SongList
+     * Select specific fields to fetch from the Songlist
      */
-    select?: SongListSelect<ExtArgs> | null
+    select?: SonglistSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the SongList
+     * Omit specific fields from the Songlist
      */
-    omit?: SongListOmit<ExtArgs> | null
+    omit?: SonglistOmit<ExtArgs> | null
   }
 
 
@@ -1880,7 +1880,7 @@ export namespace Prisma {
   export type TransactionIsolationLevel = (typeof TransactionIsolationLevel)[keyof typeof TransactionIsolationLevel]
 
 
-  export const SongListScalarFieldEnum: {
+  export const SonglistScalarFieldEnum: {
     id: 'id',
     name: 'name',
     visibility: 'visibility',
@@ -1888,7 +1888,7 @@ export namespace Prisma {
     cover: 'cover'
   };
 
-  export type SongListScalarFieldEnum = (typeof SongListScalarFieldEnum)[keyof typeof SongListScalarFieldEnum]
+  export type SonglistScalarFieldEnum = (typeof SonglistScalarFieldEnum)[keyof typeof SonglistScalarFieldEnum]
 
 
   export const SortOrder: {
@@ -1951,18 +1951,18 @@ export namespace Prisma {
    */
 
 
-  export type SongListWhereInput = {
-    AND?: SongListWhereInput | SongListWhereInput[]
-    OR?: SongListWhereInput[]
-    NOT?: SongListWhereInput | SongListWhereInput[]
-    id?: StringFilter<"SongList"> | string
-    name?: StringFilter<"SongList"> | string
-    visibility?: StringFilter<"SongList"> | string
-    description?: StringNullableFilter<"SongList"> | string | null
-    cover?: StringNullableFilter<"SongList"> | string | null
+  export type SonglistWhereInput = {
+    AND?: SonglistWhereInput | SonglistWhereInput[]
+    OR?: SonglistWhereInput[]
+    NOT?: SonglistWhereInput | SonglistWhereInput[]
+    id?: StringFilter<"Songlist"> | string
+    name?: StringFilter<"Songlist"> | string
+    visibility?: StringFilter<"Songlist"> | string
+    description?: StringNullableFilter<"Songlist"> | string | null
+    cover?: StringNullableFilter<"Songlist"> | string | null
   }
 
-  export type SongListOrderByWithRelationInput = {
+  export type SonglistOrderByWithRelationInput = {
     id?: SortOrder
     name?: SortOrder
     visibility?: SortOrder
@@ -1970,40 +1970,40 @@ export namespace Prisma {
     cover?: SortOrderInput | SortOrder
   }
 
-  export type SongListWhereUniqueInput = Prisma.AtLeast<{
+  export type SonglistWhereUniqueInput = Prisma.AtLeast<{
     id?: string
-    AND?: SongListWhereInput | SongListWhereInput[]
-    OR?: SongListWhereInput[]
-    NOT?: SongListWhereInput | SongListWhereInput[]
-    name?: StringFilter<"SongList"> | string
-    visibility?: StringFilter<"SongList"> | string
-    description?: StringNullableFilter<"SongList"> | string | null
-    cover?: StringNullableFilter<"SongList"> | string | null
+    AND?: SonglistWhereInput | SonglistWhereInput[]
+    OR?: SonglistWhereInput[]
+    NOT?: SonglistWhereInput | SonglistWhereInput[]
+    name?: StringFilter<"Songlist"> | string
+    visibility?: StringFilter<"Songlist"> | string
+    description?: StringNullableFilter<"Songlist"> | string | null
+    cover?: StringNullableFilter<"Songlist"> | string | null
   }, "id">
 
-  export type SongListOrderByWithAggregationInput = {
+  export type SonglistOrderByWithAggregationInput = {
     id?: SortOrder
     name?: SortOrder
     visibility?: SortOrder
     description?: SortOrderInput | SortOrder
     cover?: SortOrderInput | SortOrder
-    _count?: SongListCountOrderByAggregateInput
-    _max?: SongListMaxOrderByAggregateInput
-    _min?: SongListMinOrderByAggregateInput
+    _count?: SonglistCountOrderByAggregateInput
+    _max?: SonglistMaxOrderByAggregateInput
+    _min?: SonglistMinOrderByAggregateInput
   }
 
-  export type SongListScalarWhereWithAggregatesInput = {
-    AND?: SongListScalarWhereWithAggregatesInput | SongListScalarWhereWithAggregatesInput[]
-    OR?: SongListScalarWhereWithAggregatesInput[]
-    NOT?: SongListScalarWhereWithAggregatesInput | SongListScalarWhereWithAggregatesInput[]
-    id?: StringWithAggregatesFilter<"SongList"> | string
-    name?: StringWithAggregatesFilter<"SongList"> | string
-    visibility?: StringWithAggregatesFilter<"SongList"> | string
-    description?: StringNullableWithAggregatesFilter<"SongList"> | string | null
-    cover?: StringNullableWithAggregatesFilter<"SongList"> | string | null
+  export type SonglistScalarWhereWithAggregatesInput = {
+    AND?: SonglistScalarWhereWithAggregatesInput | SonglistScalarWhereWithAggregatesInput[]
+    OR?: SonglistScalarWhereWithAggregatesInput[]
+    NOT?: SonglistScalarWhereWithAggregatesInput | SonglistScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"Songlist"> | string
+    name?: StringWithAggregatesFilter<"Songlist"> | string
+    visibility?: StringWithAggregatesFilter<"Songlist"> | string
+    description?: StringNullableWithAggregatesFilter<"Songlist"> | string | null
+    cover?: StringNullableWithAggregatesFilter<"Songlist"> | string | null
   }
 
-  export type SongListCreateInput = {
+  export type SonglistCreateInput = {
     id?: string
     name: string
     visibility: string
@@ -2011,7 +2011,7 @@ export namespace Prisma {
     cover?: string | null
   }
 
-  export type SongListUncheckedCreateInput = {
+  export type SonglistUncheckedCreateInput = {
     id?: string
     name: string
     visibility: string
@@ -2019,7 +2019,7 @@ export namespace Prisma {
     cover?: string | null
   }
 
-  export type SongListUpdateInput = {
+  export type SonglistUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     visibility?: StringFieldUpdateOperationsInput | string
@@ -2027,7 +2027,7 @@ export namespace Prisma {
     cover?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
-  export type SongListUncheckedUpdateInput = {
+  export type SonglistUncheckedUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     visibility?: StringFieldUpdateOperationsInput | string
@@ -2035,7 +2035,7 @@ export namespace Prisma {
     cover?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
-  export type SongListCreateManyInput = {
+  export type SonglistCreateManyInput = {
     id?: string
     name: string
     visibility: string
@@ -2043,7 +2043,7 @@ export namespace Prisma {
     cover?: string | null
   }
 
-  export type SongListUpdateManyMutationInput = {
+  export type SonglistUpdateManyMutationInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     visibility?: StringFieldUpdateOperationsInput | string
@@ -2051,7 +2051,7 @@ export namespace Prisma {
     cover?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
-  export type SongListUncheckedUpdateManyInput = {
+  export type SonglistUncheckedUpdateManyInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     visibility?: StringFieldUpdateOperationsInput | string
@@ -2094,7 +2094,7 @@ export namespace Prisma {
     nulls?: NullsOrder
   }
 
-  export type SongListCountOrderByAggregateInput = {
+  export type SonglistCountOrderByAggregateInput = {
     id?: SortOrder
     name?: SortOrder
     visibility?: SortOrder
@@ -2102,7 +2102,7 @@ export namespace Prisma {
     cover?: SortOrder
   }
 
-  export type SongListMaxOrderByAggregateInput = {
+  export type SonglistMaxOrderByAggregateInput = {
     id?: SortOrder
     name?: SortOrder
     visibility?: SortOrder
@@ -2110,7 +2110,7 @@ export namespace Prisma {
     cover?: SortOrder
   }
 
-  export type SongListMinOrderByAggregateInput = {
+  export type SonglistMinOrderByAggregateInput = {
     id?: SortOrder
     name?: SortOrder
     visibility?: SortOrder

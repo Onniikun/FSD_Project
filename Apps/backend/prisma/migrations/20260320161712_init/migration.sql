@@ -1,10 +1,10 @@
 -- CreateTable
-CREATE TABLE "SongList" (
+CREATE TABLE "Songlist" (
     "id" TEXT NOT NULL,
     "name" TEXT NOT NULL,
     "visibility" TEXT NOT NULL,
     "description" TEXT,
     "cover" TEXT,
 
-    CONSTRAINT "SongList_pkey" PRIMARY KEY ("id")
+    CONSTRAINT "Songlist_pkey" PRIMARY KEY ("id")
 );
