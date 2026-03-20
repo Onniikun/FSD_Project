@@ -28,13 +28,8 @@ export const validate = <T>(schema: ObjectSchema<T>, data:T): void => {
 export const validateRequest = (schema: ObjectSchema): MiddlewareFunction => {
     return(req: Request, res: Response, next: NextFunction) => {
         try {
-            const data: RequestData = {
-                ...req.body,
-                ...req.params,
-                ...req.query
-            };
-            validate(schema, data);
             // invoke next middleware if no error is caught
+            validate(schema, req.body);
             next();
         } catch(error) {
             res.status(HTTP_STATUS.BAD_REQUEST).json({error: (error as Error).message});
