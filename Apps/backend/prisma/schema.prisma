@@ -15,58 +15,61 @@ datasource db {
 
 // Song Item model
 model SongItem {
-  SongItem_ID     Int @id @default(autoincrement())
-  links           Links[]
-  Title           String
-  artist          Song_artist[]
-  Release_date    DateTime?
-  genre           Song_genre[]
-  Runtime         String?
-  Cover           String?
+  id           Int          @id @default(autoincrement())
+  title        String
+  releaseDate  DateTime?
+  runtime      String?
+  cover        String?
+ 
+  links        Link[]
+  artists      SongArtist[]
+  genres       SongGenre[]
 }
-
-// Song Item Platform that has a one to many relationship.
-model Links {
-  Links_ID        Int @id @default(autoincrement())
-  SongItem_ID     Int 
-  Platform        String
-  URL             String
-
-  SongItem SongItem @relation(fields: [SongItem_ID], references: [SongItem_ID])
+ 
+// Song Item Platform (one-to-many)
+model Link {
+  id         Int      @id @default(autoincrement())
+  songItemId Int
+  platform   String
+  url        String
+ 
+  songItem   SongItem @relation(fields: [songItemId], references: [id])
 }
-
-model Song_Artist {
-  SongItem_ID     Int 
-  Artist_ID       Int
-
-  songItem SongItem @relation(fields: [SongItem_ID], references: [SongItem_ID])
-  artist   Artist   @relation(fields: [Artist_ID], references: [Artist_ID])
-
-  @@id([SongItem_ID, Artist_ID])
+ 
+// Pivot: Song <-> Artist (many-to-many)
+model SongArtist {
+  songItemId Int
+  artistId   Int
+ 
+  songItem   SongItem @relation(fields: [songItemId], references: [id])
+  artist     Artist   @relation(fields: [artistId], references: [id])
+ 
+  @@id([songItemId, artistId])
 }
-
+ 
 model Artist {
-  Artist_ID       Int @id @default(autoincrement())
-  Artist_name     String @unique
-
-  songs song_Artist[]
+  id        Int          @id @default(autoincrement())
+  name      String       @unique
+ 
+  songs     SongArtist[]
 }
-
+ 
 model Genre {
-  Genre_ID        Int @id @default(autoincrement())
-  Genre_name      String @unique
-
-  songs song_Genre[]
+  id        Int          @id @default(autoincrement())
+  name      String       @unique
+ 
+  songs     SongGenre[]
 }
-
-model Song_Genre {
-  SongItem_ID     Int 
-  Genre_ID        Int
-
-  songItem SongItem @relation(fields: [SongItem_ID], references: [SongItem_ID])
-  genre    Genre    @relation(fields: [Genre_ID], references: [Genre_ID])
-  
-  @@id([SongItem_ID, Genre_ID]) 
+ 
+// Pivot: Song <-> Genre (many-to-many)
+model SongGenre {
+  songItemId Int
+  genreId    Int
+ 
+  songItem   SongItem @relation(fields: [songItemId], references: [id])
+  genre      Genre    @relation(fields: [genreId], references: [id])
+ 
+  @@id([songItemId, genreId])
 }
 
 
