@@ -2,13 +2,18 @@ import Joi, { ObjectSchema } from "joi";
 import { platform } from "node:os";
 
 /**
+ * Song Item schema for validation.
  * 
+ * When artists or users create a Song Item they must
+ * apply a title, artist's name, genre. runtime and platform link.
  * 
+ * Parameters like cover, and release date are optional since there 
+ * might not be a cover for the song item and release date if the date is unknown(lost media)
  * 
  * 
  * Reference for array schema: https://joi.dev/api/?v=17.13.3
  */
-export const CreateSongItemSchema: ObjectSchema = Joi.object({
+export const SongItemSchema: ObjectSchema = Joi.object({
     title: Joi.string().required().messages({
         "any.required": "Title is required",
         "string.empty": "Title cannot be empty"
@@ -40,5 +45,5 @@ export const CreateSongItemSchema: ObjectSchema = Joi.object({
         url: Joi.string().required().messages({
             "any.required": "URL must be valid/accessable",
         })
-    })).optional(),
+    })).required(),
 })

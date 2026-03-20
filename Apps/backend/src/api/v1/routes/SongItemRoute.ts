@@ -1,11 +1,26 @@
 import express, {Router} from "express";
+import { validateRequest } from "../middleware/errorHandler";
+import { SongItemSchema } from "../validations/SongItemValidation"
 import * as songItem from "../controllers/SongItemController"
-
 
 const router: Router = express();
 
-router.get("/songs", songItem.getAllSongItems)
-router.get("/songs/:id", songItem.getSongItemId)
-router.post("/songs", songItem.createSongItem)
-router.put("/songs/:id", songItem.updateSongItem)
-router.delete("/songs/:id", songItem.deleteSongItems)
+/**
+ * List of Song Item Routers.
+ */
+router.get("/songs", 
+    songItem.getAllSongItems)
+
+router.get("/songs/:id", 
+    songItem.getSongItemId)
+
+router.post("/songs", 
+    validateRequest(SongItemSchema),
+    songItem.createSongItem)
+
+router.put("/songs/:id", 
+    validateRequest(SongItemSchema),
+    songItem.updateSongItem)
+
+router.delete("/songs/:id", 
+    songItem.deleteSongItems)
