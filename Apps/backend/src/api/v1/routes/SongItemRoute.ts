@@ -1,5 +1,5 @@
 import express, {Router} from "express";
-import { validateRequest } from "../middleware/errorHandler";
+import { validateRequest } from "../middleware/validate";
 import { SongItemSchema } from "../validations/SongItemValidation"
 import * as songItem from "../controllers/SongItemController"
 
