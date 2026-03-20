@@ -49,14 +49,14 @@ model Artist {
   Artist_ID       Int @id @default(autoincrement())
   Artist_name     String @unique
 
-  songs Song_artist[]
+  songs song_Artist[]
 }
 
 model Genre {
   Genre_ID        Int @id @default(autoincrement())
   Genre_name      String @unique
 
-  songs Song_genre[]
+  songs song_Genre[]
 }
 
 model Song_Genre {
