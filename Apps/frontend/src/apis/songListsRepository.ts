@@ -1,7 +1,7 @@
 import { songListData } from "./mockSongListData";
 import { resolveSongs } from "./resolveSongs";
-import type { CreateSongListData, SongList } from "../types/songListTypes";
-import type { SongListRecord } from "../types/songListRecord";
+import type { CreateSongListData, SongList } from "../../../../shared/types/songListTypes";
+import type { SongListRecord } from "../../../../shared/types/songListRecord";
 
 /**
  * Converts a SongListRecord (which stores only song IDs)

@@ -1,4 +1,4 @@
-import type { SongListRecord } from "../types/songListRecord";
+import type { SongListRecord } from "../../../../shared/types/songListRecord";
 
 export const songListData: SongListRecord[] = [
     {

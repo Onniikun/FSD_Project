@@ -1,4 +1,4 @@
-import type { Song } from "./songModel";
+import type { Song } from "../../apps/frontend/src/types/songModel";
 
 export type VisibilityOption = "private" | "public";
 

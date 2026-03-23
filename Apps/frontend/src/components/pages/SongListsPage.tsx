@@ -4,7 +4,7 @@ import SongListsDisplay from "../common/song-list-display/SongListsDisplay";
 import { MoodSelector } from "../common/mood-selector/MoodSelector";
 import { useMood } from "../../hooks/useMood";
 
-import type { CreateSongListData, SongList } from "../../types/songListTypes";
+import type { CreateSongListData, SongList } from "../../../../../shared/types/songListTypes";
 import {
   fetchSongLists,
   createSongList,
