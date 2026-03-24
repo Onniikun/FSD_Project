@@ -2,7 +2,7 @@ import { Request, Response, NextFunction } from "express";
 import { successResponse } from "../response/models";
 import * as SongItemService from "../services/SongItemService";
 import { HTTP_STATUS } from "../constants/httpConstant";
-import { SongItem } from "../../../generated/prisma/client";
+import { SongItem } from "@prisma/client"
 
 /**
  * A controller method that handles the request from the getAllSongItems function.
@@ -16,7 +16,7 @@ export const getAllSongItems = async(
    next: NextFunction 
 ): Promise<void> => {
     try {
-        const songItem = await SongItemService.getAllSongItems();
+        const songItem = await SongItemService.getAllsongItems();
         res.status(HTTP_STATUS.OK).json(
             successResponse(songItem, "All song items returned successfully.")
         );
@@ -41,7 +41,7 @@ export const getSongItemId = async(
             ? req.params.id[0]
             : req.params.id;
         const songitemID: SongItem | null = await 
-            SongItemService.getSongItemId(Number.parseInt(id))
+            SongItemService.getsongItemId(Number.parseInt(id))
 
         if (songitemID) {
             res.status(HTTP_STATUS.OK).json(
@@ -66,7 +66,7 @@ export const createSongItem = async(
     next: NextFunction 
 ): Promise<void> => {
     try {
-        const songItem = await SongItemService.createSongItem(req.body)
+        const songItem = await SongItemService.createsongItem(req.body)
         res.status(HTTP_STATUS.CREATED).json(
             successResponse(songItem, "New Song Item created.")
         )
@@ -92,7 +92,7 @@ export const updateSongItem = async(
         const songitemID = typeof req.params.id === "string"
         ? Number.parseInt(req.params.id)
         : Number.parseInt(req.params.id[0])
-    await SongItemService.updateSongItem(songitemID, req.body)
+    await SongItemService.updatesongItem(songitemID, req.body)
     res.status(HTTP_STATUS.OK).json(
         successResponse(`Song Item: ${songitemID} has been updated.`)
     )
@@ -115,7 +115,7 @@ export const deleteSongItems = async(
         const songitemID = typeof req.params.id === "string"
             ? Number.parseInt(req.params.id)
             : Number.parseInt(req.params.id[0])
-        await SongItemService.deleteSongItem(songitemID)
+        await SongItemService.deletesongItem(songitemID)
         res.status(HTTP_STATUS.OK).json(
             successResponse(null, `Song Item: ${songitemID} has be deleted.`)
         )
