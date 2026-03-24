@@ -3,7 +3,7 @@ import { validateRequest } from "../middleware/validate";
 import { SongItemSchema } from "../validations/SongItemValidation"
 import * as songItem from "../controllers/SongItemController"
 
-const router: Router = express();
+const router: Router = express.Router();
 
 /**
  * List of Song Item Routers.
@@ -24,3 +24,5 @@ router.put("/songs/:id",
 
 router.delete("/songs/:id", 
     songItem.deleteSongItems)
+
+export default router;
