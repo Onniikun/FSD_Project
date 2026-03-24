@@ -7,7 +7,7 @@ import { Link, useParams } from 'react-router-dom'
 import { GenreFilter } from "../song-filter/GenreFilter.tsx"
 import { Links } from "../song-links/SongLinks.tsx"
 import { LinksFilter } from "../song-filter/LinkFilter.tsx" 
-import { Upvote } from "../song-upvote/SongUpvote.tsx"
+import { AddCollection } from "../song-upvote/SongAddCollection.tsx"
 
 import { fetchAllSongs } from "../../../../apis/SongItemRepo.ts"
 import { useSortFilter } from "../../../../hooks/useSortAndFilterUI.ts"
@@ -75,7 +75,6 @@ export function SongItem({ query = "" }: { query?: string }) {
                 <GenreFilter onChange={setSelectedGenre} />
                 <LinksFilter onChange={setSelectedLinks} />
             </>)}
-        {console.log("Name of songs", displayedSongs)}
         <section className="song-item">
             <ul>
                 {displayedSongs.length === 0 ? (
@@ -103,7 +102,7 @@ export function SongItem({ query = "" }: { query?: string }) {
                                 day: "numeric",
                             })}</p>
                             <p>Runtime: {song.runtime}</p>  
-                            <Upvote />                   
+                            <AddCollection />                   
                         </div>
                     </li>
                 )))}
