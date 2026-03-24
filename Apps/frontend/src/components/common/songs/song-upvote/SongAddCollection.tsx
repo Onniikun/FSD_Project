@@ -28,6 +28,7 @@ export function AddCollection() {
   p: 4,
 };
     // Addcollection button -> lists of song lists modal(added)
+    // Reference: https://mui.com/material-ui/react-modal/
     return(
         <>
         <section className="collection">

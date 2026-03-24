@@ -75,6 +75,7 @@ export function SongItem({ query = "" }: { query?: string }) {
                 <GenreFilter onChange={setSelectedGenre} />
                 <LinksFilter onChange={setSelectedLinks} />
             </>)}
+           {console.log("Name of songs", displayedSongs)}
         <section className="song-item">
             <ul>
                 {displayedSongs.length === 0 ? (
