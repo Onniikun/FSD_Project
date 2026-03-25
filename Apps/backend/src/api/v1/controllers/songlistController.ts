@@ -2,6 +2,7 @@ import { Request, Response, NextFunction } from "express";
 import { Songlist } from "../../../../generated/prisma/client";
 import * as songlistService from "../services/songlistService";
 import { successResponse } from "../models/responseModel";
+import { HTTP_STATUS } from "../constants/httpConstant";
 
 /**
  * Manages requests and responses to retrieve all Songlists.
@@ -15,7 +16,7 @@ export const getAllSonglists = async (
 ): Promise<void> => {
     try {
         const songlists = await songlistService.fetchAllSonglists();
-        res.status(200).json(
+        res.status(HTTP_STATUS.OK).json(
             successResponse(songlists, "Songlists retrieved successfully")
         );
     } catch (error) {
@@ -61,7 +62,7 @@ export const createSonglist = async (
 ): Promise<void> => {
     try {
         const newSonglist = await songlistService.createSonglist(req.body);
-        res.status(201).json(
+        res.status(HTTP_STATUS.CREATED).json(
             successResponse(newSonglist, "Songlist created successfully")
         );
     } catch (error) {
@@ -86,7 +87,7 @@ export const updateSonglist = async (
             id,
             req.body
         );
-        res.status(200).json(
+        res.status(HTTP_STATUS.OK).json(
             successResponse(updatedSonglist, `Songlist ${id} updated successfully`)
         );
     } catch (error) {
@@ -108,7 +109,7 @@ export const deleteSonglist = async (
         const id = req.params.id as string;
 
         await songlistService.deleteSonglist(id);
-        res.status(200).json(
+        res.status(HTTP_STATUS.OK).json(
             successResponse(null, `Songlist ${id} deleted successfully`)
         );
     } catch (error) {

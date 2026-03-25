@@ -1,4 +1,4 @@
-import type { VisibilityOption } from "../types/songListTypes"
+import type { VisibilityOption } from "../../../../shared/types/songListTypes.ts";
 import type { Song } from "../types/songModel.ts"
 
 export interface CreateSongListInput  {

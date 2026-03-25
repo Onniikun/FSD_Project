@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import "./create-song-list-form.css";
 
 import type { Song } from "../../../types/songModel";
-import type { CreateSongListData, VisibilityOption } from "../../../types/songListTypes";
+import type { CreateSongListData, VisibilityOption } from "../../../../../../shared/types/songListTypes";
 import defaultCover from "../../../assets/default-cover.png";
 import { useSearch } from "../../../hooks/useSearch";
 import { SearchService } from "../../../services/songSearchService";

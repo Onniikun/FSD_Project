@@ -1,106 +1,114 @@
-import { songListData } from "./mockSongListData";
-import { resolveSongs } from "./resolveSongs";
-import type { CreateSongListData, SongList } from "../types/songListTypes";
-import type { SongListRecord } from "../types/songListRecord";
+import type { CreateSongListData, SongList } from "../../../../shared/types/songListTypes";
+import type { SongListRecord } from "../../../../shared/types/songListRecord";
+
+type SongListsResponseJSON = { message: string; data: SongList[] };
+type SongListResponseJSON = { message: string; data: SongList };
+const BASE_URL = `${import.meta.env.VITE_API_BASE_URL}/api/v1`;
+const SONGLIST_ENDPOINT = "/songlists"
 
 /**
- * Converts a SongListRecord (which stores only song IDs)
- * into a fully hydrated SongList containing full Song objects.
- *
- * Missing or deleted songs are silently ignored, ensuring the UI
- * always receives a clean, usable list of Song objects.
- *
- * @param record - The SongListRecord to hydrate into a full SongList
- * @returns A fully hydrated SongList with resolved Song objects
+ * Fetches all song lists from the backend.
+ * @returns All song lists returned by the server.
+ * @throws Error if the request fails or the server responds with an error
  */
-function hydrate(record: SongListRecord): SongList {
-    return {
-        ...record,
-        songs: resolveSongs(record.songIds)
-    };
-}
+export async function fetchSongLists(): Promise<SongList[]> {
+    const response: Response = await fetch(`${BASE_URL}${SONGLIST_ENDPOINT}`);
+
+    if (!response.ok) {
+        throw new Error("Failed to fetch all song lists");
+    }
+
+    const json: SongListsResponseJSON = await response.json();
+    return json.data;
+};
 
 /**
- * Retrieves all song lists from the mock database.
- * Each list is hydrated so the UI receives full Song objects.
- *
- * @returns An array of fully hydrated SongLists
- */
-export function fetchSongLists(): SongList[] {
-    return songListData.map(hydrate);
-}
-
-/**
- * Retrieves a single song list by its unique ID.
- * Throws an error if the list cannot be found.
- *
+ * Fetches a single song list by its unique ID.
  * @param listId - The ID of the song list to retrieve
- * @returns A fully hydrated SongList
- * @throws Error if no song list with the given ID exists
+ * @returns The requested song list
+ * @throws Error if the song list cannot be found or the request fails
  */
-export function getSongListById(listId: string): SongList {
-    const found = songListData.find(l => l.id === listId);
-    if (!found) throw new Error(`Failed to fetch song list with id ${listId}`);
-    return hydrate(found);
-}
+export async function getSongListById(listId: string): Promise<SongList> {
+    const response: Response = await fetch(
+        `${BASE_URL}${SONGLIST_ENDPOINT}/${listId}`
+    );
+
+    if (!response.ok) {
+        throw new Error(`Failed to fetch song list with id ${listId}`);
+    }
+
+    const json: SongListResponseJSON = await response.json();
+    return json.data;
+};
 
 /**
- * Creates a new song list using the provided data.
- * A unique ID is generated automatically.
- *
- * The new list is stored as a SongListRecord (IDs only),
- * then hydrated before being returned to the UI.
- *
- * @param newSongList - The data required to create a new song list
+ * Creates a new song list with the provided data.
+ * @param data - The data required to create the song list
  * @returns The newly created and hydrated SongList
+ * @throws Error if creation fails or the server responds with an error
  */
 export async function createSongList(data: CreateSongListData): Promise<SongList> {
-    const record: SongListRecord = {
-        id: crypto.randomUUID(),
-        ...data
-    };
+    const response: Response = await fetch(`${BASE_URL}${SONGLIST_ENDPOINT}`, {
+        method: "POST",
+        body: JSON.stringify(data),
+        headers: { 
+            "Content-Type": "application/json", 
+        },
+        
+    });
 
-    songListData.push(record);
-    return hydrate(record);
-}
+    if (!response.ok) {
+        throw new Error("Failed to create a song list");
+    }
+
+    const json: SongListResponseJSON = await response.json();
+    return json.data;
+};
 
 /**
  * Updates an existing song list.
- * Throws an error if the list cannot be found.
- *
- * The updated record is stored, then hydrated before returning.
- *
- * @param updated - The modified SongListRecord to save
- * @returns The updated and hydrated SongList
- * @throws Error if no song list with the given ID exists
+ * @param updated - The updated song list data
+ * @returns The updated song list
+ * @throws Error if no song list with the given ID exists or the update fails
  */
 export async function updateSongList(updated: SongListRecord): Promise<SongList> {
-    const index = songListData.findIndex(list => list.id === updated.id);
-    if (index === -1) throw new Error(`Failed to update song list with id ${updated.id}`);
+    const response: Response = await fetch(
+        `${BASE_URL}${SONGLIST_ENDPOINT}/${updated.id}`, 
+        {
+            method: "PUT",
+            body: JSON.stringify(updated),
+            headers: { 
+                "Content-Type": "application/json",
+            },
+        }
+    );
 
-    songListData[index] = {
-        ...songListData[index],
-        ...updated
-    };
+    if (!response.ok) {
+        throw new Error(`Failed to update the song list with id ${updated.id}`);
+    }
 
-    return hydrate(songListData[index]);
-}
+    const json: SongListResponseJSON = await response.json();
+    return json.data;
+};
 
 /**
  * Deletes a song list by its ID.
- * Throws an error if the list cannot be found.
- *
- * The removed record is hydrated before being returned,
- * allowing the UI to display what was deleted if needed.
- *
  * @param listId - The ID of the song list to delete
- * @returns The deleted SongList, hydrated
- * @throws Error if no song list with the given ID exists
+ * @returns The deleted song list
+ * @throws Error if no song list with the given ID exists or the deletion fails
  */
 export async function deleteSongList(listId: string): Promise<SongList> {
-    const index = songListData.findIndex(list => list.id === listId);
-    if (index === -1) throw new Error(`Failed to delete song list with id ${listId}`);
+    const response: Response = await fetch(
+        `${BASE_URL}${SONGLIST_ENDPOINT}/${listId}`, 
+        {
+            method: "DELETE"
+        }
+    );
 
-    const removed = songListData.splice(index, 1)[0];
-    return hydrate(removed);
-}
+    if (!response.ok) {
+        throw new Error(`Failed to delete song list with id ${listId}`);
+    }
+
+    const json: SongListResponseJSON = await response.json();
+    return json.data;
+};

@@ -1,5 +1,5 @@
 import "./song-list-card.css";
-import type { SongList } from "../../../types/songListTypes";
+import type { SongList } from "../../../../../../shared/types/songListTypes";
 import defaultCover from "../../../assets/default-cover.png";
 
 export function SongListCard({
