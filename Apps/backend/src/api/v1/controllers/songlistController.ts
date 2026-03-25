@@ -1,5 +1,5 @@
 import { Request, Response, NextFunction } from "express";
-import { Songlist } from "@prisma/client";
+import { Songlist } from "../../../../generated/prisma/client";
 import * as songlistService from "../services/songlistService";
 import { successResponse } from "../models/responseModel";
 
