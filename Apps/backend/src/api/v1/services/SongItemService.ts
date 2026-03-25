@@ -1,11 +1,11 @@
 import { prisma } from "../../../../lib/prisma";
-import { songItem } from "@prisma/client"
+import { SongItem } from "../../../../generated/prisma/client"
 
 /**
  * Retrieves all Song Item from Boombox database.
  * @returns -  All Song Items.
  */
-export const getAllsongItems = async(): Promise<songItem[]> => {
+export const getAllsongItems = async(): Promise<SongItem[]> => {
     return (await prisma.songItem.findMany({
         orderBy: {
             title: "asc"
@@ -17,18 +17,14 @@ export const getAllsongItems = async(): Promise<songItem[]> => {
  * @param id - Song Item ID number.
  * @returns - A specific Song Item.
  */
-export const getsongItemId = async(id: number): Promise<songItem | null> => {
+export const getsongItemId = async(id: number): Promise<SongItem | null> => {
     try {
         const songItem = prisma.songItem.findUnique({
             where: {
                 id: id
             }
         })
-        if(!id){
-            return null
-        } else {
-            return songItem
-        }
+        return songItem
     } catch (error) {
         throw new Error(`Failed to retrieve Song Item by ID number: ${id}`)
     }
@@ -44,39 +40,41 @@ export const getsongItemId = async(id: number): Promise<songItem | null> => {
  */
 export const createsongItem = async(songItemData: {
     title: string;
-    artist: string[];
-    genre: string[];
+    artists: string[];
+    genres: string[];
     release_date?: Date;
     runtime?: string;
     cover?: string;
     links?: { platform: string; url: string }[];
-}): Promise<songItem> => {
-    const newsongItem: songItem = await prisma.songItem.create({
+}): Promise<SongItem> => {
+    const newsongItem: SongItem = await prisma.songItem.create({
         // Data is that part of the main database with single static values.
         data: {
             title: songItemData.title,
-            releaseDate: songItemData.release_date,
+            releaseDate: songItemData.release_date
+            ? new Date(songItemData.release_date)
+            : undefined,
             runtime: songItemData.runtime,
             cover: songItemData.cover,
             // Since artist and genres can belong to many different songItems
             // They have to be sepearted to so that each Song Item ID is different from each other.
             // https://www.prisma.io/docs/orm/reference/prisma-client-reference
             artists: {
-                create: songItemData.artist.map((name) =>({
+                create: songItemData.artists.map((name) =>({
                     artist: {
                         connectOrCreate: {
-                            where: { name: name },
-                            create: { name: name },
+                            where: { name },
+                            create: { name },
                         }
                     }
                 }))
             },
             genres: {
-                create: songItemData.genre.map((name) =>({
+                create: songItemData.genres.map((name) =>({
                     genre: {
                         connectOrCreate: {
-                            where: { name: name },
-                            create:{ name: name },
+                            where: { name },
+                            create:{ name },
                         }
                     }
                 }))
@@ -105,17 +103,23 @@ export const createsongItem = async(songItemData: {
 export const updatesongItem = async(id: number, 
     songItem: {
         title: string, 
-        release_date: Date, 
+        release_date: Date | string, 
         runtime: string, 
         cover: string, 
     }
-): Promise<songItem>  => {
+): Promise<SongItem>  => {
     const updatedsongItem = await prisma.songItem.update({
         where: {
             id: id
         },
         data: {
-            ...songItem
+            title: songItem.title,
+            releaseDate: songItem.release_date
+                ? new Date(songItem.release_date) 
+                : undefined,
+            runtime: songItem.runtime,
+            cover: songItem.cover,
+
         }
     });
     return updatedsongItem
@@ -125,9 +129,34 @@ export const updatesongItem = async(id: number,
  * @param id - Song Item ID number.
  */
 export const deletesongItem = async(id: number): Promise<void> => {
+    /**
+     * Deletes the joiner tables to full get rid of that Song Item
+     * Regardless if they share the same genre, artist or collection.
+     */
+    await prisma.songArtist.deleteMany({
+        where: {
+            songItemId: id
+        }
+    });
+    await prisma.songGenre.deleteMany({
+        where: {
+            songItemId: id
+        }
+    });
+    await prisma.songCollection.deleteMany({
+        where: {
+            songId: id
+        }
+    });
+    await prisma.link.deleteMany({
+        where: {
+            songItemId: id
+        }
+    });
+    //Deletes the initial song item data(title, releasedate etc.)
     await prisma.songItem.delete({
         where: {
             id: id
         }
-    })
+    });
 }

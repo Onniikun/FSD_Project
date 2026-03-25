@@ -20,7 +20,7 @@ export const SongItemSchema: ObjectSchema = Joi.object({
     }),
     // Since we use an array for storing mulitple artists and genres
     // we use the array Joi schema.
-    artist: Joi.array().items(Joi.string().min(1)).min(1).required().messages({
+    artists: Joi.array().items(Joi.string().min(1)).min(1).required().messages({
        "array.base": "Artist is required",
        "array.min": "Artist needs atleast one value"
     }),

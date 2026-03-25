@@ -1,21 +1,10 @@
-import dotenv from "dotenv";
-dotenv.config();
+import app from "./app";
+import { Server } from "http";
 
-import express from "express";
-import cors from "cors";
-import { corsOptions } from "../config/cors";
+const PORT: string | number = process.env.PORT || 3000;
 
-const app = express();
-
-app.use(cors(corsOptions));
-app.use(express.json());
-
-const PORT: string | 3000 = process.env.PORT || 3000;
-
-app.get("/api/test", (req, res) => {
-  res.json({ message: "Backend is reachable" });
+const server: Server = app.listen(PORT, () => {
+    console.log(`Server is running on port ${PORT}`);
 });
 
-app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}`);
-});
+export default server;
