@@ -8,21 +8,21 @@ const router: Router = express.Router();
 /**
  * List of Song Item Routers.
  */
-router.get("/", 
+router.get("/songs", 
     songItem.getAllSongItems)
 
-router.get("/:id", 
+router.get("/songs/:id", 
     songItem.getSongItemId)
 
-router.post("/", 
+router.post("/songs", 
     validateRequest(SongItemSchema),
     songItem.createSongItem)
 
-router.put("/:id", 
+router.put("/songs/:id", 
     validateRequest(SongItemSchema),
     songItem.updateSongItem)
 
-router.delete("/:id", 
+router.delete("/songs/:id", 
     songItem.deleteSongItems)
 
 export default router;

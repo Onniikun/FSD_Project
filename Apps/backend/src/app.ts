@@ -15,7 +15,7 @@ app.use(morgan("combined"));
 app.use(express.json());
 app.use(cors(corsOptions));
 
-app.use("/api/v1/songs", SongItemRoute);
+app.use("/api/v1", SongItemRoute);
 app.use("/api/v1", songlistRoutes);
 app.use(errorHandler);
 

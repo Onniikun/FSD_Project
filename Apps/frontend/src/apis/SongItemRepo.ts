@@ -3,8 +3,8 @@ import type { SongItemSchema } from "../../../../shared/types/SongItemSchema";
 /**
  * Global variables that takes base URL for backend.
  */
-type SongItemsResponseJSON = {message: String, data: SongItemSchema[]};
-type SongItemResponseJSON = {message: String, data: SongItemSchema};
+type SongItemsResponseJSON = {message: string, data: SongItemSchema[]};
+type SongItemResponseJSON = {message: string, data: SongItemSchema};
 const BASE_URL = `${import.meta.env.VITE_API_BASE_URL}/api/v1`;
 const SONGITEM_ENDPOINT = "/songs"
 
@@ -47,9 +47,9 @@ export async function fetchSongById(songId: number): Promise<SongItemSchema>  {
  * @param id - Song ID number.
  * @returns - New Song Item.
  */
-export async function name(newSongItem: SongItemSchema): Promise<SongItemSchema> {
+export async function createSongItem(newSongItem: SongItemSchema): Promise<SongItemSchema> {
     const songItemSchemaRepo: Response = await fetch(
-        `${BASE_URL}${SONGITEM_ENDPOINT}/${newSongItem}`,
+        `${BASE_URL}${SONGITEM_ENDPOINT}`,
         {
             method: "POST",
             body: JSON.stringify({newSongItem}),
@@ -73,7 +73,7 @@ export async function name(newSongItem: SongItemSchema): Promise<SongItemSchema>
  */
 export async function updateSongItem(updateSongItem: SongItemSchema): Promise<SongItemSchema>  {
     const songItemSchemaRepo: Response = await fetch(
-        `${BASE_URL}${SONGITEM_ENDPOINT}/${updateSongItem}`,
+        `${BASE_URL}${SONGITEM_ENDPOINT}/${updateSongItem.id}`,
         {
             method: "PUT",
             body: JSON.stringify({...updateSongItem}),

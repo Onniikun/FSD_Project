@@ -42,10 +42,18 @@ export function SongItem({ query = "" }: { query?: string }) {
     const [songs, setSongs] = useState<Song[]>([])
     const [selectedLinks, setSelectedLinks] = useState<string[]>([])
     //https://react.dev/reference/react/useEffect
-    useEffect(() => {
-        const SongData = fetchAllSongs()
-        setSongs(SongData)
-        }, [])
+useEffect(() => {
+    async function loadSongs() {
+        try {
+            const data = await fetchAllSongs()
+            setSongs(data)
+        } catch (error) {
+            console.error(error)
+        }
+    }
+
+    loadSongs()
+}, [])
     
     //Filters out genres and available platforms.
     const genreFiltered = filterSongGenre(songs, selectedGenre)
