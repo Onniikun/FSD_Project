@@ -20,22 +20,26 @@ export default function SongListsPage() {
     const { mood } = useMood();
 
     useEffect(() => {
-        const loaded = fetchSongLists();
-        setLists(loaded);
+        async function load() {
+            const loaded = await fetchSongLists();
+            setLists(loaded);
+        }
+        load();
     }, []);
 
-    const handleCreateList = async (data: CreateSongListData) => {
+
+    const handleCreateList = async (data: CreateSongListData): Promise<void> => {
         const newList = await createSongList(data);
         setLists(prev => [...prev, newList]);
     };
 
-    const handleDeleteList = async (id: string) => {
+    const handleDeleteList = async (id: string): Promise<void> => {
         await deleteSongList(id);
         setLists(prev => prev.filter(list => list.id !== id));
         setSelectedList(null);
     };
 
-    const handleUpdateList = async (updated: SongList) => {
+    const handleUpdateList = async (updated: SongList): Promise<void> => {
         const updatedRecord = {
         id: updated.id,
         name: updated.name,
@@ -52,6 +56,8 @@ export default function SongListsPage() {
 
         setSelectedList(saved);
     };
+
+    console.log("Showing lists:", lists);
 
     return (
         <>

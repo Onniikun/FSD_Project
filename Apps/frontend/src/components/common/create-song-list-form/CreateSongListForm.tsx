@@ -13,7 +13,7 @@ import {
 } from "../../../services/SongListService";
 
 interface CreateSongListFormProps {
-  onCreateList: (data: CreateSongListData) => void;
+  onCreateList: (data: CreateSongListData) => Promise<void>;
 }
 
 /**
@@ -45,17 +45,19 @@ export default function CreateSongListForm({ onCreateList  }: CreateSongListForm
 
   // Update search results whenever the debounced search value changes
   useEffect(() => {
-    if (!debouncedValue.trim()) {
-      setSearchResults([]);
-      return;
+    async function fetchResults() {
+      if (!debouncedValue.trim()) {
+        setSearchResults([]);
+        return;
+      }
+      const results = SearchService.searchSongs(debouncedValue);
+      setSearchResults(results);
     }
-
-    const results = SearchService.searchSongs(debouncedValue);
-    setSearchResults(results);
+    fetchResults();
   }, [debouncedValue]);
 
   // Add song from search results to the list
- const addSongFromSearch = (song: Song) => {
+  const addSongFromSearch = (song: Song) => {
     setSongs(previousSongs => 
       addSongToList(previousSongs, song));
     clearSearch();
@@ -78,7 +80,7 @@ export default function CreateSongListForm({ onCreateList  }: CreateSongListForm
     });
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.SyntheticEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     const input = {
@@ -94,7 +96,7 @@ export default function CreateSongListForm({ onCreateList  }: CreateSongListForm
 
     if (Object.keys(validationErrors).length > 0) return;
 
-    onCreateList({
+    await onCreateList({
       name,
       visibility,
       description,

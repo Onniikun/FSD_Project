@@ -11,7 +11,7 @@ export function Nav() {
             <NavLink to="/songs" end>
                 SONGS
             </NavLink>
-            <NavLink to="/lists" end>
+            <NavLink to="/songlists" end>
                 LISTS
             </NavLink>
             <NavLink to="/reviews" end>
