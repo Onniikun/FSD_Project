@@ -2,7 +2,7 @@ import { Request, Response, NextFunction } from "express";
 import { successResponse } from "../response/models";
 import * as SongItemService from "../services/SongItemService";
 import { HTTP_STATUS } from "../constants/httpConstant";
-import { SongItem } from "@prisma/client"
+import { SongItem } from "../../../../generated/prisma/client"
 
 /**
  * A controller method that handles the request from the getAllSongItems function.
@@ -45,7 +45,7 @@ export const getSongItemId = async(
 
         if (songitemID) {
             res.status(HTTP_STATUS.OK).json(
-                successResponse(songitemID, `Retrieved song item id${songitemID}`)
+                successResponse(songitemID, `Retrieved song item id${songitemID.id}`)
             )
         } else {
             throw new Error("Cannot get Song Item.")

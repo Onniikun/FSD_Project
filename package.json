@@ -27,7 +27,8 @@
   "dependencies": {
     "@prisma/client": "^7.5.0",
     "dotenv": "^16.4.7",
-    "joi": "^18.0.2"
+    "joi": "^18.0.2",
+    "morgan": "^1.10.1"
   },
   "node_modules/ansi-regex": {
     "version": "5.0.1",
