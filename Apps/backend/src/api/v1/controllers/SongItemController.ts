@@ -45,7 +45,7 @@ export const getSongItemId = async(
 
         if (songitemID) {
             res.status(HTTP_STATUS.OK).json(
-                successResponse(songitemID, `Retrieved song item id${songitemID}`)
+                successResponse(songitemID, `Retrieved song item id${songitemID.id}`)
             )
         } else {
             throw new Error("Cannot get Song Item.")
