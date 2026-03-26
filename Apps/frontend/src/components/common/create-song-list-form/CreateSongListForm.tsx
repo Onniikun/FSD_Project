@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "./create-song-list-form.css";
 
-import type { Song } from "../../../types/songModel";
+import type { SongItemSchema } from "../../../../../../shared/types/SongItemSchema";
 import type { CreateSongListData, VisibilityOption } from "../../../../../../shared/types/songListTypes";
 import defaultCover from "../../../assets/default-cover.png";
 import { useSearch } from "../../../hooks/useSearch";
@@ -25,7 +25,7 @@ export default function CreateSongListForm({ onCreateList  }: CreateSongListForm
   const [name, setName] = useState("");
   const [visibility, setVisibility] = useState<VisibilityOption>("private");
   const [description, setDescription] = useState("");
-  const [songs, setSongs] = useState<Song[]>([]);
+  const [songs, setSongs] = useState<SongItemSchema[]>([]);
   const [cover, setCover] = useState<string | undefined>(undefined);
   const [errors, setErrors] = useState<{
     name?: string; 
@@ -41,7 +41,7 @@ export default function CreateSongListForm({ onCreateList  }: CreateSongListForm
     clearSearch,
   } = useSearch({ debounceMilliseconds: 300 });
 
-  const [searchResults, setSearchResults] = useState<Song[]>([]);
+  const [searchResults, setSearchResults] = useState<SongItemSchema[]>([]);
 
   // Update search results whenever the debounced search value changes
   useEffect(() => {
@@ -50,14 +50,14 @@ export default function CreateSongListForm({ onCreateList  }: CreateSongListForm
         setSearchResults([]);
         return;
       }
-      const results = SearchService.searchSongs(debouncedValue);
+      const results = await SearchService.searchSongs(debouncedValue);
       setSearchResults(results);
     }
     fetchResults();
   }, [debouncedValue]);
 
   // Add song from search results to the list
-  const addSongFromSearch = (song: Song) => {
+  const addSongFromSearch = (song: SongItemSchema) => {
     setSongs(previousSongs => 
       addSongToList(previousSongs, song));
     clearSearch();

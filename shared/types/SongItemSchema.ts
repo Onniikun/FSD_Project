@@ -2,7 +2,7 @@ export interface SongItemSchema {
     id: number;
     title: string;
     artist: string[];
-    release_date: Date;
+    releaseDate: Date;
     genre: string[];
     runtime: string;
     cover: string;
