@@ -1,4 +1,4 @@
-import { Songlist } from "@prisma/client";
+import { Songlist } from "../../../../generated/prisma/client";
 import { prisma } from "../../../../lib/prisma";
 
 /**

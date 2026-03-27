@@ -1,11 +1,11 @@
-import type { VisibilityOption } from "../types/songListTypes"
-import type { Song } from "../types/songModel.ts"
+import type { SongItemSchema } from "../../../../shared/types/SongItemSchema.ts";
+import type { VisibilityOption } from "../../../../shared/types/songListTypes.ts";
 
 export interface CreateSongListInput  {
   name: string;
   visibility: VisibilityOption;
   description: string;
-  songs: Song[];
+  songs: SongItemSchema[];
   cover?: string;
 }
 export interface ValidateSongErrors {
@@ -38,7 +38,7 @@ export function validateList(input: CreateSongListInput): ValidateSongErrors {
  * @param newSong - New song to add.
  * @returns - An array containing the update list.
  */
-export function addSong(songs: Song[], newSong: Song): Song[] {
+export function addSong(songs: SongItemSchema[], newSong: SongItemSchema): SongItemSchema[] {
     const existList = songs.some(
         (song) => song.title === newSong.title && 
         song.artist === newSong.artist
@@ -55,6 +55,6 @@ export function addSong(songs: Song[], newSong: Song): Song[] {
  * @param songs - Current list of songs.
  * @returns - An array containing the update list.
  */
-export function removeSong(songId: number, songs: Song[]): Song[] {
+export function removeSong(songId: number, songs: SongItemSchema[]): SongItemSchema[] {
     return songs.filter((song) => song.id !== songId)
 }

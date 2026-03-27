@@ -1,5 +1,5 @@
 import './song-list-display.css';
-import type { SongList } from "../../../types/songListTypes";
+import type { SongList } from "../../../../../../shared/types/songListTypes";
 import { SongListCard } from "../song-list-card/SongListCard";
 
 export default function SongListsDisplay({

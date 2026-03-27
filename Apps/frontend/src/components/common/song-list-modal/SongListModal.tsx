@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import "./song-list-modal.css";
-import type { Song } from "../../../types/songModel";
-import type { SongList } from "../../../types/songListTypes";
+import type { SongItemSchema } from "../../../../../../shared/types/SongItemSchema";
+import type { SongList } from "../../../../../../shared/types/songListTypes";
 import defaultCover from "../../../assets/default-cover.png";
 import { SearchService } from "../../../services/songSearchService";
 import { validateList, addSong as addSongToList, removeSong as removeSongFromList } from "../../../services/SongListService";
@@ -41,21 +41,25 @@ export function SongListModal({
 
   // Search state
   const [searchValue, setSearchValue] = useState("");
-  const [searchResults, setSearchResults] = useState<Song[]>([]);
+  const [searchResults, setSearchResults] = useState<SongItemSchema[]>([]);
   const [isFocused, setIsFocused] = useState(false);
 
   const navigate = useNavigate();
 
   // Search effect
   useEffect(() => {
-    if (!searchValue.trim()) {
-      setSearchResults([]);
-      return;
+    async function fetchResults() {
+      if (!searchValue.trim()) {
+        setSearchResults([]);
+        return;
+      }
+      const results = await SearchService.searchSongs(searchValue);
+      setSearchResults(results);
     }
-    setSearchResults(SearchService.searchSongs(searchValue));
+    fetchResults();
   }, [searchValue]);
 
-  const addSong = (song: Song) => {
+  const addSong = (song: SongItemSchema) => {
     setSongs(prev => addSongToList(prev, song));
     setSearchValue("");
     setSearchResults([]);
