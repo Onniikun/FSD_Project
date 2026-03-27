@@ -206,3 +206,16 @@ export const songs: SongItem[] = [
     ]
   }
 ];
+
+export const songlistSongMap: Record<string, string[]> = {
+  "Chill Vibes": ["Forever &", "Karma", "TWENTIES"],
+  "Workout Mix": ["ANTISOCIAL", "How (Feat. Roddy Ricch)"],
+  "Throwback Classics": ["Let Down"],
+  "Late Night Coding": ["Let You Break My Heart Again", "More than a friend?"],
+  "Road Trip Essentials": ["Bando - sped up + reverb"],
+  "Morning Boost": ["Sugarcoat (NATTY Solo)"],
+  "Indie Discoveries": ["More than a friend?", "Forever &"],
+  "Lo-Fi Study Session": ["Let You Break My Heart Again"],
+  "Global Hits": ["TWENTIES", "Karma"],
+  "Acoustic Evenings": ["Let Down"]
+};

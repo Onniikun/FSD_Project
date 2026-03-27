@@ -1,5 +1,6 @@
 import { Songlist } from "../../../../generated/prisma/client";
 import { prisma } from "../../../../lib/prisma";
+import type { FullSonglist } from "../../../../../../shared/types/songListTypes";
 
 /**
  * Retrieves all songlists
@@ -18,19 +19,45 @@ export const fetchAllSonglists = async (): Promise<Songlist[]> => {
  */
 export const getSonglistById = async (
     id: string
-): Promise<Songlist | null> => {
+): Promise<FullSonglist | null> => {
     try {
         const songlist = await prisma.songlist.findUnique({
-            where: {
-                id
+            where: { id },
+            include: {
+                songs: {
+                    include: {
+                        song: {
+                            include: {
+                                artists: { include: { artist: true } },
+                                genres: { include: { genre: true } },
+                                links: true
+                            }
+                        }
+                    }
+                }
             }
         });
 
-        if (!songlist) {
-            return null;
-        } else {
-            return songlist;
-        }
+        if (!songlist) return null;
+
+        return {
+            ...songlist,
+            songs: songlist.songs.map(sc => ({
+                id: sc.song.id,
+                title: sc.song.title,
+                artist: sc.song.artists.map(a => a.artist.name),
+                releaseDate: sc.song.releaseDate ?? new Date(0),
+                genre: sc.song.genres.map(g => g.genre.name),
+                runtime: sc.song.runtime ?? "",
+                cover: sc.song.cover ?? "",
+                links: sc.song.links.map(l => ({
+                    id: l.id,
+                    songItemId: l.songItemId,
+                    platform: l.platform,
+                    url: l.url
+                }))
+            }))
+        };
     } catch (error) {
         throw new Error(`Failed to fetch songlist with id ${id}`);
     }

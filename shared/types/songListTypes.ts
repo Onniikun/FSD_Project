@@ -18,3 +18,12 @@ export interface CreateSongListData {
   songIds: number[];
   cover?: string;
 }
+
+export interface FullSonglist {
+  id: string;
+  name: string;
+  description: string | null;
+  visibility: string;
+  cover: string | null;
+  songs: SongItemSchema[];
+}
