@@ -1,4 +1,4 @@
-import type { Song } from "../types/songModel.ts"
+import type { SongItemSchema } from "../../../../shared/types/SongItemSchema"
 
 /**
  * Service Definition to filter songs by genre.
@@ -6,7 +6,7 @@ import type { Song } from "../types/songModel.ts"
  * @param genre - The selected genre.
  * @returns - A filtered array of songs based on the selected genre
  */
-export function filterSongGenre(songs: Song[], genre: string): Song[] {
+export function filterSongGenre(songs: SongItemSchema[], genre: string): SongItemSchema[] {
     if(genre === "All") {
         return songs
     }
@@ -20,17 +20,13 @@ export function filterSongGenre(songs: Song[], genre: string): Song[] {
  * @param selectedLinks - The selected platform.
  * @returns - A filtered array of songs based on the selected link.
  */
-export function filterSongLinks(songs: Song[], selectedLinks: string[]): Song[] {
-    if(selectedLinks.length === 0) {
+export function filterSongLinks(songs: SongItemSchema[], selectedLinks: string[]): SongItemSchema[] {
+    if(!selectedLinks.length) {
         return songs
     }
-    return songs.filter(song => {
-        if (!song.links) {
-            return false
-    }
-    
-    return selectedLinks.some(platform => 
-        !!song.links?.[platform as keyof typeof song.links]
-    )
-  })
+    const normalizedCap = selectedLinks.map(g => g.toLocaleLowerCase())
+
+    return songs.filter(songs => (songs.links ?? []).some(link => 
+        normalizedCap.includes(link.platform.toLowerCase())))
 }
+

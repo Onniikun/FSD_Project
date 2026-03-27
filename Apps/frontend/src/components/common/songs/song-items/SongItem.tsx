@@ -42,7 +42,7 @@ export function SongItem({ query = "" }: { query?: string }) {
     const [songs, setSongs] = useState<SongItemSchema[]>([])
     const [selectedLinks, setSelectedLinks] = useState<string[]>([])
     //https://react.dev/reference/react/useEffect
- useEffect(() => {
+    useEffect(() => {
         /**
          * Since artist, genre and links are in sepearte tables(arrays)
          * They need to be rendered differently.
@@ -107,8 +107,10 @@ export function SongItem({ query = "" }: { query?: string }) {
                 <GenreFilter onChange={setSelectedGenre} />
                 <LinksFilter onChange={setSelectedLinks} />
             </>)}
-        {console.log("Name of songs", displayedSongs)}
-        {console.log("Links",songs.map(song=>song.links))}
+        {/* {console.log("Name of songs", displayedSongs)}
+        {console.log("Links",songs.map(song=>song.links))} */}
+        {console.log("Selected:", selectedLinks)}
+        {console.log("Song platforms:", songs.map(s => s.links?.map(l => `"${l.platform}"`)))}
         <section className="song-item">
             <ul>
                 {displayedSongs.length === 0 ? (

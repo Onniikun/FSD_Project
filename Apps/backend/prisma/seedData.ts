@@ -71,7 +71,7 @@ export const songs: SongItem[] = [
     title: "Forever &",
     releaseDate: new Date("July 12, 2024"),
     runtime: "2:27",
-    cover: songPFP,
+    cover: "https://images.genius.com/4fc8de00d4ce8382613c2f160fe7c43f.1000x1000x1.png",
     artists: ["Ejean"],
     genres: ["R&B"],
     links: [
@@ -85,7 +85,7 @@ export const songs: SongItem[] = [
     title: "Karma",
     releaseDate: new Date("October 19, 2018"),
     runtime: "3:08",
-    cover: songPFP,
+    cover: "https://images.genius.com/43eaa4d7d788e3d21a6de0c841d2b0fe.1000x1000x1.png",
     artists: ["Summer Walker"],
     genres: ["Dark R&B"],
     links: [
@@ -100,7 +100,7 @@ export const songs: SongItem[] = [
     title: "More than a friend?",
     releaseDate: new Date("March 1, 2025"),
     runtime: "3:08",
-    cover: songPFP,
+    cover: "https://i.ytimg.com/vi/FQMgJc5_imk/maxresdefault.jpg",
     artists: ["88rising", "FION"],
     genres: ["Soft"],
     links: [
@@ -115,7 +115,7 @@ export const songs: SongItem[] = [
     title: "TWENTIES",
     releaseDate: new Date("February 7, 2025"),
     runtime: "2:51",
-    cover: songPFP,
+    cover: "https://images.genius.com/b36e96c797f2aad084eb1edf584f3f47.1000x1000x1.png",
     artists: ["GIVĒON"],
     genres: ["Soft", "R&B"],
     links: [
@@ -129,7 +129,7 @@ export const songs: SongItem[] = [
     title: "Let You Break My Heart Again",
     releaseDate: new Date("August 13, 2021"),
     runtime: "4:29",
-    cover: songPFP,
+    cover: "https://images.genius.com/c6efd43b1d226c3ac9a1e9aedd3345fe.1000x1000x1.png",
     artists: ["Laufey"],
     genres: ["Jazz"],
     links: [
@@ -141,7 +141,7 @@ export const songs: SongItem[] = [
     title: "Let Down",
     releaseDate: new Date("September 6, 1997"),
     runtime: "4:59",
-    cover: songPFP,
+    cover: "https://i.ytimg.com/vi/duBCwvC1kP4/maxresdefault.jpg",
     artists: ["RadioHead"],
     genres: ["Alternative rock"],
     links: [
@@ -155,7 +155,7 @@ export const songs: SongItem[] = [
     title: "Sugarcoat (NATTY Solo)",
     releaseDate: new Date("July 5, 2023"),
     runtime: "2:59",
-    cover: songPFP,
+    cover: "https://cdn-images.dzcdn.net/images/cover/500fdc38192a84ed12058b67dafaf473/1900x1900-000000-80-0-0.jpg",
     artists: ["KISS OF LIFE"],
     genres: ["K-Pop"],
     links: [
@@ -169,7 +169,7 @@ export const songs: SongItem[] = [
     title: "Bando - sped up + reverb",
     releaseDate: new Date("2019"),
     runtime: "2:45",
-    cover: songPFP,
+    cover: "https://cdn-images.dzcdn.net/images/cover/5c67954bcae30b551ec5a509deede376/0x1900-000000-80-0-0.jpg",
     artists: ["bbygirl"],
     genres: ["R&B"],
     links: [
@@ -182,7 +182,7 @@ export const songs: SongItem[] = [
     title: "How (Feat. Roddy Ricch)",
     releaseDate: new Date("May 6, 2022"),
     runtime: "3:38",
-    cover: songPFP,
+    cover: "https://i.ytimg.com/vi/GIar5-63tL8/maxresdefault.jpg",
     artists: ["Ella Mai", "Roddy Ricch"],
     genres: ["R&B"],
     links: [
@@ -196,7 +196,7 @@ export const songs: SongItem[] = [
     title: "ANTISOCIAL",
     releaseDate: new Date("January 30, 2026"),
     runtime: "2:55",
-    cover: songPFP,
+    cover: "https://i.ytimg.com/vi/qLz1ExMxF8Q/maxresdefault.jpg",
     artists: ["void", "BABY BOI"],
     genres: ["Dark R&B"],
     links: [
