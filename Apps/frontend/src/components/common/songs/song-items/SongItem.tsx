@@ -1,5 +1,5 @@
 import "./song-item.css"
-import type { Song } from "../../../../types/songModel.ts"
+import type { SongItemSchema } from "../../../../../../../shared/types/SongItemSchema.ts"
 
 import { useState, useEffect } from "react"
 import { Link, useParams } from 'react-router-dom'
@@ -39,21 +39,45 @@ export function SongItem({ query = "" }: { query?: string }) {
      * 
      * This method is from my repository method.
      */
-    const [songs, setSongs] = useState<Song[]>([])
+    const [songs, setSongs] = useState<SongItemSchema[]>([])
     const [selectedLinks, setSelectedLinks] = useState<string[]>([])
     //https://react.dev/reference/react/useEffect
-useEffect(() => {
-    async function loadSongs() {
-        try {
-            const data = await fetchAllSongs()
-            setSongs(data)
-        } catch (error) {
-            console.error(error)
+    useEffect(() => {
+        /**
+         * Since artist, genre and links are in sepearte tables(arrays)
+         * They need to be rendered differently.
+         * 
+         * If an artist or genre is length is 0/undefined then we add an "unknown" title 
+         * to the artist or genre. 
+         * 
+         * Release date gets converted from a string to a date the formated in the final render.
+         * Maps out the original Song item schema.
+         */
+        async function loadSongs() {
+            try {
+                const data = await fetchAllSongs()
+                const mappedSongs: SongItemSchema[] = data.map((song) => ({
+                ...song,
+                release_date: song.releaseDate ? new Date(song.releaseDate) : new Date(),
+                artist: song.artist && song.artist.length > 0
+                    ? Array.isArray(song.artist)
+                        ? song.artist
+                        : [song.artist]
+                    : ["Unknown Artist"],
+                genre: song.genre && song.genre.length > 0
+                    ? Array.isArray(song.genre)
+                        ? song.genre
+                        : [song.genre]
+                    : ["Unknown Genre"],
+                links: song.links || [],
+            }))
+                setSongs(mappedSongs)
+            } catch (error) {
+                console.error(error)
+            }
         }
-    }
-
-    loadSongs()
-}, [])
+        loadSongs()
+    }, [])
     
     //Filters out genres and available platforms.
     const genreFiltered = filterSongGenre(songs, selectedGenre)
@@ -64,7 +88,7 @@ useEffect(() => {
      * It has the dual purpose of displaying the only the song by that id
      * or filtered by song genre and or platform links.
      */
-    let displayedSongs: Song[];
+    let displayedSongs: SongItemSchema[];
 
     if (id) {
         displayedSongs = linkFiltered.filter(song => song.id === Number(id));
@@ -83,13 +107,16 @@ useEffect(() => {
                 <GenreFilter onChange={setSelectedGenre} />
                 <LinksFilter onChange={setSelectedLinks} />
             </>)}
-        {console.log("Name of songs", displayedSongs)}
+        {/* {console.log("Name of songs", displayedSongs)}
+        {console.log("Links",songs.map(song=>song.links))} */}
+        {console.log("Selected:", selectedLinks)}
+        {console.log("Song platforms:", songs.map(s => s.links?.map(l => `"${l.platform}"`)))}
         <section className="song-item">
             <ul>
                 {displayedSongs.length === 0 ? (
                     <p>Sorry, We haven't added that yet.</p>
                 ) : (
-                    displayedSongs.map((song: Song)=> (
+                    displayedSongs.map((song: SongItemSchema)=> (
                         <li key={song.id} className="song-card">
                         <div> 
                         <Link to={`/songs/${song.id}`}>
@@ -105,7 +132,7 @@ useEffect(() => {
                             <h2 className="title">{song.title}</h2>
                             <p>{song.artist.join(", ")}</p>
                             <p>Genre: {song.genre.join(", ")}</p>
-                            <p>Release date: {song.release_date.toLocaleDateString("en-US", {
+                            <p>Release date: {new Date (song.releaseDate).toLocaleDateString("en-US", {
                                 year: "numeric",
                                 month: "short",
                                 day: "numeric",

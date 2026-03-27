@@ -9,11 +9,9 @@ export interface SongItemSchema {
     links?: songLinks;
 }
 
-export interface songLinks {
-    spotify?: string;
-    apple?: string;
-    soundcloud?: string;
-    amazon?: string;
-    youtube?: string;
-
-}
+export type songLinks = {
+  id: number
+  songItemId: number
+  platform: string
+  url: string
+}[]
