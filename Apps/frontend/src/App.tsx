@@ -27,7 +27,7 @@ function App() {
           />
 
           <Route 
-            path="/lists" 
+            path="/songlists"
             element={<SongListsPage />} 
           /> 
 

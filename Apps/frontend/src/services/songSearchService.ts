@@ -1,5 +1,6 @@
+import type { SongItemSchema } from "../../../../shared/types/SongItemSchema";
 import { fetchAllSongs } from "../apis/SongItemRepo"; 
-import type { Song } from "../types/songModel";
+
 
 /**
  * Responsibilities:
@@ -9,8 +10,8 @@ import type { Song } from "../types/songModel";
  * - Provide suggestions for autocomplete
  */
 export const SearchService = {
-    searchSongs(searchValue: string): Song[] {
-        const allSongs = fetchAllSongs();
+    async searchSongs(searchValue: string): Promise<SongItemSchema[]> {
+        const allSongs = await fetchAllSongs();
 
         if(!searchValue.trim()) return allSongs;
 
@@ -38,12 +39,13 @@ export const SearchService = {
         });
     },
 
-    getSuggestions(searchValue: string): Song[] {
-        if(!searchValue.trim()) return [];
+    async getSuggestions(searchValue: string): Promise<SongItemSchema[]> {
+        if (!searchValue.trim()) return [];
 
         const normalized = searchValue.toLowerCase();
+        const allSongs = await fetchAllSongs();
 
-        return fetchAllSongs()
+        return allSongs
             .filter((song) =>
                 song.title.toLowerCase().startsWith(normalized)
             )

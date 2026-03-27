@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "./create-song-list-form.css";
 
-import type { Song } from "../../../types/songModel";
+import type { SongItemSchema } from "../../../../../../shared/types/SongItemSchema";
 import type { CreateSongListData, VisibilityOption } from "../../../../../../shared/types/songListTypes";
 import defaultCover from "../../../assets/default-cover.png";
 import { useSearch } from "../../../hooks/useSearch";
@@ -13,7 +13,7 @@ import {
 } from "../../../services/SongListService";
 
 interface CreateSongListFormProps {
-  onCreateList: (data: CreateSongListData) => void;
+  onCreateList: (data: CreateSongListData) => Promise<void>;
 }
 
 /**
@@ -25,7 +25,7 @@ export default function CreateSongListForm({ onCreateList  }: CreateSongListForm
   const [name, setName] = useState("");
   const [visibility, setVisibility] = useState<VisibilityOption>("private");
   const [description, setDescription] = useState("");
-  const [songs, setSongs] = useState<Song[]>([]);
+  const [songs, setSongs] = useState<SongItemSchema[]>([]);
   const [cover, setCover] = useState<string | undefined>(undefined);
   const [errors, setErrors] = useState<{
     name?: string; 
@@ -41,21 +41,23 @@ export default function CreateSongListForm({ onCreateList  }: CreateSongListForm
     clearSearch,
   } = useSearch({ debounceMilliseconds: 300 });
 
-  const [searchResults, setSearchResults] = useState<Song[]>([]);
+  const [searchResults, setSearchResults] = useState<SongItemSchema[]>([]);
 
   // Update search results whenever the debounced search value changes
   useEffect(() => {
-    if (!debouncedValue.trim()) {
-      setSearchResults([]);
-      return;
+    async function fetchResults() {
+      if (!debouncedValue.trim()) {
+        setSearchResults([]);
+        return;
+      }
+      const results = await SearchService.searchSongs(debouncedValue);
+      setSearchResults(results);
     }
-
-    const results = SearchService.searchSongs(debouncedValue);
-    setSearchResults(results);
+    fetchResults();
   }, [debouncedValue]);
 
   // Add song from search results to the list
- const addSongFromSearch = (song: Song) => {
+  const addSongFromSearch = (song: SongItemSchema) => {
     setSongs(previousSongs => 
       addSongToList(previousSongs, song));
     clearSearch();
@@ -78,7 +80,7 @@ export default function CreateSongListForm({ onCreateList  }: CreateSongListForm
     });
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.SyntheticEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     const input = {
@@ -94,7 +96,7 @@ export default function CreateSongListForm({ onCreateList  }: CreateSongListForm
 
     if (Object.keys(validationErrors).length > 0) return;
 
-    onCreateList({
+    await onCreateList({
       name,
       visibility,
       description,

@@ -1,4 +1,4 @@
-import type { Song } from "../../apps/frontend/src/types/songModel";
+import type { SongItemSchema } from "./SongItemSchema";
 
 export type VisibilityOption = "private" | "public";
 
@@ -7,7 +7,7 @@ export interface SongList {
   name: string;
   visibility: VisibilityOption;
   description: string;
-  songs: Song[];
+  songs: SongItemSchema[];
   cover?: string;
 }
 
