@@ -8,8 +8,6 @@ type SongItemResponseJSON = {message: string, data: SongItemSchema};
 const BASE_URL = `${import.meta.env.VITE_API_BASE_URL}/api/v1`;
 const SONGITEM_ENDPOINT = "/songs"
 
-
-
 /**
  * Retrieves all songs.
  * @returns - all songs.

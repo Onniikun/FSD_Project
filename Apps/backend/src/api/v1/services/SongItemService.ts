@@ -5,29 +5,54 @@ import { SongItem } from "../../../../generated/prisma/client"
  * Retrieves all Song Item from Boombox database.
  * @returns -  All Song Items.
  */
-export const getAllsongItems = async(): Promise<SongItem[]> => {
-    return (await prisma.songItem.findMany({
-        orderBy: {
-            title: "asc"
-        }
-    }))
-}
+export const getAllsongItems = async () => {
+  const songs = await prisma.songItem.findMany({
+    orderBy: { title: "asc" },
+    include: {
+      artists: { include: { artist: true } },
+      genres: { include: { genre: true } },
+      links: true
+    }
+  });
+ 
+  return songs.map(song => ({
+    id: song.id,
+    title: song.title,
+    releaseDate: song.releaseDate,
+    runtime: song.runtime,
+    cover: song.cover,
+    artist: song.artists.map(a => a.artist.name),
+    genre: song.genres.map(g => g.genre.name),
+    links: song.links
+  }));
+};
 /**
  * Retrieves a Song Item based on its ID number.
  * @param id - Song Item ID number.
  * @returns - A specific Song Item.
  */
-export const getsongItemId = async(id: number): Promise<SongItem | null> => {
-    try {
-        const songItem = prisma.songItem.findUnique({
-            where: {
-                id: id
-            }
-        })
-        return songItem
-    } catch (error) {
-        throw new Error(`Failed to retrieve Song Item by ID number: ${id}`)
+export const getsongItemId = async (id: number) => {
+  const song = await prisma.songItem.findUnique({
+    where: { id },
+    include: {
+      artists: { include: { artist: true } },
+      genres: { include: { genre: true } },
+      links: true
     }
+  });
+ 
+  if (!song) return null;
+ 
+  return {
+    id: song.id,
+    title: song.title,
+    releaseDate: song.releaseDate,
+    runtime: song.runtime,
+    cover: song.cover,
+    artist: song.artists.map(a => a.artist.name),
+    genre: song.genres.map(g => g.genre.name),
+    links: song.links
+  };
 }
 /**
  * Creates a new Song Item.
