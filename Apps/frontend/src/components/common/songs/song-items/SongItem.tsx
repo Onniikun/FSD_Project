@@ -51,7 +51,7 @@ export function SongItem({ query = "" }: { query?: string }) {
          * to the artist or genre. 
          * 
          * Release date gets converted from a string to a date the formated in the final render.
-         * 
+         * Maps out the original Song item schema.
          */
         async function loadSongs() {
             try {

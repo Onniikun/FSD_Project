@@ -13,7 +13,9 @@ type LinksProps = {
 }
 
 /**
- * Displays clickable platform links for a song.
+ * Displays the available platform URL links of the songs to play.
+ * @param param0 - Links(Song URL)
+ * @returns - A list of URLs that a song has.
  */
 export function Links({ links }: LinksProps) {
     /**
@@ -24,12 +26,12 @@ export function Links({ links }: LinksProps) {
      * 
      * This hook is my useSortAndFilter hook.
      */
-  const { selectedItem, setSelectedItem } = useSortFilter("Spotify")
+    const { selectedItem, setSelectedItem } = useSortFilter("Spotify")
 
-  // Prevent render if no links
-  if (!links || links.length === 0) return null
+    if (!links || links.length === 0) 
+    return null
 
-  return (
+return (
     <div className="song-media">
       <ul className="song-links">
         {links.map((link) => {
