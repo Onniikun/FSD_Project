@@ -16,6 +16,14 @@ type LinksProps = {
  * Displays clickable platform links for a song.
  */
 export function Links({ links }: LinksProps) {
+    /**
+     * This hook only renders the button selection of the platform for UI.
+     * It does not have any functionally of selected rendering but rather a UI state change.
+     * 
+     * Note: Clicking the button will redirect the user to that link.
+     * 
+     * This hook is my useSortAndFilter hook.
+     */
   const { selectedItem, setSelectedItem } = useSortFilter("Spotify")
 
   // Prevent render if no links
@@ -25,9 +33,7 @@ export function Links({ links }: LinksProps) {
     <div className="song-media">
       <ul className="song-links">
         {links.map((link) => {
-          // skip if no URL (extra safety)
           if (!link.url) return null
-
           return (
             <li key={link.id}>
               <a

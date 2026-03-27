@@ -43,11 +43,20 @@ export function SongItem({ query = "" }: { query?: string }) {
     const [selectedLinks, setSelectedLinks] = useState<string[]>([])
     //https://react.dev/reference/react/useEffect
  useEffect(() => {
+        /**
+         * Since artist, genre and links are in sepearte tables(arrays)
+         * They need to be rendered differently.
+         * 
+         * If an artist or genre is length is 0/undefined then we add an "unknown" title 
+         * to the artist or genre. 
+         * 
+         * Release date gets converted from a string to a date the formated in the final render.
+         * 
+         */
         async function loadSongs() {
             try {
                 const data = await fetchAllSongs()
-
-            const mappedSongs: SongItemSchema[] = data.map((song) => ({
+                const mappedSongs: SongItemSchema[] = data.map((song) => ({
                 ...song,
                 release_date: song.releaseDate ? new Date(song.releaseDate) : new Date(),
                 artist: song.artist && song.artist.length > 0
