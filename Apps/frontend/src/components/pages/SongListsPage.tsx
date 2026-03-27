@@ -7,6 +7,7 @@ import { useMood } from "../../hooks/useMood";
 import type { CreateSongListData, SongList } from "../../../../../shared/types/songListTypes";
 import {
   fetchSongLists,
+  getSongListById,
   createSongList,
   deleteSongList,
   updateSongList
@@ -27,6 +28,10 @@ export default function SongListsPage() {
         load();
     }, []);
 
+    const handleSelectList = async (id: string) => {
+        const latestSonglist = await getSongListById(id);
+        setSelectedList(latestSonglist);
+    };
 
     const handleCreateList = async (data: CreateSongListData): Promise<void> => {
         const newList = await createSongList(data);
@@ -57,8 +62,6 @@ export default function SongListsPage() {
         setSelectedList(saved);
     };
 
-    console.log("Showing lists:", lists);
-
     return (
         <>
         <div>
@@ -68,7 +71,7 @@ export default function SongListsPage() {
 
             <SongListsDisplay
             lists={lists}
-            onSelectList={setSelectedList}
+            onSelectList={(list) => handleSelectList(list.id)}
             />
         </div>
 
