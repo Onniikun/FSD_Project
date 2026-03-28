@@ -1,5 +1,4 @@
-import type { CreateSongListData, SongList } from "../../../../shared/types/songListTypes";
-import type { SongListRecord } from "../../../../shared/types/songListRecord";
+import type { CreateSongListData, SongList, UpdateSongListData } from "../../../../shared/types/songListTypes";
 
 type SongListsResponseJSON = { message: string; data: SongList[] };
 type SongListResponseJSON = { message: string; data: SongList };
@@ -71,12 +70,15 @@ export async function createSongList(data: CreateSongListData): Promise<SongList
  * @returns The updated song list
  * @throws Error if no song list with the given ID exists or the update fails
  */
-export async function updateSongList(updated: SongListRecord): Promise<SongList> {
+export async function updateSongList(
+    id: string, 
+    data: UpdateSongListData
+): Promise<SongList> {
     const response: Response = await fetch(
-        `${BASE_URL}${SONGLIST_ENDPOINT}/${updated.id}`, 
+        `${BASE_URL}${SONGLIST_ENDPOINT}/${id}`,
         {
             method: "PUT",
-            body: JSON.stringify(updated),
+            body: JSON.stringify(data),
             headers: { 
                 "Content-Type": "application/json",
             },
@@ -84,7 +86,7 @@ export async function updateSongList(updated: SongListRecord): Promise<SongList>
     );
 
     if (!response.ok) {
-        throw new Error(`Failed to update the song list with id ${updated.id}`);
+        throw new Error(`Failed to update the song list with id ${id}`);
     }
 
     const json: SongListResponseJSON = await response.json();

@@ -59,4 +59,4 @@ export const songlistUpdateSchema: ObjectSchema = Joi.object({
             "any.only": "Visibility must be either 'public' or 'private'"
         }),
     songIds: Joi.array().items(Joi.number()).optional(),
-});
+}).unknown(true);

@@ -1,6 +1,12 @@
 import { Songlist } from "../../../../generated/prisma/client";
 import { prisma } from "../../../../lib/prisma";
-import type { FullSonglist } from "../../../../../../shared/types/songListTypes";
+import type { 
+    FullSonglist, 
+    CreateSongListData, 
+    UpdateSongListData } from "../../../../../../shared/types/songListTypes";
+import { transformSonglist } from "../utils/transformSonglist";
+import { songlistInclude } from "../utils/songlistInclude";
+
 
 /**
  * Retrieves all songlists
@@ -23,41 +29,12 @@ export const getSonglistById = async (
     try {
         const songlist = await prisma.songlist.findUnique({
             where: { id },
-            include: {
-                songs: {
-                    include: {
-                        song: {
-                            include: {
-                                artists: { include: { artist: true } },
-                                genres: { include: { genre: true } },
-                                links: true
-                            }
-                        }
-                    }
-                }
-            }
+            include: songlistInclude
         });
 
         if (!songlist) return null;
 
-        return {
-            ...songlist,
-            songs: songlist.songs.map(sc => ({
-                id: sc.song.id,
-                title: sc.song.title,
-                artist: sc.song.artists.map(a => a.artist.name),
-                releaseDate: sc.song.releaseDate ?? new Date(0),
-                genre: sc.song.genres.map(g => g.genre.name),
-                runtime: sc.song.runtime ?? "",
-                cover: sc.song.cover ?? "",
-                links: sc.song.links.map(l => ({
-                    id: l.id,
-                    songItemId: l.songItemId,
-                    platform: l.platform,
-                    url: l.url
-                }))
-            }))
-        };
+        return transformSonglist(songlist);
     } catch (error) {
         throw new Error(`Failed to fetch songlist with id ${id}`);
     }
@@ -65,21 +42,15 @@ export const getSonglistById = async (
 
 /**
  * Adds a new songlist
- * @param songlistData - The data for the new songlist except the id
+ * @param CreateSongListData - The data for the new songlist except the id
  * @returns The newly created songlist with unique ID
  */
 export const createSonglist = async (
-    songlistData: {
-        name: string
-        description?: string
-        cover?: string
-        visibility?: string
-        songIds?: number[]
-    }
-): Promise<Songlist> => {
+    songlistData: CreateSongListData
+) => {
     const { name, description, cover, visibility, songIds } = songlistData;
 
-    const newSonglist = await prisma.songlist.create({
+    const created = await prisma.songlist.create({
         data: {
             name,
             description: description ?? null,
@@ -87,24 +58,16 @@ export const createSonglist = async (
             visibility: visibility ?? "private",
             songs: songIds
                 ? {
-                    create: songIds.map(id => ({
-                        songId: id
-                    }))
+                    create: songIds.map(id => ({ songId: id }))
                 }
                 : undefined
         },
-        include: {
-            songs: {
-                include: {
-                    song: true
-                }
-            }
-        }
+        include: songlistInclude
     });
 
-
-    return newSonglist;
+    return transformSonglist(created);
 };
+
 
 
 /**
@@ -114,25 +77,40 @@ export const createSonglist = async (
  * @returns The updated songlist
  */
 export const updateSonglist = async (
-    id: string,
-    songlist: { 
-        name: string; 
-        description?: string; 
-        cover?: string; 
-        visibility?: string 
-    }
-): Promise<Songlist> => {
-    const updatedSonglist = await prisma.songlist.update({
-        where: {
-            id
-        },
+    id: string, 
+    songlistData: UpdateSongListData
+) => {
+    const { name, description, cover, visibility, songIds } = songlistData;
+
+    await prisma.songlist.update({
+        where: { id },
         data: {
-            ...songlist
+            name,
+            description: description ?? null,
+            cover: cover ?? null,
+            visibility
         }
     });
 
-    return updatedSonglist;
+    if (songIds) {
+        await prisma.songCollection.deleteMany({ where: { songlistId: id } });
+
+        await prisma.songCollection.createMany({
+            data: songIds.map(songId => ({
+                songId,
+                songlistId: id
+            }))
+        });
+    }
+
+    const updated = await prisma.songlist.findUnique({
+        where: { id },
+        include: songlistInclude
+    });
+
+    return transformSonglist(updated);
 };
+
 
 /**
  * Removes an songlist from the songlist records

@@ -27,3 +27,11 @@ export interface FullSonglist {
   cover: string | null;
   songs: SongItemSchema[];
 }
+
+export interface UpdateSongListData {
+  name?: string;
+  visibility?: VisibilityOption;
+  description?: string | null;
+  songIds?: number[];
+  cover?: string | null;
+}
