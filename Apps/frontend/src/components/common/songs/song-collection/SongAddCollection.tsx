@@ -27,13 +27,15 @@ export function AddCollection({
         top: "50%",
         left: "50%",
         transform: "translate(-50%, -50%)",
-        width: 400,
+        width: 550,
+        maxHeight: "50vh",
         bgcolor: "#372a5f;",
         color: "#ffffff",
         border: "none",
         borderRadius: "12px",
         boxShadow: 24,
         p: 4,
+        overflowY: "auto",
     };
     // Addcollection button -> lists of song lists modal(added)
     // Reference: https://mui.com/material-ui/react-modal/
@@ -43,7 +45,6 @@ export function AddCollection({
         <button onClick={handleOpen}>
             Add to Collection
         </button>
-
             <Modal open={open} onClose={handleClose}>
                 <Box sx={style}>
                 <Typography variant="h6">
