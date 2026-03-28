@@ -6,6 +6,7 @@ import type { SongList } from "../../../../../../shared/types/songListTypes";
 import defaultCover from "../../../assets/default-cover.png";
 import { SearchService } from "../../../services/songSearchService";
 import { validateList, addSong as addSongToList, removeSong as removeSongFromList } from "../../../services/SongListService";
+import { updateSongList } from "../../../apis/songListsRepository";
 
 /**
  * A modal component for viewing and editing a song list, allowing users to see details, edit information, search/add songs, and delete the list.
@@ -77,31 +78,34 @@ export function SongListModal({
     });
   };
 
-  const handleSave = () => {
-    const input = {
+  const handleSave = async () => {
+    const validationErrors = validateList({
       name,
       description,
       visibility,
-      songs,
+      songIds: songs.map(s => s.id),
       cover
-    };
+    });
 
-    const validationErrors = validateList(input);
     setErrors(validationErrors);
-
     if (Object.keys(validationErrors).length > 0) return;
 
-    onEdit({
-      ...list,
+    const updatePayload = {
       name,
       description,
       visibility,
       cover,
-      songs
-    });
+      songIds: songs.map(s => s.id)
+    };
+
+    const updatedList = await updateSongList(list.id, updatePayload);
+
+    onEdit(updatedList);
 
     setIsEditing(false);
   };
+
+
 
 
 

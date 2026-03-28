@@ -3,7 +3,7 @@ import { Pool } from "pg";
 import { PrismaPg } from "@prisma/adapter-pg";
 import { PrismaClient } from "../generated/prisma/client";
  
-import { songlistSeedData, songs } from "./seedData";
+import { songlistSeedData, songs, songlistSongMap } from "./seedData";
  
 const connectionString = `${process.env.DATABASE_URL}`;
 const pool = new Pool({ connectionString });
@@ -105,25 +105,24 @@ async function main() {
  
   const createdSongLists = await prisma.songlist.findMany();
   console.log(`SONGLISTS: ${createdSongLists.length}`);
- 
-
+  
   for (const list of createdSongLists) {
-    const randomSongs = pickRandom(createdSongs, 2);
- 
-    await prisma.songCollection.createMany({
-      data: randomSongs.map((song) => ({
-        songId: song.id,
-        songlistId: list.id
-      })),
-      skipDuplicates: true
-    });
+  const songTitles = songlistSongMap[list.name] ?? [];
+
+  const songsForList = createdSongs.filter(song =>
+    songTitles.includes(song.title)
+  );
+
+  await prisma.songCollection.createMany({
+    data: songsForList.map(song => ({
+      songId: song.id,
+      songlistId: list.id
+    })),
+    skipDuplicates: true
+  });
   }
- 
+
   console.log("SONG COLLECTIONS inserted");
-}
- 
-function pickRandom(arr, count) {
-  return [...arr].sort(() => Math.random() - 0.5).slice(0, count);
 }
  
 main()

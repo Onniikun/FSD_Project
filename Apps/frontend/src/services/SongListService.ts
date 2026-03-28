@@ -5,7 +5,7 @@ export interface CreateSongListInput  {
   name: string;
   visibility: VisibilityOption;
   description: string;
-  songs: SongItemSchema[];
+  songIds: number[];
   cover?: string;
 }
 export interface ValidateSongErrors {
@@ -26,7 +26,7 @@ export function validateList(input: CreateSongListInput): ValidateSongErrors {
       newErrors.name = "**List name is required.**";
     }
 
-    if (input.songs.length === 0) {
+    if (input.songIds.length === 0) {
       newErrors.songs = "**Please add at least one song.**";
     }
 

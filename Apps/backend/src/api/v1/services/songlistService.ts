@@ -1,5 +1,12 @@
 import { Songlist } from "../../../../generated/prisma/client";
 import { prisma } from "../../../../lib/prisma";
+import type { 
+    FullSonglist, 
+    CreateSongListData, 
+    UpdateSongListData } from "../../../../../../shared/types/songListTypes";
+import { transformSonglist } from "../utils/transformSonglist";
+import { songlistInclude } from "../utils/songlistInclude";
+
 
 /**
  * Retrieves all songlists
@@ -18,19 +25,16 @@ export const fetchAllSonglists = async (): Promise<Songlist[]> => {
  */
 export const getSonglistById = async (
     id: string
-): Promise<Songlist | null> => {
+): Promise<FullSonglist | null> => {
     try {
         const songlist = await prisma.songlist.findUnique({
-            where: {
-                id
-            }
+            where: { id },
+            include: songlistInclude
         });
 
-        if (!songlist) {
-            return null;
-        } else {
-            return songlist;
-        }
+        if (!songlist) return null;
+
+        return transformSonglist(songlist);
     } catch (error) {
         throw new Error(`Failed to fetch songlist with id ${id}`);
     }
@@ -38,28 +42,32 @@ export const getSonglistById = async (
 
 /**
  * Adds a new songlist
- * @param songlistData - The data for the new songlist except the id
+ * @param CreateSongListData - The data for the new songlist except the id
  * @returns The newly created songlist with unique ID
  */
 export const createSonglist = async (
-    songlistData: {
-        name: string
-        description?: string
-        cover?: string
-        visibility?: string
-    }
-): Promise<Songlist> => {
-  const newSonglist = await prisma.songlist.create({
-    data: {
-      name: songlistData.name,
-      description: songlistData.description ?? null,
-      cover: songlistData.cover ?? null,
-      visibility: songlistData.visibility ?? "private"
-    }
-  });
+    songlistData: CreateSongListData
+) => {
+    const { name, description, cover, visibility, songIds } = songlistData;
 
-  return newSonglist;
+    const created = await prisma.songlist.create({
+        data: {
+            name,
+            description: description ?? null,
+            cover: cover ?? null,
+            visibility: visibility ?? "private",
+            songs: songIds
+                ? {
+                    create: songIds.map(id => ({ songId: id }))
+                }
+                : undefined
+        },
+        include: songlistInclude
+    });
+
+    return transformSonglist(created);
 };
+
 
 
 /**
@@ -69,25 +77,40 @@ export const createSonglist = async (
  * @returns The updated songlist
  */
 export const updateSonglist = async (
-    id: string,
-    songlist: { 
-        name: string; 
-        description?: string; 
-        cover?: string; 
-        visibility?: string 
-    }
-): Promise<Songlist> => {
-    const updatedSonglist = await prisma.songlist.update({
-        where: {
-            id
-        },
+    id: string, 
+    songlistData: UpdateSongListData
+) => {
+    const { name, description, cover, visibility, songIds } = songlistData;
+
+    await prisma.songlist.update({
+        where: { id },
         data: {
-            ...songlist
+            name,
+            description: description ?? null,
+            cover: cover ?? null,
+            visibility
         }
     });
 
-    return updatedSonglist;
+    if (songIds) {
+        await prisma.songCollection.deleteMany({ where: { songlistId: id } });
+
+        await prisma.songCollection.createMany({
+            data: songIds.map(songId => ({
+                songId,
+                songlistId: id
+            }))
+        });
+    }
+
+    const updated = await prisma.songlist.findUnique({
+        where: { id },
+        include: songlistInclude
+    });
+
+    return transformSonglist(updated);
 };
+
 
 /**
  * Removes an songlist from the songlist records
@@ -96,9 +119,11 @@ export const updateSonglist = async (
 export const deleteSonglist = async (
     id: string
 ): Promise<void> => {
+    await prisma.songCollection.deleteMany({
+        where: { songlistId: id }
+    });
+
     await prisma.songlist.delete({
-        where: {
-            id
-        }
+        where: { id }
     });
 };
