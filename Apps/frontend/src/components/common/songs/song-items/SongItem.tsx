@@ -7,13 +7,14 @@ import { Link, useParams } from 'react-router-dom'
 import { GenreFilter } from "../song-filter/GenreFilter.tsx"
 import { Links } from "../song-links/SongLinks.tsx"
 import { LinksFilter } from "../song-filter/LinkFilter.tsx" 
-import { Upvote } from "../song-upvote/SongUpvote.tsx"
+import { AddCollection } from "../song-collection/SongAddCollection.tsx"
 
 import { fetchAllSongs } from "../../../../apis/SongItemRepo.ts"
 import { useSortFilter } from "../../../../hooks/useSortAndFilterUI.ts"
 import { filterSongGenre, filterSongLinks } from "../../../../services/SongItemService.ts"
 import * as DiscoveryService from "../../../../services/discoveryService";
 import { useMood } from "../../../../hooks/useMood";
+import type { SongList } from "../../../../../../../shared/types/songListTypes";
 
 /**
  * Displays song information.
@@ -78,7 +79,11 @@ export function SongItem({ query = "" }: { query?: string }) {
         }
         loadSongs()
     }, [])
-    
+
+    const [lists, setLists] = useState<SongList[]>([]);
+    const handleSelectList = (list: SongList) => {
+        console.log("Song Lists", list)
+    }
     //Filters out genres and available platforms.
     const genreFiltered = filterSongGenre(songs, selectedGenre)
     const linkFiltered = filterSongLinks(genreFiltered, selectedLinks)
@@ -138,7 +143,9 @@ export function SongItem({ query = "" }: { query?: string }) {
                                 day: "numeric",
                             })}</p>
                             <p>Runtime: {song.runtime}</p>  
-                            <Upvote />                   
+                            <AddCollection 
+                                lists={lists}
+                                onSelectList={handleSelectList} />                   
                         </div>
                     </li>
                 )))}
