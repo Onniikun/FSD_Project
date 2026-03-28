@@ -5,7 +5,7 @@ import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 
 import type { SongList } from "../../../../../../../shared/types/songListTypes";
-import { SongListCard } from "../../song-list-card/SongListCard";
+import { SongListsDisplay } from "../../song-list-display/SongListsDisplay"
 
 /**
  * 
@@ -57,7 +57,7 @@ export function AddCollection({
                     <p>No collections found</p>
                     ) : (
                     lists.map(list => (
-                        <SongListCard
+                        <SongListsDisplay
                         key={list.id}
                         list={list}
                         onSelect={() => onSelectList(list)}

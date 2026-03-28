@@ -114,8 +114,8 @@ export function SongItem({ query = "" }: { query?: string }) {
             </>)}
         {/* {console.log("Name of songs", displayedSongs)}
         {console.log("Links",songs.map(song=>song.links))} */}
-        {console.log("Selected:", selectedLinks)}
-        {console.log("Song platforms:", songs.map(s => s.links?.map(l => `"${l.platform}"`)))}
+        {console.log("Selected:", setLists)}
+        {/* {console.log("Song platforms:", songs.map(s => s.links?.map(l => `"${l.platform}"`)))} */}
         <section className="song-item">
             <ul>
                 {displayedSongs.length === 0 ? (
