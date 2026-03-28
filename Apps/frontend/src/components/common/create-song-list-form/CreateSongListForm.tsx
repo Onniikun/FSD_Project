@@ -87,7 +87,7 @@ export default function CreateSongListForm({ onCreateList  }: CreateSongListForm
       name,
       visibility,
       description,
-      songs,
+      songIds: songs.map(song => song.id),
       cover,
     };
 

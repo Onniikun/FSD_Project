@@ -10,7 +10,6 @@ import {
   getSongListById,
   createSongList,
   deleteSongList,
-  updateSongList
 } from "../../apis/songListsRepository";
 
 import { SongListModal } from "../common/song-list-modal/SongListModal";
@@ -45,22 +44,13 @@ export default function SongListsPage() {
     };
 
     const handleUpdateList = async (updated: SongList): Promise<void> => {
-        const updatedRecord = {
-        id: updated.id,
-        name: updated.name,
-        description: updated.description,
-        visibility: updated.visibility,
-        songIds: updated.songs.map(s => s.id)
-        };
-
-        const saved = await updateSongList(updatedRecord);
-
         setLists(prev =>
-        prev.map(list => (list.id === saved.id ? saved : list))
+            prev.map(list => (list.id === updated.id ? updated : list))
         );
 
-        setSelectedList(saved);
+        setSelectedList(updated);
     };
+
 
     return (
         <>

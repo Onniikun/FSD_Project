@@ -28,6 +28,7 @@ export const songlistSchema: ObjectSchema = Joi.object({
         .messages({
             "any.only": "Visibility must be either 'public' or 'private'"
         }),
+    songIds: Joi.array().items(Joi.number()).optional(),    
 });
 
 /**
@@ -57,4 +58,5 @@ export const songlistUpdateSchema: ObjectSchema = Joi.object({
         .messages({
             "any.only": "Visibility must be either 'public' or 'private'"
         }),
-});
+    songIds: Joi.array().items(Joi.number()).optional(),
+}).unknown(true);
