@@ -116,3 +116,24 @@ export const deleteSonglist = async (
         next(error);
     }
 };
+
+export const toggleSongInList = async (
+    req: Request,
+    res: Response,
+    next: NextFunction
+): Promise<void> => {
+    try {
+        const { id, songId } = req.params as { id: string; songId: string };
+
+        const updated = await songlistService.toggleSongInList(
+            id,
+            Number(songId)
+        );
+
+        res.status(HTTP_STATUS.OK).json(
+            successResponse(updated, "Song toggled successfully")
+        );
+    } catch (error) {
+        next(error);
+    }
+};

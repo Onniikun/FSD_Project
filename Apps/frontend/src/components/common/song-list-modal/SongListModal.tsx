@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import "./song-list-modal.css";
 import type { SongItemSchema } from "../../../../../../shared/types/SongItemSchema";
-import type { SongList } from "../../../../../../shared/types/songListTypes";
+import type { FullSonglist, VisibilityOption } from "../../../../../../shared/types/songListTypes";
 import defaultCover from "../../../assets/default-cover.png";
 import { SearchService } from "../../../services/songSearchService";
 import { validateList, addSong as addSongToList, removeSong as removeSongFromList } from "../../../services/SongListService";
@@ -22,18 +22,20 @@ export function SongListModal({
   onDelete,
   onEdit
 }: {
-  list: SongList;
+  list: FullSonglist;
   onClose: () => void;
   onDelete: (id: string) => void;
-  onEdit: (updated: SongList) => void;
+  onEdit: (updated: FullSonglist) => void;
 }) {
   const [isEditing, setIsEditing] = useState(false);
 
   // Local editable fields
   const [name, setName] = useState(list.name);
-  const [description, setDescription] = useState(list.description);
-  const [visibility, setVisibility] = useState(list.visibility);
-  const [cover, setCover] = useState<string | undefined>(list.cover);
+  const [description, setDescription] = useState<string | null>(list.description);
+  const [visibility, setVisibility] = useState<VisibilityOption>(
+    list.visibility as VisibilityOption
+  );
+  const [cover, setCover] = useState<string | null>(list.cover);
   const [songs, setSongs] = useState(list.songs);
   const [errors, setErrors] = useState<{
     name?: string;
@@ -197,7 +199,7 @@ export function SongListModal({
               <label>
                 Description
                 <textarea
-                  value={description}
+                  value={description ?? ""}
                   onChange={e => setDescription(e.target.value)}
                   rows={7}
                 />

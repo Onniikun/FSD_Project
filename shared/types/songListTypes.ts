@@ -14,9 +14,9 @@ export interface SongList {
 export interface CreateSongListData {
   name: string;
   visibility: VisibilityOption;
-  description: string;
+  description: string | null;
   songIds: number[];
-  cover?: string;
+  cover?: string | null;
 }
 
 export interface FullSonglist {

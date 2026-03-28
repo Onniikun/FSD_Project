@@ -32,4 +32,9 @@ router.delete(
     songlistController.deleteSonglist
 );
 
+router.post(
+    "/songlists/:id/toggle/:songId",
+    songlistController.toggleSongInList
+);
+
 export default router;

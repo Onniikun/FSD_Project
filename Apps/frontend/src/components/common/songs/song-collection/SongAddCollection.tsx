@@ -4,24 +4,22 @@ import Modal from "@mui/material/Modal";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 
-import type { SongList } from "../../../../../../../shared/types/songListTypes";
-import  SongListsDisplay from "../../song-list-display/SongListsDisplay"
+import type { FullSonglist } from "../../../../../../../shared/types/songListTypes";
+import SongListsDisplay from "../../song-list-display/SongListsDisplay";
 
-/**
- * 
- * @returns 
- */
 export function AddCollection({
     lists,
-    onSelectList
+    songId,
+    onToggleSongInList
 }: {
-    lists: SongList[]
-    onSelectList: (list: SongList) => void;
+    lists: FullSonglist[];
+    songId: number;
+    onToggleSongInList: (listId: string, songId: number) => void;
 }) {
-    //Set states
     const [open, setOpen] = useState(false);
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
+
     const style = {
         position: "absolute" as const,
         top: "50%",
@@ -35,34 +33,32 @@ export function AddCollection({
         boxShadow: 24,
         p: 4,
     };
-    // Addcollection button -> lists of song lists modal(added)
-    // Reference: https://mui.com/material-ui/react-modal/
-    console.log("Song Lists", lists)
+
     return (
         <section className="collection">
-        <button onClick={handleOpen}>
-            Add to Collection
-        </button>
+            <button onClick={handleOpen}>
+                Add to Collection
+            </button>
 
             <Modal open={open} onClose={handleClose}>
                 <Box sx={style}>
-                <Typography variant="h6">
-                    Select a Collection
-                </Typography>
+                    <Typography variant="h6">
+                        Select a Collection
+                    </Typography>
 
-                <div style={{ marginTop: "16px" }}>
-                    {lists.length === 0 ? (
-                    <p>No collections found</p>
-                    ) : (
-                    <SongListsDisplay
-                        lists={lists}                 
-                        onSelectList={(list) => {     
-                        onSelectList(list);
-                        handleClose();             
-                        }}
-                    />
-                    )}
-                </div>
+                    <div style={{ marginTop: "16px" }}>
+                        {lists.length === 0 ? (
+                            <p>No collections found</p>
+                        ) : (
+                            <SongListsDisplay
+                                lists={lists}
+                                songId={songId}
+                                onToggle={(listId, songId) => {
+                                    onToggleSongInList(listId, songId);
+                                }}
+                            />
+                        )}
+                    </div>
                 </Box>
             </Modal>
         </section>

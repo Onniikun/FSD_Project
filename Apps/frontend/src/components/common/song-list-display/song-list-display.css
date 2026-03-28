@@ -18,6 +18,38 @@
   color: #bf87ff;
 }
 
+.songlist-row {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.toggle-circle {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 2px solid #aaa;
+  background: transparent;
+  color: white;
+  font-size: 20px;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.toggle-circle:hover {
+  border-color: #fff;
+}
+
+.toggle-circle.active {
+  background: #bf87ff;
+  border-color: #bf87ff;
+  color: black;
+}
+
 @media (max-width: 600px) {
   .songlist-card {
     padding: 1rem;
