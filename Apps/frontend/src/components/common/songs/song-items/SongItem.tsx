@@ -15,6 +15,7 @@ import { filterSongGenre, filterSongLinks } from "../../../../services/SongItemS
 import * as DiscoveryService from "../../../../services/discoveryService";
 import { useMood } from "../../../../hooks/useMood";
 import type { SongList } from "../../../../../../../shared/types/songListTypes";
+import { fetchSongLists } from "../../../../apis/songListsRepository.ts"
 
 /**
  * Displays song information.
@@ -81,6 +82,18 @@ export function SongItem({ query = "" }: { query?: string }) {
     }, [])
 
     const [lists, setLists] = useState<SongList[]>([]);
+    useEffect(() => {
+        async function loadLists() {
+            try {
+            const data = await fetchSongLists(); 
+            setLists(data);
+            } catch (err) {
+            console.error(err);
+            }
+        }
+    
+        loadLists();
+        }, []);
     const handleSelectList = (list: SongList) => {
         console.log("Song Lists", list)
     }
@@ -114,7 +127,7 @@ export function SongItem({ query = "" }: { query?: string }) {
             </>)}
         {/* {console.log("Name of songs", displayedSongs)}
         {console.log("Links",songs.map(song=>song.links))} */}
-        {console.log("Selected:", setLists)}
+        {/* {console.log("Selected:", lists)} */}
         {/* {console.log("Song platforms:", songs.map(s => s.links?.map(l => `"${l.platform}"`)))} */}
         <section className="song-item">
             <ul>

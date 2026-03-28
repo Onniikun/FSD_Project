@@ -5,7 +5,7 @@ import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 
 import type { SongList } from "../../../../../../../shared/types/songListTypes";
-import { SongListsDisplay } from "../../song-list-display/SongListsDisplay"
+import  SongListsDisplay from "../../song-list-display/SongListsDisplay"
 
 /**
  * 
@@ -37,37 +37,34 @@ export function AddCollection({
     };
     // Addcollection button -> lists of song lists modal(added)
     // Reference: https://mui.com/material-ui/react-modal/
-    return(
-        <>
+    console.log("Song Lists", lists)
+    return (
         <section className="collection">
-            <button onClick={handleOpen}>
-                Add to Collection
-            </button>
-                <Modal  
-                    open={open}
-                    onClose={handleClose}
-                    aria-labelledby="modal-modal-title"
-                    aria-describedby="modal-modal-description">
-                  <Box sx={style}>
-                    <Typography id="modal-modal-title" variant="h6" component="div">
-                    Text in a modal
-                    </Typography>
-                    <Typography id="modal-modal-description" sx={{ mt: 2 }}>
+        <button onClick={handleOpen}>
+            Add to Collection
+        </button>
+
+            <Modal open={open} onClose={handleClose}>
+                <Box sx={style}>
+                <Typography variant="h6">
+                    Select a Collection
+                </Typography>
+
+                <div style={{ marginTop: "16px" }}>
                     {lists.length === 0 ? (
                     <p>No collections found</p>
                     ) : (
-                    lists.map(list => (
-                        <SongListsDisplay
-                        key={list.id}
-                        list={list}
-                        onSelect={() => onSelectList(list)}
-                        />
-                    ))
+                    <SongListsDisplay
+                        lists={lists}                 
+                        onSelectList={(list) => {     
+                        onSelectList(list);
+                        handleClose();             
+                        }}
+                    />
                     )}
-                    </Typography>
+                </div>
                 </Box>
             </Modal>
         </section>
-        </>
-    )
+    );
 }

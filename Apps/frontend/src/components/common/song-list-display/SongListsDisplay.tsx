@@ -9,6 +9,7 @@ export default function SongListsDisplay({
   lists: SongList[];
   onSelectList: (list: SongList) => void;
 }) {
+  console.log("Song lists:", lists)
   return (
     <div className="lists-display">
       <h2>All Song Lists</h2>
