@@ -119,9 +119,11 @@ export const updateSonglist = async (
 export const deleteSonglist = async (
     id: string
 ): Promise<void> => {
+    await prisma.songCollection.deleteMany({
+        where: { songlistId: id }
+    });
+
     await prisma.songlist.delete({
-        where: {
-            id
-        }
+        where: { id }
     });
 };
