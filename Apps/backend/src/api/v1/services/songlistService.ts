@@ -74,18 +74,36 @@ export const createSonglist = async (
         description?: string
         cover?: string
         visibility?: string
+        songIds?: number[]
     }
 ): Promise<Songlist> => {
-  const newSonglist = await prisma.songlist.create({
-    data: {
-      name: songlistData.name,
-      description: songlistData.description ?? null,
-      cover: songlistData.cover ?? null,
-      visibility: songlistData.visibility ?? "private"
-    }
-  });
+    const { name, description, cover, visibility, songIds } = songlistData;
 
-  return newSonglist;
+    const newSonglist = await prisma.songlist.create({
+        data: {
+            name,
+            description: description ?? null,
+            cover: cover ?? null,
+            visibility: visibility ?? "private",
+            songs: songIds
+                ? {
+                    create: songIds.map(id => ({
+                        songId: id
+                    }))
+                }
+                : undefined
+        },
+        include: {
+            songs: {
+                include: {
+                    song: true
+                }
+            }
+        }
+    });
+
+
+    return newSonglist;
 };
 
 
