@@ -5,7 +5,7 @@ import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 
 import type { SongList } from "../../../../../../../shared/types/songListTypes";
-import  SongListsDisplay from "../../song-list-display/SongListsDisplay"
+import SongItemListsDisplay from "../song-collection/song-list-display-helper/SongItemListDisplay";
 
 /**
  * 
@@ -55,7 +55,7 @@ export function AddCollection({
                     {lists.length === 0 ? (
                     <p>No collections found</p>
                     ) : (
-                    <SongListsDisplay
+                    <SongItemListsDisplay
                         lists={lists}                 
                         onSelectList={(list) => {     
                         onSelectList(list);
