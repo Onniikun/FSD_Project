@@ -1,6 +1,6 @@
 import "./song-item-list-display.css";
 import type { FullSonglist } from "../../../../../../../../shared/types/songListTypes";
-import { SongItemListCard } from "../song-list-display-helper/SongItemListCard";
+import { SongItemListCard } from "./SongItemListCard";
 
 /**
  * Display Song lists to add/remove a song from.
