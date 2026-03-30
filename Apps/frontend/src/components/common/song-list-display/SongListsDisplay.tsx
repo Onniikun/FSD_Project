@@ -4,37 +4,25 @@ import { SongListCard } from "../song-list-card/SongListCard";
 
 export default function SongListsDisplay({
   lists,
-  songId,
-  onToggle
+  onSelectList
 }: {
   lists: FullSonglist[];
-  songId: number;
-  onToggle: (listId: string, songId: number) => void;
+  onSelectList: (list: FullSonglist) => void;
 }) {
+  console.log("Song lists:", lists)
   return (
     <div className="lists-display">
       <h2>All Song Lists</h2>
 
       {lists.length === 0 && <p>No lists created yet.</p>}
 
-      {lists.map(list => {
-        const isInList = list.songs?.some(song => song.id === songId);
-
-        return (
-          <div key={list.id} className="songlist-row">
-            <SongListCard
-              list={list}
-              onSelect={() => onToggle(list.id, songId)}
-            />
-            <button
-              className={`toggle-circle ${isInList ? "active" : ""}`}
-              onClick={() => onToggle(list.id, songId)}
-            >
-              {isInList ? "✔" : "+"}
-            </button>
-          </div>
-        );
-      })}
+      {lists.map(list => (
+        <SongListCard
+          key={list.id}
+          list={list}
+          onSelect={() => onSelectList(list)}
+        />
+      ))}
     </div>
   );
 }

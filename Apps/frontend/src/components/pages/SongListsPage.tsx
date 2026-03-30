@@ -4,7 +4,7 @@ import SongListsDisplay from "../common/song-list-display/SongListsDisplay";
 import { MoodSelector } from "../common/mood-selector/MoodSelector";
 import { useMood } from "../../hooks/useMood";
 
-import type { CreateSongListData, SongList } from "../../../../../shared/types/songListTypes";
+import type { CreateSongListData, FullSonglist } from "../../../../../shared/types/songListTypes";
 import {
   fetchSongLists,
   getSongListById,
@@ -15,8 +15,8 @@ import {
 import { SongListModal } from "../common/song-list-modal/SongListModal";
 
 export default function SongListsPage() {
-    const [lists, setLists] = useState<SongList[]>([]);
-    const [selectedList, setSelectedList] = useState<SongList | null>(null);
+    const [lists, setLists] = useState<FullSonglist[]>([]);
+    const [selectedList, setSelectedList] = useState<FullSonglist | null>(null);
     const { mood } = useMood();
 
     useEffect(() => {
@@ -43,7 +43,7 @@ export default function SongListsPage() {
         setSelectedList(null);
     };
 
-    const handleUpdateList = async (updated: SongList): Promise<void> => {
+    const handleUpdateList = async (updated: FullSonglist): Promise<void> => {
         setLists(prev =>
             prev.map(list => (list.id === updated.id ? updated : list))
         );
