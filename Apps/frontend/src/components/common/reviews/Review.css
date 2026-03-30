@@ -1,0 +1,24 @@
+.review {
+    width: 100%;
+    text-align: left;
+}
+
+.review h2 {
+    font-size: 2em;
+    margin-bottom: 0.5em;
+}
+
+.review ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.review li {
+    padding: 1rem 0;
+}
+
+.review li p {
+    margin: 0.25rem 0;
+    font-size: 0.95rem;
+}

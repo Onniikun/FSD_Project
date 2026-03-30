@@ -1,0 +1,236 @@
+/* Container */
+.songlist-container {
+  max-width: 700px;
+  margin: 2rem auto;
+  padding: 1rem;
+  font-family: system-ui, sans-serif;
+  color: white;
+}
+
+/* Form card */
+.songlist-form {
+  background: #747474;
+  color: white;
+  padding: 1.75rem;
+  border-radius: 12px;
+  border: 3px groove #e5e5e5;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+}
+
+/* Section titles */
+.songlist-form h2,
+.songs-section h3 {
+  color: white;
+  margin-bottom: 1rem;
+  font-size: x-large;
+  font-weight: 600;
+}
+
+/* Label + input wrapper */
+.form-field {
+  font-size: large;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1.25rem;
+}
+
+
+.form-field input,
+.form-field select,
+.form-field textarea {
+  width: 100%;
+  box-sizing: border-box;
+  margin-top: 0.25rem;
+  margin-bottom: 1rem;
+  padding: 0.5rem;
+  border-radius: 6px;
+  border: 1px solid #555;
+  background: #1f1a25;
+  color: white;
+}
+
+
+.form-field input:focus,
+.form-field select:focus,
+.form-field textarea:focus {
+  border-color: #007bff;
+  outline: none;
+}
+
+.error-text {
+  color: #fffefe;
+  font-size: medium;
+  margin-top: 0.25rem;
+}
+
+.cover-upload-section {
+  position: relative;
+  width: 180px;
+  height: 180px;
+  margin: 0 auto 1rem auto;
+  cursor: pointer;
+}
+
+.cover-preview {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+}
+
+/* Overlay hidden by default */
+.cover-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.45);
+  border-radius: 8px;
+  opacity: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 0.25s ease;
+}
+
+/* Show overlay on hover */
+.cover-upload-section:hover .cover-overlay {
+  opacity: 1;
+}
+
+.edit-icon {
+  color: white;
+  font-size: 2rem;
+  pointer-events: none;
+}
+
+/* Hidden file input that covers the whole area */
+.cover-input {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.songs-section {
+  margin-top: 2rem;
+  padding-top: 1rem;
+  border-top: 1px groove #3D314A;
+}
+
+.song-details p {
+  margin: 0;
+  line-height: 1.2;
+}
+
+.search-results-dropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  max-height: 220px;
+  overflow-y: auto;
+  background: #2a2a2a;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  margin-top: 4px;
+  padding: 0;
+  list-style: none;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.12);
+  z-index: 10;
+}
+
+.search-result-item {
+  padding: 10px 12px;
+  cursor: pointer;
+  transition: background 0.15s ease;
+  font-size: 0.95rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+}
+
+.song-title {
+  font-weight: 600;
+  color: #f3f3f3;
+}
+
+.song-artists {
+  color: #c3c3c3;
+  font-size: 0.9rem;
+  white-space: nowrap;
+}
+
+.search-result-item:hover {
+  background: #4e4e4e;
+}
+
+.song-search-container {
+  position: relative;
+}
+
+.song-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 6px 10px;
+  background: #3D314A;
+  border-radius: 6px;
+  margin-bottom: 0.5rem;
+  gap: 8px;
+}
+
+.song-details {
+  display: flex;
+  flex-direction: column;
+}
+
+.remove-button {
+  background: none;
+  color: white;
+  border: solid white 1px;
+  padding: 6px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.85rem;
+  transition: background 0.2s ease;
+}
+
+.remove-button:hover {
+  background: none;
+  background-color: #4e4e4e;
+  border-color: #c3c3c3;
+}
+
+.submit-button {
+  width: 100%;
+  background: #3D314A;
+  color: white;
+  border: none;
+  padding: 0.75rem;
+  border-radius: 8px;
+  cursor: pointer;
+  margin-top: 1.5rem;
+  font-size: 1rem;
+}
+
+.submit-button:hover {
+  background: #2c243a;
+}
+
+.songlist-form textarea {
+  resize: none;
+}
+
+@media (max-width: 600px) {
+  .remove-button {
+    align-self: flex-end;
+    margin-top: 0.5rem;
+  }
+}

@@ -1,0 +1,101 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+  output   = "../generated/prisma/client"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model Songlist {
+  id          String   @id @default(uuid())
+  name        String
+  visibility  String
+  description String?
+  cover       String?
+  // Relations
+  songs SongCollection[]
+}
+
+model SongCollection {
+  id         Int       @id @default(autoincrement())
+  songId     Int
+  songlistId String
+  
+  createdAt  DateTime  @default(now())
+
+  // Relations
+  song       SongItem       @relation(fields: [songId], references: [id])
+  songlist   Songlist   @relation(fields: [songlistId], references: [id])
+  
+  // prevents duplicate entries
+  @@unique([songId, songlistId]) 
+}
+
+// Song Item model
+model SongItem {
+  id           Int          @id @default(autoincrement())
+  title        String
+  releaseDate  DateTime?
+  runtime      String?
+  cover        String?
+ 
+  links        Link[]
+  artists      SongArtist[]
+  genres       SongGenre[]
+  songs        SongCollection[]
+}
+ 
+// Song Item Platform (one-to-many)
+model Link {
+  id         Int      @id @default(autoincrement())
+  songItemId Int
+  platform   String
+  url        String
+ 
+  songItem   SongItem @relation(fields: [songItemId], references: [id])
+}
+ 
+// Pivot: Song <-> Artist (many-to-many)
+model SongArtist {
+  songItemId Int
+  artistId   Int
+ 
+  songItem   SongItem @relation(fields: [songItemId], references: [id])
+  artist     Artist   @relation(fields: [artistId], references: [id])
+ 
+  @@id([songItemId, artistId])
+}
+ 
+model Artist {
+  id        Int          @id @default(autoincrement())
+  name      String       @unique
+ 
+  songs     SongArtist[]
+}
+ 
+model Genre {
+  id        Int          @id @default(autoincrement())
+  name      String       @unique
+ 
+  songs     SongGenre[]
+}
+ 
+// Pivot: Song <-> Genre (many-to-many)
+model SongGenre {
+  songItemId Int
+  genreId    Int
+ 
+  songItem   SongItem @relation(fields: [songItemId], references: [id])
+  genre      Genre    @relation(fields: [genreId], references: [id])
+ 
+  @@id([songItemId, genreId])
+}
+
+

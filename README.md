@@ -14,6 +14,22 @@ Nathan Natoza, Edraque Maglaque, Phoenixx Ordonez
 
 3. As a self-proclaimed music critic, I want to be able to view and submit reviews for music, so that I can freely share my opinions and see feedback from other users before deciding what to listen to.
 
+
+# Project Documentation
+
+Currently this full-stack project is separate into two different project files called 'frontend' and 'backend'
+
+## Front-end 
+Commands to test frontend components in terminal: 
+
+```cd ./Apps/frontend``` :make sure you are in the right folder to preview/make changes to the front-end
+
+```npm install``` :make sure to install all dependencies to run the front-end successfully.
+
+```npm run dev``` :to run and test application
+
+## Back-end
+
 ## Sprint Review | Completed Kanban Items
 
 ### Team Contributions
@@ -33,6 +49,7 @@ Nathan Natoza, Edraque Maglaque, Phoenixx Ordonez
 - **Navigation Interface(s)** - Nathan
 - **Shared state across pages** - Phoenixx
 
+
 ### Sprint 3
 
 - **useSortAndFilterUI Hook** - Nathan
@@ -41,6 +58,14 @@ Nathan Natoza, Edraque Maglaque, Phoenixx Ordonez
 - **useSearch** - Phoenixx
 - **songSearchService** - Phoenixx
 - **Discovery Service** - Edraque
+
+### Sprint 4
+- **Back-end app initialization** - Nathan
+- **Development in a SQL database** - Nathan
+- **Prisma Installation and Client Initialization** - Phoenixx
+- **Back-end CORS Configuration** - Phoenixx
+
+- **Extra Refactoring: Added application data persistence(Adding Song item to a Song list collection)** - Nathan & Phoenixx
 
 ### Individual Contributions
 
@@ -70,21 +95,14 @@ Nathan Natoza, Edraque Maglaque, Phoenixx Ordonez
 - **I.4 Architectural Layout Document** - Nathan and Phoenixx
 - **Edraque's individual components still WIP**
 
-## Songs
 
-### Karma by Summer Walker
+### Sprint 4
 
-Genre: Dark R&B
-
-Release date: October 19, 2018
-
-Runtime: 3:08
-
-### Forever & by Ejean
-
-Genre: R&B
-
-Release date: July 12, 2024
-
-Runtime: 2:27
-
+- **I.1: Back-end Resource Endpoint(Song Item)** - Nathan
+- **I.2: Resource Dataabse Schema(Song Item)** - Nathan
+- **I.3: Front-end Repository sends requests to back-end** - Nathan
+- **I.4: Application State Persistence** - Nathan
+- **I.1: Back-end Resource Endpoint(Song List)** - Phoenixx
+- **I.2: Resource Dataabse Schema(Song List)** - Phoenixx
+- **I.3: Front-end Repository sends requests to back-end** - Phoenixx
+- **I.4: Application State Persistence** - Phoenixx
