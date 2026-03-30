@@ -49,6 +49,15 @@ Commands to test frontend components in terminal:
 - **Navigation Interface(s)** - Nathan
 - **Shared state across pages** - Phoenixx
 
+### Sprint 3
+
+- **useSortAndFilterUI Hook** - Nathan
+- **SongListService** - Nathan
+- **SongItemService** - Nathan
+- **useSearch** - Phoenixx
+- **songSearchService** - Phoenixx
+- **Discovery Service** - Edraque
+
 ### Individual Contributions
 
 ### Sprint 1
