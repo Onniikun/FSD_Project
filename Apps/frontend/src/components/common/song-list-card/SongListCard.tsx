@@ -1,12 +1,12 @@
 import "./song-list-card.css";
-import type { SongList } from "../../../../../../shared/types/songListTypes";
+import type { FullSonglist } from "../../../../../../shared/types/songListTypes";
 import defaultCover from "../../../assets/default-cover.png";
 
 export function SongListCard({
   list,
   onSelect
 }: {
-  list: SongList;
+  list: FullSonglist;
   onSelect: () => void;
 }) {
   return (

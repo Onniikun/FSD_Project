@@ -1,7 +1,7 @@
-import type { CreateSongListData, SongList, UpdateSongListData } from "../../../../shared/types/songListTypes";
+import type { CreateSongListData, FullSonglist, UpdateSongListData } from "../../../../shared/types/songListTypes";
 
-type SongListsResponseJSON = { message: string; data: SongList[] };
-type SongListResponseJSON = { message: string; data: SongList };
+type SongListsResponseJSON = { message: string; data: FullSonglist[] };
+type SongListResponseJSON = { message: string; data: FullSonglist };
 const BASE_URL = `${import.meta.env.VITE_API_BASE_URL}/api/v1`;
 const SONGLIST_ENDPOINT = "/songlists"
 
@@ -10,7 +10,7 @@ const SONGLIST_ENDPOINT = "/songlists"
  * @returns All song lists returned by the server.
  * @throws Error if the request fails or the server responds with an error
  */
-export async function fetchSongLists(): Promise<SongList[]> {
+export async function fetchSongLists(): Promise<FullSonglist []> {
     const response: Response = await fetch(`${BASE_URL}${SONGLIST_ENDPOINT}`);
 
     if (!response.ok) {
@@ -27,7 +27,7 @@ export async function fetchSongLists(): Promise<SongList[]> {
  * @returns The requested song list
  * @throws Error if the song list cannot be found or the request fails
  */
-export async function getSongListById(listId: string): Promise<SongList> {
+export async function getSongListById(listId: string): Promise<FullSonglist > {
     const response: Response = await fetch(
         `${BASE_URL}${SONGLIST_ENDPOINT}/${listId}`
     );
@@ -46,7 +46,7 @@ export async function getSongListById(listId: string): Promise<SongList> {
  * @returns The newly created and hydrated SongList
  * @throws Error if creation fails or the server responds with an error
  */
-export async function createSongList(data: CreateSongListData): Promise<SongList> {
+export async function createSongList(data: CreateSongListData): Promise<FullSonglist> {
     const response: Response = await fetch(`${BASE_URL}${SONGLIST_ENDPOINT}`, {
         method: "POST",
         body: JSON.stringify(data),
@@ -73,7 +73,7 @@ export async function createSongList(data: CreateSongListData): Promise<SongList
 export async function updateSongList(
     id: string, 
     data: UpdateSongListData
-): Promise<SongList> {
+): Promise<FullSonglist> {
     const response: Response = await fetch(
         `${BASE_URL}${SONGLIST_ENDPOINT}/${id}`,
         {
@@ -99,7 +99,7 @@ export async function updateSongList(
  * @returns The deleted song list
  * @throws Error if no song list with the given ID exists or the deletion fails
  */
-export async function deleteSongList(listId: string): Promise<SongList> {
+export async function deleteSongList(listId: string): Promise<FullSonglist> {
     const response: Response = await fetch(
         `${BASE_URL}${SONGLIST_ENDPOINT}/${listId}`, 
         {
@@ -114,3 +114,26 @@ export async function deleteSongList(listId: string): Promise<SongList> {
     const json: SongListResponseJSON = await response.json();
     return json.data;
 };
+
+/**
+ * Toggles a song in a song list (add/remove).
+ * @param listId - The ID of the song list
+ * @param songId - The ID of the song to toggle
+ * @returns The updated song list
+ */
+export async function toggleSongInList(
+    listId: string,
+    songId: number
+): Promise<FullSonglist> {
+    const response: Response = await fetch(
+        `${BASE_URL}${SONGLIST_ENDPOINT}/${listId}/toggle/${songId}`,
+        { method: "POST" }
+    );
+
+    if (!response.ok) {
+        throw new Error(`Failed to toggle song ${songId} in list ${listId}`);
+    }
+
+    const json: SongListResponseJSON = await response.json();
+    return json.data;
+}

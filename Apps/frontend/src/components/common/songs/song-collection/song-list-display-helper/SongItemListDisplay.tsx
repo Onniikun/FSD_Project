@@ -1,34 +1,39 @@
-import "./song-item-list-display.css"
-import type { SongList } from "../../../../../../../../shared/types/songListTypes";
-import { SongItemListCard } from "../song-list-display-helper/SongItemListCard"
+import "./song-item-list-display.css";
+import type { FullSonglist } from "../../../../../../../../shared/types/songListTypes";
+import { SongItemListCard } from "../song-list-display-helper/SongItemListCard";
 
 /**
- * Display Song list to add to collection from a song item.
- * @param param0 - Song list collection
- * @returns - A list of song list to add to.
+ * Display Song lists to add/remove a song from.
  */
 export default function SongItemListsDisplay({
   lists,
-  onSelectList
+  songId,
+  onToggle
 }: {
-  lists: SongList[];
-  onSelectList: (list: SongList) => void;
+  lists: FullSonglist[];
+  songId: number;
+  onToggle: (listId: string, songId: number) => void;
 }) {
-  console.log("Song Item lists:", lists)
   return (
     <div className="model">
       <h2 className="title">All Song Lists</h2>
 
       {lists.length === 0 && <p>No lists created yet.</p>}
-       <div className="modal-item-display">
-        {lists.map(list => (
+
+      <div className="modal-item-display">
+        {lists.map(list => {
+          const isInList = list.songs?.some(song => song.id === songId);
+
+          return (
             <SongItemListCard
-            key={list.id}
-            list={list}
-            onSelect={() => onSelectList(list)}
+              key={list.id}
+              list={list}
+              isInList={isInList}
+              onToggle={() => onToggle(list.id, songId)}
             />
-        ))}
-        </div>
+          );
+        })}
+      </div>
     </div>
   );
 }

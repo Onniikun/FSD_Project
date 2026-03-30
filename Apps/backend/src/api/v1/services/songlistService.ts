@@ -12,9 +12,12 @@ import { songlistInclude } from "../utils/songlistInclude";
  * Retrieves all songlists
  * @returns Array of all songlists
  */
-export const fetchAllSonglists = async (): Promise<Songlist[]> => {
-    // get all records in the songlist table
-    return await prisma.songlist.findMany();
+export const fetchAllSonglists = async (): Promise<FullSonglist[]> => {
+    const lists = await prisma.songlist.findMany({
+        include: songlistInclude
+    });
+
+    return lists.map(transformSonglist);
 };
 
 /**
@@ -67,8 +70,6 @@ export const createSonglist = async (
 
     return transformSonglist(created);
 };
-
-
 
 /**
  * Updates an existing songlist's information
@@ -126,4 +127,42 @@ export const deleteSonglist = async (
     await prisma.songlist.delete({
         where: { id }
     });
+};
+
+export const toggleSongInList = async (
+    listId: string,
+    songId: number
+) => {
+    // Check if the song is already in the list
+    const existing = await prisma.songCollection.findUnique({
+        where: {
+            songId_songlistId: {
+                songId,
+                songlistId: listId
+            }
+        }
+    });
+
+    if (existing) {
+        // Remove it
+        await prisma.songCollection.delete({
+            where: { id: existing.id }
+        });
+    } else {
+        // Add it
+        await prisma.songCollection.create({
+            data: {
+                songId,
+                songlistId: listId
+            }
+        });
+    }
+
+    // Return updated list
+    const updated = await prisma.songlist.findUnique({
+        where: { id: listId },
+        include: songlistInclude
+    });
+
+    return transformSonglist(updated);
 };

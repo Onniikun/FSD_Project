@@ -10,11 +10,13 @@ import { LinksFilter } from "../song-filter/LinkFilter.tsx"
 import { AddCollection } from "../song-collection/SongAddCollection.tsx"
 
 import { fetchAllSongs } from "../../../../apis/SongItemRepo.ts"
+import { toggleSongInList } from "../../../../apis/songListsRepository"
+
 import { useSortFilter } from "../../../../hooks/useSortAndFilterUI.ts"
 import { filterSongGenre, filterSongLinks } from "../../../../services/SongItemService.ts"
 import * as DiscoveryService from "../../../../services/discoveryService";
 import { useMood } from "../../../../hooks/useMood";
-import type { SongList } from "../../../../../../../shared/types/songListTypes";
+import type { FullSonglist } from "../../../../../../../shared/types/songListTypes";
 import { fetchSongLists } from "../../../../apis/songListsRepository.ts"
 
 /**
@@ -32,7 +34,7 @@ export function SongItem({ query = "" }: { query?: string }) {
      * This hook is my useSortAndFilter hook.
      */
     const {
-        selectedItem: selectedGenre, 
+        selectedItem: selectedGenre,
         setSelectedItem: setSelectedGenre
     } = useSortFilter<string>("All")
     /**
@@ -59,20 +61,20 @@ export function SongItem({ query = "" }: { query?: string }) {
             try {
                 const data = await fetchAllSongs()
                 const mappedSongs: SongItemSchema[] = data.map((song) => ({
-                ...song,
-                release_date: song.releaseDate ? new Date(song.releaseDate) : new Date(),
-                artist: song.artist && song.artist.length > 0
-                    ? Array.isArray(song.artist)
-                        ? song.artist
-                        : [song.artist]
-                    : ["Unknown Artist"],
-                genre: song.genre && song.genre.length > 0
-                    ? Array.isArray(song.genre)
-                        ? song.genre
-                        : [song.genre]
-                    : ["Unknown Genre"],
-                links: song.links || [],
-            }))
+                    ...song,
+                    release_date: song.releaseDate ? new Date(song.releaseDate) : new Date(),
+                    artist: song.artist && song.artist.length > 0
+                        ? Array.isArray(song.artist)
+                            ? song.artist
+                            : [song.artist]
+                        : ["Unknown Artist"],
+                    genre: song.genre && song.genre.length > 0
+                        ? Array.isArray(song.genre)
+                            ? song.genre
+                            : [song.genre]
+                        : ["Unknown Genre"],
+                    links: song.links || [],
+                }))
                 setSongs(mappedSongs)
             } catch (error) {
                 console.error(error)
@@ -81,7 +83,7 @@ export function SongItem({ query = "" }: { query?: string }) {
         loadSongs()
     }, [])
 
-    const [lists, setLists] = useState<SongList[]>([]);
+    const [lists, setLists] = useState<FullSonglist[]>([]);
     useEffect(() => {
         async function loadLists() {
             try {
@@ -91,13 +93,26 @@ export function SongItem({ query = "" }: { query?: string }) {
             console.error(err);
             }
         }
-    
-        loadLists();
-        }, []);
-    const handleSelectList = (list: SongList) => {
-        console.log("Song Lists", list)
+        loadLists()
+    }, [])
+
+    // NEW: Toggle handler
+    const handleToggleSongInList = async (listId: string, songId: number) => {
+        try {
+            const updatedList = await toggleSongInList(listId, songId)
+
+            // Update state with the updated list
+            setLists(prev =>
+                prev.map(list =>
+                    list.id === updatedList.id ? updatedList : list
+                )
+            )
+        } catch (error) {
+            console.error("Failed to toggle song:", error)
+        }
     }
-    //Filters out genres and available platforms.
+
+    // Filtering logic
     const genreFiltered = filterSongGenre(songs, selectedGenre)
     const linkFiltered = filterSongLinks(genreFiltered, selectedLinks)
     /**
@@ -120,50 +135,55 @@ export function SongItem({ query = "" }: { query?: string }) {
     }
     return(
         <>
-        {!id && (
-            <> 
-                <GenreFilter onChange={setSelectedGenre} />
-                <LinksFilter onChange={setSelectedLinks} />
+            {!id && (
+                <>
+                    <GenreFilter onChange={setSelectedGenre} />
+                    <LinksFilter onChange={setSelectedLinks} />
             </>)}
         {/* {console.log("Name of songs", displayedSongs)}
         {console.log("Links",songs.map(song=>song.links))} */}
         {/* {console.log("Selected:", lists)} */}
         {/* {console.log("Song platforms:", songs.map(s => s.links?.map(l => `"${l.platform}"`)))} */}
-        <section className="song-item">
-            <ul>
-                {displayedSongs.length === 0 ? (
-                    <p>Sorry, We haven't added that yet.</p>
-                ) : (
+            <section className="song-item">
+                <ul>
+                    {displayedSongs.length === 0 ? (
+                        <p>Sorry, We haven't added that yet.</p>
+                    ) : (
                     displayedSongs.map((song: SongItemSchema)=> (
-                        <li key={song.id} className="song-card">
-                        <div> 
-                        <Link to={`/songs/${song.id}`}>
-                            <div className="songWrapper">
+                            <li key={song.id} className="song-card">
+                                <div>
+                                    <Link to={`/songs/${song.id}`}>
+                                        <div className="songWrapper">
                                 <img className="songPFP"
-                                    src={song.cover} 
+                                                src={song.cover}
                                     alt="songpic" />
-                            </div>
-                        </Link>
-                        <Links links={song.links} />
-                        </div>
-                        <div className="song-info">
-                            <h2 className="title">{song.title}</h2>
-                            <p>{song.artist.join(", ")}</p>
-                            <p>Genre: {song.genre.join(", ")}</p>
+                                        </div>
+                                    </Link>
+                                    <Links links={song.links} />
+                                </div>
+                                <div className="song-info">
+                                    <h2 className="title">{song.title}</h2>
+                                    <p>{song.artist.join(", ")}</p>
+                                    <p>Genre: {song.genre.join(", ")}</p>
                             <p>Release date: {new Date (song.releaseDate).toLocaleDateString("en-US", {
-                                year: "numeric",
-                                month: "short",
-                                day: "numeric",
+                                            year: "numeric",
+                                            month: "short",
+                                            day: "numeric",
                             })}</p>
-                            <p>Runtime: {song.runtime}</p>  
-                            <AddCollection 
-                                lists={lists}
-                                onSelectList={handleSelectList} />                   
-                        </div>
-                    </li>
-                )))}
-            </ul>
-        </section>
+                                    <p>Runtime: {song.runtime}</p>
+
+                                    {/* NEW: AddCollection with toggle */}
+                                    <AddCollection
+                                        lists={lists}
+                                        songId={song.id}
+                                        onToggleSongInList={handleToggleSongInList}
+                                    />
+                                </div>
+                            </li>
+                        ))
+                    )}
+                </ul>
+            </section>
         </>
     )
 }

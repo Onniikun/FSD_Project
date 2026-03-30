@@ -4,9 +4,9 @@ import type { VisibilityOption } from "../../../../shared/types/songListTypes.ts
 export interface CreateSongListInput  {
   name: string;
   visibility: VisibilityOption;
-  description: string;
+  description: string | null;
   songIds: number[];
-  cover?: string;
+  cover?: string | null;
 }
 export interface ValidateSongErrors {
   name?: string;

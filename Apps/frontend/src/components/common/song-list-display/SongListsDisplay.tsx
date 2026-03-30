@@ -1,13 +1,13 @@
 import './song-list-display.css';
-import type { SongList } from "../../../../../../shared/types/songListTypes";
+import type { FullSonglist } from "../../../../../../shared/types/songListTypes";
 import { SongListCard } from "../song-list-card/SongListCard";
 
 export default function SongListsDisplay({
   lists,
   onSelectList
 }: {
-  lists: SongList[];
-  onSelectList: (list: SongList) => void;
+  lists: FullSonglist[];
+  onSelectList: (list: FullSonglist) => void;
 }) {
   console.log("Song lists:", lists)
   return (
