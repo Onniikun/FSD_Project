@@ -3,9 +3,9 @@ import type { SongList } from "../../../../../../../../shared/types/songListType
 import { SongItemListCard } from "../song-list-display-helper/SongItemListCard"
 
 /**
- * 
- * @param param0 
- * @returns 
+ * Display Song list to add to collection from a song item.
+ * @param param0 - Song list collection
+ * @returns - A list of song list to add to.
  */
 export default function SongItemListsDisplay({
   lists,

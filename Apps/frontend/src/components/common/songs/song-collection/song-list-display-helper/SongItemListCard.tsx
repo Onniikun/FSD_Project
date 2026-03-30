@@ -3,9 +3,9 @@ import type { SongList } from "../../../../../../../../shared/types/songListType
 import defaultCover from "../../../../../assets/default-cover.png"
 
 /**
- * 
- * @param param0 
- * @returns 
+ * Displays a singlar song list to add to collection from a song item.
+ * @param param0 - Song list collection.
+ * @returns - A singlar Song list item.
  */
 export function SongItemListCard({
   list,
