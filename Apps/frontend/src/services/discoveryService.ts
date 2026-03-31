@@ -1,4 +1,4 @@
-import type { Song } from "../types/songModel";
+import type { SongItemSchema } from "../../../../shared/types/SongItemSchema";
 
 export type SortOption = "title-asc" | "newest" | "oldest";
 
@@ -26,7 +26,7 @@ function normalize(str: string): string {
   return str.toLowerCase().trim();
 }
 
-export function matchesQuery(song: Song, query: string): boolean {
+export function matchesQuery(song: SongItemSchema, query: string): boolean {
   const q = normalize(query);
   if (!q) return true;
 
@@ -41,7 +41,7 @@ export function matchesQuery(song: Song, query: string): boolean {
  * Mood -> genre mapping is mostly subjective, but we can hardcode something simple for now, will definitely change ltr
  * Keep it simple for Sprint 3; you can adjust later.
  */
-export function matchesMood(song: Song, mood: string | null | undefined): boolean {
+export function matchesMood(song: SongItemSchema, mood: string | null | undefined): boolean {
   if (!mood) return true;
 
   const m = normalize(mood);
@@ -62,36 +62,36 @@ export function matchesMood(song: Song, mood: string | null | undefined): boolea
   return genres.some(g => allowed.includes(g));
 }
 
-export function matchesGenre(song: Song, genre: string): boolean {
+export function matchesGenre(song: SongItemSchema, genre: string): boolean {
   if (!genre || genre === "All") return true;
   const g = normalize(genre);
   return song.genre.map(normalize).some(x => x === g);
 }
 
-export function sortSongs(songs: Song[], option: SortOption): Song[] {
+export function sortSongs(songs: SongItemSchema[], option: SortOption): SongItemSchema[] {
   const copy = [...songs];
 
   if (option === "title-asc") {
     // localeCompare documentation: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/localeCompare
     copy.sort((a, b) => a.title.localeCompare(b.title));
   } else if (option === "newest") {
-    copy.sort((a, b) => b.release_date.getTime() - a.release_date.getTime());
+    copy.sort((a, b) => b.releaseDate.getTime() - a.releaseDate.getTime());
   } else if (option === "oldest") {
-    copy.sort((a, b) => a.release_date.getTime() - b.release_date.getTime());
+    copy.sort((a, b) => a.releaseDate.getTime() - b.releaseDate.getTime());
   }
 
   return copy;
 }
 
 export function applyDiscovery(
-    songs: Song[],
+    songs: SongItemSchema[],
     args: {
     query?: string;
     mood?: string | null;
     genre?: string;
     sort?: SortOption;
   }
-): Song[] {
+): SongItemSchema[] {
   const filtered = songs
     .filter(s => matchesQuery(s, args.query ?? ""))
     .filter(s => matchesMood(s, args.mood))
