@@ -10,13 +10,13 @@ import { LinksFilter } from "../song-filter/LinkFilter.tsx"
 import { AddCollection } from "../song-collection/SongAddCollection.tsx"
 
 import { fetchAllSongs } from "../../../../apis/SongItemRepo.ts"
-import { toggleSongInList } from "../../../../apis/songListsRepository"
+import { toggleSongInList } from "../../../../apis/songListsRepository.ts"
 
 import { useSortFilter } from "../../../../hooks/useSortAndFilterUI.ts"
 import { filterSongGenre, filterSongLinks } from "../../../../services/SongItemService.ts"
-import * as DiscoveryService from "../../../../services/discoveryService";
-import { useMood } from "../../../../hooks/useMood";
-import type { FullSonglist } from "../../../../../../../shared/types/songListTypes";
+import * as DiscoveryService from "../../../../services/discoveryService.ts";
+import { useMood } from "../../../../hooks/useMood.ts";
+import type { FullSonglist } from "../../../../../../../shared/types/songListTypes.ts";
 import { fetchSongLists } from "../../../../apis/songListsRepository.ts"
 
 /**
