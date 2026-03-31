@@ -3,7 +3,7 @@
 {
     "files": [],
     "references": [
-        {"path": "./apps/backend"},
-        {"path": "./apps/frontend"}
+        {"path": "./Apps/backend"},
+        {"path": "./Apps/frontend"}
     ]
 }
