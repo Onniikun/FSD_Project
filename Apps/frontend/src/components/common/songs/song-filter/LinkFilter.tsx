@@ -1,14 +1,20 @@
 import "./link-filter.css"
 import Select from 'react-select'
 import makeAnimated from "react-select/animated"
-import { LinkList } from "../../../../apis/SongItemLinkData"
+
 
 // isMulti parameter selection interface.
 type LinkOption = {
   value: string
   label: string
 }
-
+const songLinkOptions: LinkOption[] = [
+  { value: "spotify", label: "Spotify" },
+  { value: "Apple Music", label: "Apple Music" },
+  { value: "youtube", label: "YouTube" },
+  { value: "soundcloud", label: "SoundCloud"},
+  { value: "amazon", label: "Amazon"}
+]
 type LinkFilterProps = {
   onChange: (platform: string[]) => void
 }
@@ -70,7 +76,7 @@ export function LinksFilter({ onChange }: LinkFilterProps) {
         isMulti
         components={animated}
         placeholder="Where do you want to play?"
-        options={LinkList}
+        options={songLinkOptions}
         onChange={(selected) =>
           onChange(
             selected ? selected.map(option => option.value) : []
