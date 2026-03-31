@@ -39,12 +39,12 @@ exports.Prisma = Prisma
 exports.$Enums = {}
 
 /**
- * Prisma Client JS version: 7.5.0
- * Query Engine version: 280c870be64f457428992c43c1f6d557fab6e29e
+ * Prisma Client JS version: 7.6.0
+ * Query Engine version: 75cbdc1eb7150937890ad5465d861175c6624711
  */
 Prisma.prismaVersion = {
-  client: "7.5.0",
-  engine: "280c870be64f457428992c43c1f6d557fab6e29e"
+  client: "7.6.0",
+  engine: "75cbdc1eb7150937890ad5465d861175c6624711"
 }
 
 Prisma.PrismaClientKnownRequestError = PrismaClientKnownRequestError;
@@ -173,8 +173,8 @@ exports.Prisma.ModelName = {
  */
 const config = {
   "previewFeatures": [],
-  "clientVersion": "7.5.0",
-  "engineVersion": "280c870be64f457428992c43c1f6d557fab6e29e",
+  "clientVersion": "7.6.0",
+  "engineVersion": "75cbdc1eb7150937890ad5465d861175c6624711",
   "activeProvider": "postgresql",
   "inlineSchema": "// This is your Prisma schema file,\n// learn more about it in the docs: https://pris.ly/d/prisma-schema\n\n// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?\n// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init\n\ngenerator client {\n  provider = \"prisma-client-js\"\n  output   = \"../generated/prisma/client\"\n}\n\ndatasource db {\n  provider = \"postgresql\"\n}\n\nmodel Songlist {\n  id          String           @id @default(uuid())\n  name        String\n  visibility  String\n  description String?\n  cover       String?\n  // Relations\n  songs       SongCollection[]\n}\n\nmodel SongCollection {\n  id         Int    @id @default(autoincrement())\n  songId     Int\n  songlistId String\n\n  createdAt DateTime @default(now())\n\n  // Relations\n  song     SongItem @relation(fields: [songId], references: [id])\n  songlist Songlist @relation(fields: [songlistId], references: [id])\n\n  // prevents duplicate entries\n  @@unique([songId, songlistId])\n}\n\n// Song Item model\nmodel SongItem {\n  id          Int       @id @default(autoincrement())\n  title       String\n  releaseDate DateTime?\n  runtime     String?\n  cover       String?\n\n  links   Link[]\n  artists SongArtist[]\n  genres  SongGenre[]\n  songs   SongCollection[]\n}\n\n// Song Item Platform (one-to-many)\nmodel Link {\n  id         Int    @id @default(autoincrement())\n  songItemId Int\n  platform   String\n  url        String\n\n  songItem SongItem @relation(fields: [songItemId], references: [id])\n}\n\n// Pivot: Song <-> Artist (many-to-many)\nmodel SongArtist {\n  songItemId Int\n  artistId   Int\n\n  songItem SongItem @relation(fields: [songItemId], references: [id])\n  artist   Artist   @relation(fields: [artistId], references: [id])\n\n  @@id([songItemId, artistId])\n}\n\nmodel Artist {\n  id   Int    @id @default(autoincrement())\n  name String @unique\n\n  songs SongArtist[]\n}\n\nmodel Genre {\n  id   Int    @id @default(autoincrement())\n  name String @unique\n\n  songs SongGenre[]\n}\n\n// Pivot: Song <-> Genre (many-to-many)\nmodel SongGenre {\n  songItemId Int\n  genreId    Int\n\n  songItem SongItem @relation(fields: [songItemId], references: [id])\n  genre    Genre    @relation(fields: [genreId], references: [id])\n\n  @@id([songItemId, genreId])\n}\n"
 }
