@@ -1,9 +1,6 @@
 {
   "version": 2,
   "relatedProjects": ["prj_gd7twRUDhWrtlufO5C6RbNLJmuwc"],
-  "builds": [
-    { "src": "dist/server.ts", "use": "@vercel/node" }
-  ],
   "routes": [
     { "src": "/(.*)", "dest": "dist/server.ts" }
   ]
