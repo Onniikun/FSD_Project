@@ -2,13 +2,12 @@
   "name": "@boomboxd/backend",
   "version": "1.0.0",
   "description": "",
-  "type": "module",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "tsx src/server.ts",
     "build": "tsc",
-    "vercel-build": "prisma migrate deploy && prisma db seed && npm run build",
+    "vercel-build": "npm run build",
     "postinstall": "prisma generate"
   },
   "keywords": [],

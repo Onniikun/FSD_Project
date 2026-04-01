@@ -1,15 +1,21 @@
 {
-  "compilerOptions": {
-    "target": "ES2020",
-    "module": "commonjs",
-    "moduleResolution": "node",
-    "outDir": "dist",
-    "rootDir": "src",
-    "strict": true,
-    "esModuleInterop": true,
-    "resolveJsonModule": true,
-    "skipLibCheck": true
+    // Use the root directory for configuration
+    // any overriding configs defined here
+    "extends": "../../tsconfig.base.json",
+    "compilerOptions": {
+      "target": "ES6",
+      "module": "commonjs",
+      "outDir": "./dist",
+      "baseUrl": "../../",
+    "sourceMap": true,
+    "lib": ["ESNext"],
+    "paths": {
+      "@shared/*": ["shared/*"]
+    }
   },
-  "include": ["src/**/*"],
-  "exclude": ["node_modules", "dist", "generated"]
+  "include": [
+    "src/**/*",
+    "../../shared/types/**/*"
+  ],
+  "exclude": ["node_modules", "dist"]
 }

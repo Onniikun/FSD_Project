@@ -1,7 +1,7 @@
 import { Request, Response, NextFunction } from "express";
 import { ObjectSchema } from "joi";
 import { HTTP_STATUS } from "../constants/httpConstant"
-import { MiddlewareFunction, RequestData } from "../types/express";
+import { MiddlewareFunction } from "../types/express";
 
 /**
  * A validation schema designed to validate a data schema.

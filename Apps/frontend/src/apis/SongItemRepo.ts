@@ -1,4 +1,4 @@
-import type { SongItemSchema } from "../../../backend/shared/types/SongItemSchema";
+import type { SongItemSchema } from "../../../../shared/types/SongItemSchema";
 
 /**
  * Global variables that takes base URL for backend.

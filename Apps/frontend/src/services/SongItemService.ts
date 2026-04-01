@@ -1,4 +1,4 @@
-import type { SongItemSchema } from "../../../backend/shared/types/SongItemSchema"
+import type { SongItemSchema } from "../../../../shared/types/SongItemSchema"
 
 /**
  * Service Definition to filter songs by genre.

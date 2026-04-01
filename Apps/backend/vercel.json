@@ -1,7 +1,6 @@
 {
   "version": 2,
-  "relatedProjects": ["prj_gd7twRUDhWrtlufO5C6RbNLJmuwc"],
   "routes": [
-    { "src": "/(.*)", "dest": "dist/server.js" }
+    { "src": "/(.*)", "dest": "dist/api/v1/server.js" }
   ]
 }

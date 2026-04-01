@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import "./create-song-list-form.css";
 
-import type { SongItemSchema } from "../../../../../backend/src/shared/types/SongItemSchema";
-import type { CreateSongListData, VisibilityOption } from "../../../../../backend/src/shared/types/songListTypes";
+import type { SongItemSchema } from "../../../../../../shared/types/SongItemSchema";
+import type { CreateSongListData, VisibilityOption } from "../../../../../../shared/types/songListTypes";
 import defaultCover from "../../../assets/default-cover.png";
 import { useSearch } from "../../../hooks/useSearch";
 import { SearchService } from "../../../services/songSearchService";
