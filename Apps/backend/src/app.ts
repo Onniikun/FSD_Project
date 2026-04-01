@@ -18,7 +18,6 @@ app.use(cors(corsOptions));
 app.get("/",  (_req, res) => {
     res.send("Got response from backend!");
 });
-
 app.use("/api/v1", SongItemRoute);
 app.use("/api/v1", songlistRoutes);
 app.use(errorHandler);
