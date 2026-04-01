@@ -1,4 +1,4 @@
-import type { SongItemSchema } from "../../../../shared/types/SongItemSchema";
+import type { SongItemSchema } from "../../../backend/shared/types/SongItemSchema";
 
 export type SortOption = "title-asc" | "newest" | "oldest";
 

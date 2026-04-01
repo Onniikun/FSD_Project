@@ -1,5 +1,5 @@
 import "./song-item-list-card.css";
-import type { FullSonglist } from "../../../../../../../../shared/types/songListTypes";
+import type { FullSonglist } from "../../../../../../../backend/shared/types/songListTypes";
 import defaultCover from "../../../../../assets/default-cover.png";
 
 export function SongItemListCard({

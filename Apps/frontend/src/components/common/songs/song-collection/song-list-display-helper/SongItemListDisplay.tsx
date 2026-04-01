@@ -1,5 +1,5 @@
 import "./song-item-list-display.css";
-import type { FullSonglist } from "../../../../../../../../shared/types/songListTypes";
+import type { FullSonglist } from "../../../../../../../backend/shared/types/songListTypes";
 import { SongItemListCard } from "./SongItemListCard";
 
 /**
