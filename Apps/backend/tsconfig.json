@@ -4,16 +4,12 @@
     "module": "commonjs",
     "moduleResolution": "node",
     "outDir": "dist",
-    "rootDir": "../../",
+    "rootDir": "src",
     "strict": true,
     "esModuleInterop": true,
-    "resolveJsonModule": true
+    "resolveJsonModule": true,
+    "skipLibCheck": true
   },
-  "include": [
-    "src/**/*",
-    "lib/**/*",
-    "config/**/*",
-    "../../shared/**/*"
-, "shared/types"  ],
+  "include": ["src/**/*"],
   "exclude": ["node_modules", "dist", "generated"]
 }

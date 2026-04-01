@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import "./song-list-modal.css";
-import type { SongItemSchema } from "../../../../../backend/shared/types/SongItemSchema";
-import type { FullSonglist, VisibilityOption } from "../../../../../backend/shared/types/songListTypes";
+import type { SongItemSchema } from "../../../../../backend/src/shared/types/SongItemSchema";
+import type { FullSonglist, VisibilityOption } from "../../../../../backend/src/shared/types/songListTypes";
 import defaultCover from "../../../assets/default-cover.png";
 import { SearchService } from "../../../services/songSearchService";
 import { validateList, addSong as addSongToList, removeSong as removeSongFromList } from "../../../services/SongListService";

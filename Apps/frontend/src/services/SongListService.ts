@@ -1,5 +1,5 @@
-import type { SongItemSchema } from "../../../backend/shared/types/SongItemSchema.ts";
-import type { VisibilityOption } from "../../../backend/shared/types/songListTypes.ts";
+import type { SongItemSchema } from "../../../backend/src/shared/types/SongItemSchema.ts";
+import type { VisibilityOption } from "../../../backend/src/shared/types/songListTypes.ts";
 
 export interface CreateSongListInput  {
   name: string;
