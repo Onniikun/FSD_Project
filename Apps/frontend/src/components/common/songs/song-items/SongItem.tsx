@@ -1,5 +1,5 @@
 import "./song-item.css"
-import type { SongItemSchema } from "../../../../../../../shared/types/SongItemSchema.ts"
+import type { SongItemSchema } from "../../../../../../backend/src/shared/types/SongItemSchema.ts"
 
 import { useState, useEffect } from "react"
 import { Link, useParams } from 'react-router-dom'
@@ -16,7 +16,7 @@ import { useSortFilter } from "../../../../hooks/useSortAndFilterUI.ts"
 import { filterSongGenre, filterSongLinks } from "../../../../services/SongItemService.ts"
 import * as DiscoveryService from "../../../../services/discoveryService.ts";
 import { useMood } from "../../../../hooks/useMood.ts";
-import type { FullSonglist } from "../../../../../../../shared/types/songListTypes.ts";
+import type { FullSonglist } from "../../../../../../backend/src/shared/types/songListTypes.ts";
 import { fetchSongLists } from "../../../../apis/songListsRepository.ts"
 
 /**

@@ -1,15 +1,7 @@
 {
-    "relatedProjects": ["prj_gd7twRUDhWrtlufO5C6RbNLJmuwc"],
-    "rewrites": [
-        {
-            "source": "/(.*)",
-            "destination": "/api"
-        }
-    ],
-    "git": {
-        "deploymentEnabled": {
-            "*": false,
-            "main": true
-        }
-    }
+  "version": 2,
+  "relatedProjects": ["prj_gd7twRUDhWrtlufO5C6RbNLJmuwc"],
+  "routes": [
+    { "src": "/(.*)", "dest": "dist/server.js" }
+  ]
 }

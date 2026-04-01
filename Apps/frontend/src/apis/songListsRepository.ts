@@ -1,4 +1,4 @@
-import type { CreateSongListData, FullSonglist, UpdateSongListData } from "../../../../shared/types/songListTypes";
+import type { CreateSongListData, FullSonglist, UpdateSongListData } from "../../../backend/src/shared/types/songListTypes";
 
 type SongListsResponseJSON = { message: string; data: FullSonglist[] };
 type SongListResponseJSON = { message: string; data: FullSonglist };

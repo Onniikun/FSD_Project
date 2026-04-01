@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "workspaces": [
-    "apps/*"
+    "Apps/*"
   ],
   "devDependencies": {
     "concurrently": "^9.2.1",
@@ -27,11 +27,7 @@
   "dependencies": {
     "@emotion/react": "^11.14.0",
     "@emotion/styled": "^11.14.1",
-    "@mui/material": "^7.3.9",
-    "@prisma/client": "^7.5.0",
-    "dotenv": "^16.4.7",
-    "joi": "^18.0.2",
-    "morgan": "^1.10.1"
+    "@mui/material": "^7.3.9"
   },
   "node_modules/ansi-regex": {
     "version": "5.0.1",

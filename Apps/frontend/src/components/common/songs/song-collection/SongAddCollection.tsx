@@ -4,7 +4,7 @@ import Modal from "@mui/material/Modal";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 
-import type { FullSonglist } from "../../../../../../../shared/types/songListTypes";
+import type { FullSonglist } from "../../../../../../backend/src/shared/types/songListTypes";
 import SongItemListsDisplay from "./song-list-display-helper/SongItemListDisplay";
 
 export function AddCollection({

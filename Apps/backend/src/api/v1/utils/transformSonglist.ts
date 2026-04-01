@@ -1,4 +1,4 @@
-import type { FullSonglist } from "../../../../../../shared/types/songListTypes";
+import type { FullSonglist } from "../../../shared/types/songListTypes";
 
 export const transformSonglist = (songlist: any): FullSonglist => {
     return {
