@@ -1,9 +1,8 @@
-import { Songlist } from "../../../../generated/prisma/client";
 import { prisma } from "../../../../lib/prisma";
 import type { 
     FullSonglist, 
     CreateSongListData, 
-    UpdateSongListData } from "../../../shared/types/songListTypes";
+    UpdateSongListData } from "../../../../../../shared/types/songListTypes";
 import { transformSonglist } from "../utils/transformSonglist";
 import { songlistInclude } from "../utils/songlistInclude";
 
