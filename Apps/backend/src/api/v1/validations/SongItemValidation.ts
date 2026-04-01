@@ -1,5 +1,4 @@
 import Joi, { ObjectSchema } from "joi";
-import { platform } from "node:os";
 
 /**
  * Song Item schema for validation.

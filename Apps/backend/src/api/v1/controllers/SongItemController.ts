@@ -11,7 +11,7 @@ import { SongItem } from "../../../../generated/prisma/client"
  * @param next - The express middleware chaining function
  */
 export const getAllSongItems = async(
-   req: Request,
+   _req: Request,
    res: Response,
    next: NextFunction 
 ): Promise<void> => {
