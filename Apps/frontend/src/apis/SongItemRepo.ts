@@ -5,7 +5,7 @@ import type { SongItemSchema } from "../../../../shared/types/SongItemSchema";
  */
 type SongItemsResponseJSON = {message: string, data: SongItemSchema[]};
 type SongItemResponseJSON = {message: string, data: SongItemSchema};
-const BASE_URL = `${import.meta.env.VITE_API_BASE_URL}/api/v1`;
+const BASE_URL = `${import.meta.env.VITE_API_BASE_URL.replace(/\/+$/, "")}/api/v1`;
 const SONGITEM_ENDPOINT = "/songs"
 
 /**
