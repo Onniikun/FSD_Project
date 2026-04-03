@@ -1,12 +1,13 @@
 {
-    "relatedProjects": ["prj_gd7twRUDhWrtlufO5C6RbNLJmuwc"],
-    "rewrites": [
+   "relatedProjects": ["prj_2Ie4DR5seenghQapxKJaTjM3oHDe"],
+   "rewrites": [
         {
             "source": "/(.*)",
             "destination": "/api" 
         }
-    ],
-    "git": {
+   ],
+
+   "git": {
         "deploymentEnabled": {
             "*": false,
             "main": true
