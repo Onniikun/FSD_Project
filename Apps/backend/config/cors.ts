@@ -4,7 +4,6 @@ dotenv.config();
 import { CorsOptions } from "cors";
 
 const allowedOrigins = [process.env.FRONTEND_URL];
-console.log("Allowed origins:", allowedOrigins);
 
 export const corsOptions: CorsOptions = {
   origin(origin, callback) {
