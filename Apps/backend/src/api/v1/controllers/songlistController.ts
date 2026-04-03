@@ -14,6 +14,7 @@ export const getAllSonglists = async (
     res: Response,
     next: NextFunction
 ): Promise<void> => {
+    console.log("Controller reached for songlists");
     try {
         const songlists = await songlistService.fetchAllSonglists();
         res.status(HTTP_STATUS.OK).json(
