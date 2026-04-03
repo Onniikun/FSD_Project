@@ -117,6 +117,11 @@ export const deleteSonglist = async (
     }
 };
 
+/**
+ * Manages the request and response of a toggled list.
+ * @param req - The express Request
+ * @param res - The express Response
+ */
 export const toggleSongInList = async (
     req: Request,
     res: Response,
