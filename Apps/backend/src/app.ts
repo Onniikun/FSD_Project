@@ -9,7 +9,9 @@ import songlistRoutes from './api/v1/routes/songlistRoutes';
 import { errorHandler } from "./api/v1/middleware/errorHandler";
 
 const app: Express = express();
-
+app.use(cors({
+  origin: "https://fsd-project-phi.vercel.app",
+}));
 dotenv.config();
 app.use(morgan("combined"));
 app.use(express.json());
