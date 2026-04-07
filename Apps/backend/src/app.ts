@@ -15,6 +15,10 @@ app.use(morgan("combined"));
 app.use(express.json());
 app.use(cors(corsOptions));
 
+app.use((req, res, next) => {
+  console.log("Incoming request headers:", req.headers);
+  next();
+});
 app.get("/",  (_req, res) => {
     res.send("Got response from backend!");
 });
