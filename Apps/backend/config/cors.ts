@@ -1,7 +1,10 @@
+// import dotenv from "dotenv";
+// dotenv.config();
+
 import { CorsOptions } from "cors";
 
 const allowedOrigins = [process.env.FRONTEND_URL];
-console.log("Allowed CORS origins:", allowedOrigins);
+console.log(allowedOrigins)
 export const corsOptions: CorsOptions = {
   origin(origin, callback) {
     // Allow requests from your front-end OR requests with no origin (Postman)
