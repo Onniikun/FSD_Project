@@ -25,6 +25,8 @@
     "url": "https://github.com/Onniikun/FSD_Project/issues"
   },
   "dependencies": {
+    "@clerk/clerk-react": "^5.61.4",
+    "@clerk/react": "^6.2.0",
     "@emotion/react": "^11.14.0",
     "@emotion/styled": "^11.14.1",
     "@mui/material": "^7.3.9"

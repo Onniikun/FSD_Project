@@ -57,3 +57,10 @@ nav span {
   gap: 30px;
   padding: 12px 24px;
 }
+
+.nav-btn {
+  background: none;
+  border: none;
+  color: #bf87ff;
+  cursor: pointer;
+}
