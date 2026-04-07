@@ -3,11 +3,11 @@
 
 import { CorsOptions } from "cors";
 
-const allowedOrigins = [process.env.FRONTEND_URL];
-console.log("The Front-end URL haha:",allowedOrigins)
 export const corsOptions: CorsOptions = {
   origin(origin, callback) {
-    console.log("The origin haha:",origin)
+    const allowedOrigins = [process.env.FRONTEND_URL || "http://localhost:5173"];
+    console.log("The Front-end URL haha:",allowedOrigins)
+    console.log("The origin haha:", origin)
     // Allow requests from your front-end OR requests with no origin (Postman)
     if (!origin || allowedOrigins.includes(origin)) {
       callback(null, true);
