@@ -14,6 +14,7 @@ export const getAllSonglists = async (
     res: Response,
     next: NextFunction
 ): Promise<void> => {
+    console.log("Controller reached for songlists");
     try {
         const songlists = await songlistService.fetchAllSonglists();
         res.status(HTTP_STATUS.OK).json(
@@ -117,6 +118,11 @@ export const deleteSonglist = async (
     }
 };
 
+/**
+ * Manages the request and response of a toggled list.
+ * @param req - The express Request
+ * @param res - The express Response
+ */
 export const toggleSongInList = async (
     req: Request,
     res: Response,

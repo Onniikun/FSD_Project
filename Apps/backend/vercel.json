@@ -1,16 +1,20 @@
 {
    "relatedProjects": ["prj_2Ie4DR5seenghQapxKJaTjM3oHDe"],
-   "rewrites": [
-        {
-            "source": "/(.*)",
-            "destination": "/api" 
+   "functions": {
+        "api/index.ts": {
+        "includeFiles": "src/**"
         }
-   ],
-
-   "git": {
+    },
+    "rewrites": [
+        {
+        "source": "/(.*)",
+        "destination": "/api"
+        }
+    ],
+    "git": {
         "deploymentEnabled": {
-            "*": false,
-            "main": true
+        "*": false,
+        "main": true
         }
     }
 }
