@@ -4,7 +4,7 @@
 import { CorsOptions } from "cors";
 
 const allowedOrigins = [process.env.FRONTEND_URL];
-console.log(allowedOrigins)
+console.log("The Front-end URL haha:",allowedOrigins)
 export const corsOptions: CorsOptions = {
   origin(origin, callback) {
     // Allow requests from your front-end OR requests with no origin (Postman)
