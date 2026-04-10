@@ -9,7 +9,7 @@ import { getAuth } from "@clerk/express";
  */
 export const findOrCreateUser = async(
     req: Request,
-    res: Response,
+    _res: Response,
     next: NextFunction
 ): Promise<void> => {
     try {
@@ -27,7 +27,7 @@ export const findOrCreateUser = async(
         
         // If userId not found with auth, set userId to null 
         // Prevents userId from being included erroneously in the request body
-        res.locals.userId = userId;
+        req.userId = userId;
         next();
     } catch(error) {
         next(error);
