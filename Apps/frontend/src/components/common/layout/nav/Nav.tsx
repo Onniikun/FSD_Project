@@ -1,5 +1,6 @@
 import { NavLink } from "react-router";
 import './Nav.css';
+import { SignedIn, SignedOut, SignInButton, SignUpButton, UserButton } from '@clerk/clerk-react';
 
 export function Nav() {
     return(
@@ -19,12 +20,21 @@ export function Nav() {
             </NavLink>
         </div>
         <div className="user-management-links">
-            <span>
-                <a href="#">SIGN IN</a>
-            </span>
-            <span>
-                <a href="#">CREATE ACCOUNT</a>
-            </span>
+            <SignedOut>
+                <span>
+                    <SignInButton mode="modal">
+                        <button className="nav-btn">SIGN IN</button>
+                    </SignInButton>
+                </span>
+            </SignedOut>
+                <span>
+                    <SignUpButton mode="modal">
+                        <button className="nav-btn">CREATE AN ACCOUNT</button>
+                    </SignUpButton>
+                </span>
+            <SignedIn>
+                <UserButton/>
+            </SignedIn>
         </div>
         <section className="search">
             <form action="#">
