@@ -13,12 +13,23 @@ datasource db {
   provider = "postgresql"
 }
 
+model User {
+  id        String        @id
+  songlists Songlist[]
+}
+
+
 model Songlist {
   id          String   @id @default(uuid())
   name        String
   visibility  String
   description String?
   cover       String?
+
+  // Ownership
+  user        User              @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId      String
+
   // Relations
   songs SongCollection[]
 }
