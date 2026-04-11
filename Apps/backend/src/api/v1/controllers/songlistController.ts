@@ -1,5 +1,4 @@
 import { Request, Response, NextFunction } from "express";
-import { Songlist } from "../../../../generated/prisma/client";
 import * as songlistService from "../services/songlistService";
 import { successResponse } from "../models/responseModel";
 import { HTTP_STATUS } from "../constants/httpConstant";
@@ -10,13 +9,14 @@ import { HTTP_STATUS } from "../constants/httpConstant";
  * @param res - The express Response
  */
 export const getAllSonglists = async (
-    _req: Request,
+    req: Request,
     res: Response,
     next: NextFunction
 ): Promise<void> => {
-    console.log("Controller reached for songlists");
     try {
-        const songlists = await songlistService.fetchAllSonglists();
+        const userId = req.userId ?? null;
+
+        const songlists = await songlistService.fetchAllSonglists(userId);
         res.status(HTTP_STATUS.OK).json(
             successResponse(songlists, "Songlists retrieved successfully")
         );
@@ -37,15 +37,22 @@ export const getSonglistById = async (
 ): Promise<void> => {
     try {
         const id = req.params.id as string;
+        const userId = req.userId ?? null;
 
-        const songlist: Songlist | null =
-            await songlistService.getSonglistById(id);
+        const songlist = await songlistService.getSonglistById(id);
 
-        if (songlist) {
-            res.json(successResponse(songlist, `Songlist ${id} retrieved successfully`));
-        } else {
-            throw new Error("Songlist not found");
+        if (!songlist) {
+            res.status(404).json({ message: "Songlist not found" });
+            return;
         }
+
+        // Enforce visibility
+        if (songlist.visibility === "private" && songlist.userId !== userId) {
+            res.status(403).json({ message: "Not authorized" });
+            return;
+        }
+
+        res.json(successResponse(songlist, `Songlist ${id} retrieved successfully`));
     } catch (error) {
         next(error);
     }
@@ -62,7 +69,18 @@ export const createSonglist = async (
     next: NextFunction
 ): Promise<void> => {
     try {
-        const newSonglist = await songlistService.createSonglist(req.body);
+        const userId = req.userId;
+
+        if (!userId) {
+            res.status(401).json({ message: "Unauthorized" });
+            return;
+        }
+
+        const newSonglist = await songlistService.createSonglist({
+            ...req.body,
+            userId
+        });
+
         res.status(HTTP_STATUS.CREATED).json(
             successResponse(newSonglist, "Songlist created successfully")
         );
@@ -83,6 +101,8 @@ export const updateSonglist = async (
 ): Promise<void> => {
     try {
         const id = req.params.id as string;
+
+        await songlistService.verifySonglistOwnership(id, req.userId ?? null);
 
         const updatedSonglist = await songlistService.updateSonglist(
             id,
@@ -109,6 +129,8 @@ export const deleteSonglist = async (
     try {
         const id = req.params.id as string;
 
+        await songlistService.verifySonglistOwnership(id, req.userId ?? null);
+
         await songlistService.deleteSonglist(id);
         res.status(HTTP_STATUS.OK).json(
             successResponse(null, `Songlist ${id} deleted successfully`)
@@ -130,6 +152,8 @@ export const toggleSongInList = async (
 ): Promise<void> => {
     try {
         const { id, songId } = req.params as { id: string; songId: string };
+
+        await songlistService.verifySonglistOwnership(id, req.userId ?? null);
 
         const updated = await songlistService.toggleSongInList(
             id,

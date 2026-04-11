@@ -9,11 +9,13 @@ const router: Router = express.Router();
 
 router.get(
     "/songlists",
+    findOrCreateUser,
     songlistController.getAllSonglists
 );
 
 router.get(
     "/songlists/:id",
+    findOrCreateUser,
     songlistController.getSonglistById
 );
 

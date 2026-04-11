@@ -9,10 +9,21 @@ import { songlistInclude } from "../utils/songlistInclude";
 
 /**
  * Retrieves all songlists
+ * - Signed-in users: public + their private lists
+ * - Non-signed-in users: only public lists
  * @returns Array of all songlists
  */
-export const fetchAllSonglists = async (): Promise<FullSonglist[]> => {
+export const fetchAllSonglists = async (
+    userId: string | null
+): Promise<FullSonglist[]> => {
+    const orConditions: any[] = [{ visibility: "public" }];
+
+    if (userId) {
+        orConditions.push({ userId });
+    }
+    // OR operator https://www.prisma.io/docs/v6/orm/prisma-client/queries/filtering-and-sorting
     const lists = await prisma.songlist.findMany({
+        where: { OR: orConditions },
         include: songlistInclude
     });
 
@@ -48,9 +59,9 @@ export const getSonglistById = async (
  * @returns The newly created songlist with unique ID
  */
 export const createSonglist = async (
-    songlistData: CreateSongListData
+    songlistData: CreateSongListData & { userId: string }
 ) => {
-    const { name, description, cover, visibility, songIds } = songlistData;
+    const { name, description, cover, visibility, songIds, userId } = songlistData;
 
     const created = await prisma.songlist.create({
         data: {
@@ -58,6 +69,7 @@ export const createSonglist = async (
             description: description ?? null,
             cover: cover ?? null,
             visibility: visibility ?? "private",
+            userId,
             songs: songIds
                 ? {
                     create: songIds.map(id => ({ songId: id }))
@@ -164,4 +176,31 @@ export const toggleSongInList = async (
     });
 
     return transformSonglist(updated);
+};
+
+export const verifySonglistOwnership = async (
+    id: string,
+    userId: string | null
+) => {
+    if (!userId) {
+        const error: any = new Error("Unauthorized");
+        error.status = 401;
+        throw error;
+    }
+
+    const songlist: FullSonglist | null = await getSonglistById(id);
+
+    if (!songlist) {
+        const error: any = new Error("Songlist not found");
+        error.status = 404;
+        throw error;
+    }
+
+    if (songlist.userId !== userId) {
+        const error: any = new Error("Not authorized");
+        error.status = 403;
+        throw error;
+    }
+
+    return songlist;
 };
