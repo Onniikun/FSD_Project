@@ -7,6 +7,7 @@ import defaultCover from "../../../assets/default-cover.png";
 import { SearchService } from "../../../services/songSearchService";
 import { validateList, addSong as addSongToList, removeSong as removeSongFromList } from "../../../services/SongListService";
 import { updateSongList } from "../../../apis/songListsRepository";
+import { useUser } from "@clerk/clerk-react";
 
 /**
  * A modal component for viewing and editing a song list, allowing users to see details, edit information, search/add songs, and delete the list.
@@ -27,6 +28,8 @@ export function SongListModal({
   onDelete: (id: string) => void;
   onEdit: (updated: FullSonglist) => void;
 }) {
+  const { user } = useUser();
+  const isOwner = user?.id === list.userId;
   const [isEditing, setIsEditing] = useState(false);
 
   // Local editable fields
@@ -107,10 +110,6 @@ export function SongListModal({
     setIsEditing(false);
   };
 
-
-
-
-
   return (
     <div className="modal-overlay">
       <div className={`modal ${isEditing ? "modal-edit" : "modal-view"}`}>
@@ -140,21 +139,23 @@ export function SongListModal({
                 </li>
               ))}
             </ul>
-
-            <div className="modal-actions">
-              <button onClick={() => setIsEditing(true)}>Edit</button>
-              <button onClick={() => {
-                  const ok = window.confirm("Are you sure you want to delete this list?");
-                  if (ok) onDelete(list.id);
-                }}
-              >
-                Delete  
-              </button>
-            </div>
+            
+            {isOwner && (
+              <div className="modal-actions">
+                <button onClick={() => setIsEditing(true)}>Edit</button>
+                <button onClick={() => {
+                    const ok = window.confirm("Are you sure you want to delete this list?");
+                    if (ok) onDelete(list.id);
+                  }}
+                >
+                  Delete  
+                </button>
+              </div>
+            )}
           </>
         )}
 
-        {isEditing && (
+        {isEditing && isOwner && (
           <>
             <h2>Edit List</h2>
 

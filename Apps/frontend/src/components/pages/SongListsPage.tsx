@@ -13,6 +13,7 @@ import {
 } from "../../apis/songListsRepository";
 
 import { SongListModal } from "../common/song-list-modal/SongListModal";
+import { SignedIn, SignedOut } from "@clerk/clerk-react";
 
 export default function SongListsPage() {
     const [lists, setLists] = useState<FullSonglist[]>([]);
@@ -57,7 +58,12 @@ export default function SongListsPage() {
         <div>
             <h1>Song Lists</h1>
 
-            <CreateSongListForm onCreateList={handleCreateList} />
+            <SignedIn>
+                <CreateSongListForm onCreateList={handleCreateList} />
+            </SignedIn>
+            <SignedOut>
+                <p>Please sign in or create an account to create a song list.</p>
+            </SignedOut>
 
             <SongListsDisplay
             lists={lists}
