@@ -19,10 +19,49 @@ Nathan Natoza, Edraque Maglaque, Phoenixx Ordonez
 
 Currently this full-stack project is separate into two different project files called 'frontend' and 'backend'
 
-## Front-end 
+# Local Setup Instructions
+Step 0 Download prerequisites: Download VScode and docker. These are the applications we use to create our project. 
 
+Note: This is a react vite project which acts a little differently from a normal html project. This simple setup instructions will help provide you with the necessary information to test and use our project locally.
 
-## Back-end
+Step 0.5: Download unzip the project files and open that in VScode.
+
+Step 1: Front-end setup
+
+Now that you are in the root file of the project in VScode you'll see on the right hand side of your project files/folders; it should look something like this:
+```
+├── 📁 apps
+│   ├── 📁 backend
+│   └── 📁 frontend
+├── 📁 docs
+│   ├── 📝 architecture-nn.md
+│   └── 📝 architecture-po.md
+├── 📁 shared
+│   └── 📁 types
+│       ├── 📄 SongItemSchema.ts
+│       └── 📄 songListTypes.ts
+├── ⚙️ .gitignore
+├── 📝 README.md
+├── 📝 STYLEGUIDE.MD
+├── ⚙️ docker-compose.yml
+├── ⚙️ package-lock.json
+├── ⚙️ package.json
+├── ⚙️ tsconfig.base.json
+└── ⚙️ tsconfig.json
+```
+Now to access the project terminal use the command ctrl+j or Command (⌘) + J if you're on mac.
+
+it should look like this: ```PS C:\Users\domin\Desktop\FSD_Project> ```
+
+use the ```cd apps/frontend``` command to get into the frontend directory.
+
+it should look like this: ```PS C:\Users\domin\Desktop\FSD_Project\apps\frontend>```
+
+Then use the ```npm install``` command. This should download our frontend dependencies on which project relies on.
+
+Step 2: Back-end setup
+
+Step 3: Docker + prisma database setup
 
 ## Sprint Review | Completed Kanban Items
 
@@ -60,6 +99,15 @@ Currently this full-stack project is separate into two different project files c
 - **Back-end CORS Configuration** - Phoenixx
 
 - **Extra Refactoring: Added application data persistence(Adding Song item to a Song list collection)** - Nathan & Phoenixx
+
+### Sprint 5
+- **Clerk Auth Setup** - Nathan
+- **Vercel Managment** - Nathan
+- **Back-end User Management** - Phoenixx
+- **User Login/Registration** - Nathan & Phoenixx
+- **Local Setup Instructions** - Nathan & Phoenixx
+
+- **Extra Refactoring: ** - Nathan & Phoenixx
 
 ### Individual Contributions
 
@@ -100,5 +148,3 @@ Currently this full-stack project is separate into two different project files c
 - **I.2: Resource Dataabse Schema(Song List)** - Phoenixx
 - **I.3: Front-end Repository sends requests to back-end** - Phoenixx
 - **I.4: Application State Persistence** - Phoenixx
-
-test
