@@ -25,9 +25,6 @@ Step 0 Download prerequisites: Download VScode and docker. These are the applica
 Note: This is a react vite project which acts a little differently from a normal html project. This simple setup instructions will help provide you with the necessary information to test and use our project locally.
 
 Step 0.5: Download unzip the project files and open that in VScode.
-
-Step 1: Front-end setup
-
 Now that you are in the root file of the project in VScode you'll see on the right hand side of your project files/folders; it should look something like this:
 ```
 ├── 📁 apps
@@ -49,7 +46,10 @@ Now that you are in the root file of the project in VScode you'll see on the rig
 ├── ⚙️ tsconfig.base.json
 └── ⚙️ tsconfig.json
 ```
-Now to access the project terminal use the command ctrl+j or Command (⌘) + J if you're on mac.
+
+Step 1: Front-end setup
+
+Now that you have seen our project files we want to access the VScode terminal use the command ctrl+j or Command (⌘) + J if you're on mac.
 
 it should look like this: ```PS C:\Users\domin\Desktop\FSD_Project> ```
 
@@ -57,7 +57,30 @@ use the ```cd apps/frontend``` command to get into the frontend directory.
 
 it should look like this: ```PS C:\Users\domin\Desktop\FSD_Project\apps\frontend>```
 
-Then use the ```npm install``` command. This should download our frontend dependencies on which project relies on.
+Then use the ```npm install``` command. This should download our frontend dependencies on which project relies on. You will know that it worked when you opened the frontend you will see the huge file called ```node_modules```
+
+After installing you need to create a .env file within the frontend directory. This is where we keep our environment variables; make sure you create it that follows the same path to prevent issues.
+```apps\frontend\.env``` 
+
+After creating that you need two different environment variable keys in order for our application to work correctly. 
+
+For the first env variable we need an VITE API URL to host the application; in our project we have it called: ```VITE_API_BASE_URL```\
+In the .env you created. Copy that and paste it into your .env file: ```VITE_API_BASE_URL=http://localhost:3000```
+
+For the second environment variable, you need to create a Clerk application to work with the frontend. [Link Here](https://dashboard.clerk.com/sign-up)
+
+Once you have completed creating your account, setup a clerk application. Note that you need to select 'react' when creating the application; you don't need to follow the setup that clerk provides but you do need the clerk API, it should look something like this ```VITE_CLERK_PUBLISHABLE_KEY=pk_test_ABC...```
+
+Copy that and paste it into your .env file. Your .env should have these elements. 
+```
+VITE_API_BASE_URL=http://localhost:3000
+VITE_CLERK_PUBLISHABLE_KEY=pk_test_ABC...
+```
+
+Now go back to your VScode terminal and run this command ```npm run dev```.
+This will open the local host link and should look something like this: ```Local:   http://localhost:5173/```
+
+And Thats the frontend setup!
 
 Step 2: Back-end setup
 
