@@ -1,13 +1,15 @@
 import "dotenv/config";
-import { Pool } from "pg";
+import { PrismaClient } from "@prisma/client";
 import { PrismaPg } from "@prisma/adapter-pg";
-import { PrismaClient } from "../generated/prisma/client";
+import { Pool } from "pg";
+import { songlistSeedData, songs, songlistSongMap, userSeedData } from "./seedData";
  
-import { songlistSeedData, songs, songlistSongMap } from "./seedData";
- 
-const connectionString = `${process.env.DATABASE_URL}`;
-const pool = new Pool({ connectionString });
+const pool = new Pool({
+  connectionString: process.env.DATABASE_URL,
+});
+
 const adapter = new PrismaPg(pool);
+
 const prisma = new PrismaClient({ adapter });
  
 async function main() {
@@ -20,6 +22,12 @@ async function main() {
   await prisma.songlist.deleteMany();
   await prisma.artist.deleteMany();
   await prisma.genre.deleteMany();
+  await prisma.user.deleteMany();
+
+  await prisma.user.createMany({
+    data: userSeedData,
+    skipDuplicates: true
+  });
  
   const uniqueArtists = Array.from(
     new Set(songs.flatMap((s) => s.artists))
