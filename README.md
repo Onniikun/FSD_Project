@@ -47,7 +47,7 @@ Now that you are in the root file of the project in VScode you'll see on the rig
 └── ⚙️ tsconfig.json
 ```
 
-Step 1: Front-end setup
+### Step 1: Front-end setup
 
 Now that you have seen our project files we want to access the VScode terminal use the command ctrl+j or Command (⌘) + J if you're on mac.
 
@@ -82,9 +82,28 @@ This will open the local host link and should look something like this: ```Local
 
 And Thats the frontend setup!
 
-Step 2: Back-end setup
+### Step 2: Back-end/Project setup
 
-Step 3: Docker + prisma database setup
+Now that you have setup the frontend and were able to see the our application pages you probably noticed theres no data to interact with.
+
+First get back to the main project root, it should look like this ```PS C:\Users\domin\Desktop\FSD_Project> ```
+
+You now want to create another .env file for our backend. This serves nearly the same function as the other .env file you created previously. Once there you want to begin adding some environment variables again.
+
+First add the same clerk API key as the one from our frontend but this time remove the ```VITE_``` from the start of the variable. Now it should look like this: ```CLERK_PUBLISHABLE_KEY=pk_test_NAT...```
+
+Second our Clerk secret key; this is found in the your clerk application settings under API keys. Note its easiest to pull from the quick copy menu under Next.js. This key should look like this:```CLERK_SECRET_KEY=sk_test_PHO...```
+
+Third our database url; this connects our database to the project. 
+It should look something like this ```DATABASE_URL=<>```
+
+Lastly our Frontend url; this connects the backend to the frontend. This is very easy to get; when running the frontend you should've seen a url something like this ```http://<urladdress>:<numbers>/```. To retrieve simply run the frontend again and copy and paste it into the .env file. When adding the variable it should look something like this ```FRONTEND_URL=http://<urladdress>:<numbers>/```
+
+
+<!-- Once there get to you want to get into the backend directory, use the following command: ```cd apps/backend``` -->
+
+
+### Step 3: Docker + prisma database setup
 
 ## Sprint Review | Completed Kanban Items
 
