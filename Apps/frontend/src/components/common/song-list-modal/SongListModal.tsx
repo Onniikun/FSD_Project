@@ -7,7 +7,7 @@ import defaultCover from "../../../assets/default-cover.png";
 import { SearchService } from "../../../services/songSearchService";
 import { validateList, addSong as addSongToList, removeSong as removeSongFromList } from "../../../services/SongListService";
 import { updateSongList } from "../../../apis/songListsRepository";
-import { useUser } from "@clerk/clerk-react";
+import { useUser, useAuth } from "@clerk/clerk-react";
 
 /**
  * A modal component for viewing and editing a song list, allowing users to see details, edit information, search/add songs, and delete the list.
@@ -29,28 +29,22 @@ export function SongListModal({
   onEdit: (updated: FullSonglist) => void;
 }) {
   const { user } = useUser();
+  const navigate = useNavigate();
+  const { getToken } = useAuth();
   const isOwner = user?.id === list.userId;
+  const [draft, setDraft] = useState<FullSonglist>(list);
+
+  // UI state
   const [isEditing, setIsEditing] = useState(false);
-
-  // Local editable fields
-  const [name, setName] = useState(list.name);
-  const [description, setDescription] = useState<string | null>(list.description);
-  const [visibility, setVisibility] = useState<VisibilityOption>(
-    list.visibility as VisibilityOption
-  );
-  const [cover, setCover] = useState<string | null>(list.cover);
-  const [songs, setSongs] = useState(list.songs);
-  const [errors, setErrors] = useState<{
-    name?: string;
-    songs?: string;
-  }>({});
-
-  // Search state
+  const [errors, setErrors] = useState<{ name?: string; songs?: string }>({});
   const [searchValue, setSearchValue] = useState("");
   const [searchResults, setSearchResults] = useState<SongItemSchema[]>([]);
   const [isFocused, setIsFocused] = useState(false);
 
-  const navigate = useNavigate();
+  // Keep draft synced if parent updates list
+  useEffect(() => {
+    setDraft(list);
+  }, [list]);
 
   // Search effect
   useEffect(() => {
@@ -65,48 +59,55 @@ export function SongListModal({
     fetchResults();
   }, [searchValue]);
 
+  const updateField = (field: keyof FullSonglist, value: any) => {
+    setDraft(prev => ({ ...prev, [field]: value }));
+  };
+
   const addSong = (song: SongItemSchema) => {
-    setSongs(prev => addSongToList(prev, song));
+    updateField("songs", addSongToList(draft.songs, song));
     setSearchValue("");
     setSearchResults([]);
-
     if (errors.songs) setErrors(prev => ({ ...prev, songs: undefined }));
   };
 
   const removeSong = (id: number) => {
-    setSongs(prev => {
-      const updated  = removeSongFromList(id, prev);
-      if (updated.length === 0) {
-        setErrors(prev => ({ ...prev, songs: "**Please add at least one song.**" }));
-      }
-      return updated ;
-    });
+    const updated = removeSongFromList(id, draft.songs);
+    updateField("songs", updated);
+    if (updated.length === 0) {
+      setErrors(prev => ({ ...prev, songs: "**Please add at least one song.**" }));
+    }
   };
 
   const handleSave = async () => {
     const validationErrors = validateList({
-      name,
-      description,
-      visibility,
-      songIds: songs.map(s => s.id),
-      cover
+      name: draft.name,
+      description: draft.description,
+      visibility: draft.visibility as VisibilityOption,
+      songIds: draft.songs.map(s => s.id),
+      cover: draft.cover
     });
 
     setErrors(validationErrors);
     if (Object.keys(validationErrors).length > 0) return;
 
-    const updatePayload = {
-      name,
-      description,
-      visibility,
-      cover,
-      songIds: songs.map(s => s.id)
+    const payload = {
+      name: draft.name,
+      description: draft.description,
+      visibility: draft.visibility as VisibilityOption,
+      cover: draft.cover,
+      songIds: draft.songs.map(s => s.id)
     };
 
-    const updatedList = await updateSongList(list.id, updatePayload);
+    const token = await getToken();
+    console.log("PUT ID:", draft.id);
+    if (!token) {
+      console.error("No session token available — user may not be signed in.");
+      return;
+    }
+
+    const updatedList = await updateSongList(draft.id, payload, token);
 
     onEdit(updatedList);
-
     setIsEditing(false);
   };
 
@@ -118,18 +119,18 @@ export function SongListModal({
         {!isEditing && (
           <>
             <img 
-              src={list.cover ?? defaultCover} 
+              src={draft.cover ?? defaultCover} 
               className="modal-cover" 
-              alt={`${list.name} cover image`}
+              alt={`${draft.name} cover image`}
             />
 
-            <h2 className="modal-title-view">{list.name}</h2>
-            <p className="modal-description">{list.description}</p>
-            <p><strong>Visibility:</strong> {list.visibility}</p>
+            <h2 className="modal-title-view">{draft.name}</h2>
+            <p className="modal-description">{draft.description}</p>
+            <p><strong>Visibility:</strong> {draft.visibility}</p>
 
             <h3>Songs</h3>
             <ul>
-              {list.songs.map(song => (
+              {draft.songs.map(song => (
                 <li 
                   key={song.id}
                   className="song-link"
@@ -139,16 +140,16 @@ export function SongListModal({
                 </li>
               ))}
             </ul>
-            
+
             {isOwner && (
               <div className="modal-actions">
                 <button onClick={() => setIsEditing(true)}>Edit</button>
                 <button onClick={() => {
-                    const ok = window.confirm("Are you sure you want to delete this list?");
-                    if (ok) onDelete(list.id);
-                  }}
-                >
-                  Delete  
+                  if (window.confirm("Are you sure you want to delete this list?")) {
+                    onDelete(draft.id);
+                  }
+                }}>
+                  Delete
                 </button>
               </div>
             )}
@@ -162,7 +163,7 @@ export function SongListModal({
             <div className="cover-edit-section">
               <label htmlFor="edit-cover-input" className="editable-cover-label">
                 <img
-                  src={cover ?? defaultCover}
+                  src={draft.cover ?? defaultCover}
                   alt="Cover preview"
                   className="modal-cover editable-cover"
                 />
@@ -178,7 +179,7 @@ export function SongListModal({
                   if (!file) return;
 
                   const reader = new FileReader();
-                  reader.onload = () => setCover(reader.result as string);
+                  reader.onload = () => updateField("cover", reader.result as string);
                   reader.readAsDataURL(file);
                 }}
               />
@@ -188,11 +189,8 @@ export function SongListModal({
               <label>
                 Name
                 <input
-                  value={name}
-                  onChange={e => {
-                    setName(e.target.value);
-                    if (errors.name) setErrors(prev => ({ ...prev, name: undefined }));
-                  }}
+                  value={draft.name}
+                  onChange={e => updateField("name", e.target.value)}
                 />
                 {errors.name && <p className="error-text">{errors.name}</p>}
               </label>
@@ -200,8 +198,8 @@ export function SongListModal({
               <label>
                 Description
                 <textarea
-                  value={description ?? ""}
-                  onChange={e => setDescription(e.target.value)}
+                  value={draft.description ?? ""}
+                  onChange={e => updateField("description", e.target.value)}
                   rows={7}
                 />
               </label>
@@ -209,8 +207,8 @@ export function SongListModal({
               <label>
                 Visibility
                 <select
-                  value={visibility}
-                  onChange={e => setVisibility(e.target.value as "public" | "private")}
+                  value={draft.visibility}
+                  onChange={e => updateField("visibility", e.target.value as VisibilityOption)}
                 >
                   <option value="public">Public</option>
                   <option value="private">Only Me</option>
@@ -251,7 +249,7 @@ export function SongListModal({
               {errors.songs && <p className="error-text">{errors.songs}</p>}
 
               <ul className="edit-songs-list">
-                {songs.map(song => (
+                {draft.songs.map(song => (
                   <li 
                     key={song.id} 
                     className="edit-song-row song-link"
@@ -261,7 +259,7 @@ export function SongListModal({
                     <button
                       type="button"
                       className="remove-song-btn"
-                        onClick={(e) => {
+                      onClick={(e) => {
                         e.stopPropagation();
                         removeSong(song.id);
                       }}
@@ -272,6 +270,7 @@ export function SongListModal({
                 ))}
               </ul>
             </div>
+
             <div className="modal-actions">
               <button onClick={handleSave}>Save</button>
               <button onClick={() => setIsEditing(false)}>Cancel</button>

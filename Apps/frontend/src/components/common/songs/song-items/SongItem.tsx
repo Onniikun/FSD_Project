@@ -18,12 +18,14 @@ import * as DiscoveryService from "../../../../services/discoveryService.ts";
 import { useMood } from "../../../../hooks/useMood.ts";
 import type { FullSonglist } from "../../../../../../../shared/types/songListTypes.ts";
 import { fetchSongLists } from "../../../../apis/songListsRepository.ts"
+import { useAuth } from "@clerk/clerk-react"
 
 /**
  * Displays song information.
  * @returns - A song item{s}
  */
 export function SongItem({ query = "" }: { query?: string }) {
+    const { getToken } = useAuth()
     const { id } = useParams()
     const { mood } = useMood();
     //use state for a selected Genre.(Used my hook to display the filtered genre)
@@ -87,10 +89,11 @@ export function SongItem({ query = "" }: { query?: string }) {
     useEffect(() => {
         async function loadLists() {
             try {
-            const data = await fetchSongLists(); 
-            setLists(data);
+                const token = await getToken();
+                const data = await fetchSongLists(token); 
+                setLists(data);
             } catch (err) {
-            console.error(err);
+                console.error(err);
             }
         }
         loadLists()
@@ -99,7 +102,9 @@ export function SongItem({ query = "" }: { query?: string }) {
     // NEW: Toggle handler
     const handleToggleSongInList = async (listId: string, songId: number) => {
         try {
-            const updatedList = await toggleSongInList(listId, songId)
+            const token = await getToken();
+            if (!token) return console.error("No token");
+            const updatedList = await toggleSongInList(listId, songId, token);
 
             // Update state with the updated list
             setLists(prev =>

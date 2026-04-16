@@ -41,7 +41,7 @@ export async function getSongListById(
     sessionToken?: string | null
 ): Promise<FullSonglist > {
     const response: Response = await fetch(
-        `${BASE_URL}${SONGLIST_ENDPOINT}`,
+        `${BASE_URL}${SONGLIST_ENDPOINT}/${listId}`,
         sessionToken? {
             headers: {
                 Authorization: `Bearer ${sessionToken}`,
@@ -65,24 +65,24 @@ export async function getSongListById(
  * @throws Error if creation fails or the server responds with an error
  */
 export async function createSongList(
-    data: CreateSongListData, 
-    sessionToken?: string | null
+  data: CreateSongListData,
+  sessionToken?: string | null
 ): Promise<FullSonglist> {
     const response: Response = await fetch(`${BASE_URL}${SONGLIST_ENDPOINT}`, {
-        method: "POST",
-        body: JSON.stringify(data),
-        headers: { 
-            "Content-Type": "application/json", 
-            Authorization: `Bearer ${sessionToken}`
-        },
-    });
-
-    if (!response.ok) {
-        throw new Error("Failed to create a song list");
+    method: "POST",
+    body: JSON.stringify(data),
+    headers: {
+      "Content-Type": "application/json",
+      ...(sessionToken ? { Authorization: `Bearer ${sessionToken}` } : {})
     }
+  });
 
-    const json: SongListResponseJSON = await response.json();
-    return json.data;
+  if (!response.ok) {
+    throw new Error("Failed to create a song list");
+  }
+
+  const json: SongListResponseJSON = await response.json();
+  return json.data;
 };
 
 /**
@@ -93,28 +93,28 @@ export async function createSongList(
  * @throws Error if no song list with the given ID exists or the update fails
  */
 export async function updateSongList(
-    id: string, 
+    id: string,
     data: UpdateSongListData,
     sessionToken?: string | null
 ): Promise<FullSonglist> {
-    const response: Response = await fetch(
-        `${BASE_URL}${SONGLIST_ENDPOINT}/${id}`,
-        {
-            method: "PUT",
-            body: JSON.stringify(data),
-            headers: { 
-                "Content-Type": "application/json",
-                Authorization: `Bearer ${sessionToken}`
-            },
-        }
-    );
-
-    if (!response.ok) {
-        throw new Error(`Failed to update the song list with id ${id}`);
+  const response: Response = await fetch(
+    `${BASE_URL}${SONGLIST_ENDPOINT}/${id}`,
+    {
+      method: "PUT",
+      body: JSON.stringify(data),
+      headers: { 
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${sessionToken}`
+      },
     }
+  );
 
-    const json: SongListResponseJSON = await response.json();
-    return json.data;
+  if (!response.ok) {
+    throw new Error(`Failed to update the song list with id ${id}`);
+  }
+
+  const json: SongListResponseJSON = await response.json();
+  return json.data;
 };
 
 /**

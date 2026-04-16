@@ -24,7 +24,7 @@ export const fetchAllSonglists = async (
     // OR operator https://www.prisma.io/docs/v6/orm/prisma-client/queries/filtering-and-sorting
     const lists = await prisma.songlist.findMany({
         where: { OR: orConditions },
-        include: songlistInclude
+        select: songlistInclude
     });
 
     return lists.map(transformSonglist);
@@ -42,7 +42,7 @@ export const getSonglistById = async (
     try {
         const songlist = await prisma.songlist.findUnique({
             where: { id },
-            include: songlistInclude
+            select: songlistInclude
         });
 
         if (!songlist) return null;
@@ -76,7 +76,7 @@ export const createSonglist = async (
                 }
                 : undefined
         },
-        include: songlistInclude
+        select: songlistInclude
     });
 
     return transformSonglist(created);
@@ -117,7 +117,7 @@ export const updateSonglist = async (
 
     const updated = await prisma.songlist.findUnique({
         where: { id },
-        include: songlistInclude
+        select: songlistInclude
     });
 
     return transformSonglist(updated);
@@ -172,7 +172,7 @@ export const toggleSongInList = async (
     // Return updated list
     const updated = await prisma.songlist.findUnique({
         where: { id: listId },
-        include: songlistInclude
+        select: songlistInclude
     });
 
     return transformSonglist(updated);
