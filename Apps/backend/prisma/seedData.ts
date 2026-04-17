@@ -1,68 +1,83 @@
-import { SongItem, Songlist } from "@prisma/client";
-
+import { SongItem, Songlist, User } from "@prisma/client";
  
 const songPFP = "songPFP.png";
+
+export const userSeedData: User[] = [
+  {
+    id: "user_3CMGTNpO3CgQXp4jE6YNEgYKmw3",
+  },
+];
 
 export const songlistSeedData: Omit<Songlist, "id" | "songs">[] = [
   {
     name: "Chill Vibes",
     visibility: "public",
     description: "Relaxing tracks for studying or unwinding.",
-    cover: null
+    cover: null,
+    userId: "user_3CMGTNpO3CgQXp4jE6YNEgYKmw3"
   },
   {
     name: "Workout Mix",
     visibility: "private",
     description: "High-energy songs to keep you moving.",
-    cover: null
+    cover: null,
+    userId: "user_3CMGTNpO3CgQXp4jE6YNEgYKmw3"
   },
   {
     name: "Throwback Classics",
     visibility: "public",
     description: "Hits from the 80s, 90s, and early 2000s.",
-    cover: null
+    cover: null,
+    userId: "user_3CMGTNpO3CgQXp4jE6YNEgYKmw3"
   },
   {
     name: "Late Night Coding",
     visibility: "private",
     description: "Ambient and electronic tracks for deep focus.",
-    cover: null
+    cover: null,
+    userId: "user_3CMGTNpO3CgQXp4jE6YNEgYKmw3"
   },
   {
     name: "Road Trip Essentials",
     visibility: "public",
     description: "Feel-good songs perfect for long drives.",
-    cover: null
+    cover: null,
+    userId: "user_3CMGTNpO3CgQXp4jE6YNEgYKmw3"
   },
   {
     name: "Morning Boost",
     visibility: "public",
     description: "Upbeat tracks to kickstart your day with energy.",
-    cover: null
+    cover: null,
+    userId: "user_3CMGTNpO3CgQXp4jE6YNEgYKmw3"
   },
   {
     name: "Indie Discoveries",
     visibility: "private",
     description: "A curated collection of underrated indie gems.",
-    cover: null
+    cover: null,
+    userId: "user_3CMGTNpO3CgQXp4jE6YNEgYKmw3"
   },
   {
     name: "Lo-Fi Study Session",
     visibility: "public",
     description: "Soft lo-fi beats perfect for focus and deep work.",
-    cover: null
+    cover: null,
+    userId: "user_3CMGTNpO3CgQXp4jE6YNEgYKmw3"
   },
   {
     name: "Global Hits",
     visibility: "public",
     description: "A mix of chart-topping songs from around the world.",
-    cover: null
+    cover: null,
+    userId: "user_3CMGTNpO3CgQXp4jE6YNEgYKmw3"
   },
   {
     name: "Acoustic Evenings",
     visibility: "private",
     description: "Warm acoustic tracks for slow nights and quiet moments.",
-    cover: null
+    cover: null,
+    userId: "user_3CMGTNpO3CgQXp4jE6YNEgYKmw3"
   }
 ];
  

@@ -99,11 +99,19 @@ It should look something like this ```DATABASE_URL=<>```
 
 Lastly our Frontend url; this connects the backend to the frontend. This is very easy to get; when running the frontend you should've seen a url something like this ```http://<urladdress>:<numbers>/```. To retrieve simply run the frontend again and copy and paste it into the .env file. When adding the variable it should look something like this ```FRONTEND_URL=http://<urladdress>:<numbers>/```
 
+Finally your backend .env file should look something like this. 
+```
+DATABASE_URL=postgres://<docker>@localhost/<docker>
+FRONTEND_URL=http://localhost:5173
+CLERK_PUBLISHABLE_KEY=pk_test_ABC...
+CLERK_SECRET_KEY=sk_test_XYZ...
+```
 
-<!-- Once there get to you want to get into the backend directory, use the following command: ```cd apps/backend``` -->
 
+### Step 3: Docker/prisma database setup + test run.
 
-### Step 3: Docker + prisma database setup
+Finally the last setup. For this you want get back to the main project root, it should look like this ```PS C:\Users\domin\Desktop\FSD_Project> ``` then run this command from step 1: ```npm run dev```. If you completed the steps correctly then you should be able to view the application on local host and interact with the application environments.
+
 
 ## Sprint Review | Completed Kanban Items
 
