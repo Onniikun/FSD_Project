@@ -20,7 +20,9 @@ Nathan Natoza, Edraque Maglaque, Phoenixx Ordonez
 Currently this full-stack project is separate into two different project files called 'frontend' and 'backend'
 
 # Local Setup Instructions
-Step 0 Download prerequisites: Download VScode and docker. These are the applications we use to create our project. 
+### Step 0 Download prerequisites:
+
+Download VScode and docker. These are the applications we use to create our project. 
 
 Note: This is a react vite project which acts a little differently from a normal html project. This simple setup instructions will help provide you with the necessary information to test and use our project locally.
 
@@ -110,7 +112,14 @@ CLERK_SECRET_KEY=sk_test_XYZ...
 
 ### Step 3: Docker/prisma database setup + test run.
 
-Finally the last setup. For this you want get back to the main project root, it should look like this ```PS C:\Users\domin\Desktop\FSD_Project> ``` then run this command from step 1: ```npm run dev```. If you completed the steps correctly then you should be able to view the application on local host and interact with the application environments.
+Finally the last setup. For this you want get back to the main project root, it should look like this ```PS C:\Users\domin\Desktop\FSD_Project> ``` . Now alt tab and open up the docker desktop application. We use docker as a way to store our database. There you want to use this command: ```Docker compose up``` 
+
+
+Afterward in a separate terminal run this command from step 1: ```npm run dev```. If you completed the steps correctly then you should be able to view the application on local host and interact with the application environments.
+
+### Step 3.5: Closing the application
+
+If you want to close the application then go back to the main project root ```PS C:\Users\domin\Desktop\FSD_Project> ```  and use the docker command: ```docker compose down``` or using ctrl + c in the terminal to bring docker down. You can also do the samething with the server.
 
 
 ## Sprint Review | Completed Kanban Items
