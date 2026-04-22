@@ -145,8 +145,8 @@ export function SongItem({ query = "" }: { query?: string }) {
                     <GenreFilter onChange={setSelectedGenre} />
                     <LinksFilter onChange={setSelectedLinks} />
             </>)}
-        {/* {console.log("Name of songs", displayedSongs)}
-        {console.log("Links",songs.map(song=>song.links))} */}
+        {console.log("Name of songs", displayedSongs)}
+        {console.log("Links",songs.map(song=>song.links))} 
         {/* {console.log("Selected:", lists)} */}
         {/* {console.log("Song platforms:", songs.map(s => s.links?.map(l => `"${l.platform}"`)))} */}
             <section className="song-item">
