@@ -38,6 +38,12 @@ nav span {
   cursor: pointer;
 }
 
+.page-links a {
+  color: #bf87ff;
+  text-decoration: none;
+  font-weight: 500;
+}
+
 @media (max-width: 600px) {
   nav {
     flex-wrap: wrap;
