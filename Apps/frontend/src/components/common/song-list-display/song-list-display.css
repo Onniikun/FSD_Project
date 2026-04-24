@@ -4,7 +4,6 @@
   column-count: 5;
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
   gap: 1.5rem;
-  color: white;
   padding-bottom: 4rem;
   padding: right;
 }
@@ -16,7 +15,7 @@
   width: 100%;
   font-size: 1.6rem;
   font-weight: 700;
-  color: #bf87ff;
+  color: #942fff;
 }
 
 @media (max-width: 600px) {
@@ -30,5 +29,11 @@
 
   .song-list {
     padding-left: 1rem;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  .lists-display h2 {
+    color: #b576fd;
   }
 }
