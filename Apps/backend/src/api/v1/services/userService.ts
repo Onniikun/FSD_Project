@@ -1,5 +1,5 @@
 import { User } from "@prisma/client";
-import prisma from "../../../../prisma/client";
+import { prisma } from "../../../../prisma/client";
 
 export const getUserById = async(id: string): Promise<User|null> => {
     const user: User | null = await prisma.user.findUnique(
