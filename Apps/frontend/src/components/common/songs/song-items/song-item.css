@@ -2,9 +2,18 @@
 .song-item {
     display: flex;
     justify-content: center;
-    align-items: center;
     margin-top: 50px;
     text-align: center;
+}
+
+.song-item ul {
+    display: grid;
+    grid-template-columns: repeat(2, max-content);
+    justify-content: center;
+    gap: 4rem 5rem;
+    padding: 0;
+    margin: 0 auto;
+    list-style: none;
 }
 /* song image */
 .songPFP {
@@ -45,8 +54,25 @@
     padding: 0;
     margin: 0;
 }
+.song-media {
+  width: 350px;
+  flex: 0 0 350px;
+}
 
-.song-links a {
-    display: block;
-    text-align: center;
+.song-platforms {
+  width: 350px;
+}
+
+.song-platforms .song-links {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  row-gap: 10px;
+  padding: 0;
+  margin: 0;
+}
+
+.song-platforms .song-links a {
+  display: block;
+  text-align: center;
 }

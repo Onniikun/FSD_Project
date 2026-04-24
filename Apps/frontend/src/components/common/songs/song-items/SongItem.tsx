@@ -145,10 +145,6 @@ export function SongItem({ query = "" }: { query?: string }) {
                     <GenreFilter onChange={setSelectedGenre} />
                     <LinksFilter onChange={setSelectedLinks} />
             </>)}
-        {/* {console.log("Name of songs", displayedSongs)}
-        {console.log("Links",songs.map(song=>song.links))} */}
-        {/* {console.log("Selected:", lists)} */}
-        {/* {console.log("Song platforms:", songs.map(s => s.links?.map(l => `"${l.platform}"`)))} */}
             <section className="song-item">
                 <ul>
                     {displayedSongs.length === 0 ? (
@@ -159,25 +155,24 @@ export function SongItem({ query = "" }: { query?: string }) {
                                 <div>
                                     <Link to={`/songs/${song.id}`}>
                                         <div className="songWrapper">
-                                <img className="songPFP"
-                                                src={song.cover}
-                                    alt="songpic" />
+                                            <img className="songPFP" src={song.cover}alt="songpic" />
                                         </div>
                                     </Link>
-                                    <Links links={song.links} />
+                                      <div className="song-platforms">
+                                        <Links links={song.links} />
+                                    </div>
                                 </div>
+
                                 <div className="song-info">
                                     <h2 className="title">{song.title}</h2>
                                     <p>{song.artist.join(", ")}</p>
                                     <p>Genre: {song.genre.join(", ")}</p>
-                            <p>Release date: {new Date (song.releaseDate).toLocaleDateString("en-US", {
-                                            year: "numeric",
-                                            month: "short",
-                                            day: "numeric",
-                            })}</p>
+                                    <p>Release date: {new Date (song.releaseDate).toLocaleDateString("en-US", {
+                                        year: "numeric",
+                                        month: "short",
+                                        day: "numeric",
+                                    })}</p>
                                     <p>Runtime: {song.runtime}</p>
-
-                                    {/* NEW: AddCollection with toggle */}
                                     <AddCollection
                                         lists={lists}
                                         songId={song.id}
