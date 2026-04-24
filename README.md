@@ -196,7 +196,6 @@ If you want to close the application then go back to the main project root ```PS
 - **I.4 Architectural Layout Document** - Nathan and Phoenixx
 - **Edraque's individual components still WIP**
 
-
 ### Sprint 4
 
 - **I.1: Back-end Resource Endpoint(Song Item)** - Nathan
@@ -207,3 +206,9 @@ If you want to close the application then go back to the main project root ```PS
 - **I.2: Resource Dataabse Schema(Song List)** - Phoenixx
 - **I.3: Front-end Repository sends requests to back-end** - Phoenixx
 - **I.4: Application State Persistence** - Phoenixx
+
+### Sprint 5
+- **I.1: Custom User-Associated Data and Session Management(only Signed in user can add a song to a collection from song page)** - Nathan
+- **I.2: Project Retrospective** - Nathan
+- **I.1: Custom User-Associated Data and Session Management(only Signed in user can create a song list from list page)** - Phoenixx
+- **I.2: Project Retrospective** - Phoenixx
