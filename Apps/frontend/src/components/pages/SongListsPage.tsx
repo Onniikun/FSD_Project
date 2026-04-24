@@ -69,7 +69,9 @@ export default function SongListsPage() {
                 <CreateSongListForm onCreateList={handleCreateList} />
             </SignedIn>
             <SignedOut>
-                <p>Please sign in or create an account to create a song list.</p>
+                <p style={{ textAlign: "center" }}>
+                    Please sign in or create an account to create a song list.
+                </p>
             </SignedOut>
 
             <SongListsDisplay
