@@ -2,7 +2,7 @@ import { Request, Response, NextFunction } from "express";
 import { successResponse } from "../response/models";
 import * as SongItemService from "../services/SongItemService";
 import { HTTP_STATUS } from "../constants/httpConstant";
-import { SongItem } from "../../../../generated/prisma/client"
+import { SongItem } from "@prisma/client"
 
 /**
  * A controller method that handles the request from the getAllSongItems function.

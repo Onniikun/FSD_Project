@@ -6,6 +6,7 @@ import Typography from "@mui/material/Typography";
 
 import type { FullSonglist } from "../../../../../../../shared/types/songListTypes";
 import SongItemListsDisplay from "./song-list-display-helper/SongItemListDisplay";
+import { useUser } from "@clerk/clerk-react";
 
 export function AddCollection({
   lists,
@@ -16,7 +17,10 @@ export function AddCollection({
   songId: number;
   onToggleSongInList: (listId: string, songId: number) => void;
 }) {
-  const [open, setOpen] = useState(false);
+  const [open, setOpen] = useState(false);  
+  const [authWarning, setAuthWarning] = useState(false);
+  const { isSignedIn } = useUser();
+
 
   const style = {
     position: "absolute" as const,
@@ -36,7 +40,15 @@ export function AddCollection({
 
   return (
     <section className="collection">
-      <button onClick={() => setOpen(true)}>
+      <button 
+        onClick={() => {
+          if (!isSignedIn) {
+            setAuthWarning(true);
+            return;
+          }
+          setOpen(true);
+        }}
+      >
         Add to Collection
       </button>
 
@@ -55,6 +67,15 @@ export function AddCollection({
                     onToggle={onToggleSongInList}
                 />
             )}
+        </Box>
+      </Modal>
+      <Modal open={authWarning} onClose={() => setAuthWarning(false)}>
+        <Box sx={style}>
+          <Typography variant="h6" sx={{ mb: 2 }}>
+            Sign in Required
+          </Typography>
+          <p>Please sign in or create an account to add songs to a collection.</p>
+          <button onClick={() => setAuthWarning(false)}>Close</button>
         </Box>
       </Modal>
     </section>

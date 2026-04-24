@@ -1,13 +1,30 @@
 export const songlistInclude = {
-    songs: {
-        include: {
-            song: {
-                include: {
-                    artists: { include: { artist: true } },
-                    genres: { include: { genre: true } },
-                    links: true
-                }
+  id: true,
+  name: true,
+  description: true,
+  visibility: true,
+  cover: true,
+  userId: true,
+
+  songs: {
+    select: {
+      song: {
+        select: {
+          id: true,
+          title: true,
+          artists: {
+            select: {
+              artist: true
             }
+          },
+          genres: {
+            select: {
+              genre: true
+            }
+          },
+          links: true
         }
+      }
     }
+  }
 };

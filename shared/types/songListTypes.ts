@@ -25,6 +25,7 @@ export interface FullSonglist {
   description: string | null;
   visibility: string;
   cover: string | null;
+  userId: string;
   songs: SongItemSchema[];
 }
 

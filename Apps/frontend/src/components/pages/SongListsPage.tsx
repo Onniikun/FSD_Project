@@ -13,32 +13,38 @@ import {
 } from "../../apis/songListsRepository";
 
 import { SongListModal } from "../common/song-list-modal/SongListModal";
+import { SignedIn, SignedOut, useAuth } from "@clerk/clerk-react";
 
 export default function SongListsPage() {
+    const {getToken, isSignedIn} = useAuth();
     const [lists, setLists] = useState<FullSonglist[]>([]);
     const [selectedList, setSelectedList] = useState<FullSonglist | null>(null);
     const { mood } = useMood();
 
     useEffect(() => {
         async function load() {
-            const loaded = await fetchSongLists();
+            const sessionToken = await getToken();
+            const loaded = await fetchSongLists(sessionToken);
             setLists(loaded);
         }
         load();
     }, []);
 
     const handleSelectList = async (id: string) => {
-        const latestSonglist = await getSongListById(id);
+        const sessionToken = await getToken();
+        const latestSonglist = await getSongListById(id, sessionToken);
         setSelectedList(latestSonglist);
     };
 
     const handleCreateList = async (data: CreateSongListData): Promise<void> => {
-        const newList = await createSongList(data);
+        let sessionToken = isSignedIn? await getToken() : null;
+        const newList = await createSongList(data, sessionToken);
         setLists(prev => [...prev, newList]);
     };
 
     const handleDeleteList = async (id: string): Promise<void> => {
-        await deleteSongList(id);
+        let sessionToken = isSignedIn? await getToken() : null;
+        await deleteSongList(id, sessionToken);
         setLists(prev => prev.filter(list => list.id !== id));
         setSelectedList(null);
     };
@@ -54,10 +60,19 @@ export default function SongListsPage() {
 
     return (
         <>
-        <div>
+        <header>
             <h1>Song Lists</h1>
+        </header>
 
-            <CreateSongListForm onCreateList={handleCreateList} />
+        <div>
+            <SignedIn>
+                <CreateSongListForm onCreateList={handleCreateList} />
+            </SignedIn>
+            <SignedOut>
+                <p style={{ textAlign: "center" }}>
+                    Please sign in or create an account to create a song list.
+                </p>
+            </SignedOut>
 
             <SongListsDisplay
             lists={lists}

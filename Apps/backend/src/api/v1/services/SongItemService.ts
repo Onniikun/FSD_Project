@@ -1,5 +1,5 @@
-import { prisma } from "../../../../lib/prisma";
-import { SongItem } from "../../../../generated/prisma/client"
+import { prisma } from "../../../../prisma/client";
+import { SongItem } from "@prisma/client"
 
 /**
  * Retrieves all Song Item from Boombox database.

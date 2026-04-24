@@ -7,6 +7,7 @@ export const transformSonglist = (songlist: any): FullSonglist => {
         description: songlist.description,
         visibility: songlist.visibility,
         cover: songlist.cover,
+        userId: songlist.userId,
         songs: songlist.songs.map((sc: any) => ({
             id: sc.song.id,
             title: sc.song.title,

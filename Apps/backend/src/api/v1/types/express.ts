@@ -22,3 +22,14 @@ export type RequestData<T extends RequestBody = RequestBody> = {
     params: Record<string, string>;
     query: Record<string, string | string[]>;
 }
+
+/**
+ * Extending Express Request interface to include optional userId property for authentication purposes.
+ */
+declare global{
+    namespace Express {
+        export interface Request {
+            userId?: string|null;
+        }
+    }
+}
