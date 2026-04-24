@@ -60,9 +60,11 @@ export default function SongListsPage() {
 
     return (
         <>
-        <div>
+        <header>
             <h1>Song Lists</h1>
+        </header>
 
+        <div>
             <SignedIn>
                 <CreateSongListForm onCreateList={handleCreateList} />
             </SignedIn>
